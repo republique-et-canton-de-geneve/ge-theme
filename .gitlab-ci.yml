@@ -39,8 +39,8 @@ cache:
 snapshot:
   stage: snapshot
   before_script:
-    - git config --global user.email "gitlab@etat.ge.ch"
-    - git config --global user.name ${GITLAB_USER}
+    - git config --global user.email ${RUNNER_EMAIL}
+    - git config --global user.name ${RUNNER_USERNAME}
   script:
     - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
     - echo "Building version" $IMAGE_VERSION
@@ -54,7 +54,7 @@ snapshot:
     - CI= yarn build
     - yarn config set version-git-message "[skip ci] v%s"
     - yarn version --no-git-tag-version --prerelease --preid SNAPSHOT
-    - git push https://${GITLAB_USER}:${GITLAB_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
   artifacts:
     paths:
       - build
@@ -85,10 +85,9 @@ docker-upload-snapshot:
 release:
   stage: release
   before_script:
-    - git config --global user.email "gitlab@etat.ge.ch"
-    - git config --global user.name ${GITLAB_USER}
+    - git config --global user.email ${RUNNER_EMAIL}
+    - git config --global user.name ${RUNNER_USERNAME}
     - git config pull.rebase true
-  #    - cd enu-console-admin-front
   script:
     - git pull origin main
     - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
@@ -103,7 +102,7 @@ release:
     - CI= yarn build
     - yarn config set version-git-message "[skip ci] v%s"
     - yarn version --patch
-    - git push https://${GITLAB_USER}:${GITLAB_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
   artifacts:
     paths:
       - build
