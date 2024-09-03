@@ -48,4 +48,16 @@
   --md-sys-color-surface-container: rgb(236 238 244);
   --md-sys-color-surface-container-high: rgb(230 232 238);
   --md-sys-color-surface-container-highest: rgb(224 226 232);
+  --md-extended-color-notifications-color: rgb(143 74 77);
+  --md-extended-color-notifications-on-color: rgb(255 255 255);
+  --md-extended-color-notifications-color-container: rgb(255 218 218);
+  --md-extended-color-notifications-on-color-container: rgb(59 8 14);
+  --md-extended-color-success-color: rgb(59 105 57);
+  --md-extended-color-success-on-color: rgb(255 255 255);
+  --md-extended-color-success-color-container: rgb(188 240 180);
+  --md-extended-color-success-on-color-container: rgb(0 34 4);
+  --md-extended-color-warning-color: rgb(129 86 17);
+  --md-extended-color-warning-on-color: rgb(255 255 255);
+  --md-extended-color-warning-color-container: rgb(255 221 181);
+  --md-extended-color-warning-on-color-container: rgb(42 24 0);
 }

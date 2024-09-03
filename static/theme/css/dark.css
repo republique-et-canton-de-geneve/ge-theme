@@ -1,5 +1,5 @@
 .dark {
-  --md-sys-color-primary: rgb(157 203 251);
+  --md-sys-color-primary: rgb(156 203 251);
   --md-sys-color-surface-tint: rgb(157 203 251);
   --md-sys-color-on-primary: rgb(0 51 85);
   --md-sys-color-primary-container: rgb(18 74 115);
@@ -48,4 +48,16 @@
   --md-sys-color-surface-container: rgb(29 32 36);
   --md-sys-color-surface-container-high: rgb(39 42 47);
   --md-sys-color-surface-container-highest: rgb(50 53 58);
+  --md-extended-color-notifications-color: rgb(255 179 180);
+  --md-extended-color-notifications-on-color: rgb(86 29 33);
+  --md-extended-color-notifications-color-container: rgb(115 51 54);
+  --md-extended-color-notifications-on-color-container: rgb(255 218 218);
+  --md-extended-color-success-color: rgb(161 211 154);
+  --md-extended-color-success-on-color: rgb(10 57 15);
+  --md-extended-color-success-color-container: rgb(36 80 36);
+  --md-extended-color-success-on-color-container: rgb(188 240 180);
+  --md-extended-color-warning-color: rgb(246 188 111);
+  --md-extended-color-warning-on-color: rgb(70 43 0);
+  --md-extended-color-warning-color-container: rgb(100 63 0);
+  --md-extended-color-warning-on-color-container: rgb(255 221 181);
 }
