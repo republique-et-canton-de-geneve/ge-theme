@@ -52,6 +52,10 @@
   --md-extended-color-notifications-on-color: rgb(86 29 33);
   --md-extended-color-notifications-color-container: rgb(115 51 54);
   --md-extended-color-notifications-on-color-container: rgb(255 218 218);
+  --md-extended-color-info-color: rgb(157 203 251);
+  --md-extended-color-info-on-color: rgb(0 51 85);
+  --md-extended-color-info-color-container: rgb(18 74 115);
+  --md-extended-color-info-on-color-container: rgb(207 229 255);
   --md-extended-color-success-color: rgb(161 211 154);
   --md-extended-color-success-on-color: rgb(10 57 15);
   --md-extended-color-success-color-container: rgb(36 80 36);
