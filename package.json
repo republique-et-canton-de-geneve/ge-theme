@@ -1,6 +1,6 @@
 {
   "name": "ge-theme",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "license": "Apache-2.0",
   "browserslist": [
@@ -40,7 +40,10 @@
   },
   "staticFiles": {
     "staticPath": "static",
-    "exclude": ["**/*.js", "**/webcomponents/**"]
+    "exclude": [
+      "**/*.js",
+      "**/webcomponents/**"
+    ]
   },
   "dependencies": {
     "@fontsource/roboto": "^5.1.0"
