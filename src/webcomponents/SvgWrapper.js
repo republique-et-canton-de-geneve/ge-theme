@@ -17,7 +17,6 @@ export class SvgWrapper extends HTMLElement {
           <style>
             :host {
               display: inline-block;
-              cursor: pointer;
             }
             svg {
               display: block;
@@ -39,7 +38,7 @@ export class SvgWrapper extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue !== newValue) {
-            this.updateComponent();
+            this.#updateComponent();
         }
     }
 
@@ -47,7 +46,7 @@ export class SvgWrapper extends HTMLElement {
      * Called when the element is added to the DOM.
      */
     connectedCallback() {
-        this.updateComponent();
+        this.#updateComponent();
         this.addEventListener("click", this.handleClick);
     }
 
@@ -69,12 +68,20 @@ export class SvgWrapper extends HTMLElement {
         }
     }
 
-    // Child classes must implement this to provide the SVG file name
-    getFileName() {
+    /**
+     * Must be implemented by child classes to provide the SVG file name.
+     * @abstract
+     * @returns {string} SVG file name.
+     */
+    getFileName(variant) {
         throw new Error("The 'getFileName' method must be implemented in the subclass.");
     }
 
-    updateComponent() {
+    /**
+     * Updates the component by loading the appropriate SVG file.
+     * @private
+     */
+    #updateComponent() {
         const svgElement = this.shadowRoot.querySelector("svg");
 
         const variant = this.getAttribute("variant") || "light";
@@ -85,7 +92,7 @@ export class SvgWrapper extends HTMLElement {
             .then((response) => response.text())
             .then((svgContent) => {
                 svgElement.innerHTML = svgContent;
-                this.adjustSize(svgElement);
+                this.#adjustSize(svgElement);
             })
             .catch((err) => {
                 console.error("Failed to load SVG:", err);
@@ -95,9 +102,10 @@ export class SvgWrapper extends HTMLElement {
 
     /**
      * Adjusts the size of the SVG element based on the width and height attributes.
+     * @private
      * @param {SVGElement} svgElement - The SVG element.
      */
-    adjustSize(svgElement) {
+    #adjustSize(svgElement) {
         const specifiedWidth = this.getAttribute("width");
         const specifiedHeight = this.getAttribute("height");
 
@@ -107,11 +115,11 @@ export class SvgWrapper extends HTMLElement {
         if (specifiedWidth && !specifiedHeight) {
             const calculatedHeight = (specifiedWidth / intrinsicWidth) * intrinsicHeight;
             svgElement.setAttribute("width", specifiedWidth);
-            svgElement.setAttribute("height", calculatedHeight);
+            svgElement.setAttribute("height", calculatedHeight + "");
         } else if (specifiedHeight && !specifiedWidth) {
             const calculatedWidth = (specifiedHeight / intrinsicHeight) * intrinsicWidth;
             svgElement.setAttribute("height", specifiedHeight);
-            svgElement.setAttribute("width", calculatedWidth);
+            svgElement.setAttribute("width", calculatedWidth + "");
         } else {
             svgElement.setAttribute("width", specifiedWidth || intrinsicWidth);
             svgElement.setAttribute("height", specifiedHeight || intrinsicHeight);

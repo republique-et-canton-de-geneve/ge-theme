@@ -1,5 +1,11 @@
 import { SvgWrapper } from "../SvgWrapper.js";
 
+/**
+ * HeaderArmoiries - A web component for displaying the header armoiries.
+ *
+ * @class HeaderArmoiries
+ * @extends SvgWrapper
+ */
 class HeaderArmoiries extends SvgWrapper {
     constructor() {
         super(location.hostname === "localhost"

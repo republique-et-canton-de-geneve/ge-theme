@@ -1,5 +1,11 @@
 import { SvgWrapper } from "../SvgWrapper.js";
 
+/**
+ * FooterArmoiries - A web component for displaying the footer armoiries.
+ *
+ * @class FooterArmoiries
+ * @extends SvgWrapper
+ */
 class FooterArmoiries extends SvgWrapper {
     constructor() {
         super(location.hostname === "localhost"
