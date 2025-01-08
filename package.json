@@ -2,7 +2,7 @@
   "name": "ge-theme",
   "version": "0.0.5",
   "private": false,
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "browserslist": [
     "> 0.2% in CH and not dead",
     "Firefox ESR"
@@ -11,26 +11,38 @@
     "default": {
       "context": "browser",
       "distDir": "./build",
-      "publicUrl": "/"
+      "publicUrl": "/",
+      "includeNodeModules": false
     }
   },
-  "source": "src/index.html",
+  "source": [
+    "src/index.html",
+    "src/webcomponents/hello-world.js",
+    "src/webcomponents/header/ge-header-armoiries.js",
+    "src/webcomponents/header/ge-header-armoiries.html",
+    "src/webcomponents/footer/ge-footer-armoiries.js",
+    "src/webcomponents/footer/ge-footer-armoiries.html"
+  ],
   "scripts": {
     "start": "parcel",
     "build": "parcel build --no-source-maps",
     "preversion": "node -p \"require('./package.json').version\" > version.txt"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.12.0",
-    "@parcel/resolver-glob": "^2.12.0",
-    "@parcel/transformer-webmanifest": "^2.12.0",
+    "@parcel/packager-raw-url": "^2.13.3",
+    "@parcel/resolver-glob": "^2.13.3",
+    "@parcel/transformer-webmanifest": "^2.13.3",
     "babel-plugin-direct-import": "^1.0.0",
     "babel-plugin-import": "^1.13.8",
-    "parcel": "^2.12.0",
+    "parcel": "^2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "prop-types": "^15.8.1"
   },
+  "staticFiles": {
+    "staticPath": "static",
+    "exclude": ["**/*.js", "**/webcomponents/**"]
+  },
   "dependencies": {
-    "@fontsource/roboto": "^5.0.14"
+    "@fontsource/roboto": "^5.1.0"
   }
 }

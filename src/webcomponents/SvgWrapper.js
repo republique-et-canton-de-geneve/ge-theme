@@ -1,0 +1,120 @@
+/**
+ * SvgWrapper - Base class for clickable SVG-based web components.
+ * Provides structure and logic to dynamically load and display SVG files.
+ * The onClick attributes allows for a callback handler to be passed.
+ *
+ * @class SvgWrapper
+ * @extends HTMLElement
+ */
+export class SvgWrapper extends HTMLElement {
+    constructor(baseUrl) {
+        super();
+        this.baseUrl = baseUrl;
+
+        // Define the template for the shadow DOM
+        const template = document.createElement("template");
+        template.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+              cursor: pointer;
+            }
+            svg {
+              display: block;
+            }
+          </style>
+          <svg></svg>
+        `;
+
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // Bind the click handler
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    static get observedAttributes() {
+        return ["width", "height", "variant", "onClick"];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue) {
+            this.updateComponent();
+        }
+    }
+
+    /**
+     * Called when the element is added to the DOM.
+     */
+    connectedCallback() {
+        this.updateComponent();
+        this.addEventListener("click", this.handleClick);
+    }
+
+    /**
+     * Called when the element is removed from the DOM.
+     */
+    disconnectedCallback() {
+        this.removeEventListener("click", this.handleClick);
+    }
+
+    /**
+     * Handles click events and invokes the callback if defined.
+     * @param {Event} event - Click event.
+     */
+    handleClick(event) {
+        const onClickAttr = this.getAttribute("onClick");
+        if (onClickAttr && typeof window[onClickAttr] === "function") {
+            window[onClickAttr](event);
+        }
+    }
+
+    // Child classes must implement this to provide the SVG file name
+    getFileName() {
+        throw new Error("The 'getFileName' method must be implemented in the subclass.");
+    }
+
+    updateComponent() {
+        const svgElement = this.shadowRoot.querySelector("svg");
+
+        const variant = this.getAttribute("variant") || "light";
+        const fileName = this.getFileName(variant);
+        const url = `${this.baseUrl}${fileName}`;
+
+        fetch(url)
+            .then((response) => response.text())
+            .then((svgContent) => {
+                svgElement.innerHTML = svgContent;
+                this.adjustSize(svgElement);
+            })
+            .catch((err) => {
+                console.error("Failed to load SVG:", err);
+                svgElement.innerHTML = "<text x='10' y='20'>Error loading SVG</text>";
+            });
+    }
+
+    /**
+     * Adjusts the size of the SVG element based on the width and height attributes.
+     * @param {SVGElement} svgElement - The SVG element.
+     */
+    adjustSize(svgElement) {
+        const specifiedWidth = this.getAttribute("width");
+        const specifiedHeight = this.getAttribute("height");
+
+        const viewBox = svgElement.getAttribute("viewBox") || "0 0 1 1";
+        const [, , intrinsicWidth, intrinsicHeight] = viewBox.split(" ").map(Number);
+
+        if (specifiedWidth && !specifiedHeight) {
+            const calculatedHeight = (specifiedWidth / intrinsicWidth) * intrinsicHeight;
+            svgElement.setAttribute("width", specifiedWidth);
+            svgElement.setAttribute("height", calculatedHeight);
+        } else if (specifiedHeight && !specifiedWidth) {
+            const calculatedWidth = (specifiedHeight / intrinsicHeight) * intrinsicWidth;
+            svgElement.setAttribute("height", specifiedHeight);
+            svgElement.setAttribute("width", calculatedWidth);
+        } else {
+            svgElement.setAttribute("width", specifiedWidth || intrinsicWidth);
+            svgElement.setAttribute("height", specifiedHeight || intrinsicHeight);
+        }
+    }
+}
