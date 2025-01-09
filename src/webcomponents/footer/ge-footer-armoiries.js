@@ -8,7 +8,8 @@ import { SvgWrapper } from "../SvgWrapper.js";
  */
 class FooterArmoiries extends SvgWrapper {
     constructor() {
-        super(location.hostname === "localhost"
+        const isLocalEnv = typeof process !== 'undefined' && process.env.PARCEL_BUILD === undefined;
+        super(isLocalEnv
             ? "http://localhost:1234/theme/icons/common/footer/"
             : "https://static.app.ge.ch/theme/icons/common/footer/");
     }
