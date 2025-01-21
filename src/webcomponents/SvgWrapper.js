@@ -7,9 +7,8 @@
  * @extends HTMLElement
  */
 export class SvgWrapper extends HTMLElement {
-    constructor(baseUrl) {
+    constructor() {
         super();
-        this.baseUrl = baseUrl;
 
         // Define the template for the shadow DOM
         const template = document.createElement("template");
@@ -25,7 +24,7 @@ export class SvgWrapper extends HTMLElement {
           <svg></svg>
         `;
 
-        this.attachShadow({ mode: "open" });
+        this.attachShadow({mode: "open"});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
         // Bind the click handler
@@ -69,12 +68,12 @@ export class SvgWrapper extends HTMLElement {
     }
 
     /**
-     * Must be implemented by child classes to provide the SVG file name.
-     * @abstract
-     * @returns {string} SVG file name.
+     * Children must override this method to return the entire inline SVG string.
+     * @param {string} variant - Light/dark or other variant.
+     * @returns {string} The raw SVG markup as a string.
      */
-    getFileName(variant) {
-        throw new Error("The 'getFileName' method must be implemented in the subclass.");
+    getSVGContent(variant) {
+        throw new Error("getSVGContent must be implemented by subclasses.");
     }
 
     /**
@@ -83,21 +82,10 @@ export class SvgWrapper extends HTMLElement {
      */
     #updateComponent() {
         const svgElement = this.shadowRoot.querySelector("svg");
-
         const variant = this.getAttribute("variant") || "light";
-        const fileName = this.getFileName(variant);
-        const url = `${this.baseUrl}${fileName}`;
-
-        fetch(url)
-            .then((response) => response.text())
-            .then((svgContent) => {
-                svgElement.innerHTML = svgContent;
-                this.#adjustSize(svgElement);
-            })
-            .catch((err) => {
-                console.error("Failed to load SVG:", err);
-                svgElement.innerHTML = "<text x='10' y='20'>Error loading SVG</text>";
-            });
+        // Inject SVG markup and then size it
+        svgElement.innerHTML = this.getSVGContent(variant) || "<svg><!-- No content --></svg>";
+        this.#adjustSize(svgElement.querySelector("svg") || svgElement);
     }
 
     /**
@@ -108,7 +96,6 @@ export class SvgWrapper extends HTMLElement {
     #adjustSize(svgElement) {
         const specifiedWidth = this.getAttribute("width");
         const specifiedHeight = this.getAttribute("height");
-
         const viewBox = svgElement.getAttribute("viewBox") || "0 0 1 1";
         const [, , intrinsicWidth, intrinsicHeight] = viewBox.split(" ").map(Number);
 
