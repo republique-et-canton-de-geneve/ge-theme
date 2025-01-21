@@ -47,6 +47,6 @@
     ]
   },
   "dependencies": {
-    "@fontsource/roboto": "^5.1.0"
+    "@fontsource/roboto": "5.1.1"
   }
 }

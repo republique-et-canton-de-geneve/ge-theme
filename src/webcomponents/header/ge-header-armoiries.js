@@ -8,7 +8,7 @@ import { SvgWrapper } from "../SvgWrapper.js";
  */
 class HeaderArmoiries extends SvgWrapper {
     constructor() {
-        const isLocalEnv = typeof process !== 'undefined' && process.env.PARCEL_BUILD === undefined;
+        const isLocalEnv = process.env.PARCEL_BUILD === undefined;
         super(isLocalEnv
             ? "http://localhost:1234/theme/icons/common/header/"
             : "https://static.app.ge.ch/theme/icons/common/header/");
