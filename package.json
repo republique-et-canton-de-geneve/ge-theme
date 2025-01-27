@@ -12,7 +12,7 @@
       "context": "browser",
       "distDir": "./build",
       "publicUrl": "/",
-      "includeNodeModules": false
+      "includeNodeModules": true
     }
   },
   "source": [
@@ -21,7 +21,9 @@
     "src/webcomponents/header/ge-header-armoiries.js",
     "src/webcomponents/header/ge-header-armoiries.html",
     "src/webcomponents/footer/ge-footer-armoiries.js",
-    "src/webcomponents/footer/ge-footer-armoiries.html"
+    "src/webcomponents/footer/ge-footer-armoiries.html",
+    "src/webcomponents/menu/select-mes-espaces.js",
+    "src/webcomponents/menu/select-mes-espaces.html"
   ],
   "scripts": {
     "start": "parcel",
@@ -29,6 +31,10 @@
     "preversion": "node -p \"require('./package.json').version\" > version.txt"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-decorators": "^7.25.9",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
     "@parcel/packager-raw-url": "^2.13.3",
     "@parcel/resolver-glob": "^2.13.3",
     "@parcel/transformer-webmanifest": "^2.13.3",
@@ -37,7 +43,8 @@
     "parcel": "^2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "process": "^0.11.10",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "svgo": "^3"
   },
   "staticFiles": {
     "staticPath": "static",
@@ -47,6 +54,11 @@
     ]
   },
   "dependencies": {
-    "@fontsource/roboto": "5.1.1"
+    "@fontsource/roboto": "5.1.1",
+    "@material/web": "^2.2.0",
+    "lit": "^3.2.1",
+    "lit-html": "^3.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

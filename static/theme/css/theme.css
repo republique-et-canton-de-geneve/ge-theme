@@ -137,3 +137,88 @@
     --md-extended-color-warning-on-color-container: rgb(42 24 0);
   }
 }
+
+:root {
+  --md-shape-borderRadius: 4px;
+  --md-shadows-0: none;
+  --md-ref-typeface-brand: Roboto;
+  --md-ref-typeface-plain: Roboto;
+  --md-sys-typescale-label-small-weight: 500;
+  --md-sys-typescale-label-small-size: 11px;
+  --md-sys-typescale-label-small-tracking: 0.5px;
+  --md-sys-typescale-label-small-lineHeight: 16;
+  --md-sys-typescale-label-medium-weight: 500;
+  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-tracking: 0.5px;
+  --md-sys-typescale-label-medium-lineHeight: 16;
+}
+
+@media (max-width:768px) {
+  :root {
+    --md-sys-typescale-label-large-family: Roboto;
+    --md-sys-typescale-label-large-weight: 500;
+    --md-sys-typescale-label-large-size: 14px;
+    --md-sys-typescale-label-large-tracking: 0.1px;
+    --md-sys-typescale-label-large-lineHeight: 20;
+    --md-sys-typescale-body-small-family: Roboto;
+    --md-sys-typescale-body-small-weight: 400;
+    --md-sys-typescale-body-small-size: 12px;
+    --md-sys-typescale-body-small-tracking: 0.4px;
+    --md-sys-typescale-body-small-lineHeight: 16;
+    --md-sys-typescale-body-medium-family: Roboto;
+    --md-sys-typescale-body-medium-weight: 400;
+    --md-sys-typescale-body-medium-size: 14px;
+    --md-sys-typescale-body-medium-tracking: 0.25px;
+    --md-sys-typescale-body-medium-lineHeight: 20;
+    --md-sys-typescale-body-large-family: Roboto;
+    --md-sys-typescale-body-large-weight: 400;
+    --md-sys-typescale-body-large-size: 16px;
+    --md-sys-typescale-body-large-tracking: 0.5px;
+    --md-sys-typescale-body-large-lineHeight: 24;
+    --md-sys-typescale-title-small-family: Roboto;
+    --md-sys-typescale-title-small-weight: 500;
+    --md-sys-typescale-title-small-size: 14px;
+    --md-sys-typescale-title-small-tracking: 0.1px;
+    --md-sys-typescale-title-small-lineHeight: 20;
+    --md-sys-typescale-title-medium-family: Roboto;
+    --md-sys-typescale-title-medium-weight: 500;
+    --md-sys-typescale-title-medium-size: 16px;
+    --md-sys-typescale-title-medium-tracking: 0.15px;
+    --md-sys-typescale-title-medium-lineHeight: 24;
+    --md-sys-typescale-title-large-family: Roboto;
+    --md-sys-typescale-title-large-weight: 400;
+    --md-sys-typescale-title-large-size: 22px;
+    --md-sys-typescale-title-large-tracking: 0px;
+    --md-sys-typescale-title-large-lineHeight: 28;
+    --md-sys-typescale-headline-small-family: Roboto;
+    --md-sys-typescale-headline-small-weight: 400;
+    --md-sys-typescale-headline-small-size: 24px;
+    --md-sys-typescale-headline-small-tracking: 0px;
+    --md-sys-typescale-headline-small-lineHeight: 32;
+    --md-sys-typescale-headline-medium-family: Roboto;
+    --md-sys-typescale-headline-medium-weight: 400;
+    --md-sys-typescale-headline-medium-size: 28px;
+    --md-sys-typescale-headline-medium-tracking: 0px;
+    --md-sys-typescale-headline-medium-lineHeight: 36;
+    --md-sys-typescale-headline-large-family: Roboto;
+    --md-sys-typescale-headline-large-weight: 400;
+    --md-sys-typescale-headline-large-size: 32px;
+    --md-sys-typescale-headline-large-tracking: 0px;
+    --md-sys-typescale-headline-large-lineHeight: 40;
+    --md-sys-typescale-display-small-family: Roboto;
+    --md-sys-typescale-display-small-weight: 400;
+    --md-sys-typescale-display-small-size: 36px;
+    --md-sys-typescale-display-small-tracking: 0px;
+    --md-sys-typescale-display-small-lineHeight: 44;
+    --md-sys-typescale-display-medium-family: Roboto;
+    --md-sys-typescale-display-medium-weight: 400;
+    --md-sys-typescale-display-medium-size: 45px;
+    --md-sys-typescale-display-medium-tracking: 0px;
+    --md-sys-typescale-display-medium-lineHeight: 52;
+    --md-sys-typescale-display-large-family: Roboto;
+    --md-sys-typescale-display-large-weight: 400;
+    --md-sys-typescale-display-large-size: 57px;
+    --md-sys-typescale-display-large-tracking: -0.25px;
+    --md-sys-typescale-display-large-lineHeight: 64;
+  }
+}

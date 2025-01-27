@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Example</title>
+    <script type="module" src="./select-mes-espaces.js"></script>
+    <link rel="stylesheet" href="../../../static/theme/css/theme.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 2rem;
+            background-color: var(--md-sys-color-background, #ffffff);
+            color: var(--md-sys-color-on-background, #000000);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        select-mes-espaces {
+            display: block;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Select Mes Espaces Example</h1>
+
+<select-mes-espaces
+        links='[
+        { "href": "https://example.com/apple",   "label": "Fiscales" },
+        { "href": "https://example.com/banana",  "label": "Subventions culturelles" },
+        { "href": "https://example.com/cucumber","label": "Éducation" }
+      ]'
+>
+</select-mes-espaces>
+</body>
+</html>
