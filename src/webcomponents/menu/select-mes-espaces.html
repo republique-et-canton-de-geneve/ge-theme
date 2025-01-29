@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Example</title>
+    <title>Sélecteur autres démarches</title>
     <script type="module" src="./select-mes-espaces.js"></script>
     <link rel="stylesheet" href="../../../static/theme/css/theme.css">
     <style>
@@ -26,15 +26,31 @@
     </style>
 </head>
 <body>
-<h1>Select Mes Espaces Example</h1>
-
+<h1>Web Component Select Mes Espaces</h1>
+<h2>Exemple</h2>
 <select-mes-espaces
         links='[
         { "href": "https://example.com/apple",   "label": "Fiscales" },
         { "href": "https://example.com/banana",  "label": "Subventions culturelles" },
+        "--",
         { "href": "https://example.com/cucumber","label": "Éducation" }
       ]'
 >
 </select-mes-espaces>
+<h2>Utilisation</h2>
+<p>Les liens sont fournis dans un JSON avec l'url dans l'attribut <code>href</code> et le label dans l'attribut <code>label</code>.</p>
+<p>Un séparateur horizontal peut être ajouté en remplaçant un lien par "--".</p>
+<h3>Code de l'exemple ci-dessus:</h3>
+<pre>
+    &lt;select-mes-espaces&gt;
+    links='[
+        { "href": "https://example.com/apple",   "label": "Fiscales" },
+        { "href": "https://example.com/banana",  "label": "Subventions culturelles" },
+        "--",
+        { "href": "https://example.com/cucumber","label": "Éducation" }
+      ]'
+    >
+    &lt;/select-mes-espaces&gt;
+</pre>
 </body>
 </html>

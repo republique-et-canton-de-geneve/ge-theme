@@ -65,3 +65,11 @@
   --md-extended-color-warning-color-container: rgb(100 63 0);
   --md-extended-color-warning-on-color-container: rgb(255 221 181);
 }
+
+:root {
+  --md-shape-borderRadius: 4px;
+  --md-shadows-0: none;
+  --md-ref-typeface-brand: Roboto;
+  --md-ref-typeface-plain: Roboto;
+  --md-menu-item-one-line-container-height: 28px;
+}
