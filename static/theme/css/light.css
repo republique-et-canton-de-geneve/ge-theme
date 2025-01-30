@@ -18,7 +18,11 @@
   --md-sys-color-on-error-container: rgb(65 0 2);
   --md-sys-color-background: rgb(247 249 255);
   --md-sys-color-on-background: rgb(24 28 32);
-  --md-sys-color-surface: rgb(247 249 255);
+  --md-sys-color-surface: rgb(234 241 250);
+  --md-sys-color-surface-2: rgb(231 237 246);
+  --md-sys-color-surface-3: rgb(225 232 242);
+  --md-sys-color-surface-4: rgb(223 231 241);
+  --md-sys-color-surface-5: rgb(219 228 239);
   --md-sys-color-on-surface: rgb(24 28 32);
   --md-sys-color-surface-variant: rgb(222 227 235);
   --md-sys-color-on-surface-variant: rgb(66 71 78);
