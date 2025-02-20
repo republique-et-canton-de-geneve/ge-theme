@@ -1,17 +1,22 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { styleMap } from 'lit/directives/style-map.js';
+import '@material/web/button/outlined-button.js';
+import '@material/web/menu/menu.js';
+import '@material/web/menu/menu-item.js';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 /**
- * Custom converter for parsing JSON from the `userInfo` attribute.
+ * Custom converter for parsing JSON from the `links` attribute.
  */
-const userInfoConverter = {
+const linksConverter = {
     fromAttribute(value) {
         try {
             return JSON.parse(value);
         } catch (err) {
-            console.warn('Invalid JSON for userInfo attribute:', value, err);
-            return { nom: '', prenom: '', email: '', typeCompte: '' };
+            console.warn('Invalid JSON for links attribute:', value, err);
+            return [];
         }
     },
     toAttribute(value) {
@@ -19,177 +24,103 @@ const userInfoConverter = {
     },
 };
 
-@customElement('ge-header')
-export class GeHeader extends LitElement {
-
-    /**
-     * The user information, declared as an attribute with a custom converter.
-     * Usage from HTML:
-     * <ge-header userInfo='{"nom": "Jacqueline", "prenom": "du Bout-du-Lac", "email": "jacqueline.duboutdulac@gmail.com", "typeCompte": "Compte administratif"}'></ge-header>
-     */
-    @property({
-        attribute: 'userInfo',
-        converter: userInfoConverter
-    })
-    userInfo = { nom: '', prenom: '', email: '', typeCompte: '' };
-
-    @property({ type: Boolean })
-    isMenuOpen = false;
-
+@customElement('select-mes-espaces')
+class SelectMesEspaces extends LitElement {
     static styles = css`
     :host {
-        display: block;
-        width: 100%; 
-        font-family: Arial, sans-serif;
+      display: inline-block;
+      position: relative;
     }
-    
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        background: white;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .logo {
-        width: 40px;
-        height: 40px;
-    }
-
-    .title {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #333;
-    }
-
-    .profile-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 9999px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #4a5568;
-        transition: all 0.2s;
-    }
-
-    .profile-button:hover {
-        background-color: #f7fafc;
-    }
-
-    .user-menu {
-        position: absolute;
-        right: 1rem;
-        top: 4.5rem;
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 1rem;
-        width: 288px;
-        height: 288px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .user-menu.open {
-        display: block;
-    }
-
-    .user-info {
-        margin-bottom: 1rem;
-    }
-
-    .user-information{
-        color: #4a5568;
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem; 
-        margin-top: 1.5rem;
-    }    
-
-    .user-name {
-        color: #001B2B; 
-        margin-bottom: 0.25rem;
-    }
-
-    .user-email {
-        font-weight: 400;
-        color: #555E66;
-        font-size: 0.875rem;
-    }
-
-    .account-type {
-        color: #555E66;
-        border-radius: 5px; 
-        background-color: #E5E7EB;
-        padding: 0.5rem;
-        font-size: 0.875rem;
-        margin-top: 0.5rem;
-    }
-
-    .manage-account {
-        color: #2b6cb0;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 0.875rem;
-        display: block;
-        margin: 0.5rem 1rem 1rem;
-    }
-
-    .logout-button {
+    span {
+        position: relative;
         width: 100%;
-        padding: 0.8rem; 
-        background-color: #00629D;
-        color: white;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        font-size: 0.875rem;
-        transition: background-color 0.2s;
     }
+    hr {
+        border-color: var(--md-sys-color-outline-variant);
+        border-width: 0 0 thin;
+        border-style: solid;
+    }
+    #selecteur-demarches-icon {
+        width: 1em; 
+        height: 1em; 
+        font-size: 1.5rem;
+    }
+  `;
 
-    .logout-button:hover {
-        background-color: #2c5282;
-    }
-    `;
-
-    toggleMenu() {
-        this.isMenuOpen = !this.isMenuOpen;
-        this.requestUpdate('isMenuOpen');
-    }
+    /**
+     * The array of menu links, declared as an attribute with a custom converter.
+     *
+     * Usage from HTML:
+     * <select-mes-espaces
+     *   links='[{"href":"/apple","label":"Apple"},{"href":"/banana","label":"Banana"}]'
+     * ></select-mes-espaces>
+     */
+    @property({
+        attribute: 'links',
+        converter: linksConverter
+    })
+    links = [];
 
     render() {
-        const styles = { display: this.isMenuOpen ? 'block !important' : 'none !important' };
         return html`
-      <div class="header">
-        <div class="logo-section">
-          <span class="title">ge.ch</span>
-        </div>
-        <div>
-          <button @click=${this.toggleMenu} class="profile-button">
-            Mon compte
-          </button>
+            <span>
+        <md-outlined-button
+                id="select-mes-espaces-button"
+                has-icon
+                type="button"
+                @click=${this.toggleMenu}
+        >
+          Mes autres démarches
+          <svg slot="icon" viewBox="0 0 125.92 88.51" id="selecteur-demarches-icon"">
+                <path d="M68.36 7.12v.02a44.25 44.25 0 100 74.22l57.56-37.38z" fill="var(--md-sys-color-primary)"/>
+                <path
+                d="M32.36 31.86c4.58-4.58 12.2-6.52 19.41-1.39L30.5 51.76c-5.4-8.88-1.53-16.5 1.87-19.9m28.61 16.86a14.88 14.88 0 01-4.27 7.48c-6.59 6.59-15.6 4.78-18.52 2.7l29.89-29.88a30.17 30.17 0 00-4.09-5.2c-9.7-9.71-27.95-12.55-40.14-.35-11.86 11.86-10.27 30.23.62 41.11a28.6 28.6 0 0040.7.07 27.56 27.56 0 007.75-15.93z"
+                fill="var(--md-sys-color-on-primary)"/>
+          </svg>
+        </md-outlined-button>
 
-          <div style="${styleMap(styles)}" class="user-menu">
+        <md-menu
+                positioning="popover"
+                id="select-mes-espaces-menu"
+                anchor="select-mes-espaces-button"
+                @close-menu=${this.onCloseMenu}
+        >
+                    ${this.links.map(
+                            (link) => 
+                                    typeof link === 'string' ? html`<hr/>`
+                                    : html`
+                                <md-menu-item data-href=${link.href}>
+                                    <div slot="headline">${link.label}</div>
+                                </md-menu-item>`
+                    )}
+        </md-menu>
+      </span>
+        `;
+    }
 
-            <div class="user-info">
-                <p class="user-information">Information de connexion</p>
-                <div class="user-name">${this.userInfo.nom} ${this.userInfo.prenom}</div>
-                <div class="user-email">${this.userInfo.email}</div>
-                <div class="account-type">${this.userInfo.typeCompte}</div>
-            </div>
-            <a href="#" class="manage-account">Gérer mon compte</a>
-            <button class="logout-button">Me déconnecter</button>
-          </div>
-        </div>
-      </div>
-    `;
+    toggleMenu() {
+        const menuEl = this.shadowRoot.getElementById('select-mes-espaces-menu');
+        const anchorEl = this.shadowRoot.getElementById('select-mes-espaces-button');
+        menuEl.anchorElement = anchorEl;
+
+        if (!menuEl.open) {
+            menuEl.style.minWidth = `${anchorEl.offsetWidth}px`;
+            menuEl.show();
+        } else {
+            menuEl.close();
+        }
+    }
+
+    onCloseMenu(event) {
+        const item = event.detail?.initiator;
+        if (!item) {
+            // Menu closed without selecting an item (e.g. user clicked outside).
+            return;
+        }
+        // Retrieve the link from data-href
+        const href = item.dataset.href;
+        if (href) {
+            window.location.href = href;
+        }
     }
 }
