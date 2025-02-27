@@ -23,7 +23,11 @@
     "src/webcomponents/footer/ge-footer-armoiries.js",
     "src/webcomponents/footer/ge-footer-armoiries.html",
     "src/webcomponents/menu/select-mes-espaces.js",
-    "src/webcomponents/menu/select-mes-espaces.html"
+    "src/webcomponents/menu/select-mes-espaces.html",
+    "src/webcomponents/ge-header/ge-header.js",
+    "src/webcomponents/ge-header/ge-header.html",
+    "src/webcomponents/ge-menu/ge-menu.js",
+    "src/webcomponents/ge-menu/ge-menu.html"
   ],
   "scripts": {
     "start": "parcel",

@@ -21,15 +21,37 @@ export class GeHeader extends LitElement {
             display: block;
             width: 100%;
             font-family: Arial, sans-serif;
-            transition: width 0.3s ease;
         }
 
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;  /* Preferred icon size */
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
-            transition: width 0.3s ease;
             background: var(--md-sys-color-surface-container-highest);
             box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5 );
         }
@@ -58,36 +80,36 @@ export class GeHeader extends LitElement {
             justify-content: center;
             align-items: center;
         }
-        
-      
+
+
         .profile-button {
             background: none;
-           color: var(--md-sys-color-on-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
             border: none;
             cursor: pointer;
             padding: 0.5rem;
             transition: all 0.2s;
         }
 
-   
-            .user-menu {
-                position: absolute;
-                right: 0.4rem;
-                top: 7rem;
-                background: var(--md-sys-color-on-primary);
-                border-right: 1px solid var(--md-sys-color-surface-variant);
-                border-bottom: 1px solid var(--md-sys-color-surface-variant);
-                border-top: none;
-                border-radius: 0px 0px 16px 16px;
-                padding: 1rem 0 0 2rem;
-                width: 288px;
-                height: auto; 
-                list-style: none;
-                margin: 0;
-                box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
-            }
+
+        .user-menu {
+            position: absolute;
+            right: 0.4rem;
+            top: 7rem;
+            background: var(--md-sys-color-on-primary);
+            border-right: 1px solid var(--md-sys-color-surface-variant);
+            border-bottom: 1px solid var(--md-sys-color-surface-variant);
+            border-top: none;
+            border-radius: 0px 0px 16px 16px;
+            padding: 1rem 0 0 2rem;
+            width: 288px;
+            height: auto;
+            list-style: none;
+            margin: 0;
+            box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+        }
         .user-menu li {
-          
+
             display: flex;
             flex-direction: column;
         }
@@ -113,7 +135,7 @@ export class GeHeader extends LitElement {
             color: var(--md-sys-color-on-surface);
             margin-bottom: 0.25rem;
             font-size: 1rem;
-            
+
         }
 
         .user-email {
@@ -135,8 +157,8 @@ export class GeHeader extends LitElement {
             margin-top: 0.5rem;
 
         }
-        
- 
+
+
         .manage-account {
             color: var(--md-sys-color-primary);
             font-weight: bold;
@@ -149,7 +171,7 @@ export class GeHeader extends LitElement {
 
         .logout-button {
             width: 80%;
-           margin-top: 0.5rem;
+            margin-top: 0.5rem;
             margin-bottom: 2rem;
             font-weight: 500;
         }
@@ -166,12 +188,12 @@ export class GeHeader extends LitElement {
             left: 25px;
             background-color: var(--md-sys-color-primary);
             border-radius: 50px;
-            color: var(--md-sys-color-on-primary); 
+            color: var(--md-sys-color-on-primary);
             font-weight: 800;
-            padding: 2px 6px; 
+            padding: 2px 6px;
             font-size: 10px;
             display: inline-flex;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
         }
     `;

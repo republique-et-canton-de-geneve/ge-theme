@@ -10,29 +10,35 @@
     <link rel="author" href="https://www.ge.ch"/>
     <link rel="publisher" href="https://www.ge.ch"/>
     <link rel="manifest" href="../static/manifest.json" crossorigin="use-credentials" />
-    <link rel="stylesheet" href="../static/theme/css/theme.css">
+    <link rel="stylesheet" href="https://static.dev.etat-ge.ch/theme/css/theme.css"/>
+
     <title>Thème et composants partagés</title>
     <link rel="icon" href="../static/favicon.ico">
     <script src="ge-header.js"  type="module"></script>
+    <script src="ge-menu.js" type="module"></script>
 </head>
 <body>
-<script>
-    const userInfo = {
-        nom: 'Jacqueline',
-        prenom: 'du Bout-du-Lac',
-        email: 'jacqueline.duboutdulac@gmail.com',
-        typeCompte: 'Compte administratif'
-    };
-</script>
+
 <ge-header
         userInfo='{
         "nom": "Jacqueline",
         "prenom": "du Bout-du-Lac",
          "email": "jacqueline.duboutdulac@gmail.com",
-         "typeCompte": "Compte administratif"
+         "typeCompte": ""
          }'
 >
 </ge-header>
+
+
+<ge-menu
+        menuName="Mon espace créancier"
+        menuInfo='
+        {"name": "Je suis créancier", "returnEvent": "() => alert(\"Item 1 clicked\")"}
+'>
+</ge-menu>
+
+
+
 
 
 </body>
