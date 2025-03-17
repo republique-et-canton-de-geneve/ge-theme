@@ -1,7 +1,7 @@
 /* Typeface - Default */
 :root {
   --md-ref-typeface-brand: Roboto;
-  --md-ref-typeface-weight-regular: Regular;
-  --md-ref-typeface-weight-medium: Medium;
-  --md-ref-typeface-weight-bold: Bold;
+  --md-ref-typeface-weight-400: Regular;
+  --md-ref-typeface-weight-500: Medium;
+  --md-ref-typeface-weight-700: Bold;
 }
