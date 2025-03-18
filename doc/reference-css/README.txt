@@ -1,4 +1,5 @@
-Correspondance styles figma et variables typescale : 
+Breakpoints & Correspondances styles typo/variables typescale 
+
 
 Correspondance styles figma et variables typescale : 
 
