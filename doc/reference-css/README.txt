@@ -31,7 +31,6 @@ Body small: typescale-body-small
 
 
 
-
 Breakpoints 
 
 xs: 0
