@@ -1,5 +1,7 @@
 Correspondance styles figma et variables typescale : 
 
+Correspondance styles figma et variables typescale : 
+
 Desktop : 
 
 H1: typescale-headline-large
