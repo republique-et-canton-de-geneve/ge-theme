@@ -81,6 +81,9 @@ docker-upload-snapshot:
     expire_in: 24h
   dependencies:
     - snapshot
+  except:
+    - master
+
 
 release:
   stage: release
@@ -112,6 +115,9 @@ release:
     - snapshot
   when: manual
   allow_failure: false
+  except:
+    - master
+
 
 docker-upload-release:
   stage: release-upload
@@ -131,3 +137,6 @@ docker-upload-release:
     expire_in: 24h
   dependencies:
     - release
+  except:
+    - master
+
