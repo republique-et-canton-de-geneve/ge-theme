@@ -171,6 +171,9 @@
 .v-btn{
     margin: 8px !important;
     height: 48px !important;
+}
+
+.v-btn:not(.v-btn--icon){
     padding: 0 24px !important;
 }
 
