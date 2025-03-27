@@ -61,6 +61,8 @@ snapshot:
       - version.txt
     expire_in: 24h
   allow_failure: false
+  except:
+    - master
 
 docker-upload-snapshot:
   stage: snapshot-upload
