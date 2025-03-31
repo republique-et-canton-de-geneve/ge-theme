@@ -1,59 +1,49 @@
 {
-  "name": "ge-theme",
-  "version": "0.0.13",
+  "name": "@opf/ge-theme",
+  "version": "0.0.17",
   "private": false,
   "license": "Apache-2.0",
   "browserslist": [
     "> 0.2% in CH and not dead",
     "Firefox ESR"
   ],
+  "main": "build/index.js",
   "targets": {
     "default": {
       "context": "browser",
       "distDir": "./build",
       "publicUrl": "/",
-      "includeNodeModules": true
+      "includeNodeModules": true,
+      "source": "src/index.js"
     }
   },
-  "source": [
-    "src/index.html",
-    "src/webcomponents/hello-world.js",
-    "src/webcomponents/header/ge-header-armoiries.js",
-    "src/webcomponents/header/ge-header-armoiries.html",
-    "src/webcomponents/footer/ge-footer-armoiries.js",
-    "src/webcomponents/footer/ge-footer-armoiries.html",
-    "src/webcomponents/menu/select-mes-espaces.js",
-    "src/webcomponents/menu/select-mes-espaces.html",
-    "src/webcomponents/ge-header/ge-header.js",
-    "src/webcomponents/ge-header/ge-header.html",
-    "src/webcomponents/ge-menu/ge-menu.js",
-    "src/webcomponents/ge-menu/ge-menu.html"
-  ],
   "scripts": {
     "start": "parcel",
     "build": "parcel build --no-source-maps",
+    "typecheck": "tsc --project tsconfig.json",
     "preversion": "node -p \"require('./package.json').version\" > version.txt"
   },
+
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@parcel/packager-raw-url": "^2.13.3",
-    "@parcel/resolver-glob": "^2.13.3",
+    "@parcel/resolver-glob": "^2.14.1",
     "@parcel/transformer-webmanifest": "^2.13.3",
     "babel-plugin-direct-import": "^1.0.0",
     "babel-plugin-import": "^1.13.8",
-    "parcel": "^2.13.3",
+    "parcel": "^2.14.1",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
-    "svgo": "^3"
+    "svgo": "^3",
+    "typescript": "^5.8.2"
   },
   "staticFiles": {
     "staticPath": "static",
     "exclude": [
-      "**/*.js",
       "**/webcomponents/**"
     ]
   },
@@ -64,5 +54,33 @@
     "lit-html": "^3.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/index.js",
+      "types": "./build/index.d.ts"
+    },
+    "./ge-header": {
+      "import": "./build/ge-header.js",
+      "types": "./build/ge-header.d.ts"
+    },
+    "./ge-menu": {
+      "import": "./build/ge-menu.js",
+      "types": "./build/ge-menu.d.ts"
+    },
+    "./ge-footer": {
+      "import": "./build/ge-footer.js",
+      "types": "./build/ge-footer.d.ts"
+    }
+  },
+
+  "files": [
+    "build/*.js",
+    "build/*.d.ts",
+    "!build/webcomponents/"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
   }
 }
