@@ -18,10 +18,6 @@
     border-radius: var(--v-shape-corner-extra-small) !important;
   }
   
-  /* TODO: REMOVE */
-  .v-sheet > * {
-    margin: 8px !important;
-  }
   
   
   .v-sheet {
