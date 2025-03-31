@@ -9,10 +9,25 @@ Ce package fournit une bibliothèque de composants Web (Web Components) réutili
 ## 📁 Installation
 
 ```bash
-npm install @opf/ge-theme
+npm install 
+```
+## 🚀 Démarer le projet 
+
+```bash
+yarn start
 ```
 
-## 📄 Utilisation générale
+## 🚀 Build 
+
+```bash
+yarn build
+```
+
+## 📁 Création d'un composant web
+
+Dans src/web-components, créez un répertoire contenant votre composant.
+
+## 📄 Utilisation générale dans un projet vueJS 3
 
 Importez le package dans votre projet :
 
@@ -20,7 +35,7 @@ Importez le package dans votre projet :
 import '@opf/ge-theme';
 ```
 
-### ✉️ Liste des composants
+### ✉️ Liste des composants disponible
 
 #### `<ge-header>`
 - Props disponibles :
