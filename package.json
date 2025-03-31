@@ -1,6 +1,6 @@
 {
-  "name": "ge-theme",
-  "version": "0.0.13",
+  "name": "@opf/ge-theme",
+  "version": "0.0.18",
   "private": false,
   "license": "Apache-2.0",
   "browserslist": [
@@ -13,7 +13,8 @@
       "context": "browser",
       "distDir": "./build",
       "publicUrl": "/",
-      "includeNodeModules": true
+      "includeNodeModules": true,
+      "source": "src/index.js"
     }
   },
   "scripts": {
@@ -22,6 +23,10 @@
     "typecheck": "tsc --project tsconfig.json",
     "preversion": "node -p \"require('./package.json').version\" > version.txt"
   },
+
+  "source": [
+    "src/index.html"
+  ],
 
   "devDependencies": {
     "@babel/core": "^7.12.0",
