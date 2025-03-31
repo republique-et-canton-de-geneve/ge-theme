@@ -1,0 +1,10 @@
+/* Material Shape - Mode 1 */
+:root {
+  --md-sys-shape-corner-none: var(--md-ref-spacings-0);
+  --md-sys-shape-corner-extra-small: var(--md-ref-spacings-1);
+  --md-sys-shape-corner-small: var(--md-ref-spacings-2);
+  --md-sys-shape-corner-medium: var(--md-ref-spacings-3);
+  --md-sys-shape-corner-large: var(--md-ref-spacings-4);
+  --md-sys-shape-corner-extra-large: var(--md-ref-spacings-6);
+  --md-sys-shape-corner-full: var(--md-ref-spacings-32);
+}
