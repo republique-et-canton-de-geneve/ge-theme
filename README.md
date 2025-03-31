@@ -27,13 +27,6 @@ yarn build
 
 Dans src/web-components, créez un répertoire contenant votre composant.
 
-## 📄 Utilisation générale dans un projet vueJS 3
-
-Importez le package dans votre projet :
-
-```ts
-import '@opf/ge-theme';
-```
 
 ### ✉️ Liste des composants disponible
 
@@ -64,9 +57,18 @@ import '@opf/ge-theme';
 > ⚠️ **Important : Les composants Lit ne sont pas automatiquement réactifs aux changements de props dans certains frameworks comme Vue, React ou Angular.**
 > Il faut **manuellement mettre à jour** les propriétés et appeler `requestUpdate()` sur les composants concernés.
 
+
 ### Vue 3
 
 Dans un composant Vue :
+
+## 📄 Installer la dépendence 
+
+```npm
+npm i '@opf/ge-theme';
+```
+
+Importez le package dans votre projet :
 
 ```vue
 <template>
