@@ -103,7 +103,6 @@
   
   .v-btn {
     height: 40px !important;
-    padding: 0 24px !important;
     text-transform: none !important;
     border-radius: var(--v-shape-corner-full);
   }
@@ -116,7 +115,11 @@
   .v-btn--variant-outlined {
     border: thin solid rgba(var(--v-theme-outline)) !important;
   }
-  
+
+  .v-btn:not(.v-btn--icon){
+    padding: 0 24px !important;
+}
+
   
   /* Chip */
   
