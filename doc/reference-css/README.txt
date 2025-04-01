@@ -43,9 +43,10 @@ lg: 1440,
 xl: 1920
 
 
-Les composants et styles mobiles sont présents du breakpoint : 
+Les composants et styles mobiles et tablette sont présents du breakpoint : 
 
 xs à md de 0 à 1024
+Mobile verticale en dessous de 768px
 
 Les composants et styles desktop sont présents du breakpoint : 
 
