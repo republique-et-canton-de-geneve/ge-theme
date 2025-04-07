@@ -21,6 +21,7 @@ export class GeHeader extends LitElement {
 
     @property({type: Boolean})
     userInfoLoaded = false;
+
     static styles = css`
         :host {
             display: block;
