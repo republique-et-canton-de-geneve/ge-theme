@@ -101,6 +101,7 @@
 .v-btn {
     height: 40px !important;
     text-transform: none !important;
+    border-radius: var(--v-shape-corner-full);
     font-size: var(--md-sys-typescale-label-medium-size) !important;
     line-height: var(--md-sys-typescale-label-medium-line-height) !important;
     font-weight: var(--md-sys-typescale-label-medium-weight) !important;
