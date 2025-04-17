@@ -7,6 +7,14 @@
     color: inherit !important;
 }
 
+
+
+/* List */
+
+.v-list--border .v-list-item:not(:last-child) {
+    border-bottom-width: thin
+}
+
 /* SHEET (PAPER) */
 
 
