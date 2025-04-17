@@ -12,7 +12,8 @@
 
 .v-sheet {
     box-shadow: none !important;
-    padding: 8px !important;
+    /* Ne fait pas partie de la spec material */
+    /* padding: 8px !important; */
     border-radius: var(--v-shape-corner-extra-small) !important;
 }
 
