@@ -69,7 +69,8 @@
 
 /* Expansion panel */
 .v-expansion-panel {
-    border: thin solid rgba(var(--v-theme-outline));
+    border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+
 }
 
 .v-expansion-panel__shadow {
