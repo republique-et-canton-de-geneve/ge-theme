@@ -21,28 +21,28 @@
 }
 
 .surface-highest {
-    background-color: rgba(var(--v-surface-highest)) !important;
-    color: rgba(var(--v-theme-on-surface-container-highest)) !important;
+    background-color: var(--md-sys-color-surface-container-highest) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 .surface-high {
-    background-color: rgba(var(--v-surface-high)) !important;
-    color: rgba(var(--v-theme-on-surface-container-high)) !important;
+    background-color: var(--md-sys-color-surface-container-high) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 .surface {
-    background-color: rgba(var(--v-theme-surface)) !important;
-    color: rgba(var(--v-theme-on-surface-container)) !important;
+    background-color: var(--md-sys-color-surface-container) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 .surface-low {
-    background-color: rgba(var(--v-surface-low)) !important;
-    color: rgba(var(--v-theme-on-surface-container-low)) !important;
+    background-color: var(--md-sys-color-surface-container-low) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 .surface-lowest {
-    background-color: rgba(var(--v-surface-lowest)) !important;
-    color: rgba(var(--v-theme-on-surface-container-lowest)) !important;
+    background-color: var(--md-sys-color-surface-container-lowest) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 
