@@ -57,7 +57,7 @@ snapshot:
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
   artifacts:
     paths:
-      - build
+      - packages/website/dist
       - version.txt
     expire_in: 24h
   allow_failure: false
@@ -111,7 +111,7 @@ release:
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
   artifacts:
     paths:
-      - build
+      - packages/website/dist
       - version.txt
     expire_in: 1h
   dependencies:
