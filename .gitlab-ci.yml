@@ -20,7 +20,7 @@ variables:
 
 default:
   image:
-    name: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:21
+    name: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:22
   tags:
     - 'for:container-image'
     - 'host:privileged-container'
