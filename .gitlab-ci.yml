@@ -1,3 +1,6 @@
+###############################################################################
+# Variables globales
+###############################################################################
 variables:
   GIT_STRATEGY: clone
   GIT_SSL_NO_VERIFY: "true"
@@ -26,121 +29,124 @@ default:
     - 'host:privileged-container'
     - 'net:gold-dev'
 
+###############################################################################
+# Workflow: décide quel pipeline est lancé suivant les push sur develop/main
+###############################################################################
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      variables: { PIPELINE_TYPE: "snapshot" }
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TAG == ""
+      variables: { PIPELINE_TYPE: "release" }
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/
+      variables: { PIPELINE_TYPE: "release-tag" }
+    - when: never
+
+###############################################################################
+# Scripts communs
+###############################################################################
+.before-yarn: &before-yarn |
+  git config --global user.email    "${RUNNER_EMAIL}"
+  git config --global user.name     "${RUNNER_USERNAME}"
+  yarn config set strict-ssl false
+  yarn config set yarn-registry  "${YARN_REGISTRY}"
+  yarn config set version-git-message "[skip ci] v%s"
+  mkdir -p .yarn
+  yarn config set cache-folder .yarn
+  yarn install --network-timeout 600000
+  yarn browserslist --update-db
+
+###############################################################################
+# STAGES
+###############################################################################
 stages:
-  - snapshot
-  - snapshot-upload
-  - release
-  - release-upload
+  - build
+  - push
 
-cache:
-  untracked: false
-  key: "$CI_PROJECT_ID"
-
-snapshot:
-  stage: snapshot
+###############################################################################
+# SNAPSHOT  (branche develop)
+###############################################################################
+snapshot-build:
+  stage: build
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot"'
   before_script:
-    - git config --global user.email ${RUNNER_EMAIL}
-    - git config --global user.name ${RUNNER_USERNAME}
+    - *before-yarn
   script:
-    - git pull origin main
-    - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
-    - echo "Building version" $IMAGE_VERSION
-    - echo $IMAGE_VERSION > version.txt
-    - yarn config set "strict-ssl" false
-    - yarn config set yarn-registry ${YARN_REGISTRY}
-    - "[ ! -d .yarn ] && mkdir .yarn"
-    - yarn config set cache-folder .yarn
-    - yarn install --network-timeout 600000
-    - yarn browserslist --update-db
     - CI= yarn build
-    - yarn config set version-git-message "[skip ci] v%s"
-    - yarn version --no-git-tag-version --prerelease --preid SNAPSHOT
-    - git commit -a -m "[skip ci] snapshot $IMAGE_VERSION" && git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT.${CI_PIPELINE_IID}"
+    - git add package.json
+    - IMAGE_VERSION=$(node -p \"require('./package.json').version\")
+    - git commit -m "[skip ci] snapshot $IMAGE_VERSION"
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:develop
+    - echo "${IMAGE_VERSION}" > version.txt
   artifacts:
-    paths:
-      - packages/website/dist
-      - version.txt
+    paths: [ packages/website/dist, version.txt ]
     expire_in: 24h
-  allow_failure: false
-  except:
-    - master
 
-docker-upload-snapshot:
-  stage: snapshot-upload
+snapshot-push-image:
+  stage: push
   image: ${BUILDAH}
+  needs: [ snapshot-build ]
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot"'
   before_script:
     - buildah version
-    - IMAGE_VERSION=`cat version.txt`
-    - buildah login --username ${NEXUS_REPO_USER} --password ${NEXUS_REPO_PASS} "${OCI_SNAPSHOT_URL}"
+    - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_SNAPSHOT_URL}"
   script:
-    - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest" .
+    - IMAGE_VERSION=$(cat version.txt)
+    - buildah bud -f Dockerfile --format docker \
+      -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" \
+      -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:develop" .
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
-    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest"
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:develop"
   after_script:
     - buildah logout "${OCI_SNAPSHOT_URL}"
-  artifacts:
-    paths:
-      - version.txt
-    expire_in: 24h
   dependencies:
-    - snapshot
-  except:
-    - master
+    - snapshot-build
 
-
-release:
-  stage: release
+###############################################################################
+# RELEASE  (branche main branch ou tag vX.Y.Z)
+###############################################################################
+release-build:
+  stage: build
+  rules:
+    - if: '$PIPELINE_TYPE =~ /^release/'
   before_script:
-    - git config --global user.email ${RUNNER_EMAIL}
-    - git config --global user.name ${RUNNER_USERNAME}
-    - git config pull.rebase true
+    - *before-yarn
   script:
-    - git pull origin main
-    - yarn version --patch
-    - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
-    - echo "Building version" $IMAGE_VERSION
-    - echo $IMAGE_VERSION > version.txt
-    - yarn config set "strict-ssl" false
-    - yarn config set yarn-registry ${YARN_REGISTRY}
-    - "[ ! -d .yarn ] && mkdir .yarn"
-    - yarn config set cache-folder .yarn
-    - yarn install --network-timeout 600000
-    - yarn browserslist --update-db
+    - |
+      if [[ "$PIPELINE_TYPE" == "release" ]]; then
+        yarn version --patch --no-git-tag-version
+      fi
     - CI= yarn build
-    - yarn config set version-git-message "[skip ci] v%s"
-    - yarn version --minor
+    - RELEASE_VERSION=$(node -p "require('./package.json').version")
+    - git add package.json
+    - git commit -m "[skip ci] release ${RELEASE_VERSION}"
+    - git tag "v${RELEASE_VERSION}"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - echo "${RELEASE_VERSION}" > version.txt
   artifacts:
-    paths:
-      - packages/website/dist
-      - version.txt
-    expire_in: 1h
-  dependencies:
-    - snapshot
-  when: manual
-  allow_failure: false
-  except:
-    - master
+    paths: [ packages/website/dist, version.txt ]
+    expire_in: 24h
 
-
-docker-upload-release:
-  stage: release-upload
+release-push-image:
+  stage: push
   image: ${BUILDAH}
+  needs: [ release-build ]
+  rules:
+    - if: '$PIPELINE_TYPE =~ /^release/'
   before_script:
     - buildah version
-    - IMAGE_VERSION=`cat version.txt`
-    - buildah login --username ${NEXUS_REPO_USER} --password ${NEXUS_REPO_PASS} "${OCI_RELEASE_URL}"
+    - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_RELEASE_URL}"
   script:
-    - buildah bud -f Dockerfile --format docker -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" .
+    - IMAGE_VERSION=$(cat version.txt)
+    - buildah bud -f Dockerfile --format docker \
+      -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" \
+      -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest" .
     - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
+    - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
   after_script:
     - buildah logout "${OCI_RELEASE_URL}"
-  artifacts:
-    paths:
-      - version.txt
-    expire_in: 24h
   dependencies:
-    - release
-  except:
-    - master
-
+    - release-build
