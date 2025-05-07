@@ -102,8 +102,6 @@ snapshot-push-image:
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:develop"
   after_script:
     - buildah logout "${OCI_SNAPSHOT_URL}"
-  dependencies:
-    - snapshot-build
 
 ###############################################################################
 # RELEASE  (branche main branch ou tag vX.Y.Z)
@@ -148,5 +146,3 @@ release-push-image:
     - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
   after_script:
     - buildah logout "${OCI_RELEASE_URL}"
-  dependencies:
-    - release-build
