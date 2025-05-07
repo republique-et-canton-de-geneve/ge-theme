@@ -26,9 +26,10 @@ const componentPkgs = (await fs.readdir(NODE_MODULES))
 
 for (const name of componentPkgs) {
     const pkgRoot = path.join(NODE_MODULES, name);
-    const { version, module = 'dist/index.js' } = JSON.parse(
+    const { version, module: modField = 'dist/index.js', main } = JSON.parse(
         await fs.readFile(path.join(pkgRoot, 'package.json'), 'utf8')
     );
+    const entry = (modField || main || 'dist/index.js').replace(/^dist[\\/]/, '');
 
     const srcDist  = path.join(pkgRoot, 'dist');
     const destVer  = path.join(OUT_DIR, 'webcomponents', name, version);
@@ -43,7 +44,7 @@ for (const name of componentPkgs) {
     console.log(`• ${name}@${version}`);
 
     // build the import‑map entry
-    importMap.imports[`@ael/${name}`] = new URL(`webcomponents/${name}/${version}/${module}`, CDN_BASE).href;
+    importMap.imports[`@ael/${name}`] = new URL(`webcomponents/${name}/${version}/${entry}`, CDN_BASE).href;
 }
 
 // ---------------------------------------------------------------------------
