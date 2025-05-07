@@ -1,0 +1,62 @@
+{
+  "name": "@ael/ge-footer-armoiries",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Web‑component that renders the Geneva state coat‑of‑arms for the site footer.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "source": {
+    "./dist/*": "./src/$1"
+  },
+  "module": "dist/ge-footer-armoiries.js",
+  "targets": {
+    "module": {
+      "includeNodeModules": {
+        "@ael/icons": true
+      }
+    }
+  },
+  "exports": {    ".": {
+      "import": "./dist/ge-footer-armoiries.js",
+      "types": "./dist/types/ge-footer-armoiries.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
+    "build": "yarn clean && parcel build src/ge-footer-armoiries.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
+    "lint": "eslint . --ext .js",
+    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
+    "prepublishOnly": "yarn build"
+  },
+  "alias": {
+    "@icons/common": "../../website/static/theme/icons/common"
+  },
+  "dependencies": {
+    "@ael/svg-wrapper-utils": "^0.1.0",
+    "@ael/icons": "^0.1.0"
+  },
+  "devDependencies": {
+    "parcel": "2.14.4",
+    "eslint": "9.24.0",
+    "rimraf": "6.0.1",
+    "copyfiles": "2.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
+  },
+  "keywords": [
+    "web‑components",
+    "geneva",
+    "coat‑of‑arms",
+    "design‑system",
+    "svg"
+  ]
+}

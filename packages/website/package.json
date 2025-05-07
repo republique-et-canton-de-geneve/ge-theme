@@ -1,0 +1,32 @@
+{
+  "name": "@ael/static",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Static site with icons + web‑components pre‑packaged",
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:static": "copyfiles -u 1 \"./static/**/*\" dist",
+    "copy:icons": "copyfiles -u 6 \"../../node_modules/@ael/icons/dist/**/*\" dist/theme/icons",
+    "build": "yarn clean && node scripts/build-cdn.js",
+    "dev": "parcel static/index.html --port 3000"
+  },
+  "dependencies": {
+    "@ael/ge-footer-armoiries": "^0.1.0",
+    "@ael/ge-header-armoiries": "^0.1.0",
+    "@ael/icons": "^0.1.0"
+  },
+  "devDependencies": {
+    "copyfiles": "2.4.1",
+    "parcel": "2.14.4",
+    "parcel-resolver-ignore": "^2.2.0",
+    "rimraf": "6.0.1"
+  },
+  "parcelIgnore": [
+    "import-map.json"
+  ],
+  "browserslist": [
+    "> 0.2% in CH and not dead",
+    "Firefox ESR"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@ael/icons",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": ["dist"],
+  "exports": {
+    "./*": "./common/*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && copyfiles \"common/**/*\" dist/ && copyfiles \"custom/**/*\" dist/"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1"
+  }
+}

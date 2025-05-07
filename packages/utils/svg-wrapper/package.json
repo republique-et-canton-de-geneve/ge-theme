@@ -1,0 +1,30 @@
+{
+  "name": "@ael/svg-wrapper-utils",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Utility functions for SVG manipulation in web components (JS + TS types)",
+  "license": "Apache-2.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
+    "build": "yarn clean && parcel build --dist-dir dist && yarn copy:types",
+    "lint": "eslint . --ext .js",
+    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\""
+  },
+  "devDependencies": {
+    "parcel": "2.14.4",
+    "eslint": "9.24.0",
+    "rimraf": "6.0.1",
+    "copyfiles": "2.4.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
+  }
+}
