@@ -81,7 +81,7 @@ snapshot-build:
     - CI= yarn build
     - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT.${CI_PIPELINE_IID}"
     - git add package.json
-    - IMAGE_VERSION=$(node -p \"require('./package.json').version\")
+    - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
     - git commit -m "[skip ci] snapshot $IMAGE_VERSION"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:develop
     - echo "${IMAGE_VERSION}" > version.txt
@@ -123,7 +123,7 @@ release-build:
         yarn version --patch --no-git-tag-version
       fi
     - CI= yarn build
-    - RELEASE_VERSION=$(node -p "require('./package.json').version")
+    - RELEASE_VERSION=`node -e "console.log(require('./package.json').version);"`
     - git add package.json
     - git commit -m "[skip ci] release ${RELEASE_VERSION}"
     - git tag "v${RELEASE_VERSION}"
