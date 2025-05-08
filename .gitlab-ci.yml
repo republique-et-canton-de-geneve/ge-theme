@@ -65,8 +65,19 @@ workflow:
 # STAGES
 ###############################################################################
 stages:
+  - .pre
   - build
   - push
+
+debug-vars:
+  stage: .pre
+  script:
+    - echo "CI_PIPELINE_SOURCE= $CI_PIPELINE_SOURCE"
+    - echo "CI_COMMIT_BRANCH= $CI_COMMIT_BRANCH"
+    - echo "CI_COMMIT_TAG= $CI_COMMIT_TAG"
+    - echo "PIPELINE_TYPE (from workflow)= $PIPELINE_TYPE"
+  rules:
+    - when: always
 
 ###############################################################################
 # SNAPSHOT  (branche develop)
