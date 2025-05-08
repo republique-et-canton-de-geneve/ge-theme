@@ -4,6 +4,8 @@
 }
 
 /* APP BAR */
+
+
 .v-app-bar {
     background-color: rgb(var(--v-theme-background)) !important;
     border-bottom: 1px solid rgb(var(--v-theme-outline-variant));
@@ -16,8 +18,8 @@
 }
 
 /* SHEET (PAPER) */
-.v-application .v-sheet {
-    box-shadow: none;
+.v-sheet {
+    box-shadow: none !important;
 }
 
 .surface-highest {
