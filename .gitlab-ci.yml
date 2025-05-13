@@ -100,7 +100,7 @@ deploy-snapshot:
   stage: snapshot-deploy
   image: ch/ge/common/int/python/gocd-schedule:2.0.0
   script:
-    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=Latest
+    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
 
 release:
   stage: release
