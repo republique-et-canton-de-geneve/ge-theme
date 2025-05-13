@@ -92,13 +92,15 @@ deploy-snapshot:
     - if: $CI_COMMIT_BRANCH == "develop"
   needs:
     - "docker-upload-snapshot"
+  before_script:
+    - IMAGE_VERSION=`cat version.txt`    
   variables:
     PIPELINE_NAME: 11487_getheme_dev_oci
     PIPELINE_STAGE: dev
   stage: snapshot-deploy
   image: ch/ge/common/int/python/gocd-schedule:2.0.0
   script:
-    - python /app/schedule.py --token=7147e5a924a1bb86b9c4bf8b8f0c6c36cdc5cdfd --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=LATEST=${CI_COMMIT_SHA}
+    - python /app/schedule.py --token=7147e5a924a1bb86b9c4bf8b8f0c6c36cdc5cdfd --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GO_PIPELINE_LABEL=${IMAGE_VERSION}
 
 release:
   stage: release
