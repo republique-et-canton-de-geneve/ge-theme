@@ -32,6 +32,7 @@ stages:
   - snapshot-deploy
   - release
   - release-upload
+  - release-deploy  
 
 cache:
   untracked: false
@@ -157,3 +158,17 @@ docker-upload-release:
   except:
     - master
 
+deploy-release:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  needs:
+    - "docker-upload-release"
+  before_script:
+    - IMAGE_VERSION=`cat version.txt`    
+  variables:
+    PIPELINE_NAME: 11487_getheme_dev_oci
+    PIPELINE_STAGE: rec
+  stage: release-deploy
+  image: ch/ge/common/int/python/gocd-schedule:2.0.0
+  script:
+    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
