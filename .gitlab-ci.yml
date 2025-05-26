@@ -77,13 +77,13 @@ snapshot-build:
     - *before-yarn
   script:
     - set -eo pipefail
-    - CI= yarn build
     - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT"
+    - export BUILD_VERSION=$(node -p "require('./package.json').version")
+    - echo "${BUILD_VERSION}" > version.txt
+    - CI= yarn build
     - git add package.json yarn.lock
-    - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
-    - git commit -m "[skip ci] snapshot ${IMAGE_VERSION}"
+    - git commit -m "[skip ci] snapshot ${BUILD_VERSION}"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:${CI_COMMIT_BRANCH}
-    - echo "${IMAGE_VERSION}" > version.txt
   artifacts:
     paths: [ packages/website/dist, version.txt ]
     expire_in: 24h
@@ -135,15 +135,19 @@ release-build:
     - *before-yarn
   script:
     - set -eo pipefail
-    - yarn version --patch --no-git-tag-version
-    - IMAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
-    - git add package.json yarn.lock
-    - git commit -m "[skip ci] release ${RELEASE_VERSION}"
-    - git tag "v${IMAGE_VERSION}"
-    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - |
+      if [[ "$CI_COMMIT_TAG" == "" ]]; then
+        yarn version --patch --no-git-tag-version
+      fi
+    - export BUILD_VERSION=$(node -p "require('./package.json').version")
+    - echo "${BUILD_VERSION}" > version.txt
     - CI= yarn build
-    - echo "Version du build de release= ${IMAGE_VERSION}"
-    - echo "${IMAGE_VERSION}" > version.txt
+
+    - git add package.json yarn.lock
+    - git commit -m "[skip ci] release ${BUILD_VERSION}"
+    - git tag "v${BUILD_VERSION}"
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - echo "Version du build de release= ${BUILD_VERSION}"
   artifacts:
     paths: [ packages/website/dist, version.txt ]
     expire_in: 1w

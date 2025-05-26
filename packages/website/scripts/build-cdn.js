@@ -60,4 +60,20 @@ const mapPath = path.join(OUT_DIR, 'import-map.json');
 await fs.writeFile(mapPath, JSON.stringify(importMap, null, 2));
 console.log(`✓ import‑map written → site/import-map.json`);
 
+//--------------------------------------------------------------------------
+// 5. Injection de <meta name="build-version"> dans index.html
+const buildVersion = process.env.BUILD_VERSION || JSON.parse(await fs.readFile(path.join(ROOT, 'package.json'), 'utf8')).version;
+
+const indexPath = path.join(OUT_DIR, 'index.html');
+let html = await fs.readFile(indexPath, 'utf8');
+
+if (!html.includes('name="build-version"')) {
+    html = html.replace(
+        /<head[^>]*>/i,
+        (m) => `${m}\n  <meta name="build-version" content="${buildVersion}">`
+    );
+    await fs.writeFile(indexPath, html);
+    console.log(`✓ injected build-version ${buildVersion}`);
+}
+
 console.log('\n🎉  CDN build complete.\n');
