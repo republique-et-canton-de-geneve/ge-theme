@@ -104,6 +104,7 @@ snapshot-push-image:
     - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest" .
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}"
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest"
   after_script:
     - buildah logout "${OCI_SNAPSHOT_URL}" || true
   artifacts:
