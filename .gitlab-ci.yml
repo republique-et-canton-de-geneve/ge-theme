@@ -101,7 +101,7 @@ snapshot-push-image:
   script:
     - set -eo pipefail
     - IMAGE_VERSION=$(cat version.txt)
-    - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}" .
+    - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest" .
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}"
   after_script:
