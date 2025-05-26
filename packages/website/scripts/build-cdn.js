@@ -10,6 +10,10 @@ const OUT_DIR      = path.join(ROOT, 'dist');
 const CDN_BASE     = 'https://static.app.ge.ch/';           // ⬅️ adjust
 const NODE_MODULES = path.resolve(ROOT, '../../node_modules/@ael');
 const SITE_ENTRY   = './static/index.html';
+const monorepoRoot  = path.resolve(ROOT, '../..');
+const rootPkgVersion = JSON.parse(
+    await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8')
+).version;
 
 console.log("ROOT =", ROOT);
 
@@ -62,7 +66,7 @@ console.log(`✓ import‑map written → site/import-map.json`);
 
 //--------------------------------------------------------------------------
 // 5. Injection de <meta name="build-version"> dans index.html
-const buildVersion = process.env.BUILD_VERSION || JSON.parse(await fs.readFile(path.join(ROOT, 'package.json'), 'utf8')).version;
+const buildVersion = process.env.BUILD_VERSION || rootPkgVersion;
 
 const indexPath = path.join(OUT_DIR, 'index.html');
 let html = await fs.readFile(indexPath, 'utf8');

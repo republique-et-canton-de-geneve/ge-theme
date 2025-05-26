@@ -80,7 +80,7 @@ snapshot-build:
     - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT"
     - export BUILD_VERSION=$(node -p "require('./package.json').version")
     - echo "${BUILD_VERSION}" > version.txt
-    - CI= yarn build
+    - CI= BUILD_VERSION=$BUILD_VERSION yarn build
     - git add package.json yarn.lock
     - git commit -m "[skip ci] snapshot ${BUILD_VERSION}"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:${CI_COMMIT_BRANCH}
