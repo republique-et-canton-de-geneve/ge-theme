@@ -61,19 +61,10 @@ workflow:
 # STAGES
 ###############################################################################
 stages:
-  - .pre
   - build
   - push
-
-debug-vars:
-  stage: .pre
-  script:
-    - echo "CI_PIPELINE_SOURCE= $CI_PIPELINE_SOURCE"
-    - echo "CI_COMMIT_BRANCH= $CI_COMMIT_BRANCH"
-    - echo "CI_COMMIT_TAG= $CI_COMMIT_TAG"
-    - echo "PIPELINE_TYPE (from workflow)= $PIPELINE_TYPE"
-  rules:
-    - when: always
+  - deploy
+  - post-release
 
 ###############################################################################
 # SNAPSHOT  (branche develop ou trigger manuel)
@@ -115,6 +106,23 @@ snapshot-push-image:
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}"
   after_script:
     - buildah logout "${OCI_SNAPSHOT_URL}" || true
+  artifacts:
+    paths: [ version.txt ]
+    expire_in: 24h
+
+snapshot-deploy:
+  stage: deploy
+  needs: [ snapshot-push-image ]
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot"'
+  before_script:
+    - IMAGE_VERSION=`cat version.txt`
+  variables:
+    PIPELINE_NAME: 11487_getheme_dev_oci
+    PIPELINE_STAGE: dev
+  image: ch/ge/common/int/python/gocd-schedule:2.0.0
+  script:
+    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
 
 ###############################################################################
 # RELEASE  (branche main)
@@ -158,3 +166,68 @@ release-push-image:
     - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
   after_script:
     - buildah logout "${OCI_RELEASE_URL}" || true
+  artifacts:
+    paths: [ version.txt ]
+    expire_in: 24h
+
+release-deploy:
+  stage: deploy
+  needs: [ release-push-image ]
+  rules:
+    - if: '$PIPELINE_TYPE == "release"'
+  before_script:
+    - IMAGE_VERSION=`cat version.txt`
+  variables:
+    PIPELINE_NAME: 11487_getheme_dev_oci
+    PIPELINE_STAGE: rec
+  image: ch/ge/common/int/python/gocd-schedule:2.0.0
+  script:
+    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
+
+###############################################################################
+# POST-RELEASE
+###############################################################################
+
+post-release-prepare-develop:
+  stage: post-release
+  rules:
+    - if: '$PIPELINE_TYPE == "release" && $CI_COMMIT_BRANCH == "main"'
+  needs:
+    - job: release-build
+      artifacts: true
+  before_script:
+    - *before-yarn
+  script:
+    - set -eo pipefail
+    - RELEASED_VERSION=$(cat version.txt)
+    - echo "Released version from main= ${RELEASED_VERSION}"
+
+    - echo "Checking out develop branch..."
+    - git checkout develop
+    - git pull origin develop
+
+    - echo "Merging main branch into develop (without auto-commit)..."
+    - git merge --no-ff --no-commit main
+    - echo "Merge from main staged."
+
+    - CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE=$(node -e "console.log(require('./package.json').version);")
+    - echo "Version on develop after staging merge from main= $CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE"
+    - |
+      if [ "$CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE" != "$RELEASED_VERSION" ]; then
+        echo "Warning: Version on develop after merge ($CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE) is not the same as released version ($RELEASED_VERSION)."
+        echo "This might happen if main was merged into develop previously with a different version."
+        echo "Proceeding to set snapshot version based on RELEASED_VERSION: $RELEASED_VERSION."
+      fi
+
+    - NEW_DEVELOP_SNAPSHOT_VERSION="${RELEASED_VERSION}-SNAPSHOT.0"
+    - echo "Setting version on develop to ${NEW_DEVELOP_SNAPSHOT_VERSION}..."
+    - yarn version --new-version "${NEW_DEVELOP_SNAPSHOT_VERSION}" --no-git-tag-version
+
+    - echo "Committing merged main and new snapshot version to develop..."
+    - git add package.json yarn.lock
+    - git commit -m "Begin development for ${NEW_DEVELOP_SNAPSHOT_VERSION} (merged release v${RELEASED_VERSION})"
+
+    - echo "Pushing develop branch..."
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git HEAD:develop
+
+    - echo "Successfully prepared develop branch with version ${NEW_DEVELOP_SNAPSHOT_VERSION}"

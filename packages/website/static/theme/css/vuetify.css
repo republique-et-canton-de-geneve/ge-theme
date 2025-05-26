@@ -1,54 +1,81 @@
-/* variables spécifiques vuetify  */
-:root {
-    --v-list-item-subtitle-opacity : 1
-}
+
 
 /* APP BAR */
+
+
 .v-app-bar {
     background-color: rgb(var(--v-theme-background)) !important;
     border-bottom: 1px solid rgb(var(--v-theme-outline-variant));
     color: inherit !important;
 }
 
-/* List */
-.v-list--border .v-list-item:not(:last-child) {
-    border-bottom-width: thin
-}
-
 /* SHEET (PAPER) */
-.v-application .v-sheet {
-    box-shadow: none;
+
+
+.v-sheet {
+    box-shadow: none !important;
+    padding: 8px !important;
+    border-radius: var(--v-shape-corner-extra-small) !important;
 }
 
-.surface-highest {
-    background-color: var(--md-sys-color-surface-container-highest) !important;
-    color: var(--md-sys-color-on-surface) !important;
+
+
+.v-sheet {
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02) !important;
 }
 
-.surface-high {
-    background-color: var(--md-sys-color-surface-container-high) !important;
-    color: var(--md-sys-color-on-surface) !important;
+
+.v-sheet.elevation-1 {
+    background-color: rgba(var(--v-surface-lowest));
 }
 
-.surface {
-    background-color: var(--md-sys-color-surface-container) !important;
-    color: var(--md-sys-color-on-surface) !important;
+.v-sheet.elevation-2 {
+    background-color: rgba(var(--v-surface-low));
 }
 
-.surface-low {
-    background-color: var(--md-sys-color-surface-container-low) !important;
-    color: var(--md-sys-color-on-surface) !important;
+.v-sheet.elevation-3 {
+    background-color: rgba(var(--v-theme-surface));
 }
 
-.surface-lowest {
-    background-color: var(--md-sys-color-surface-container-lowest) !important;
-    color: var(--md-sys-color-on-surface) !important;
+.v-sheet.elevation-4 {
+    background-color: rgba(var(--v-surface-high));
 }
 
+.v-sheet.elevation-5 {
+    background-color: rgba(var(--v-surface-highest));
+}
+
+/* CARD */
+
+.v-card {
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02) !important;
+    border-radius: var(--v-shape-corner-medium)!important;
+}
+
+.v-card.elevation-1 {
+    background-color: rgba(var(--v-surface-lowest));
+}
+
+.v-card.elevation-2 {
+    background-color: rgba(var(--v-surface-low));
+}
+
+.v-card.elevation-3 {
+    background-color: rgba(var(--v-theme-surface));
+}
+
+.v-card.elevation-4 {
+    background-color: rgba(var(--v-surface-high));
+}
+
+.v-card.elevation-5 {
+    background-color: rgba(var(--v-surface-highest));
+}
 
 /* Alert */
+
 .v-alert {
-    border-radius: var(--v-shape-corner-medium) !important;
+    border-radius: var(--v-shape-corner-medium)!important;
     width: fit-content !important;
 }
 
@@ -72,27 +99,12 @@
     color: rgba(var(--v-theme-on-error-container)) !important;
 }
 
-/* Expansion panel */
-.v-expansion-panel {
-    border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
-
-}
-
-.v-expansion-panel__shadow {
-    display: none;
-}
-
-
 /* v-btn */
 
 .v-btn {
     height: 40px !important;
     text-transform: none !important;
     border-radius: var(--v-shape-corner-full);
-    font-size: var(--md-sys-typescale-label-medium-size) !important;
-    line-height: var(--md-sys-typescale-label-medium-line-height) !important;
-    font-weight: var(--md-sys-typescale-label-medium-weight) !important;
-    letter-spacing: var(--md-sys-typescale-label-medium-tracking) !important;
 }
 
 .v-btn--icon {
@@ -104,7 +116,7 @@
     border: thin solid rgba(var(--v-theme-outline)) !important;
 }
 
-.v-btn:not(.v-btn--icon) {
+.v-btn:not(.v-btn--icon){
     padding: 0 24px !important;
 }
 
@@ -112,7 +124,7 @@
 /* Chip */
 
 .v-chip {
-    border-radius: var(--v-shape-corner-small) !important;
+    border-radius: var(--v-shape-corner-small)!important;
 }
 
 .v-chip.text-success {
@@ -129,7 +141,7 @@
 }
 
 .v-chip.text-info.v-chip--variant-outlined {
-    border: thin solid rgba(var(--v-theme-outline)) !important;
+    border: thin solid rgba(var(--v-theme-outline))!important;
 }
 
 .v-chip.text-info.v-chip__prepend {
@@ -248,27 +260,6 @@
     letter-spacing: var(--md-sys-typescale-body-small-tracking) !important;
 }
 
-.text-label-1 {
-    font-size: var(--md-sys-typescale-label-large-size) !important;
-    line-height: var(--md-sys-typescale-label-large-line-height) !important;
-    font-weight: var(--md-sys-typescale-label-large-weight);
-    letter-spacing: var(--md-sys-typescale-label-large-tracking) !important;
-}
-
-.text-label-2 {
-    font-size: var(--md-sys-typescale-label-medium-size) !important;
-    line-height: var(--md-sys-typescale-label-medium-line-height) !important;
-    font-weight: var(--md-sys-typescale-label-medium-weight) !important;
-    letter-spacing: var(--md-sys-typescale-label-medium-tracking) !important;
-}
-
-.text-label-3 {
-    font-size: var(--md-sys-typescale-label-small-size) !important;
-    line-height: var(--md-sys-typescale-label-small-line-height) !important;
-    font-weight: var(--md-sys-typescale-label-small-weight) !important;
-    letter-spacing: var(--md-sys-typescale-label-small-tracking) !important;
-}
-
 .text-button {
     font-size: var(--md-sys-typescale-label-medium-size) !important;
     line-height: var(--md-sys-typescale-label-medium-line-height) !important;
@@ -321,6 +312,7 @@
         letter-spacing: var(--md-sys-typescale-title-small-tracking) !important;
     }
 
+
 }
 
 
@@ -334,6 +326,7 @@
 /* Textfield */
 
 
-.v-field {
-    border-radius: var(--v-shape-corner-extra-small) !important;
+.v-field{
+    border-radius: var(--v-shape-corner-extra-small)!important;
 }
+  
