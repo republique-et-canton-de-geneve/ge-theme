@@ -208,9 +208,9 @@ post-release-prepare-develop:
     - echo "Released version from main= ${RELEASED_VERSION}"
 
     - echo "Checking out develop branch..."
-    - git checkout develop
+    - git fetch origin develop
+    - git checkout -B develop origin/develop
     - git pull origin develop
-
     - echo "Merging main branch into develop (without auto-commit)..."
     - git merge --no-ff --no-commit main
     - echo "Merge from main staged."
