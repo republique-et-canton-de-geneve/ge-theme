@@ -213,7 +213,7 @@ post-release-prepare-develop:
     - git checkout -B develop origin/develop
     - git pull origin develop
     - echo "Merging main branch into develop (without auto-commit)..."
-    - git merge --no-ff --no-commit origin/main
+    - git merge --no-ff --no-commit -X theirs origin/main
     - echo "Merge from main staged."
 
     - CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE=$(node -e "console.log(require('./package.json').version);")
