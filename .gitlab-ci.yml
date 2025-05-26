@@ -182,6 +182,7 @@ release-deploy:
     - if: '$PIPELINE_TYPE == "release"'
   before_script:
     - IMAGE_VERSION=`cat version.txt`
+    - echo "Version déployée sur GoCD = $IMAGE_VERSION"
   variables:
     PIPELINE_NAME: 11487_getheme_dev_oci
     PIPELINE_STAGE: rec
@@ -208,11 +209,11 @@ post-release-prepare-develop:
     - echo "Released version from main= ${RELEASED_VERSION}"
 
     - echo "Checking out develop branch..."
-    - git checkout develop
+    - git fetch origin develop
+    - git checkout -B develop origin/develop
     - git pull origin develop
-
     - echo "Merging main branch into develop (without auto-commit)..."
-    - git merge --no-ff --no-commit main
+    - git merge --no-ff --no-commit origin/main
     - echo "Merge from main staged."
 
     - CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE=$(node -e "console.log(require('./package.json').version);")
