@@ -231,7 +231,7 @@ post-release-prepare-develop:
 
     - echo "Committing merged main and new snapshot version to develop..."
     - git add package.json yarn.lock
-    - git commit -m "Begin development for ${NEW_DEVELOP_SNAPSHOT_VERSION} (merged release v${RELEASED_VERSION})"
+    - git commit -m "[skip ci] Begin development for ${NEW_DEVELOP_SNAPSHOT_VERSION} (merged release v${RELEASED_VERSION})"
 
     - echo "Pushing develop branch..."
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git HEAD:develop
