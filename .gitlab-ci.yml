@@ -13,7 +13,7 @@ variables:
   YARN_REGISTRY: 'https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/'
   NPM_REGISTRY: 'https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/'
 
-  GIT_REPOSITORY: DEVELOPPEUR-EDG/ui
+  GIT_REPOSITORY: DEVELOPPEUR-AEL/ui
   OCI_SNAPSHOT_URL: 'oci-snapshot.devops.etat-ge.ch'
   OCI_RELEASE_URL: 'oci-release.devops.etat-ge.ch'
   BUILDAH: ${DOCKER_URL}/buildah/stable:v1.32.0
@@ -80,10 +80,10 @@ snapshot-build:
     - CI= yarn build
     - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT"
     - git add package.json yarn.lock
-    - PACKAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
-    - git commit -m "[skip ci] snapshot ${PACKAGE_VERSION}"
+    - IMAGE_VERSION=`node -e "console.log(require('./package.json').version);"`
+    - git commit -m "[skip ci] snapshot ${IMAGE_VERSION}"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:${CI_COMMIT_BRANCH}
-    - echo "${PACKAGE_VERSION}" > version.txt
+    - echo "${IMAGE_VERSION}" > version.txt
   artifacts:
     paths: [ packages/website/dist, version.txt ]
     expire_in: 24h
@@ -100,9 +100,9 @@ snapshot-push-image:
     - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_SNAPSHOT_URL}"
   script:
     - set -eo pipefail
-    - PACKAGE_VERSION=$(cat version.txt)
+    - IMAGE_VERSION=$(cat version.txt)
     - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}" .
-    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${PACKAGE_VERSION}"
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}"
   after_script:
     - buildah logout "${OCI_SNAPSHOT_URL}" || true
@@ -136,14 +136,14 @@ release-build:
   script:
     - set -eo pipefail
     - yarn version --patch --no-git-tag-version
-    - PACKAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
+    - IMAGE_VERSION=$(node -e "console.log(require('./package.json').version);")
     - git add package.json yarn.lock
     - git commit -m "[skip ci] release ${RELEASE_VERSION}"
-    - git tag "v${PACKAGE_VERSION}"
+    - git tag "v${IMAGE_VERSION}"
     - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
     - CI= yarn build
-    - echo "Version du build de release= ${PACKAGE_VERSION}"
-    - echo "${PACKAGE_VERSION}" > version.txt
+    - echo "Version du build de release= ${IMAGE_VERSION}"
+    - echo "${IMAGE_VERSION}" > version.txt
   artifacts:
     paths: [ packages/website/dist, version.txt ]
     expire_in: 1w
@@ -160,9 +160,9 @@ release-push-image:
     - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_RELEASE_URL}"
   script:
     - set -eo pipefail
-    - PACKAGE_VERSION=$(cat version.txt)
-    - buildah bud -f Dockerfile --format docker -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:${PACKAGE_VERSION}" -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest" .
-    - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:${PACKAGE_VERSION}"
+    - IMAGE_VERSION=$(cat version.txt)
+    - buildah bud -f Dockerfile --format docker -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest" .
+    - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
   after_script:
     - buildah logout "${OCI_RELEASE_URL}" || true
