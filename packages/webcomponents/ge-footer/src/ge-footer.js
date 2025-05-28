@@ -27,11 +27,10 @@ class GeFooter extends LitElement {
             grid-area: footer;
             justify-content: space-between;
             align-items: center;
-            margin: 0 auto;
             margin-left: 32px;
             padding: 18px 16px;
         }
-
+        
         .footer-menu-item:not(:last-child) {
             border-right: 1px solid var(--md-sys-color-outline-variant);
             padding-right: 16px;
