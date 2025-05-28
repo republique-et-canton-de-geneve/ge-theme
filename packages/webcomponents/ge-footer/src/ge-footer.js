@@ -27,8 +27,7 @@ class GeFooter extends LitElement {
             grid-area: footer;
             justify-content: space-between;
             align-items: center;
-            margin-left: 32px;
-            padding: 18px 16px;
+            padding: 18px 18px 18px 0;
         }
         
         .footer-menu-item:not(:last-child) {
@@ -64,9 +63,9 @@ class GeFooter extends LitElement {
         }
 
         @media (max-width: 768px) {
-            .footer {
+            #footer {
                 flex-direction: column;
-                margin: 0 auto;
+                padding: 0;
             }
 
             .footer-menu-item:not(:last-child) {
