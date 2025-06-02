@@ -1,8 +1,8 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 
-@customElement("ge-footer")
-export class GeFooter extends LitElement {
+export @customElement("ge-footer")
+class GeFooter extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -122,7 +122,7 @@ export class GeFooter extends LitElement {
             alt="Armoiries de la République et canton de Genève"
             width="72"
             height="54"
-            role="svg"
+            role="img"
             aria-hidden="false"
           />
         </div>

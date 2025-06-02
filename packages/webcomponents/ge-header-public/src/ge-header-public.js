@@ -2,8 +2,8 @@ import { html, css, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
 
-@customElement("ge-header-public")
-export class GeHeaderPublic extends LitElement {
+export @customElement("ge-header-public")
+class GeHeaderPublic extends LitElement {
   static styles = css`
     :host {
       display: block;
