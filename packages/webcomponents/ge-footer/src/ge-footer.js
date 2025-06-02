@@ -3,7 +3,6 @@ import { customElement } from "lit/decorators.js";
 
 @customElement("ge-footer")
 export class GeFooter extends LitElement {
- 
   static styles = css`
     :host {
       display: block;
@@ -16,11 +15,10 @@ export class GeFooter extends LitElement {
 
     #ge-footer {
       display: flex;
-      grid-area: footer; 
+      grid-area: footer;
       justify-content: space-between;
       align-items: center;
-      margin-left: 32px;
-      padding: 18px 16px;
+      padding: 0 36px;
     }
 
     .footer-menu-item:not(:last-child) {
@@ -58,8 +56,7 @@ export class GeFooter extends LitElement {
     @media (max-width: 768px) {
       #ge-footer {
         flex-direction: column;
-    	align-items: flex-start;
-        margin: 0 auto;
+        align-items: flex-start;
       }
 
       .footer-menu-item:not(:last-child) {
@@ -90,28 +87,32 @@ export class GeFooter extends LitElement {
               href="https://www.ge.ch/c/footer-edm-aide"
               data-url="https://www.ge.ch/c/footer-edm-aide"
               class="footer-link"
-            >Contact</a>
+              >Contact</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-accessibilite"
               data-url="https://www.ge.ch/c/footer-edm-accessibilite"
               class="footer-link"
-            >Accessibilité</a>
+              >Accessibilité</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-confidentialite"
               data-url="https://www.ge.ch/c/footer-edm-confidentialite"
               class="footer-link"
-            >Politique de confidentialité</a>
+              >Politique de confidentialité</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-cgu"
               data-url="https://www.ge.ch/c/footer-edm-cgu"
               class="footer-link"
-            >Conditions générales</a>
+              >Conditions générales</a
+            >
           </span>
         </div>
 
@@ -129,4 +130,3 @@ export class GeFooter extends LitElement {
     `;
   }
 }
-
