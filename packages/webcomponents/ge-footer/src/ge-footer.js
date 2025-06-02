@@ -1,8 +1,8 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 
-@customElement("ge-footer")
-export class GeFooter extends LitElement {
+export @customElement("ge-footer")
+class GeFooter extends LitElement {
   static styles = css`
     :host {
       display: block;
