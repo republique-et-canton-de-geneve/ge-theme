@@ -127,7 +127,9 @@ snapshot-deploy:
   stage: deploy
   needs: [ snapshot-push-image ]
   rules:
-    - if: '$PIPELINE_TYPE == "snapshot"'
+    - if: '$PIPELINE_TYPE == "snapshot" &&
+         $CI_COMMIT_BRANCH == "develop" &&
+         $CI_PIPELINE_SOURCE == "push"'
   before_script:
     - IMAGE_VERSION=`cat version.txt`
   variables:
