@@ -127,7 +127,7 @@ class GeFooter extends LitElement {
             alt="Armoiries de la République et canton de Genève"
             width="72"
             height="54"
-            role="svg"
+            role="img"
             aria-hidden="false"
           />
         </div>
