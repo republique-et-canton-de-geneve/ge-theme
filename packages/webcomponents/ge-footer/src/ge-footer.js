@@ -1,94 +1,85 @@
 import { LitElement, html, css } from "lit";
 import { customElement } from "lit/decorators.js";
 
-export @customElement("ge-footer")
-class GeFooter extends LitElement {
-    static styles = css`
-        :host {
-            --md-sys-color-on-surface: #1c1b1f;
-            --md-sys-color-outline-variant: #D4D2CF;
-            --md-sys-color-surface-surface: #FFF;
-            --md-ref-typeface-Brand: Roboto;
-            --md-sys-typescale-Body-Medium-Size: 14px;
-            --md-sys-typescale-Body-Medium-Line-Height: 20px;
-            --md-sys-typescale-Body-Medium-Tracking: 0.25px;
-            --md-sys-color-on-surface-variant: #474746;
-            --md-sys-color-primary: #01629D;
-            display: block;
-            width: 100%;
-            border-top: 1px solid var(--md-sys-color-outline-variant);
-            font-family: var(--md-ref-typeface-plain), Arial, sans-serif;
-            transition: width 0.3s ease;
-            background: var(--md-sys-color-surface);
-        }
+@customElement("ge-footer")
+export class GeFooter extends LitElement {
+  static styles = css`
+    :host {
+      display: block;
+      width: 100%;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      font-family: var(--md-ref-typeface-plain, Arial, sans-serif);
+      transition: width 0.3s ease;
+      background: var(--md-sys-color-surface-surface);
+    }
 
-        #ge-footer {
-            display: flex;
-            grid-area: footer;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 18px 18px 0;
-        }
-        
-        .footer-menu-item:not(:last-child) {
-            border-right: 1px solid var(--md-sys-color-outline-variant);
-            padding-right: 16px;
-            height: 20px;
-        }
+    #ge-footer {
+      display: flex;
+      grid-area: footer;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 36px;
+    }
 
-        .footer-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+    .footer-menu-item:not(:last-child) {
+      border-right: 1px solid var(--md-sys-color-outline-variant);
+      padding-right: 16px;
+      height: 20px;
+    }
 
-        .footer-link {
-            color: var(--md-sys-color-on-surface-variant);
-            font-family: var(--md-ref-typeface-Brand);
-            font-size: var(--md-sys-typescale-Body-Medium-Size);
-            font-style: normal;
-            line-height: var(--md-sys-typescale-Body-Medium-Line-Height);
-            letter-spacing: var(--md-sys-typescale-Body-Medium-Tracking);
-            font-weight: 400;
-            text-decoration: none;
-        }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-        .footer-link:hover {
-            color: var(--md-sys-color-primary);
-        }
+    .footer-link {
+      color: var(--md-sys-color-on-surface-variant);
+      font-family: var(--md-ref-typeface-Brand);
+      font-size: var(--md-sys-typescale-Body-Medium-Size);
+      font-style: normal;
+      line-height: var(--md-sys-typescale-Body-Medium-Line-Height);
+      letter-spacing: var(--md-sys-typescale-Body-Medium-Tracking);
+      font-weight: 400;
+      text-decoration: none;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
+    .footer-link:hover {
+      color: var(--md-sys-color-primary);
+    }
 
-        @media (max-width: 768px) {
-            #footer {
-                flex-direction: column;
-                padding: 0;
-            }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-            .footer-menu-item:not(:last-child) {
-                border-right: none;
-            }
+    @media (max-width: 768px) {
+      #ge-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-            .footer-links {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                gap: 16px;
-            }
+      .footer-menu-item:not(:last-child) {
+        border-right: none;
+      }
 
-            .logo {
-                width: 100%;
-                justify-content: flex-start;
-                margin-top: 20px;
-            }
-        }
-    `;
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 16px;
+      }
 
-    render() {
-        return html`
+      .logo {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 20px;
+      }
+    }
+  `;
+
+  render() {
+    return html`
       <footer id="ge-footer">
         <div class="footer-links">
           <span class="footer-menu-item">
@@ -96,28 +87,32 @@ class GeFooter extends LitElement {
               href="https://www.ge.ch/c/footer-edm-aide"
               data-url="https://www.ge.ch/c/footer-edm-aide"
               class="footer-link"
-            >Contact</a>
+              >Contact</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-accessibilite"
               data-url="https://www.ge.ch/c/footer-edm-accessibilite"
               class="footer-link"
-            >Accessibilité</a>
+              >Accessibilité</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-confidentialite"
               data-url="https://www.ge.ch/c/footer-edm-confidentialite"
               class="footer-link"
-            >Politique de confidentialité</a>
+              >Politique de confidentialité</a
+            >
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-cgu"
               data-url="https://www.ge.ch/c/footer-edm-cgu"
               class="footer-link"
-            >Conditions générales</a>
+              >Conditions générales</a
+            >
           </span>
         </div>
 
@@ -133,5 +128,5 @@ class GeFooter extends LitElement {
         </div>
       </footer>
     `;
-    }
+  }
 }
