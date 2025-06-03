@@ -198,7 +198,7 @@ release-deploy:
     - IMAGE_VERSION=`cat version.txt`
     - echo "Version déployée sur GoCD = $IMAGE_VERSION"
   variables:
-    PIPELINE_NAME: 11487_getheme_dev_oci
+    PIPELINE_NAME: 11487_getheme_release_oci
     PIPELINE_STAGE: rec
   image: ch/ge/common/int/python/gocd-schedule:2.0.0
   script:
