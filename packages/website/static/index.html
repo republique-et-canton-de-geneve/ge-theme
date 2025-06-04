@@ -5,9 +5,30 @@
     <meta name="viewport" content="minimum-scale=1, initial-scale=1.0, width=device-width" />
     <title>CDN État de Genève - Thème et composants partagés</title>
     <link rel="stylesheet" href="https://static.dev.etat-ge.ch/theme/css/theme.css"/>
-    <script type="importmap" src="./import-map.json" data-parcel-ignore></script>
+ 
+    <script type="module" src="../../webcomponents/ge-footer/src/ge-footer.js"></script>
+    <script type="module" src="../../webcomponents/ge-edemarche/src/ge-edemarche.js"></script>
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
 </head>
 <body>
+    <ge-footer></ge-footer>
+    <ge-edemarche id="demo"></ge-edemarche>
 
+
+    <script type="module">
+customElements.whenDefined('ge-edemarche').then(() => {
+  const component = document.getElementById('demo');
+  component.items = [  { label: 'Accueil', value: 'home' },
+  { label: 'Profil', value: 'profile' },
+  { label: 'Déconnexion', value: 'logout' },];
+
+  component.addEventListener('click', (e) => {
+    console.log('Événement capté :', e.detail);
+  });
+});
+
+      </script>
 </body>
 </html>

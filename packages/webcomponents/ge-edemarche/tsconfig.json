@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2023", // Target for checking, can be modern
+    "allowJs": true, // Allow JavaScript files to be processed
+    "checkJs": false, // Don't type-check JS files by default (we have .d.ts)
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    /* Strictness */
+    "strict": true,
+    "noImplicitAny": true, // Optional: Enforce stricter checks if desired
+    /* If NOT transpiling code: */
+    "module": "ESNext", // Keep import/export syntax
+    "isolatedModules": true, // Ensure files can be transpiled independently (good practice)
+    "moduleResolution": "Node",
+
+    /* If your source is JS, you might need these for decorators if using checkJs */
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false, // Lit relies on this being false for decorators
+
+    /* Library options for checking */
+    "declaration": true, // Needed for checking .d.ts generation/validity conceptually
+    "emitDeclarationOnly": true, // Paired with noEmit=true, we just want checking
+
+    "baseUrl": ".", // Helps with path resolution if needed
+    "paths": {
+      // Define paths if you have complex imports
+    },
+    "outDir": "dist/types"
+  },
+  "include": ["src/**/*.js", "src/**/*.d.ts"], // Files TSC should be aware of
+  "exclude": ["node_modules", "dist"]
+}
