@@ -1,5 +1,5 @@
 images:
   app:
-    name: ch/ge/common/web
+    name: ch/ge/common/web/ge-theme
     repository: oci-snapshot.devops.etat-ge.ch
-    version: ge-theme:0.1.9-SNAPSHOT.4
+    version: 0.1.9-SNAPSHOT.4
