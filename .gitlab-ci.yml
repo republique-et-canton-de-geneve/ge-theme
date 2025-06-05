@@ -70,7 +70,6 @@ workflow:
 stages:
   - build
   - push
-#  - deploy
   - post-release
 
 ###############################################################################
@@ -123,22 +122,6 @@ snapshot-push-image:
     paths: [ version.txt ]
     expire_in: 24h
 
-snapshot-deploy:
-  stage: deploy
-  needs: [ snapshot-push-image ]
-  rules:
-    - if: '$PIPELINE_TYPE == "snapshot" &&
-         $CI_COMMIT_BRANCH == "develop" &&
-         $CI_PIPELINE_SOURCE == "push"'
-  before_script:
-    - IMAGE_VERSION=`cat version.txt`
-  variables:
-    PIPELINE_NAME: 11487_getheme_dev_oci
-    PIPELINE_STAGE: dev
-  image: ch/ge/common/int/python/gocd-schedule:2.0.0
-  script:
-    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
-
 ###############################################################################
 # RELEASE  (branche main)
 ###############################################################################
@@ -188,21 +171,6 @@ release-push-image:
   artifacts:
     paths: [ version.txt ]
     expire_in: 24h
-
-release-deploy:
-  stage: deploy
-  needs: [ release-push-image ]
-  rules:
-    - if: '$PIPELINE_TYPE == "release"'
-  before_script:
-    - IMAGE_VERSION=`cat version.txt`
-    - echo "Version déployée sur GoCD = $IMAGE_VERSION"
-  variables:
-    PIPELINE_NAME: 11487_getheme_release_oci
-    PIPELINE_STAGE: rec
-  image: ch/ge/common/int/python/gocd-schedule:2.0.0
-  script:
-    - python /app/schedule.py --token=${MY_GOCD_TOKEN} --pipeline_name=${PIPELINE_NAME} --pipeline_stage=${PIPELINE_STAGE} --pipeline_env_vars=GETHEME_IMAGE_TAG=${IMAGE_VERSION}
 
 ###############################################################################
 # POST-RELEASE
