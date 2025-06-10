@@ -42,7 +42,6 @@ export class GeAutresEspaces extends LitElement {
       .title {
         opacity: 0;
         width: 0;
-        margin: 0;
         overflow: hidden;
       }
 
