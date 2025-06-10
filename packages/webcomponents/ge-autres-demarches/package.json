@@ -8,7 +8,7 @@
   "source": {
     "./dist/*": "./src/$1"
   },
-  "module": "dist/ge-autres-demarches",
+  "module": "dist/ge-autres-demarches.js",
   "targets": {
     "module": {
       "includeNodeModules": {
@@ -17,7 +17,7 @@
     }
   },
   "exports": {    ".": {
-      "import": "./dist/ge-autres-demarches",
+      "import": "./dist/ge-autres-demarches.js",
       "types": "./dist/types/ge-autres-demarches.d.ts"
     }
   },
@@ -27,7 +27,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
-    "build": "yarn clean && parcel build src/ge-autres-demarches --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
+    "build": "yarn clean && parcel build src/ge-autres-demarches.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
     "lint": "eslint . --ext .js",
     "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build"

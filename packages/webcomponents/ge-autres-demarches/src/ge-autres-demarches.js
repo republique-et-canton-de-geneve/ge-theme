@@ -6,8 +6,8 @@ import '@material/web/list/list-item.js';
 import '@material/web/icon/icon.js';
 
 
-@customElement("ge-autres-espaces")
-export class GeAutresEspaces extends LitElement {
+export @customElement("ge-autres-espaces")
+class GeAutresEspaces extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -163,7 +163,7 @@ export class GeAutresEspaces extends LitElement {
     }
 
     .content {
-      margin-top: 16px;
+      padding-top: 16px;
       overflow: hidden;
       transition: max-height 0.3s ease, opacity 0.3s ease;
     }
@@ -187,7 +187,6 @@ export class GeAutresEspaces extends LitElement {
     md-list-item {
       --md-list-item-container-color: transparent;
       border-radius: 8px;
-      margin-bottom: 4px;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
