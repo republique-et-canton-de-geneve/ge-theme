@@ -224,7 +224,11 @@ class GeAutresEspaces extends LitElement {
       letter-spacing: var(--md-sys-typescale-Label-Medium-Tracking);
     }
 
-
+  .apps-icon:focus,
+  .item-content:focus {
+      outline: 2px solid var(--md-sys-color-primary);
+      outline-offset: 4px;
+}
     :host {
       container-type: inline-size;
     }
@@ -257,6 +261,13 @@ class GeAutresEspaces extends LitElement {
     }));
   }
 
+  handleIconKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.handleIconClick(e);
+    }
+  }
+
   handleItemClick(item) {
     if (item.url) {
       window.open(item.url, '_blank');
@@ -272,19 +283,25 @@ class GeAutresEspaces extends LitElement {
 
   render() {
     return html`
-      <div class="container">
+      <div class="container" role="navigation" aria-label="${this.title}">
         <div class="header">
           <div class="title-section">
             <svg 
               class="apps-icon" 
+              tabindex="0"
+              role="button" 
+              aria-label="Déplier le menu"
               viewBox="0 0 24 24"
               @click=${this.handleIconClick}>
+              @keydown=${this.handleIconKeyPress}
               <path d="M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z"></path>
             </svg>
-            <h5 class="title">${this.title}</h5>
+            <h5 class="title" role="heading" aria-level="2">${this.title}</h5>
           </div>
           <md-icon-button 
             aria-label="${this.expanded ? 'Masquer le sous-menu' : 'Afficher le sous-menu'}"
+            aria-expanded="${this.expanded ? 'true' : 'false'}"
+            aria-controls="submenu-content"
             @click=${this.toggleExpanded}>
             <svg class="expand-icon ${this.expanded ? 'expanded' : 'collapsed'}" viewBox="0 0 24 24">
               <path d="m12 8-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
@@ -292,7 +309,7 @@ class GeAutresEspaces extends LitElement {
           </md-icon-button>
         </div>
         
-        <div class="content ${this.expanded ? 'expanded' : 'collapsed'}">
+        <div  id="submenu-content" class="content ${this.expanded ? 'expanded' : 'collapsed'}">
           <md-list>
             ${this.items.map(item => html`
               <md-list-item @click=${() => this.handleItemClick(item)}>
