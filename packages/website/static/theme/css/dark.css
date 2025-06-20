@@ -47,4 +47,8 @@
   --md-sys-color-background: var(--md-ref-palette-secondary-10);
   --md-sys-color-shadow: var(--md-ref-shadow-opacity-0);
   --md-sys-color-scrim: var(--md-ref-shadow-opacity-0);
+  --md-sys-color-state-Opacity-0: var(--md-ref-shadow-dark-Opacity-0);
+  --md-sys-color-state-Opacity-8: var(--md-ref-shadow-dark-Opacity-8);
+  --md-sys-color-state-Opacity-12: var(--md-ref-shadow-dark-Opacity-12);
+  --md-sys-color-state-Opacity-16: var(--md-ref-shadow-dark-Opacity-16);
 }
