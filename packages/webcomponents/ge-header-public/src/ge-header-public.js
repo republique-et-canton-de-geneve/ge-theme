@@ -60,7 +60,8 @@ class GeHeaderPublic extends LitElement {
   render() {
     return html`
       <header class="header" role="banner">
-        <a href="https://www.ge.ch/" class="logo-section">
+        <a
+         href="https://www.ge.ch/" class="logo-section" target="gech">
           <img
             src="https://static.app.ge.ch/theme/icons/common/header/header-armoiries-light.svg"
             alt="République et canton de Genève"
