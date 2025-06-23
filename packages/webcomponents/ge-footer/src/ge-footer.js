@@ -58,7 +58,7 @@ class GeFooter extends LitElement {
       #ge-footer {
         flex-direction: column;
         align-items: flex-start;
-        padding: 32px 12px;
+        padding: 32px 12px; 
       }
 
       .footer-menu-item:not(:last-child) {
@@ -79,7 +79,6 @@ class GeFooter extends LitElement {
       }
     }
   `;
-
   render() {
     return html`
       <footer id="ge-footer">
@@ -89,14 +88,15 @@ class GeFooter extends LitElement {
               href="https://www.ge.ch/c/footer-edm-aide"
               data-url="https://www.ge.ch/c/footer-edm-aide"
               class="footer-link"
-              >Contact</a
-            >
+              target="gech"
+              >Contact</a>
           </span>
           <span class="footer-menu-item">
             <a
               href="https://www.ge.ch/c/footer-edm-accessibilite"
               data-url="https://www.ge.ch/c/footer-edm-accessibilite"
               class="footer-link"
+              target="gech"
               >Accessibilité</a
             >
           </span>
@@ -105,6 +105,7 @@ class GeFooter extends LitElement {
               href="https://www.ge.ch/c/footer-edm-confidentialite"
               data-url="https://www.ge.ch/c/footer-edm-confidentialite"
               class="footer-link"
+              target="gech"
               >Politique de confidentialité</a
             >
           </span>
@@ -113,6 +114,7 @@ class GeFooter extends LitElement {
               href="https://www.ge.ch/c/footer-edm-cgu"
               data-url="https://www.ge.ch/c/footer-edm-cgu"
               class="footer-link"
+              target="gech"
               >Conditions générales</a
             >
           </span>
