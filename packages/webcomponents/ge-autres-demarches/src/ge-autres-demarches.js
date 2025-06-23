@@ -3,7 +3,6 @@ import { customElement, property } from 'lit/decorators.js';
 import '@material/web/iconbutton/icon-button.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
-import '@material/web/icon/icon.js';
 
 
 export @customElement("ge-autres-espaces")
@@ -200,11 +199,6 @@ class GeAutresEspaces extends LitElement {
       background-color: rgba(0, 0, 0, 0.08);
     }
 
-    .item-icon {
-        --md-icon-size: 20px;
-      color: rgba(0, 0, 0, 0.54);
-    }
-
     .item-content {
       display: flex;
       align-items: center;
@@ -313,8 +307,12 @@ class GeAutresEspaces extends LitElement {
           <md-list>
             ${this.items.map(item => html`
               <md-list-item @click=${() => this.handleItemClick(item)}>
-                 <div class="item-content">
-                  <md-icon class="item-icon">${item.icon}</md-icon>
+                 <div class="item-content">               
+                  <svg 
+                  height="20" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                  </svg>
                   <span class="item-title">${item.title}</span>
                 </div>
               </md-list-item>
@@ -325,4 +323,3 @@ class GeAutresEspaces extends LitElement {
     `;
   }
 }
-
