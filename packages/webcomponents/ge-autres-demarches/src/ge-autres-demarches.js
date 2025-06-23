@@ -162,20 +162,17 @@ class GeAutresEspaces extends LitElement {
     }
 
     .content {
-      padding-top: 16px;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-    }
-
-    .content.collapsed {
-      max-height: 0;
-      opacity: 0;
-      margin-top: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease-out;
     }
 
     .content.expanded {
-      max-height: 300px;
-      opacity: 1;
+      grid-template-rows: 1fr;
+    }
+
+    .content > * {
+      overflow: hidden;
     }
 
     md-list {
@@ -228,18 +225,9 @@ class GeAutresEspaces extends LitElement {
     }
   `;
 
-  static properties = {
-    expanded: { type: Boolean },
-    title: { type: String },
-    items: { type: Array }
-  }
-
-  constructor() {
-    super();
-    this.expanded = false;
-    this.title = 'Mes autres espaces';
-    this.items = [];
-  }
+  @property({ type: Boolean }) expanded = false;
+  @property({ type: String }) title = 'Mes autres espaces';
+  @property({ type: Array }) items = [];
 
   toggleExpanded(event) {
     event.stopPropagation();
@@ -286,8 +274,8 @@ class GeAutresEspaces extends LitElement {
               role="button" 
               aria-label="Déplier le menu"
               viewBox="0 0 24 24"
-              @click=${this.handleIconClick}>
-              @keydown=${this.handleIconKeyPress}
+              @click=${this.handleIconClick}
+              @keydown=${this.handleIconKeyPress}>
               <path d="M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z"></path>
             </svg>
             <h5 class="title" role="heading" aria-level="2">${this.title}</h5>
@@ -303,21 +291,25 @@ class GeAutresEspaces extends LitElement {
           </md-icon-button>
         </div>
         
-        <div  id="submenu-content" class="content ${this.expanded ? 'expanded' : 'collapsed'}">
-          <md-list>
-            ${this.items.map(item => html`
-              <md-list-item @click=${() => this.handleItemClick(item)}>
-                 <div class="item-content">               
-                  <svg 
-                  height="20" 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 24 24"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                  </svg>
-                  <span class="item-title">${item.title}</span>
-                </div>
-              </md-list-item>
-            `)}
-          </md-list>
+        <div  id="submenu-content" class="content ${this.expanded ? 'expanded' : ''}">
+          <div>
+            <md-list>
+              ${this.items.map(item => html`
+                <md-list-item @click=${() => this.handleItemClick(item)}>
+                   <div class="item-content">
+                   <svg
+                      height="20"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24">
+                      <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                   </svg>
+                    <span class="item-title">${item.title}</span>
+                  </div>
+                </md-list-item>
+              `)}
+            </md-list>
+          </div>
         </div>
       </div>
     `;
