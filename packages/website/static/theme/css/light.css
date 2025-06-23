@@ -47,8 +47,8 @@
   --md-sys-color-background: var(--md-ref-palette-secondary-98);
   --md-sys-color-shadow: var(--md-ref-shadow-opacity-0);
   --md-sys-color-scrim: var(--md-ref-shadow-opacity-0);
-  --md-sys-color-state-Opacity-0: var(--md-ref-shadow-light-Opacity-0);
-  --md-sys-color-state-Opacity-8: var(--md-ref-shadow-light-Opacity-8);
-  --md-sys-color-state-Opacity-12: var(--md-ref-shadow-light-Opacity-12);
-  --md-sys-color-state-Opacity-16: var(--md-ref-shadow-light-Opacity-16);
+  --md-sys-color-state-opacity-0: var(--md-ref-shadow-light-opacity-0);
+  --md-sys-color-state-opacity-8: var(--md-ref-shadow-light-opacity-8);
+  --md-sys-color-state-opacity-12: var(--md-ref-shadow-light-opacity-12);
+  --md-sys-color-state-opacity-16: var(--md-ref-shadow-light-opacity-16);
 }
