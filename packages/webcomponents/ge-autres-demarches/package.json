@@ -1,0 +1,61 @@
+{
+  "name": "@ael/ge-autres-demarches",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Web‑component that render ge-autres-demarches component.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "source": {
+    "./dist/*": "./src/$1"
+  },
+  "module": "dist/ge-autres-demarches.js",
+  "targets": {
+    "module": {
+      "includeNodeModules": {
+        "@ael/icons": true
+      }
+    }
+  },
+  "exports": {    ".": {
+      "import": "./dist/ge-autres-demarches.js",
+      "types": "./dist/types/ge-autres-demarches.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
+    "build": "yarn clean && parcel build src/ge-autres-demarches.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
+    "lint": "eslint . --ext .js",
+    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
+    "prepublishOnly": "yarn build"
+  },
+  "alias": {
+    "@icons/common": "../../website/static/theme/icons/common"
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.17",
+    "@fontsource/roboto": "5.2.5",
+    "lit": "3.3.0"
+  },
+  "devDependencies": {
+    "parcel": "2.14.4",
+    "eslint": "9.24.0",
+    "rimraf": "6.0.1",
+    "copyfiles": "2.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
+  },
+  "keywords": [
+    "web‑components",
+    "geneva",
+    "design‑system"
+  ]
+}
