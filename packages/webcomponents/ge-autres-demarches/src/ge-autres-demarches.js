@@ -4,13 +4,13 @@ import '@material/web/iconbutton/icon-button.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
 
-
-export @customElement("ge-autres-espaces")
-class GeAutresEspaces extends LitElement {
+@customElement("ge-autres-espaces")
+export class GeAutresEspaces extends LitElement {
   static styles = css`
     :host {
       display: block;
       font-family: 'Roboto', sans-serif;
+      container-type: inline-size;
     }
 
     .container {
@@ -18,93 +18,6 @@ class GeAutresEspaces extends LitElement {
       border-top: 1px solid var(--md-sys-color-outline-variant);
       border-bottom: 1px solid var(--md-sys-color-outline-variant);
       padding: 22px 16px;
-    }
-
-
-    @container (max-width: 200px) {
-      .container {
-        padding: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-      }
-
-      .header {
-        justify-content: center;
-      }
-
-      .title-section {
-        gap: 0;
-      }
-
-      .title {
-        opacity: 0;
-        width: 0;
-        overflow: hidden;
-      }
-
-      .apps-icon {
-        width: 32px;
-        height: 32px;
-<<<<<<< HEAD
-        color: var(--md-sys-color-on-surface);
-=======
-        fill: var(--md-sys-color-primary);
->>>>>>> 469b3f5f9d17abdc6ea79b0846d3a08897da9395
-      }
-
-      md-icon-button {
-        opacity: 0;
-        width: 0;
-        pointer-events: none;
-      }
-
-      .content {
-        display: none;
-      }
-    }
-
- 
-    @media (max-width: 200px) {
-      .container {
-        padding: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: none;
-      }
-
-      .header {
-        justify-content: center;
-      }
-
-      .title-section {
-        gap: 0;
-      }
-
-      .title {
-        opacity: 0;
-        width: 0;
-        margin: 0;
-        overflow: hidden;
-      }
-
-      .apps-icon {
-        width: 32px;
-        height: 32px;
-        fill: var(--md-sys-color-primary);
-      }
-
-      md-icon-button {
-        opacity: 0;
-        width: 0;
-        pointer-events: none;
-      }
-
-      .content {
-        display: none;
-      }
     }
 
     .header {
@@ -117,11 +30,7 @@ class GeAutresEspaces extends LitElement {
     .title-section {
       display: flex;
       align-items: center;
-<<<<<<< HEAD
       gap: 32px;
-=======
-      gap: 8px;
->>>>>>> 469b3f5f9d17abdc6ea79b0846d3a08897da9395
       transition: all 0.3s ease;
     }
 
@@ -177,7 +86,7 @@ class GeAutresEspaces extends LitElement {
 
     .content.expanded {
       grid-template-rows: 1fr;
-      margin-top:25px;
+      margin-top: 25px;
     }
 
     .content > * {
@@ -214,15 +123,15 @@ class GeAutresEspaces extends LitElement {
       color: inherit;
     }
       
-    .item-icon{
-    user-select: none;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    flex-shrink: 0;
-    fill: currentcolor;
-    font-size: 1.5rem;
-    color: var(--md-palette-action-active);
+    .item-icon {
+      user-select: none;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      flex-shrink: 0;
+      fill: currentcolor;
+      font-size: 1.5rem;
+      color: var(--md-palette-action-active);
     }
 
     .item-title {
@@ -235,13 +144,58 @@ class GeAutresEspaces extends LitElement {
       letter-spacing: var(--md-sys-typescale-Label-Medium-Tracking);
     }
 
-  .apps-icon:focus,
-  .item-content:focus {
+    .apps-icon:focus,
+    .item-content:focus {
       outline: 2px solid var(--md-sys-color-primary);
       outline-offset: 4px;
-}
-    :host {
-      container-type: inline-size;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+      }
+
+      .header {
+        justify-content: center;
+        width: auto;
+      }
+
+      .title-section {
+        gap: 0;
+      }
+
+      .title {
+        display: none; 
+      }
+
+      .apps-icon {
+        width: 32px;
+        height: 32px;
+        fill: var(--md-sys-color-on-surface);
+      }
+
+      md-icon-button {
+        display: none;
+      }
+
+      .content {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .apps-icon {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .container {
+        padding: 8px;
+      }
     }
   `;
 
@@ -253,16 +207,32 @@ class GeAutresEspaces extends LitElement {
     event.stopPropagation();
     this.expanded = !this.expanded;
   }
+
+  handleIconClick(event) {
+    this.dispatchEvent(new CustomEvent('compact-icon-click', {
+      detail: { component: this },
+      bubbles: true,
+      composed: true
+    }));
+  }
+
   handleIconKeyPress(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       this.handleIconClick(e);
     }
   }
+
   handleItemClick(item) {
     if (item.url) {
       window.open(item.url, '_blank');
     }
+    
+    this.dispatchEvent(new CustomEvent('item-click', {
+      detail: { item },
+      bubbles: true,
+      composed: true
+    }));
   }
 
   render() {
@@ -293,13 +263,13 @@ class GeAutresEspaces extends LitElement {
           </md-icon-button>
         </div>
         
-        <div  id="submenu-content" class="content ${this.expanded ? 'expanded' : ''}">
+        <div id="submenu-content" class="content ${this.expanded ? 'expanded' : ''}">
           <div>
             <md-list>
               ${this.items.map(item => html`
                 <md-list-item @click=${() => this.handleItemClick(item)}>
                   <div class="item-content">
-                   <svg
+                    <svg
                       height="20"
                       data-testid="OpenInNewIcon"
                       class="item-icon"
@@ -307,7 +277,7 @@ class GeAutresEspaces extends LitElement {
                       xmlns="http://www.w3.org/2000/svg" 
                       viewBox="0 0 24 24">
                       <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                   </svg>
+                    </svg>
                     <span class="item-title">${item.title}</span>
                   </div>
                 </md-list-item>
