@@ -253,7 +253,7 @@ class GeHeader extends LitElement {
         ${this.isMenuOpen ? html`
             <ul class="user-menu" role="menu" aria-label="Menu utilisateur">
                 <li role="menu">
-                    <span class="user-information">Information de connexion</span>
+                    <span class="user-information">Informations de connexion</span>
                     <span class="user-name">${this.userInfo.nom ? this.userInfo.nom : 'Inconnu'} ${this.userInfo.prenom ? this.userInfo.prenom : 'Inconnu'}</span>
                     <span class="user-email">${this.userInfo.email ? this.userInfo.email : 'Inconnu'}</span>
                 </li>
