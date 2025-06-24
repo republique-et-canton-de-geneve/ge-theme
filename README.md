@@ -187,7 +187,7 @@ Ce projet est distribué selon les conditions de l'État de Genève. Veuillez co
 
 ---
 
-Pour toute question ou proposition, contactez l'équipe Cyberadministration à : **cyberadmin@etat.ge.ch**
+Pour toute question ou proposition, contactez l'équipe Cyberadministration à : **ocsin.scli.design-system@etat.ge.ch**
 
 
 ## Badges

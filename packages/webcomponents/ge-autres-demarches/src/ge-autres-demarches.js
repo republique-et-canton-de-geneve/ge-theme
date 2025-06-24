@@ -47,7 +47,11 @@ class GeAutresEspaces extends LitElement {
       .apps-icon {
         width: 32px;
         height: 32px;
+<<<<<<< HEAD
         color: var(--md-sys-color-on-surface);
+=======
+        fill: var(--md-sys-color-primary);
+>>>>>>> 469b3f5f9d17abdc6ea79b0846d3a08897da9395
       }
 
       md-icon-button {
@@ -113,7 +117,11 @@ class GeAutresEspaces extends LitElement {
     .title-section {
       display: flex;
       align-items: center;
+<<<<<<< HEAD
       gap: 32px;
+=======
+      gap: 8px;
+>>>>>>> 469b3f5f9d17abdc6ea79b0846d3a08897da9395
       transition: all 0.3s ease;
     }
 
