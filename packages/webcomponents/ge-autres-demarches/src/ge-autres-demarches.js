@@ -47,7 +47,7 @@ class GeAutresEspaces extends LitElement {
       .apps-icon {
         width: 32px;
         height: 32px;
-        fill: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-surface);
       }
 
       md-icon-button {
@@ -113,7 +113,7 @@ class GeAutresEspaces extends LitElement {
     .title-section {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 32px;
       transition: all 0.3s ease;
     }
 
@@ -133,7 +133,7 @@ class GeAutresEspaces extends LitElement {
     .apps-icon {
       width: 24px;
       height: 24px;
-      fill: rgba(0, 0, 0, 0.54);
+      color: var(--md-sys-color-on-surface);
       cursor: pointer;
       transition: all 0.3s ease;
       flex-shrink: 0;
@@ -169,6 +169,7 @@ class GeAutresEspaces extends LitElement {
 
     .content.expanded {
       grid-template-rows: 1fr;
+      margin-top:25px;
     }
 
     .content > * {
@@ -199,14 +200,25 @@ class GeAutresEspaces extends LitElement {
     .item-content {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 32px;
       width: 100%;
       text-decoration: none;
       color: inherit;
     }
+      
+    .item-icon{
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    fill: currentcolor;
+    font-size: 1.5rem;
+    color: var(--md-palette-action-active);
+    }
 
     .item-title {
-      color: var(--md-sys-color-on-surface-variant);
+      color: var(--md-sys-color-on-surface);
       font-family: var(--md-ref-typeface-Brand);
       font-size: var(--md-sys-typescale-Label-Medium-Size);
       font-style: normal;
@@ -225,7 +237,7 @@ class GeAutresEspaces extends LitElement {
     }
   `;
 
-  @property({ type: Boolean }) expanded = false;
+  @property({ type: Boolean }) expanded = true;
   @property({ type: String }) title = 'Mes autres espaces';
   @property({ type: Array }) items = [];
 
@@ -233,34 +245,16 @@ class GeAutresEspaces extends LitElement {
     event.stopPropagation();
     this.expanded = !this.expanded;
   }
-
-  handleIconClick(event) {
-   
-    this.dispatchEvent(new CustomEvent('compact-icon-click', {
-      detail: { component: this },
-      bubbles: true,
-      composed: true
-    }));
-  }
-
   handleIconKeyPress(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       this.handleIconClick(e);
     }
   }
-
   handleItemClick(item) {
     if (item.url) {
       window.open(item.url, '_blank');
     }
-    
-  
-    this.dispatchEvent(new CustomEvent('item-click', {
-      detail: { item },
-      bubbles: true,
-      composed: true
-    }));
   }
 
   render() {
@@ -296,9 +290,11 @@ class GeAutresEspaces extends LitElement {
             <md-list>
               ${this.items.map(item => html`
                 <md-list-item @click=${() => this.handleItemClick(item)}>
-                   <div class="item-content">
+                  <div class="item-content">
                    <svg
                       height="20"
+                      data-testid="OpenInNewIcon"
+                      class="item-icon"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg" 
                       viewBox="0 0 24 24">
