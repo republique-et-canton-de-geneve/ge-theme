@@ -1,15 +1,15 @@
-import { html, css, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
-import '@material/web/iconbutton/icon-button.js';
-import '@material/web/list/list.js';
-import '@material/web/list/list-item.js';
+import { html, css, LitElement } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import "@material/web/iconbutton/icon-button.js";
+import "@material/web/list/list.js";
+import "@material/web/list/list-item.js";
 
 @customElement("ge-autres-espaces")
 export class GeAutresEspaces extends LitElement {
   static styles = css`
     :host {
       display: block;
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       container-type: inline-size;
     }
 
@@ -41,9 +41,12 @@ export class GeAutresEspaces extends LitElement {
       font-size: 22px;
       font-style: normal;
       font-weight: 500;
-      line-height: var(--md-sys-typescale-Label-Large-Line-Height); 
+      line-height: var(--md-sys-typescale-Label-Large-Line-Height);
       letter-spacing: var(--md-sys-typescale-Label-Large-Tracking);
-      transition: opacity 0.3s ease, width 0.3s ease, margin 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        width 0.3s ease,
+        margin 0.3s ease;
       white-space: nowrap;
     }
 
@@ -59,7 +62,9 @@ export class GeAutresEspaces extends LitElement {
     md-icon-button {
       --md-icon-button-size: 40px;
       cursor: pointer;
-      transition: opacity 0.3s ease, width 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        width 0.3s ease;
       flex-shrink: 0;
     }
 
@@ -107,7 +112,7 @@ export class GeAutresEspaces extends LitElement {
 
     md-list-item:hover {
       background-color: rgba(0, 0, 0, 0.04);
-      border-radius: 50px; 
+      border-radius: 50px;
     }
 
     md-list-item:active {
@@ -122,7 +127,7 @@ export class GeAutresEspaces extends LitElement {
       text-decoration: none;
       color: inherit;
     }
-      
+
     .item-icon {
       user-select: none;
       width: 1em;
@@ -140,7 +145,7 @@ export class GeAutresEspaces extends LitElement {
       font-size: var(--md-sys-typescale-Label-Medium-Size);
       font-style: normal;
       font-weight: 500;
-      line-height: var(--md-sys-typescale-Label-Medium-Line-Height); 
+      line-height: var(--md-sys-typescale-Label-Medium-Line-Height);
       letter-spacing: var(--md-sys-typescale-Label-Medium-Tracking);
     }
 
@@ -169,7 +174,7 @@ export class GeAutresEspaces extends LitElement {
       }
 
       .title {
-        display: none; 
+        display: none;
       }
 
       .apps-icon {
@@ -192,7 +197,7 @@ export class GeAutresEspaces extends LitElement {
         width: 28px;
         height: 28px;
       }
-      
+
       .container {
         padding: 8px;
       }
@@ -200,7 +205,7 @@ export class GeAutresEspaces extends LitElement {
   `;
 
   @property({ type: Boolean }) expanded = true;
-  @property({ type: String }) title = 'Mes autres espaces';
+  @property({ type: String }) title = "Mes autres espaces";
   @property({ type: Array }) items = [];
 
   toggleExpanded(event) {
@@ -209,15 +214,17 @@ export class GeAutresEspaces extends LitElement {
   }
 
   handleIconClick(event) {
-    this.dispatchEvent(new CustomEvent('compact-icon-click', {
-      detail: { component: this },
-      bubbles: true,
-      composed: true
-    }));
+    this.dispatchEvent(
+      new CustomEvent("compact-icon-click", {
+        detail: { component: this },
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   handleIconKeyPress(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       this.handleIconClick(e);
     }
@@ -225,14 +232,16 @@ export class GeAutresEspaces extends LitElement {
 
   handleItemClick(item) {
     if (item.url) {
-      window.open(item.url, '_blank');
+      window.open(item.url, "_blank");
     }
-    
-    this.dispatchEvent(new CustomEvent('item-click', {
-      detail: { item },
-      bubbles: true,
-      composed: true
-    }));
+
+    this.dispatchEvent(
+      new CustomEvent("item-click", {
+        detail: { item },
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   render() {
@@ -240,48 +249,62 @@ export class GeAutresEspaces extends LitElement {
       <div class="container" role="navigation" aria-label="${this.title}">
         <div class="header">
           <div class="title-section">
-            <svg 
-              class="apps-icon" 
+            <svg
+              class="apps-icon"
               tabindex="0"
-              role="button" 
+              role="button"
               aria-label="Déplier le menu"
               viewBox="0 0 24 24"
               @click=${this.handleIconClick}
-              @keydown=${this.handleIconKeyPress}>
-              <path d="M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z"></path>
+              @keydown=${this.handleIconKeyPress}
+            >
+              <path
+                d="M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z"
+              ></path>
             </svg>
             <h5 class="title" role="heading" aria-level="2">${this.title}</h5>
           </div>
-          <md-icon-button 
-            aria-label="${this.expanded ? 'Masquer le sous-menu' : 'Afficher le sous-menu'}"
-            aria-expanded="${this.expanded ? 'true' : 'false'}"
+          <md-icon-button
+            aria-label="${this.expanded
+              ? "Masquer le sous-menu"
+              : "Afficher le sous-menu"}"
+            aria-expanded="${this.expanded ? "true" : "false"}"
             aria-controls="submenu-content"
-            @click=${this.toggleExpanded}>
-            <svg class="expand-icon ${this.expanded ? 'expanded' : 'collapsed'}" viewBox="0 0 24 24">
+            @click=${this.toggleExpanded}
+          >
+            <svg
+              class="expand-icon ${this.expanded ? "expanded" : "collapsed"}"
+              viewBox="0 0 24 24"
+            >
               <path d="m12 8-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
             </svg>
           </md-icon-button>
         </div>
-        
-        <div id="submenu-content" class="content ${this.expanded ? 'expanded' : ''}">
+
+        <div
+          id="submenu-content"
+          class="content ${this.expanded ? "expanded" : ""}"
+        >
           <div>
             <md-list>
-              ${this.items.map(item => html`
-                <md-list-item @click=${() => this.handleItemClick(item)}>
-                  <div class="item-content">
-                    <svg
-                      height="20"
-                      data-testid="OpenInNewIcon"
-                      class="item-icon"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg" 
-                      viewBox="0 0 24 24">
-                      <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                    </svg>
-                    <span class="item-title">${item.title}</span>
-                  </div>
-                </md-list-item>
-              `)}
+              ${this.items.map(
+                (item) => html`
+                  <md-list-item @click=${() => this.handleItemClick(item)}>
+                    <div class="item-content">
+                      <svg
+                        height="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                        />
+                      </svg>
+                      <span class="item-title">${item.title}</span>
+                    </div>
+                  </md-list-item>
+                `
+              )}
             </md-list>
           </div>
         </div>
