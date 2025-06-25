@@ -1,135 +1,108 @@
-import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators.js";
+import {LitElement, html, css, render} from "lit";
+import {customElement, property} from "lit/decorators.js";
 
 export @customElement("ge-footer")
 class GeFooter extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      width: 100%;
-      border-top: 1px solid var(--md-sys-color-outline-variant);
-      font-family: var(--md-ref-typeface-plain, Arial, sans-serif);
-      transition: width 0.3s ease;
-      background: var(--md-sys-color-surface-surface);
-    }
-
     #ge-footer {
+      background: var(--md-sys-color-surface);
+      transition: width 0.3s ease;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
       display: flex;
       grid-area: footer;
       justify-content: space-between;
       align-items: center;
-      height: 78px;
+      height: 80px;
       padding: 0 32px;
     }
-
-    .footer-menu-item:not(:last-child) {
-      border-right: 1px solid var(--md-sys-color-outline-variant);
-      padding-right: 16px;
-      height: 20px;
-    }
-
-    .footer-links {
+    
+    #ge-footer > nav {
       display: flex;
       align-items: center;
       gap: 16px;
+      margin-right: 20px;
     }
 
-    .footer-link {
+    #ge-footer > nav > a {
       color: var(--md-sys-color-on-surface-variant);
-      font-family: var(--md-ref-typeface-Brand);
-      font-size: var(--md-sys-typescale-Body-Medium-Size);
+      font-family: var(--md-ref-typeface-brand), Arial, Helvetica, sans-serif;
+      font-size: var(--md-sys-typescale-body-medium-size);
       font-style: normal;
-      line-height: var(--md-sys-typescale-Body-Medium-Line-Height);
-      letter-spacing: var(--md-sys-typescale-Body-Medium-Tracking);
+      line-height: var(--md-sys-typescale-body-medium-line-height);
+      letter-spacing: var(--md-sys-typescale-body-medium-tracking);
       font-weight: 400;
       text-decoration: none;
     }
 
-    .footer-link:hover {
-      color: var(--md-sys-color-primary);
+    #ge-footer > nav > span {
+      color: var(--md-sys-color-outline-variant);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
+    #ge-footer > nav > a:hover {
+        color: var(--md-sys-color-primary);
     }
-
+    
     @media (max-width: 768px) {
       #ge-footer {
+        display: block;
+        padding: 12px 12px;
+      }
+      
+      #ge-footer > nav > span {
+        display: none;
+      }
+
+      #ge-footer > nav {
         flex-direction: column;
         align-items: flex-start;
-        padding: 32px 12px; 
+        gap: 8px;
       }
 
-      .footer-menu-item:not(:last-child) {
-        border-right: none;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 16px;
-      }
-
-      .logo {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 20px;
+      #ge-footer-armoiries {
+        margin-top: 10px;
       }
     }
   `;
+
+  @property({ type: String }) theme = 'light';
+
   render() {
     return html`
       <footer id="ge-footer">
-        <div class="footer-links">
-          <span class="footer-menu-item">
-            <a
+        <nav>
+          <a
               href="https://www.ge.ch/c/footer-edm-aide"
               data-url="https://www.ge.ch/c/footer-edm-aide"
-              class="footer-link"
-              target="gech"
-              >Contact</a>
-          </span>
-          <span class="footer-menu-item">
-            <a
+              target="gech">
+            Contact
+          </a>
+          <span aria-hidden="true"> | </span>
+          <a
               href="https://www.ge.ch/c/footer-edm-accessibilite"
               data-url="https://www.ge.ch/c/footer-edm-accessibilite"
-              class="footer-link"
-              target="gech"
-              >Accessibilité</a
-            >
-          </span>
-          <span class="footer-menu-item">
-            <a
+              target="gech">Accessibilité
+          </a>
+          <span aria-hidden="true"> | </span>
+          <a
               href="https://www.ge.ch/c/footer-edm-confidentialite"
               data-url="https://www.ge.ch/c/footer-edm-confidentialite"
-              class="footer-link"
-              target="gech"
-              >Politique de confidentialité</a
-            >
-          </span>
-          <span class="footer-menu-item">
-            <a
+              target="gech">Politique&nbsp;de&nbsp;confidentialité
+          </a>
+          <span aria-hidden="true"> | </span>
+          <a
               href="https://www.ge.ch/c/footer-edm-cgu"
               data-url="https://www.ge.ch/c/footer-edm-cgu"
-              class="footer-link"
-              target="gech"
-              >Conditions générales</a
-            >
-          </span>
-        </div>
-
-        <div class="logo">
-          <img
-            src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-light.svg"
+              target="gech">
+            Conditions&nbsp;générales
+          </a>
+        </nav>
+        <img
+            id="ge-footer-armoiries"
+            src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
             alt="Armoiries de la République et canton de Genève"
-            width="72"
-            height="54"
-            role="img"
+            height="62"
             aria-hidden="false"
-          />
-        </div>
+        />
       </footer>
     `;
   }
