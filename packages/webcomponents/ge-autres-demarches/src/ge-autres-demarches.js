@@ -4,8 +4,8 @@ import "@material/web/iconbutton/icon-button.js";
 import "@material/web/list/list.js";
 import "@material/web/list/list-item.js";
 
-@customElement("ge-autres-espaces")
-export class GeAutresEspaces extends LitElement {
+export default @customElement("ge-autres-espaces")
+class GeAutresEspaces extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -231,8 +231,9 @@ export class GeAutresEspaces extends LitElement {
   }
 
   handleItemClick(item) {
+    const target = item.target || "_self"; 
     if (item.url) {
-      window.open(item.url, "_blank");
+      window.open(item.url, target);
     }
 
     this.dispatchEvent(
