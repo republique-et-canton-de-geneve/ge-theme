@@ -6,21 +6,21 @@
   "license": "Apache-2.0",
   "type": "module",
   "source": "src/ge-footer.js",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "dist/ge-footer.cjs",
+  "module": "dist/ge-footer.js",
   "types": "dist/types/ge-footer.d.ts",
   "targets": {
     "types": false
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+      "import": "./dist/ge-footer.js",
+      "require": "./dist/ge-footer.cjs",
       "types": "./dist/types/ge-footer.d.ts"
     },
     "./ge-footer.js": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+      "import": "./dist/ge-footer.js",
+      "require": "./dist/ge-footer.cjs",
       "types": "./dist/types/ge-footer.d.ts"
     }
   },
