@@ -1,0 +1,9 @@
+**Release 0.1.23** du 2025.06.25
+- Améliorations du footer: code plus propre, meilleure accessibilité, ajout d'un attribut "theme" (support dark/light)
+- Footer: les liens s'ouvrent dans un onglet nommé "gech"
+- Header et menu "Mes autres espaces": corrections suites à retours
+- Email du README corrigé
+- Mise à jour des primitives CSS: petites corrections (noms de variables, valeurs)
+- Ajout variables CSS pour 
+- CI/CD: utilisation d'un BOM pour déploiement auto
+- Git: passage en mode Git Flow
