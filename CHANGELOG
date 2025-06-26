@@ -1,4 +1,4 @@
-**Release 0.1.23** du 2025.06.25
+## Release 0.1.23 du 2025.06.25
 - Améliorations du footer: code plus propre, meilleure accessibilité, ajout d'un attribut "theme" (support dark/light)
 - Footer: les liens s'ouvrent dans un onglet nommé "gech"
 - Header et menu "Mes autres espaces": corrections suites à retours

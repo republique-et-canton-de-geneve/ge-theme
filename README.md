@@ -48,6 +48,8 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
+- Props disponibles :
+  - `theme`: `dark` ou `light` (string), change le logo des armoiries
 
 ---
 
@@ -182,8 +184,7 @@ ngOnChanges() {
 ---
 
 ## ⚖️ Licence
-
-Ce projet est distribué selon les conditions de l'État de Genève. Veuillez contacter le support pour plus d'informations.
+Open source, Apache 2.0 (voir fichier LICENSE)
 
 ---
 
