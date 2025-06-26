@@ -5,22 +5,22 @@
   "description": "Web‑component that renders public Geneva websites footer.",
   "license": "Apache-2.0",
   "type": "module",
-  "source": "src/ge-footer.js",
-  "main": "dist/ge-footer.cjs",
+  "source": {
+    "./dist/*": "./src/$1"
+  },
   "module": "dist/ge-footer.js",
-  "types": "dist/types/ge-footer.d.ts",
   "targets": {
-    "types": false
+    "types": false,
+    "module": {
+      "includeNodeModules": {
+        "lit": true,
+        "lit/decorators.js": true
+      }
+    }
   },
   "exports": {
     ".": {
       "import": "./dist/ge-footer.js",
-      "require": "./dist/ge-footer.cjs",
-      "types": "./dist/types/ge-footer.d.ts"
-    },
-    "./ge-footer.js": {
-      "import": "./dist/ge-footer.js",
-      "require": "./dist/ge-footer.cjs",
       "types": "./dist/types/ge-footer.d.ts"
     }
   },
@@ -30,7 +30,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
-    "build": "yarn clean && parcel build --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
+    "build": "yarn clean && parcel build src/ge-footer.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
     "lint": "eslint . --ext .js",
     "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build",
