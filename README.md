@@ -3,6 +3,7 @@
 Ce package fournit une bibliothèque de composants Web (Web Components) réutilisables construits avec [Lit](https://lit.dev). Il inclut les composants suivants :
 
 - `<ge-header>` : en-tête avec gestion de l'utilisateur connecté.
+- `<ge-header-public>` : en-tête de base en mode anonyme.
 - `<ge-menu>` : menu latéral avec navigation.
 - `<ge-footer>` : pied de page avec liens utiles.
 
