@@ -40,7 +40,7 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
     - `ge-logout`
 
 
-#### `<ge-footer>`
+#### `<ge-header-public>`
 - Affiche automatiquement l'entête avec le logo de l'État de Genève et ge.ch
 
 
