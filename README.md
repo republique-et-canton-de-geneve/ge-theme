@@ -39,6 +39,11 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
     - `ge-manage-account`
     - `ge-logout`
 
+
+#### `<ge-footer>`
+- Affiche automatiquement l'entête avec le logo de l'État de Genève et ge.ch
+
+
 #### `<ge-menu>`
 - Props disponibles :
     - `items`: tableau d'objets menu avec `id`, `title`, `url`, `icon` (optionnel), `active` (bool)
