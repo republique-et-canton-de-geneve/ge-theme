@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-footer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "description": "Web‑component that renders public Geneva websites footer.",
   "license": "Apache-2.0",
@@ -10,13 +10,16 @@
   },
   "module": "dist/ge-footer.js",
   "targets": {
+    "types": false,
     "module": {
       "includeNodeModules": {
-        "@ael/icons": true
+        "lit": true,
+        "lit/decorators.js": true
       }
     }
   },
-  "exports": {    ".": {
+  "exports": {
+    ".": {
       "import": "./dist/ge-footer.js",
       "types": "./dist/types/ge-footer.d.ts"
     }
@@ -30,21 +33,23 @@
     "build": "yarn clean && parcel build src/ge-footer.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
     "lint": "eslint . --ext .js",
     "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "dev": "parcel index.html --open --no-cache"
   },
   "alias": {
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.17",
+    "@ael/icons": "^0.1.0",
     "@fontsource/roboto": "5.2.5",
+    "@swc/helpers": "^0.5.17",
     "lit": "3.3.0"
   },
   "devDependencies": {
-    "parcel": "2.14.4",
+    "copyfiles": "2.4.1",
     "eslint": "9.24.0",
-    "rimraf": "6.0.1",
-    "copyfiles": "2.4.1"
+    "parcel": "2.14.4",
+    "rimraf": "6.0.1"
   },
   "engines": {
     "node": ">=16.0.0"

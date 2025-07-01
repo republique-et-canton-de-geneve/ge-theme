@@ -3,6 +3,7 @@
 Ce package fournit une bibliothèque de composants Web (Web Components) réutilisables construits avec [Lit](https://lit.dev). Il inclut les composants suivants :
 
 - `<ge-header>` : en-tête avec gestion de l'utilisateur connecté.
+- `<ge-header-public>` : en-tête de base en mode anonyme.
 - `<ge-menu>` : menu latéral avec navigation.
 - `<ge-footer>` : pied de page avec liens utiles.
 
@@ -38,6 +39,11 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
     - `ge-manage-account`
     - `ge-logout`
 
+
+#### `<ge-header-public>`
+- Affiche automatiquement l'entête avec le logo de l'État de Genève et ge.ch
+
+
 #### `<ge-menu>`
 - Props disponibles :
     - `items`: tableau d'objets menu avec `id`, `title`, `url`, `icon` (optionnel), `active` (bool)
@@ -48,6 +54,8 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
+- Props disponibles :
+  - `theme`: `dark` ou `light` (string), change le logo des armoiries
 
 ---
 
@@ -182,8 +190,7 @@ ngOnChanges() {
 ---
 
 ## ⚖️ Licence
-
-Ce projet est distribué selon les conditions de l'État de Genève. Veuillez contacter le support pour plus d'informations.
+Open source, Apache 2.0 (voir fichier LICENSE)
 
 ---
 
