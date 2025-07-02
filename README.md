@@ -30,6 +30,7 @@ Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre applica
 ## Remarque :
 Par défaut, les URL de production (sur static.app.ge.ch) sont à utiliser en DEV/REC et PRD
 Pour tester d'éventuelles montées de version, les URL de DEV ou REC peuvent être utilisées
+
 DEV https://static.dev.etat-ge.ch 
 REC https://static.rec.etat-ge.ch 
  
@@ -67,7 +68,7 @@ yarn build
 
 Dans src/web-components/xxx, créez un répertoire contenant votre composant, où xxx est la catégorie du composant.
 
-### ✉️ Liste des composants disponible
+## ✉️ Liste des composants disponible
 
 #### `<ge-header>`
 - Props disponibles :
