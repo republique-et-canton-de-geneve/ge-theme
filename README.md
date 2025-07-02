@@ -2,10 +2,50 @@
 
 Ce package fournit une bibliothèque de composants Web (Web Components) réutilisables construits avec [Lit](https://lit.dev). Il inclut les composants suivants :
 
-- `<ge-header>` : en-tête avec gestion de l'utilisateur connecté.
-- `<ge-header-public>` : en-tête de base en mode anonyme.
-- `<ge-menu>` : menu latéral avec navigation.
-- `<ge-footer>` : pied de page avec liens utiles.
+- `<ge-header>` : En-tête avec gestion de l'utilisateur connecté.
+- `<ge-header-public>` : En-tête.
+- `<ge-footer>` : Pied de page avec liens utiles.
+
+
+# 📦 Intégration des Web Components via Static
+
+Cette procédure décrit comment intégrer directement les Web Components et les feuilles de style hébergés sur les serveurs `static` de l'État de Genève.
+
+---
+
+## 🔗 Intégration dans le `<head>`
+
+### ✅ Références aux CSS
+
+Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
+
+```html
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+```
+
+## 🔗 Ajoutez les Web Components nécessaires via des balises `<script type="module">`
+
+## Remarque :
+Par défaut, les URL de production (sur static.app.ge.ch) sont à utiliser en DEV/REC et PRD
+Pour tester d'éventuelles montées de version, les URL de DEV ou REC peuvent être utilisées
+
+DEV https://static.dev.etat-ge.ch 
+REC https://static.rec.etat-ge.ch 
+ 
+
+```html
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header/latest/ge-header.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge- footer.js"></script>
+```
+## Intégration sur une page html
+
+```html
+    <ge-header-public></ge-header-public>
+    <ge-footer></ge-footer>
+```
 
 ## 📁 Installation
 
@@ -28,7 +68,7 @@ yarn build
 
 Dans src/web-components/xxx, créez un répertoire contenant votre composant, où xxx est la catégorie du composant.
 
-### ✉️ Liste des composants disponible
+## ✉️ Liste des composants disponible
 
 #### `<ge-header>`
 - Props disponibles :
@@ -39,23 +79,11 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
     - `ge-manage-account`
     - `ge-logout`
 
-
 #### `<ge-header-public>`
-- Affiche automatiquement l'entête avec le logo de l'État de Genève et ge.ch
-
-
-#### `<ge-menu>`
-- Props disponibles :
-    - `items`: tableau d'objets menu avec `id`, `title`, `url`, `icon` (optionnel), `active` (bool)
-    - `menuConfig`: titre et icône du menu
-- Événements personnalisés :
-    - `menu-item-clicked`
-    - `menu-state-changed`
+ - Header static
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
-- Props disponibles :
-  - `theme`: `dark` ou `light` (string), change le logo des armoiries
 
 ---
 
@@ -72,7 +100,7 @@ Dans un composant Vue :
 ## 📄 Installer la dépendence
 
 ```yarn
-yarn add @ael/ge-theme;
+yarn add @opf/ge-theme;
 ```
 
 Importez le package dans votre projet :
@@ -190,7 +218,8 @@ ngOnChanges() {
 ---
 
 ## ⚖️ Licence
-Open source, Apache 2.0 (voir fichier LICENSE)
+
+Ce projet est distribué selon les conditions de l'État de Genève. Veuillez contacter le support pour plus d'informations.
 
 ---
 
