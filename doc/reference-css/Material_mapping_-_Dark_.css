@@ -52,6 +52,6 @@
   --md-sys-color-state-opacity-8: var(--md-ref-shadow-dark-opacity-8);
   --md-sys-color-state-opacity-12: var(--md-ref-shadow-dark-opacity-12);
   --md-sys-color-state-opacity-16: var(--md-ref-shadow-dark-opacity-16);
-  --md-sys-color-gradient-grad-0: var(--md-ref-shadow-universal-opacity-0);
-  --md-sys-color-gradient-grad-100: var(--md-ref-shadow-universal-opacity-80);
+  --md-sys-color-gradient-grad-0: var(--md-ref-shadow-dark-opacity-0);
+  --md-sys-color-gradient-grad-100: var(--md-ref-palette-neutral-95);
 }
