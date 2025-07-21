@@ -154,9 +154,15 @@
     --md-ref-spacings-480: 1920px;
 }
 
+
+/* Previously in theme.css  */
+:root {
+--md-menu-item-one-line-container-height: 28px;
+}
+
 /* Typeface - Default */
 :root {
-    --md-ref-typeface-brand: Roboto;
+    --md-ref-typeface-brand: Roboto, Arial, sans-serif;
     --md-ref-typeface-weight-400: Regular;
     --md-ref-typeface-weight-500: Medium;
     --md-ref-typeface-weight-700: Bold;
