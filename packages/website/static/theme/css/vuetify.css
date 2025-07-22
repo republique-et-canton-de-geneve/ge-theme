@@ -38,6 +38,10 @@
     background-color: rgba(var(--v-surface-highest));
 }
 
+.v-sheet--border {
+    box-shadow: none!important;
+}
+
 /* CARD */
 
 .v-card {
