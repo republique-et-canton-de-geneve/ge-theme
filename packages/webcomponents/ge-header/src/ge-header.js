@@ -51,12 +51,12 @@ class GeHeader extends LitElement {
     }
 
     header {
-      padding: 1rem;
       background: var(--md-sys-color-surface-container-highest);
       box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
     }
     
     .header {
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
