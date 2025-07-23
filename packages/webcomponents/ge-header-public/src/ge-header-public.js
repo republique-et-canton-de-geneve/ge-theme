@@ -26,6 +26,7 @@ class GeHeaderPublic extends LitElement {
             justify-content: space-between;
             align-items: center;
             flex: 1 0 0;
+            margin: auto;
         }
 
         a.logo-section {

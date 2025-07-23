@@ -60,6 +60,7 @@ class GeHeader extends LitElement {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin:auto;
     }
 
     .fixed-top {
