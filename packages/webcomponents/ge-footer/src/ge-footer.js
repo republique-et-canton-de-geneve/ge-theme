@@ -4,8 +4,11 @@ import {customElement, property} from "lit/decorators.js";
 export @customElement("ge-footer")
 class GeFooter extends LitElement {
   static styles = css`
-    #ge-footer {
+
+    footer {
       background: var(--md-sys-color-surface);
+    }
+    #ge-footer {
       transition: width 0.3s ease;
       border-top: 1px solid var(--md-sys-color-outline-variant);
       display: flex;
@@ -67,44 +70,59 @@ class GeFooter extends LitElement {
 
   @property({ type: String }) theme = 'light';
 
+  @property({type: String})
+  maxWidth = css`10px`;
+
+
   render() {
     return html`
-      <footer id="ge-footer">
-        <nav>
-          <a
-              href="https://www.ge.ch/c/footer-edm-aide"
-              data-url="https://www.ge.ch/c/footer-edm-aide"
-              target="gech">
-            Contact
-          </a>
-          <span aria-hidden="true"> | </span>
-          <a
-              href="https://www.ge.ch/c/footer-edm-accessibilite"
-              data-url="https://www.ge.ch/c/footer-edm-accessibilite"
-              target="gech">Accessibilité
-          </a>
-          <span aria-hidden="true"> | </span>
-          <a
-              href="https://www.ge.ch/c/footer-edm-confidentialite"
-              data-url="https://www.ge.ch/c/footer-edm-confidentialite"
-              target="gech">Politique&nbsp;de&nbsp;confidentialité
-          </a>
-          <span aria-hidden="true"> | </span>
-          <a
-              href="https://www.ge.ch/c/footer-edm-cgu"
-              data-url="https://www.ge.ch/c/footer-edm-cgu"
-              target="gech">
-            Conditions&nbsp;générales
-          </a>
-        </nav>
-        <img
-            id="ge-footer-armoiries"
-            src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
-            alt="Armoiries de la République et canton de Genève"
-            height="62"
-            aria-hidden="false"
-        />
+      <footer>
+      <div id="ge-footer" style="max-width: ${this.maxWidth}">
+          <nav>
+            <a
+                href="https://www.ge.ch/c/footer-edm-aide"
+                data-url="https://www.ge.ch/c/footer-edm-aide"
+                target="gech">
+              Contact
+            </a>
+            <span aria-hidden="true"> | </span>
+            <a
+                href="https://www.ge.ch/c/footer-edm-accessibilite"
+                data-url="https://www.ge.ch/c/footer-edm-accessibilite"
+                target="gech">Accessibilité
+            </a>
+            <span aria-hidden="true"> | </span>
+            <a
+                href="https://www.ge.ch/c/footer-edm-confidentialite"
+                data-url="https://www.ge.ch/c/footer-edm-confidentialite"
+                target="gech">Politique&nbsp;de&nbsp;confidentialité
+            </a>
+            <span aria-hidden="true"> | </span>
+            <a
+                href="https://www.ge.ch/c/footer-edm-cgu"
+                data-url="https://www.ge.ch/c/footer-edm-cgu"
+                target="gech">
+              Conditions&nbsp;générales
+            </a>
+          </nav>
+          <img
+              id="ge-footer-armoiries"
+              src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
+              alt="Armoiries de la République et canton de Genève"
+              height="62"
+              aria-hidden="false"
+              @click="${this.onImageClick}"
+          />
+      </div>   
       </footer>
     `;
+  }
+  
+    onImageClick(e) {
+    this.dispatchEvent(new CustomEvent('ge-footer-image-click', {
+      detail: { originalEvent: e },
+      bubbles: true,
+      composed: true
+    }));
   }
 }
