@@ -17,6 +17,7 @@ class GeFooter extends LitElement {
       align-items: center;
       height: 80px;
       padding: 0 32px;
+      margin: auto;
     }
     
     #ge-footer > nav {
