@@ -85,18 +85,19 @@ class GeHeader extends LitElement {
 
     .user-menu {
       position: absolute;
-      padding: 20px;
+      top: calc(100% + 8px);  
       right: 0;
+      padding: 20px;
       background: var(--md-sys-color-surface);
       border-right: 1px solid var(--md-sys-color-surface-variant);
       border-bottom: 1px solid var(--md-sys-color-surface-variant);
       border-top: none;
-      border-radius: 0px 0px 16px 16px;
+      border-radius:16px;
       width: 288px;
       height: auto;
       list-style: none;
       margin: 0;
-      box-shadow: 5px var(--md-sys-color-surface-5);
+      box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12); 
       z-index:9999;
     }
 
@@ -333,32 +334,7 @@ class GeHeader extends LitElement {
           </a>
           <div class="account-item">
             <div class="icon-container" @click="${this.toggleMenu}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="50px"
-                viewBox="0 -960 960 960"
-                width="50px"
-                fill="var(--md-sys-color-on-surface-variant)"
-              >
-                <path
-                  d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
-                />
-              </svg>
-              <span class="badge"
-                >${this.userInfo.typeCompte
-                  ? this.userInfo.typeCompte.substring(0, 3).toUpperCase()
-                  : "Inconnu"}</span
-              >
-            </div>
-
-            <button class="profile-button" @click="${this.toggleMenu}">
-              Mon compte
-            </button>
-          </div>
-        </div>  
-      </header>
-
-      ${this.isMenuOpen
+              ${this.isMenuOpen
         ? html`
             <ul class="user-menu" role="menu" aria-label="Menu utilisateur">
               <li role="menu">
@@ -392,6 +368,30 @@ class GeHeader extends LitElement {
             </ul>
           `
         : ""}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="50px"
+                viewBox="0 -960 960 960"
+                width="50px"
+                fill="var(--md-sys-color-on-surface-variant)"
+              >
+                <path
+                  d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+                />
+              </svg>
+              <span class="badge"
+                >${this.userInfo.typeCompte
+                  ? this.userInfo.typeCompte.substring(0, 3).toUpperCase()
+                  : "Inconnu"}</span
+              >
+            </div>
+
+            <button class="profile-button" @click="${this.toggleMenu}">
+              Mon compte
+            </button>
+          </div>
+        </div>  
+      </header>
     `;
   }
 }
