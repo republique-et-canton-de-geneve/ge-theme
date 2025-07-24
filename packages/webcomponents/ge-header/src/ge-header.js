@@ -31,10 +31,10 @@ class GeHeader extends LitElement {
       font-family: Arial, sans-serif;
     }
 
-
     header {
-      background: var(--md-sys-color-surface-container-highest);
+      background: var(--md-sys-color-surface);
       box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+      min-height: 77px;
     }
     
     .header {
@@ -43,9 +43,6 @@ class GeHeader extends LitElement {
       align-items: center;
       padding: 10px 16px 0 16px;
       transition: width 0.3s ease;
-      background: var(--md-sys-color-surface-container-highest);
-      box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
-      min-height: 77px;
       margin:auto;
     }
 
@@ -90,7 +87,7 @@ class GeHeader extends LitElement {
       position: absolute;
       padding: 20px;
       right: 0;
-      background: var(--md-sys-color-surface-container-highest);
+      background: var(--md-sys-color-surface);
       border-right: 1px solid var(--md-sys-color-surface-variant);
       border-bottom: 1px solid var(--md-sys-color-surface-variant);
       border-top: none;
@@ -142,8 +139,7 @@ class GeHeader extends LitElement {
 
     .account-type {
       border-radius: 5px;
-      border: 1px solid var(--md-extended-color-warning-color);
-//       background-color: var(--md-sys-color-surface-3);
+      border: 1px solid var(--md-sys-color-on-warning-container);
       opacity: 0.5;
       width: fit-content;
       padding: 8px;
