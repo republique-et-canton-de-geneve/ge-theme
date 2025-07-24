@@ -7,10 +7,10 @@ class GeFooter extends LitElement {
 
     footer {
       background: var(--md-sys-color-surface);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
     }
     #ge-footer {
       transition: width 0.3s ease;
-      border-top: 1px solid var(--md-sys-color-outline-variant);
       display: flex;
       grid-area: footer;
       justify-content: space-between;
@@ -72,7 +72,7 @@ class GeFooter extends LitElement {
   @property({ type: String }) theme = 'light';
 
   @property({type: String})
-  maxWidth = css`10px`;
+  maxWidth = css`unset`;
 
 
   render() {
