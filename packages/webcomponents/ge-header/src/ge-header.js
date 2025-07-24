@@ -77,8 +77,8 @@ class GeHeader extends LitElement {
     }
 
     .title {
-      font-size: 1.25rem;
-      font-weight: 500;
+      font-size: 28px;
+      font-weight: 400;
       color: var(--md-sys-color-on-surface-variant);
     }
     .account-item {
