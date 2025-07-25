@@ -35,6 +35,7 @@ class GeHeader extends LitElement {
       background: var(--md-sys-color-surface);
       box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
       min-height: 77px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
     }
     
     .header {

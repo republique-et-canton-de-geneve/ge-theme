@@ -16,17 +16,19 @@ class GeHeaderPublic extends LitElement {
         }
 
         header {
+            background: var(--md-sys-color-surface);
+            box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+            min-height: 77px;
             border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
-            background: var(--md-sys-color-surface, #fff);
         }
-
+        
         .header {
-            display: flex;
-            padding: 16px 32px;
-            justify-content: space-between;
-            align-items: center;
-            flex: 1 0 0;
-            margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px 0 16px;
+        transition: width 0.3s ease;
+        margin:auto;
         }
 
         a.logo-section {
