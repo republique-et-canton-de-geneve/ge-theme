@@ -9,12 +9,18 @@ import "@material/web/button/filled-button.js";
 export
 @customElement("ge-header")
 class GeHeader extends LitElement {
+
   @property({ type: Object })
   userInfo = { nom: "", prenom: "", email: "", typeCompte: "" };
 
   @property({ type: Boolean })
   isMenuOpen = false;
 
+  @property({ type: Boolean })
+  isMenBurgerOpen = false;
+  @property({ type: Boolean })
+  userInfoLoaded = false;
+  
   @property({type: String})
   maxWidth = css`unset`;
 
@@ -25,41 +31,19 @@ class GeHeader extends LitElement {
       font-family: Arial, sans-serif;
     }
 
-    .material-icons {
-      font-family: "Material Icons";
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px; /* Preferred icon size */
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
-
-      /* Support for all WebKit browsers. */
-      -webkit-font-smoothing: antialiased;
-      /* Support for Safari and Chrome. */
-      text-rendering: optimizeLegibility;
-
-      /* Support for Firefox. */
-      -moz-osx-font-smoothing: grayscale;
-
-      /* Support for IE. */
-      font-feature-settings: "liga";
-    }
-
     header {
-      background: var(--md-sys-color-surface-container-highest);
+      background: var(--md-sys-color-surface);
       box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+      min-height: 77px;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
     }
     
     .header {
-      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 10px 16px 0 16px;
+      transition: width 0.3s ease;
       margin:auto;
     }
 
@@ -70,10 +54,12 @@ class GeHeader extends LitElement {
       left: 0;
       z-index: 1030;
     }
+
     .logo-section {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 16px;
+      text-decoration: none;
     }
 
     .title {
@@ -81,6 +67,7 @@ class GeHeader extends LitElement {
       font-weight: 400;
       color: var(--md-sys-color-on-surface-variant);
     }
+
     .account-item {
       display: flex;
       flex-direction: column;
@@ -93,93 +80,100 @@ class GeHeader extends LitElement {
       color: var(--md-sys-color-on-surface-variant);
       border: none;
       cursor: pointer;
-      padding: 0.5rem;
+      padding: 8px;
       transition: all 0.2s;
     }
 
     .user-menu {
       position: absolute;
-      right: 0.4rem;
-      top: 7rem;
-      background: var(--md-sys-color-on-primary);
+      top: calc(100% + 8px);  
+      right: 0;
+      padding: 20px;
+      background: var(--md-sys-color-surface);
       border-right: 1px solid var(--md-sys-color-surface-variant);
       border-bottom: 1px solid var(--md-sys-color-surface-variant);
       border-top: none;
-      border-radius: 0px 0px 16px 16px;
-      padding: 1rem 0 0 2rem;
+      border-radius:16px;
       width: 288px;
       height: auto;
       list-style: none;
       margin: 0;
-      box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+      box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12); 
+      z-index:9999;
     }
+
     .user-menu li {
       display: flex;
       flex-direction: column;
     }
+
     .user-info {
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
 
     .user-information {
-      color: var(--md-sys-color-on-surface);
-      font-size: 0.9rem;
+      color: var(--md-sys-color-on-background);
+      font-size: 15px;
       opacity: 0.7;
-      margin-bottom: 2rem;
-      font-weight: 400;
-      margin-top: 1.5rem;
+      margin-bottom: 9px;
+      font-weight: 700;
+      margin-top: 9px;
     }
+
     .account-type-title {
-      color: var(--md-sys-color-on-surface-variant);
-      margin-bottom: 0.5rem;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 8px;
       opacity: 100%;
     }
 
     .user-name {
-      color: var(--md-sys-color-on-surface);
-      margin-bottom: 0.25rem;
-      font-size: 1rem;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 4px;
+      font-size: 16px;
     }
 
     .user-email {
       font-weight: 400;
       color: var(--md-sys-color-on-surface);
-      font-size: 0.875rem;
+      font-size: 14px;
       opacity: 0.7;
     }
 
     .account-type {
       border-radius: 5px;
-      border: 1px solid var(--md-sys-color-on-surface-variant);
-      background-color: var(--md-sys-color-surface-3);
+      border: 1px solid var(--md-sys-color-on-warning-container);
       opacity: 0.5;
       width: fit-content;
-      padding: 0.5rem;
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
+      padding: 8px;
+      font-size: 14px;
+      margin-top: 8px;
+      color: var(--md-sys-color-on-surface);
+      font-weight: 700;
     }
 
     .manage-account {
       color: var(--md-sys-color-primary);
       font-weight: bold;
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 14px;
       display: block;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      margin-top: 16px;
+      margin-bottom: 16px;
     }
 
     .logout-button {
       width: 80%;
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
+      margin-top: 8px;
+      margin-bottom: 32px;
       font-weight: 500;
     }
 
     .icon-container {
       position: relative;
-      display: inline-block;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .badge {
@@ -195,6 +189,55 @@ class GeHeader extends LitElement {
       display: inline-flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .burger-menu {
+      display: none;
+      cursor: pointer;
+    }
+
+    .burger-menu svg {
+      width: 30px;
+      height: 29px;
+      fill: #001d34;
+      transition: transform 0.3s ease;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 77px;
+      right: 0;
+      width: 200px;
+      background: var(--md-sys-color-surface-container-highest);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .menu.open {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 0 16px;
+      }
+      .burger-menu {
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-button {
+        display: none;
+      }
     }
   `;
 
@@ -221,6 +264,62 @@ class GeHeader extends LitElement {
     this.dispatchEvent(event);
   }
 
+  getAccountType(typeCompte) {
+    switch (typeCompte) {
+      case "PP":
+        return "personnel";
+      case "PM":
+        return "professionnel";
+      default:
+        return "administratif";
+    }
+  }
+
+  getBadgeType(typeCompte) {
+    switch (typeCompte) {
+      case "PM":
+        return "PRO";
+      case "PP":
+        return undefined;
+      default:
+        return "ADM";
+    }
+  }
+
+  handleBurgerClick(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.isMenBurgerOpen = !this.isMenBurgerOpen;
+
+    const event = new CustomEvent("ge-toggle-app-menu", {
+      bubbles: true,
+      composed: true,
+    });
+
+    this.dispatchEvent(event);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener("click", this.handleOutsideClick);
+  }
+  handleOutsideClick = (event) => {
+    if (!this.shadowRoot) return;
+
+    const path = event.composedPath();
+    const clickedInside = path.includes(this.shadowRoot);
+
+    if (!clickedInside && this.isMenuOpen) {
+      this.isMenuOpen = false;
+      this.requestUpdate("isMenuOpen");
+    }
+  };
+
   render() {
     return html`
       <header fix-top">
@@ -236,6 +335,40 @@ class GeHeader extends LitElement {
           </a>
           <div class="account-item">
             <div class="icon-container" @click="${this.toggleMenu}">
+              ${this.isMenuOpen
+        ? html`
+            <ul class="user-menu" role="menu" aria-label="Menu utilisateur">
+              <li role="menu">
+                <span class="user-information">Informations de connexion</span>
+                <span class="user-name"
+                  >${this.userInfo.nom} ${this.userInfo.prenom}</span
+                >
+                <span class="user-email">${this.userInfo.email}</span>
+              </li>
+              <li role="menuitem">
+                <span class="account-type">
+                  Compte
+                  ${html`${this.getAccountType(this.userInfo?.typeCompte)}`}
+                </span>
+              </li>
+              <li role="menuitem">
+                <a
+                  class="manage-account"
+                  href="https://ge.ch/ginapartners/profile/"
+                  @click="${this.handleManageAccount}"
+                >
+                  Gérer mon compte
+                </a>
+              </li>
+
+              <li role="menuitem">
+                <md-filled-button @click=${this.handleLogout} data-test-id="logout-button">
+                  Se déconnecter
+                </md-filled-button>
+              </li>
+            </ul>
+          `
+        : ""}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="50px"
@@ -260,51 +393,6 @@ class GeHeader extends LitElement {
           </div>
         </div>  
       </header>
-
-      ${this.isMenuOpen
-        ? html`
-            <ul class="user-menu" role="menu" aria-label="Menu utilisateur">
-              <li role="menu">
-                <span class="user-information">Information de connexion</span>
-                <span class="user-name"
-                  >${this.userInfo.nom ? this.userInfo.nom : "Inconnu"}
-                  ${this.userInfo.prenom
-                    ? this.userInfo.prenom
-                    : "Inconnu"}</span
-                >
-                <span class="user-email"
-                  >${this.userInfo.email
-                    ? this.userInfo.email
-                    : "Inconnu"}</span
-                >
-              </li>
-              <li role="menuitem">
-                <span class="account-type"
-                  >Compte
-                  ${this.userInfo.typeCompte
-                    ? html`${this.userInfo.typeCompte}`
-                    : "Inconnu"}</span
-                >
-              </li>
-              <li role="menuitem">
-                <a
-                  class="manage-account"
-                  href="#"
-                  @click="${this.handleManageAccount}"
-                >
-                  Gérer mon compte
-                </a>
-              </li>
-              <li role="menuitem">
-                <md-filled-button
-                  @click="${this.handleManageAccount}"
-                  class="logout-button"
-                  >Me Déconnecter</md-filled-button
-                >
-              </li>
-            </ul>
-          `
-        : ""}
     `;
   }
 }

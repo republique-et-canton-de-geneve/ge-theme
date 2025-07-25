@@ -1,22 +1,22 @@
-import {LitElement, html, css, render} from "lit";
+import {LitElement, html, css} from "lit";
 import {customElement, property} from "lit/decorators.js";
 
-export @customElement("ge-footer")
+@customElement("ge-footer")
 class GeFooter extends LitElement {
   static styles = css`
-
     footer {
       background: var(--md-sys-color-surface);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
     }
     #ge-footer {
       transition: width 0.3s ease;
-      border-top: 1px solid var(--md-sys-color-outline-variant);
       display: flex;
       grid-area: footer;
       justify-content: space-between;
       align-items: center;
       height: 80px;
       padding: 0 32px;
+      margin: auto;
     }
     
     #ge-footer > nav {
@@ -69,39 +69,45 @@ class GeFooter extends LitElement {
   `;
 
   @property({ type: String }) theme = 'light';
+  @property({ type: String }) maxWidth = css`unset`;
+  @property({ type: String }) contactLink = 'https://www.ge.ch/c/footer-edm-aide';
+  @property({ type: String }) accessibilityLink = 'https://www.ge.ch/c/footer-edm-accessibilite';
+  @property({ type: String }) privacyLink = 'https://www.ge.ch/c/footer-edm-confidentialite';
+  @property({ type: String }) termsLink = 'https://www.ge.ch/c/footer-edm-cgu';
 
-  @property({type: String})
-  maxWidth = css`10px`;
 
+  constructor() {
+    super();
+    this.setThemeBasedOnSystemPreference();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      this.theme = e.matches ? 'dark' : 'light';
+    });
+  }
+
+  setThemeBasedOnSystemPreference() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.theme = 'dark';
+    } else {
+      this.theme = 'light';
+    }
+  }
 
   render() {
     return html`
       <footer>
       <div id="ge-footer" style="max-width: ${this.maxWidth}">
           <nav>
-            <a
-                href="https://www.ge.ch/c/footer-edm-aide"
-                data-url="https://www.ge.ch/c/footer-edm-aide"
-                target="gech">
+            <a href="${this.contactLink}" target="gech">
               Contact
             </a>
             <span aria-hidden="true"> | </span>
-            <a
-                href="https://www.ge.ch/c/footer-edm-accessibilite"
-                data-url="https://www.ge.ch/c/footer-edm-accessibilite"
-                target="gech">Accessibilité
+            <a href="${this.accessibilityLink}" target="gech">Accessibilité
             </a>
             <span aria-hidden="true"> | </span>
-            <a
-                href="https://www.ge.ch/c/footer-edm-confidentialite"
-                data-url="https://www.ge.ch/c/footer-edm-confidentialite"
-                target="gech">Politique&nbsp;de&nbsp;confidentialité
+            <a href="${this.privacyLink}" target="gech">Politique&nbsp;de&nbsp;confidentialité
             </a>
             <span aria-hidden="true"> | </span>
-            <a
-                href="https://www.ge.ch/c/footer-edm-cgu"
-                data-url="https://www.ge.ch/c/footer-edm-cgu"
-                target="gech">
+            <a href="${this.termsLink}" target="gech">
               Conditions&nbsp;générales
             </a>
           </nav>
@@ -113,12 +119,12 @@ class GeFooter extends LitElement {
               aria-hidden="false"
               @click="${this.onImageClick}"
           />
-      </div>   
+      </div>    
       </footer>
     `;
   }
   
-    onImageClick(e) {
+  onImageClick(e) {
     this.dispatchEvent(new CustomEvent('ge-footer-image-click', {
       detail: { originalEvent: e },
       bubbles: true,
