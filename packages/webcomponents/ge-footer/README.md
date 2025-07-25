@@ -28,14 +28,19 @@ Le composant `<ge-footer>` est un **Web Component** développé avec [Lit](https
 ### Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
 
 ```html
-<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/prinitives.css" />
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
 
 <!-- et pour les applications ne gérant pas le light/dark mode -->
 <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
 
 <!-- ou pour les applications gérant le light/dark mode -->
 <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <!-- et, si l'application gère le mode light/dark-->
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    <!-- ou, si l'application ne gère pas le mode light/dark --> 
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
 
 ```
 ## Exemple complet avec l'import via CDN 
@@ -46,9 +51,14 @@ Le composant `<ge-footer>` est un **Web Component** développé avec [Lit](https
 <head>
   <meta charset="UTF-8">
   <title>Exemple GE Footer</title>
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <!-- et, si l'application gère le mode light/dark-->
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    <!-- ou, si l'application ne gère pas le mode light/dark --> 
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <!-- puis --> 
+
   <script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge-footer.js"></script>
 </head>
 <body>
