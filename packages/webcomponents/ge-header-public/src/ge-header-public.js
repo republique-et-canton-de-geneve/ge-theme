@@ -17,7 +17,7 @@ class GeHeaderPublic extends LitElement {
 
         header {
             border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
-            background: var(--md-sys-color-surface-surface, #fff);
+            background: var(--md-sys-color-surface, #fff);
         }
 
         .header {
