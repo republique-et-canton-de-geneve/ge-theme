@@ -1,5 +1,5 @@
-import {LitElement, html, css} from "lit";
-import {customElement, property} from "lit/decorators.js";
+import { LitElement, html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
 
 @customElement("ge-footer")
 class GeFooter extends LitElement {
@@ -18,14 +18,12 @@ class GeFooter extends LitElement {
       padding: 0 32px;
       margin: auto;
     }
-    
     #ge-footer > nav {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-right: 20px;
     }
-
     #ge-footer > nav > a {
       color: var(--md-sys-color-on-surface-variant);
       font-family: var(--md-ref-typeface-brand), Arial, Helvetica, sans-serif;
@@ -36,96 +34,93 @@ class GeFooter extends LitElement {
       font-weight: 400;
       text-decoration: none;
     }
-
-    #ge-footer > nav > span {
-      color: var(--md-sys-color-outline-variant);
-    }
-
-    #ge-footer > nav > a:hover {
-        color: var(--md-sys-color-primary);
-    }
-    
+    #ge-footer > nav > span { color: var(--md-sys-color-outline-variant); }
+    #ge-footer > nav > a:hover { color: var(--md-sys-color-primary); }
     @media (max-width: 768px) {
-      #ge-footer {
-        display: block;
-        padding: 12px 12px;
-        height: auto;
-      }
-      
-      #ge-footer > nav > span {
-        display: none;
-      }
-
-      #ge-footer > nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      #ge-footer-armoiries {
-        margin-top: 10px;
-      }
+      #ge-footer { display: block; padding: 12px 12px; height: auto; }
+      #ge-footer > nav { flex-direction: column; align-items: flex-start; gap: 8px; }
+      #ge-footer > nav > span { display: none; }
+      #ge-footer-armoiries { margin-top: 10px; }
     }
   `;
 
-  @property({ type: String }) theme = 'light';
-  @property({ type: String }) maxWidth = css`unset`;
-  @property({ type: String }) contactLink = 'https://www.ge.ch/c/footer-edm-aide';
-  @property({ type: String }) accessibilityLink = 'https://www.ge.ch/c/footer-edm-accessibilite';
-  @property({ type: String }) privacyLink = 'https://www.ge.ch/c/footer-edm-confidentialite';
-  @property({ type: String }) termsLink = 'https://www.ge.ch/c/footer-edm-cgu';
+  @property({ type: String }) theme = "light";
+  @property({ type: String }) maxWidth = "unset";
 
+  // Props fallback
+  @property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";
+  @property({ type: String }) accessibilityLink = "https://www.ge.ch/c/footer-edm-accessibilite";
+  @property({ type: String }) privacyLink = "https://www.ge.ch/c/footer-edm-confidentialite";
+  @property({ type: String }) termsLink = "https://www.ge.ch/c/footer-edm-cgu";
+
+  // Nouveau tableau de liens
+  @property({
+    attribute: "links",
+    converter: {
+      fromAttribute: (value) => {
+        if (!value) return undefined;
+        try {
+          return JSON.parse(value);
+        } catch {
+          return undefined;
+        }
+      }
+    }
+  })
+  links;
 
   constructor() {
     super();
     this.setThemeBasedOnSystemPreference();
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      this.theme = e.matches ? 'dark' : 'light';
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      this.theme = e.matches ? "dark" : "light";
     });
   }
 
   setThemeBasedOnSystemPreference() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.theme = 'dark';
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      this.theme = "dark";
     } else {
-      this.theme = 'light';
+      this.theme = "light";
     }
   }
 
+  get defaultLinks() {
+    return [
+      { title: "Contact", href: this.contactLink },
+      { title: "Accessibilité", href: this.accessibilityLink },
+      { title: "Politique de confidentialité", href: this.privacyLink },
+      { title: "Conditions générales", href: this.termsLink }
+    ];
+  }
+
   render() {
+    const links = (this.links && this.links.length) ? this.links : this.defaultLinks;
+
     return html`
       <footer>
-      <div id="ge-footer" style="max-width: ${this.maxWidth}">
+        <div id="ge-footer" style="max-width:${this.maxWidth}">
           <nav>
-            <a href="${this.contactLink}" target="gech">
-              Contact
-            </a>
-            <span aria-hidden="true"> | </span>
-            <a href="${this.accessibilityLink}" target="gech">Accessibilité
-            </a>
-            <span aria-hidden="true"> | </span>
-            <a href="${this.privacyLink}" target="gech">Politique&nbsp;de&nbsp;confidentialité
-            </a>
-            <span aria-hidden="true"> | </span>
-            <a href="${this.termsLink}" target="gech">
-              Conditions&nbsp;générales
-            </a>
+            ${links.map((l, i) => html`
+              ${i > 0 ? html`<span aria-hidden="true"> | </span>` : null}
+              <a href="${l.href}" target="gech" rel="noopener noreferrer">${l.title}</a>
+            `)}
           </nav>
           <img
-              id="ge-footer-armoiries"
-              src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
-              alt="Armoiries de la République et canton de Genève"
-              height="62"
-              aria-hidden="false"
-              @click="${this.onImageClick}"
+            id="ge-footer-armoiries"
+            src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
+            alt="Armoiries de la République et canton de Genève"
+            height="62"
+            aria-hidden="false"
+            @click="${this.onImageClick}"
           />
-      </div>    
+        </div>
       </footer>
     `;
   }
-  
+
   onImageClick(e) {
-    this.dispatchEvent(new CustomEvent('ge-footer-image-click', {
+    this.dispatchEvent(new CustomEvent("ge-footer-image-click", {
       detail: { originalEvent: e },
       bubbles: true,
       composed: true
