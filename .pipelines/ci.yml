@@ -1,0 +1,221 @@
+###############################################################################
+# Variables globales
+###############################################################################
+variables:
+  GIT_STRATEGY: clone
+  GIT_SSL_NO_VERIFY: "true"
+  GIT_SUBMODULE_STRATEGY: recursive
+
+  HTTP_PROXY: 'http://proxygeadm.etat-ge.ch:3128'
+  HTTPS_PROXY: 'http://proxygeadm.etat-ge.ch:3128'
+  NO_PROXY: 'localhost,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,10.145.38.211,.ceti.etat-ge.ch,registry.devops.etat-ge.ch'
+
+  YARN_REGISTRY: 'https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/'
+  NPM_REGISTRY: 'https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/'
+
+  GIT_REPOSITORY: DEVELOPPEUR-AEL/ui
+  OCI_SNAPSHOT_URL: 'oci-snapshot.devops.etat-ge.ch'
+  OCI_RELEASE_URL: 'oci-release.devops.etat-ge.ch'
+  BUILDAH: ${DOCKER_URL}/buildah/stable:v1.32.0
+  GITLAB_PATH: git.devops.etat-ge.ch/gitlab
+
+  IMAGE_NAME: "ch/ge/common/web/ge-theme"
+
+default:
+  image:
+    name: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:22
+  tags:
+    - 'for:container-image'
+    - 'host:privileged-container'
+    - 'net:gold-dev'
+
+###############################################################################
+# Workflow: décide quel pipeline est lancé suivant les push sur develop/main
+###############################################################################
+workflow:
+  rules:
+    # RELEASE
+    - if: $CI_COMMIT_BRANCH == "main"
+      variables: { PIPELINE_TYPE: "release" }
+    # MERGE REQUEST (feature -> develop)
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
+      variables: { PIPELINE_TYPE: "snapshot" }
+    # SCHEDULE / TRIGGER / WEB
+    - if: '$CI_PIPELINE_SOURCE =~ /^(web|schedule|trigger)$/'
+      variables: { PIPELINE_TYPE: "snapshot" }
+    # Push direct sur develop
+    - if: '$CI_COMMIT_BRANCH == "develop" && $CI_PIPELINE_SOURCE == "push"'
+      variables: { PIPELINE_TYPE: "snapshot" }
+    # Autre cas: rien ne se passe
+    - when: never
+
+###############################################################################
+# Scripts communs
+###############################################################################
+.before-yarn: &before-yarn |
+  set -eo pipefail
+  git config --global user.email    "${RUNNER_EMAIL}"
+  git config --global user.name     "${RUNNER_USERNAME}"
+  yarn config set strict-ssl false
+  yarn config set registry  "${YARN_REGISTRY}"
+  yarn config set version-git-message "[skip ci] v%s"
+  mkdir -p .yarn
+  yarn config set cache-folder .yarn
+  yarn install --frozen-lockfile --network-timeout 600000
+  yarn browserslist --update-db
+
+###############################################################################
+# STAGES
+###############################################################################
+stages:
+  - build
+  - push
+  - post-release
+
+###############################################################################
+# SNAPSHOT  (branche develop ou trigger manuel)
+###############################################################################
+snapshot-build:
+  stage: build
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot"'
+  before_script:
+    - *before-yarn
+  script:
+    - set -eo pipefail
+    - yarn version --no-git-tag-version --prerelease --preid "SNAPSHOT"
+    - export BUILD_VERSION=$(node -p "require('./package.json').version")
+    - echo "${BUILD_VERSION}" > version.txt
+    - CI= BUILD_VERSION=$BUILD_VERSION yarn build
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "develop" && "$CI_PIPELINE_SOURCE" == "push" ]]; then
+        git add package.json yarn.lock
+        git commit -m "[skip ci] snapshot ${BUILD_VERSION}"
+        git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git HEAD:${CI_COMMIT_BRANCH}
+      fi
+  artifacts:
+    paths: [ packages/website/dist, version.txt ]
+    expire_in: 24h
+
+snapshot-push-image:
+  stage: push
+  image: ${BUILDAH}
+  needs: [ snapshot-build ]
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot" &&
+         $CI_COMMIT_BRANCH == "develop" &&
+         $CI_PIPELINE_SOURCE == "push"'
+  before_script:
+    - set -eo pipefail
+    - buildah version
+    - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_SNAPSHOT_URL}"
+  script:
+    - set -eo pipefail
+    - IMAGE_VERSION=$(cat version.txt)
+    - buildah bud -f Dockerfile --format docker -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}" -t "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest" .
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${CI_COMMIT_BRANCH}"
+    - buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:latest"
+  after_script:
+    - buildah logout "${OCI_SNAPSHOT_URL}" || true
+  artifacts:
+    paths: [ version.txt ]
+    expire_in: 24h
+
+###############################################################################
+# RELEASE  (branche main)
+###############################################################################
+release-build:
+  stage: build
+  rules:
+    - if: '$PIPELINE_TYPE == "release"'
+  before_script:
+    - *before-yarn
+  script:
+    - set -eo pipefail
+    - |
+      if [[ "$CI_COMMIT_TAG" == "" ]]; then
+        yarn version --patch --no-git-tag-version
+      fi
+    - export BUILD_VERSION=$(node -p "require('./package.json').version")
+    - echo "${BUILD_VERSION}" > version.txt
+    - CI= yarn build
+
+    - git add package.json yarn.lock
+    - git commit -m "[skip ci] release ${BUILD_VERSION}"
+    - git tag "v${BUILD_VERSION}"
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git/ HEAD:main  --tags
+    - echo "Version du build de release= ${BUILD_VERSION}"
+  artifacts:
+    paths: [ packages/website/dist, version.txt ]
+    expire_in: 1w
+
+release-push-image:
+  stage: push
+  image: ${BUILDAH}
+  needs: [ release-build ]
+  rules:
+    - if: '$PIPELINE_TYPE == "release"'
+  before_script:
+    - set -eo pipefail
+    - buildah version
+    - buildah login --username "${NEXUS_REPO_USER}" --password "${NEXUS_REPO_PASS}" "${OCI_RELEASE_URL}"
+  script:
+    - set -eo pipefail
+    - IMAGE_VERSION=$(cat version.txt)
+    - buildah bud -f Dockerfile --format docker -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" -t "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest" .
+    - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
+    - buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
+  after_script:
+    - buildah logout "${OCI_RELEASE_URL}" || true
+  artifacts:
+    paths: [ version.txt ]
+    expire_in: 24h
+
+###############################################################################
+# POST-RELEASE
+###############################################################################
+
+post-release-prepare-develop:
+  stage: post-release
+  rules:
+    - if: '$PIPELINE_TYPE == "release" && $CI_COMMIT_BRANCH == "main"'
+  needs:
+    - job: release-build
+      artifacts: true
+  before_script:
+    - *before-yarn
+  script:
+    - set -eo pipefail
+    - RELEASED_VERSION=$(cat version.txt)
+    - echo "Released version from main= ${RELEASED_VERSION}"
+
+    - echo "Checking out develop branch..."
+    - git fetch origin develop
+    - git switch --force-create develop origin/develop
+    - git reset --hard HEAD && git clean -xfd
+    - echo "Merging main branch into develop (without auto-commit)..."
+    - git merge --no-ff --no-commit -X theirs origin/main
+    - echo "Merge from main staged."
+
+    - CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE=$(node -e "console.log(require('./package.json').version);")
+    - echo "Version on develop after staging merge from main= $CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE"
+    - |
+      if [ "$CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE" != "$RELEASED_VERSION" ]; then
+        echo "Warning: Version on develop after merge ($CURRENT_VERSION_ON_DEVELOP_AFTER_MERGE) is not the same as released version ($RELEASED_VERSION)."
+        echo "This might happen if main was merged into develop previously with a different version."
+        echo "Proceeding to set snapshot version based on RELEASED_VERSION: $RELEASED_VERSION."
+      fi
+
+    - NEW_DEVELOP_SNAPSHOT_VERSION="${RELEASED_VERSION}-SNAPSHOT.0"
+    - echo "Setting version on develop to ${NEW_DEVELOP_SNAPSHOT_VERSION}..."
+    - yarn version --new-version "${NEW_DEVELOP_SNAPSHOT_VERSION}" --no-git-tag-version
+
+    - echo "Committing merged main and new snapshot version to develop..."
+    - git add package.json yarn.lock
+    - git commit -m "[skip ci] Begin development for ${NEW_DEVELOP_SNAPSHOT_VERSION} (merged release v${RELEASED_VERSION})"
+
+    - echo "Pushing develop branch..."
+    - git push https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${GIT_REPOSITORY}/${CI_PROJECT_NAME}.git HEAD:develop
+
+    - echo "Successfully prepared develop branch with version ${NEW_DEVELOP_SNAPSHOT_VERSION}"
