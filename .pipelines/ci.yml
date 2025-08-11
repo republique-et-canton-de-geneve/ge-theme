@@ -174,10 +174,28 @@ snapshot-update-bom-dev:
   script: |
     set -euo pipefail
     IMAGE_VERSION=$(cat version.txt)
+
+    # Always work on the latest remote branch tip
+    git fetch origin develop --tags
+    git checkout -B develop origin/develop
+    git reset --hard origin/develop
+    git clean -xfd
+
     echo "GE_THEME_IMAGE=${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom-dev.env
     git add bom-dev.env
-    git commit -m "ci:internal update bom-dev to ${IMAGE_VERSION}"
-    git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:develop
+    git commit -m "ci:internal update bom-dev to ${IMAGE_VERSION}" || true
+
+    # Rebase & push with a couple retries to handle rare races
+    tries=0
+    until git pull --rebase origin develop && \
+          git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:develop; do
+      tries=$((tries+1))
+      if [ "$tries" -ge 3 ]; then
+        echo "Push still non-fast-forward after $tries attempts"; exit 1
+      fi
+      echo "Push rejected (non-ff). Retrying ($tries/3)…"
+      sleep $((RANDOM%4+2))
+    done
 
 ###############################################################################
 # RELEASE (push to main)
@@ -260,10 +278,26 @@ release-update-bom:
   script: |
     set -euo pipefail
     IMAGE_VERSION=$(cat version.txt)
+
+    git fetch origin main --tags
+    git checkout -B main origin/main
+    git reset --hard origin/main
+    git clean -xfd
+
     echo "GE_THEME_IMAGE=${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom.env
     git add bom.env
     git commit -m "ci:internal update bom to release ${IMAGE_VERSION}" || true
-    git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:main
+
+    tries=0
+    until git pull --rebase origin main && \
+          git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:main; do
+      tries=$((tries+1))
+      if [ "$tries" -ge 3 ]; then
+        echo "Push still non-fast-forward after $tries attempts"; exit 1
+      fi
+      echo "Push rejected (non-ff). Retrying ($tries/3)…"
+      sleep $((RANDOM%4+2))
+    done
 
 ###############################################################################
 # POST-RELEASE → prepare develop for the next cycle (SNAPSHOT.0)
