@@ -72,6 +72,12 @@ workflow:
 .resource-lock: &resource-lock
   resource_group: "${CI_PROJECT_PATH}-versioning"
 
+.before-git: &before-git |
+  set -euo pipefail
+  git config --global --add safe.directory "$CI_PROJECT_DIR"
+  git config --global user.email    "${RUNNER_EMAIL}"
+  git config --global user.name     "${RUNNER_USERNAME}"
+
 ###############################################################################
 # STAGES (must align with root .gitlab-ci.yml)
 # root defines: build, quality, push, post-release
@@ -130,7 +136,9 @@ snapshot-build:
 snapshot-push-image:
   stage: push
   image: ${BUILDAH}
-  needs: [ snapshot-build ]
+  needs:
+    - job: snapshot-build
+      artifacts: true
   <<: *resource-lock
   rules:
     - if: '$PIPELINE_TYPE == "snapshot"'
@@ -149,14 +157,27 @@ snapshot-push-image:
 
     buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     buildah push "${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:develop"
+  after_script:
+    - buildah logout "${OCI_SNAPSHOT_URL}" || true
 
-    # Update bom-dev.env (single-line env file; no sed needed)
+snapshot-update-bom-dev:
+  stage: push
+  needs:
+    - job: snapshot-push-image
+    - job: snapshot-build
+      artifacts: true
+  rules:
+    - if: '$PIPELINE_TYPE == "snapshot"'
+  <<: *resource-lock
+  before_script:
+    - *before-git
+  script: |
+    set -euo pipefail
+    IMAGE_VERSION=$(cat version.txt)
     echo "GE_THEME_IMAGE=${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom-dev.env
     git add bom-dev.env
     git commit -m "ci:internal update bom-dev to ${IMAGE_VERSION}"
     git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:develop
-  after_script:
-    - buildah logout "${OCI_SNAPSHOT_URL}" || true
 
 ###############################################################################
 # RELEASE (push to main)
@@ -177,13 +198,14 @@ release-build:
 
     # Strip -SNAPSHOT.* if present to form the release version
     if echo "$CURRENT_VERSION" | grep -q "SNAPSHOT"; then
-      RELEASE_VERSION=$(node -p "require('semver').parse('${CURRENT_VERSION}').version")
+      RELEASE_VERSION=$(node -p "'${CURRENT_VERSION}'.replace(/-SNAPSHOT.*$/,'')")
       echo "Creating release version: ${RELEASE_VERSION}"
       yarn version --new-version "${RELEASE_VERSION}" --no-git-tag-version
     else
       RELEASE_VERSION="${CURRENT_VERSION}"
       echo "Already a release version: ${RELEASE_VERSION}"
     fi
+
 
     export BUILD_VERSION=$(node -p "require('./package.json').version")
     echo "${BUILD_VERSION}" > version.txt
@@ -200,7 +222,9 @@ release-build:
 release-push-image:
   stage: push
   image: ${BUILDAH}
-  needs: [ release-build ]
+  needs:
+    - job: release-build
+      artifacts: true
   <<: *resource-lock
   rules:
     - if: '$PIPELINE_TYPE == "release"'
@@ -219,17 +243,27 @@ release-push-image:
 
     buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}"
     buildah push "${OCI_RELEASE_URL}/${IMAGE_NAME}:latest"
+  after_script:
+    - buildah logout "${OCI_RELEASE_URL}" || true
 
-    # Update bom.env with the released image (immutable tag)
+release-update-bom:
+  stage: push
+  needs:
+    - job: release-push-image
+    - job: release-build
+      artifacts: true
+  rules:
+    - if: '$PIPELINE_TYPE == "release"'
+  <<: *resource-lock
+  before_script:
+    - *before-git
+  script: |
+    set -euo pipefail
+    IMAGE_VERSION=$(cat version.txt)
     echo "GE_THEME_IMAGE=${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom.env
     git add bom.env
     git commit -m "ci:internal update bom to release ${IMAGE_VERSION}" || true
     git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:main
-  after_script:
-    - buildah logout "${OCI_RELEASE_URL}" || true
-  artifacts:
-    paths: [ version.txt ]
-    expire_in: 24h
 
 ###############################################################################
 # POST-RELEASE → prepare develop for the next cycle (SNAPSHOT.0)
@@ -248,7 +282,7 @@ post-release-prepare-develop:
     echo "Preparing develop after release of ${RELEASED_VERSION}"
 
     git fetch origin develop main --tags
-    git switch --force-create develop origin/develop
+    git checkout -B develop origin/develop
     git reset --hard origin/develop
     git clean -xfd
 
