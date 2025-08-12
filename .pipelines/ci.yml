@@ -313,7 +313,7 @@ post-release-prepare-develop:
   rules:
     - if: '$PIPELINE_TYPE == "release"'
   before_script:
-    - *before-yarn
+    - *before-git
   script: |
     set -euo pipefail
     RELEASED_VERSION=$(cat version.txt)
