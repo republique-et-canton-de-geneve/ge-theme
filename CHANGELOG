@@ -1,3 +1,47 @@
+### Release 0.3.3 du 2025.08.12
+
+### ✨ **Nouvelles fonctionnalités et améliorations**
+
+#### **Liens du pied de page configurables (CYBERTHEME-107)**
+Le web component `<ge-footer>` a été mis à jour pour offrir une plus grande flexibilité. Auparavant, les liens dans le pied de page étaient codés en dur. Désormais, vous pouvez configurer dynamiquement les liens en passant un tableau JSON à la nouvelle propriété `links`. Cela permet une personnalisation complète du texte et des URL des liens.
+
+**Exemple d'utilisation :**
+```javascript
+const footer = document.querySelector('ge-footer');
+footer.links = [
+  { title: "Lien personnalisé 1", href: "/chemin/vers/page1" },
+  { title: "Autre lien", href: "/chemin/vers/page2" }
+];
+```
+Si la propriété `links` n'est pas fournie, le composant utilisera l'ensemble de liens par défaut (Contact, Accessibilité, etc.).
+
+#### **Affichage amélioré des badges dans l'en-tête**
+Le badge du type de compte utilisateur dans le composant `<ge-header>` affiche désormais correctement le type de compte. La logique a été mise à jour, passant d'une simple troncature de chaîne de caractères à une fonction dédiée (`getBadgeType`), garantissant que les libellés des badges s'affichent comme prévu.
+
+---
+
+### **Corrections de bogues**
+
+#### **Correction des variables CSS pour les ombres**
+Correction d'un problème avec les variables CSS pour les ombres et les effets de scrim dans les différents thèmes de couleur. Le système utilise maintenant des variables plus spécifiques pour les modes clair (`--md-ref-shadow-light-opacity-*`) et sombre (`--md-ref-shadow-dark-opacity-*`), assurant un rendu correct des ombres à travers l'application.
+
+#### **Mises à jour de la documentation pour le CSS**
+Les fichiers README des composants `<ge-footer>`, `<ge-header-public>` et `<ge-header>` ont été mis à jour pour fournir des instructions plus claires sur la manière d'inclure les fichiers CSS nécessaires. La documentation distingue maintenant correctement les configurations qui gèrent le mode clair/sombre de celles qui ne le font pas, et inclut la feuille de style essentielle `primitives.css`.
+
+---
+
+### **Améliorations CI/CD et Sécurité (pour les développeurs)**
+
+#### **Refonte majeure du pipeline CI/CD (CYBERTHEME-112, APPSEC-29)**
+Le pipeline d'Intégration Continue et de Déploiement Continu (CI/CD) du projet a été entièrement refactorisé pour améliorer l'automatisation, la fiabilité et la sécurité.
+
+Les améliorations clés incluent :
+*   **Intégration de l'analyse de sécurité :** Le pipeline intègre désormais des outils d'analyse de sécurité tels que Sonarqube, Nexus IQ et KICS pour identifier proactivement les vulnérabilités.
+*   **Workflow robuste :** Le nouveau workflow est conçu pour gérer plus efficacement les builds pour les requêtes de fusion (MR), les pushs sur `develop` (snapshot) et les pushs sur `main` (release).
+*   **Gestion des versions fiabilisée :** Un verrou de ressource a été implémenté pour éviter les conditions de concurrence (*race conditions*) lors de l'incrémentation des versions. Le processus de versionnement et de release est maintenant plus automatisé et prévisible.
+*   **Opérations Git améliorées :** Les scripts du pipeline ont été renforcés avec une logique de relance et de *rebase* pour les opérations `git push`, les rendant plus résilients aux changements concurrents.
+*   **Mise à jour automatisée du BOM :** Les fichiers `bom.env` et `bom-dev.env` sont maintenant mis à jour automatiquement dans le cadre du pipeline, garantissant que la nomenclature (*Bill of Materials*) reflète toujours les dernières versions de build.
+
 ## Release 0.1.23 du 2025.06.25
 - Améliorations du footer: code plus propre, meilleure accessibilité, ajout d'un attribut "theme" (support dark/light)
 - Footer: les liens s'ouvrent dans un onglet nommé "gech"
