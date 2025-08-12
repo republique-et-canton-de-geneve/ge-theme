@@ -185,7 +185,7 @@ snapshot-update-bom-dev:
     git reset --hard origin/develop
     git clean -xfd
 
-    echo "GE_THEME_IMAGE=${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom-dev.env
+    echo "getheme=${OCI_SNAPSHOT_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom-dev.env
     git add bom-dev.env
     git commit -m "ci:internal update bom-dev to ${IMAGE_VERSION}" || true
 
@@ -288,7 +288,7 @@ release-update-bom:
     git reset --hard origin/main
     git clean -xfd
 
-    echo "GE_THEME_IMAGE=${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom.env
+    echo "getheme=${OCI_RELEASE_URL}/${IMAGE_NAME}:${IMAGE_VERSION}" > bom.env
     git add bom.env
     git commit -m "ci:internal update bom to release ${IMAGE_VERSION}" || true
 
