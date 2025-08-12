@@ -41,11 +41,17 @@ REC https://static.rec.etat-ge.ch
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge- footer.js"></script>
 ```
 ## Intégration sur une page html
-
+Pour les applications avec contenus pleine largeur (ex: Mon esapce e-démarches)
 ```html
-    <ge-header-public></ge-header-public>
-    <ge-footer></ge-footer>
+    <ge-header-public/>
+    <ge-footer/>
 ```
+Pour les applications avec marges sur le contenus (ex: Formulaires e-démarches, ... )
+```html
+    <ge-header-public maxWidth="80%" />
+    <ge-footer maxWidth="80%" />
+```
+
 
 ## 📁 Installation
 
@@ -74,16 +80,20 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 - Props disponibles :
     - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
     - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
 - Événements personnalisés :
     - `ge-toggle-app-menu`
     - `ge-manage-account`
     - `ge-logout`
 
 #### `<ge-header-public>`
- - Header static
+- Props disponibles :
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
+- Props disponibles :
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
 
 ---
 
