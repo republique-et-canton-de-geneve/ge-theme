@@ -94,7 +94,22 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
 - Props disponibles :
     - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
-
+    - `links='[`
+              `{"title":"Support","href":"https://example.com/support"},`
+              `{"title":"Mentions légales","href":"https://example.com/legal"}`
+            `]'`
+- Valeurs par défaut
+    - `maxWidth = "100%"`
+    - `links =[`
+              `{ title: "Contact", href: this.contactLink },`
+              `{ title: "Accessibilité", href: this.accessibilityLink },`
+              `{ title: "Politique de confidentialité", href: this.privacyLink },`
+              `{ title: "Conditions générales", href: this.termsLink }`
+              `]`
+                `@property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";`
+                `@property({ type: String }) accessibilityLink = "https://www.ge.ch/c/footer-edm-accessibilite";`
+                `@property({ type: String }) privacyLink = "https://www.ge.ch/c/footer-edm-confidentialite";`
+                `@property({ type: String }) termsLink = "https://www.ge.ch/c/footer-edm-cgu";`
 ---
 
 ## 💚 Intégration dans les frameworks
