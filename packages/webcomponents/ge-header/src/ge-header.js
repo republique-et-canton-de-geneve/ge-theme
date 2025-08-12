@@ -381,9 +381,7 @@ class GeHeader extends LitElement {
                 />
               </svg>
               <span class="badge"
-                >${this.userInfo.typeCompte
-                  ? this.userInfo.typeCompte.substring(0, 3).toUpperCase()
-                  : "Inconnu"}</span
+                >${this.getBadgeType(this.userInfo?.typeCompte)}</span
               >
             </div>
 

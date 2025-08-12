@@ -34,9 +34,13 @@ Le composant `<ge-header>` est un **Web Component** développé avec [Lit](https
   <head>
     <meta charset="UTF-8" />
     <title>Exemple GE Header</title>
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <!-- et, si l'application gère le mode light/dark-->
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    <!-- ou, si l'application ne gère pas le mode light/dark --> 
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <!-- puis --> 
     <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header/latest/ge-header.js"></script>
   </head>
   <body>

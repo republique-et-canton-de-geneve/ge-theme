@@ -1,0 +1,42 @@
+include:
+  - project: $PROJECT_TEMPLATES_GITLABCI_PATH
+    ref: '2.15'
+    file:
+      - 'sonarqube/.gitlab-ci-sonarqube.yml'
+      - 'nexus-iq/.gitlab-ci-nexus-iq.yml'
+      - 'kics/.gitlab-ci-kics.yml'
+      
+# --------------------------------------
+# Jobs
+# --------------------------------------
+sonarqube:
+  extends:
+    - .sonarqube_sonar_scanner
+
+
+nexus_iq_build:
+  stage: build
+  script:
+    - set -eo pipefail
+    - yarn config set strict-ssl false
+    - yarn config set registry "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/"
+    - mkdir -p .yarn
+    - yarn config set cache-folder .yarn
+    - yarn install --frozen-lockfile --network-timeout 600000
+  artifacts:
+    paths: 
+      - .
+    expire_in: 24h
+
+
+nexus_iq:
+  extends:
+    - .nexus_iq_evaluate
+  dependencies: [ nexus_iq_build ]
+
+
+kics:
+  extends:
+    - .kics
+  rules:
+    - if: $SECURITY_MONITORING == "true"
