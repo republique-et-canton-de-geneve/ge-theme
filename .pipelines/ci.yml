@@ -327,6 +327,14 @@ post-release-prepare-develop:
     echo "Merging origin/main into develop (no auto-commit)"
     git merge --no-ff --no-commit -X theirs origin/main || true
 
+    echo "Installing dependencies to run node scripts..."
+    yarn config set strict-ssl false
+    yarn config set registry "${YARN_REGISTRY}"
+    yarn config set version-git-message "ci:internal version %s"
+    mkdir -p .yarn
+    yarn config set cache-folder .yarn
+    yarn install --frozen-lockfile --network-timeout 600000
+
     # Resolve possible yarn.lock conflict by regenerating
     if git status --porcelain | grep -qE '^\s*UU\s+yarn.lock'; then
       echo "Resolving yarn.lock conflict by regeneration"
