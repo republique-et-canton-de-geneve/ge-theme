@@ -35,6 +35,9 @@ workflow:
     - if: '$CI_COMMIT_MESSAGE =~ /ci:internal/'
       when: never
 
+    # This ensures the commit has a "success" status before the MR is opened.
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != "main" && $CI_COMMIT_BRANCH != "develop"'
+
     # 1) MRs (feature -> develop or develop -> main): run "build" validation
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
@@ -90,6 +93,7 @@ validate-build:
   stage: build
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != "main" && $CI_COMMIT_BRANCH != "develop"'
   before_script:
     - *before-yarn
   script:
