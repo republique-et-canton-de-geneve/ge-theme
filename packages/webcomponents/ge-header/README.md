@@ -72,6 +72,16 @@ Le composant `<ge-header>` est un **Web Component** développé avec [Lit](https
 </html>
 ```
 
+## Propriétés <ge-header>
+- Props disponibles :
+    - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
+    - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+- Événements personnalisés :
+    - `ge-toggle-app-menu`
+    - `ge-manage-account`
+    - `ge-logout`
+
 ## 💚 Intégration dans les frameworks
 
 > ⚠️ **Important : Les composants Lit ne sont pas automatiquement réactifs aux changements de props dans certains frameworks comme Vue, React ou Angular.**
