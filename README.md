@@ -19,29 +19,31 @@ Cette procédure décrit comment intégrer directement les Web Components et les
 
 Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
 
-par défaut
-```html
-<link rel="stylesheet" href=https://static.app.ge.ch/theme/css/primitives.css />
-```
+  par défaut
+  ```html
+  <link rel="stylesheet" href=https://static.app.ge.ch/theme/css/primitives.css />
+  ```
 
-si l'application supporte uniquement le thème clair (forcer le thème clair)
+  si l'application supporte uniquement le thème clair (forcer le thème clair)
+  ```html
   <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  ```
 
-si l'application supporte l'affichage system clair et sombre
+  si l'application supporte l'affichage system clair et sombre
   ```html
   <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
   ```
 
-si l'application propose une option d'affichage clair et sombre
-
+  si l'application propose une option d'affichage clair et sombre
   ```html
   <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
   <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
   ```
-
+  
   si l'application supporte uniquement le thème sombre (forcer le thème sombre)
+  ```html
   <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-
+  ```
 
 ## 🔗 Ajoutez les Web Components nécessaires via des balises `<script type="module">`
 
