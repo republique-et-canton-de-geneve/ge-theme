@@ -26,16 +26,32 @@ Le composant `<ge-header-public>` est un **Web Component** développé avec [Lit
 
 ### Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
 
-```html
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
-    <!-- et, si l'application gère le mode light/dark-->
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-    <!-- ou, si l'application ne gère pas le mode light/dark --> 
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
-    <!-- puis --> 
+ par défaut
+  ```html
+  <link rel="stylesheet" href=https://static.app.ge.ch/theme/css/primitives.css />
+  ```
 
-```
+  si l'application supporte uniquement le thème clair (forcer le thème clair)
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  ```
+
+  si l'application supporte l'affichage system clair et sombre
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+  ```
+
+  si l'application propose une option d'affichage clair et sombre
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  ```
+  
+  si l'application supporte uniquement le thème sombre (forcer le thème sombre)
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+  ```
+
 ## Exemple complet avec l'import via CDN 
 
 ```html
@@ -45,12 +61,20 @@ Le composant `<ge-header-public>` est un **Web Component** développé avec [Lit
   <meta charset="UTF-8">
   <title>Exemple GE Footer</title>
     <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
-    <!-- et, si l'application gère le mode light/dark-->
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-    <!-- ou, si l'application ne gère pas le mode light/dark --> 
-      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
-    <!-- puis --> 
+
+    <!-- si l'application supporte uniquement le thème clair (forcer le thème clair)-->
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  
+    <!-- si l'application supporte l'affichage system clair et sombre-->  
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+
+    <!-- si l'application propose une option d'affichage clair et sombre --> 
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    
+    <!-- si l'application supporte uniquement le thème sombre (forcer le thème sombre)-->
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+  
 
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
 </head>
@@ -61,3 +85,7 @@ Le composant `<ge-header-public>` est un **Web Component** développé avec [Lit
 </html>
 
 ```
+## Propriétés <ge-header-public>
+
+- Props disponibles :
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
