@@ -102,7 +102,6 @@ class GeFooter extends LitElement {
 
     return html`
       <footer>
-        ${this.theme}
         <div id="ge-footer" style="max-width:${this.maxWidth}">
           <nav>
             ${links.map((l, i) => html`
