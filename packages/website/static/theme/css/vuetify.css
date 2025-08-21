@@ -1,4 +1,7 @@
-
+/* variables spécifiques vuetify  */
+:root {
+    --v-list-item-subtitle-opacity: 1;
+}
 
 /* APP BAR */
 
@@ -9,71 +12,45 @@
     color: inherit !important;
 }
 
+/* List */
+.v-list--border .v-list-item:not(:last-child) {
+    border-bottom-width: thin;
+}
+
 /* SHEET (PAPER) */
-
-
-.v-sheet {
-    border-radius: var(--v-shape-corner-extra-small) !important;
-    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02) !important;
+.v-application .v-sheet {
+    box-shadow: none;
 }
 
-
-.v-sheet.elevation-1 {
-    background-color: rgba(var(--v-surface-lowest));
+.surface-highest {
+    background-color: var(--md-sys-color-surface-container-highest) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
-.v-sheet.elevation-2 {
-    background-color: rgba(var(--v-surface-low));
+.surface-high {
+    background-color: var(--md-sys-color-surface-container-high) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
-.v-sheet.elevation-3 {
-    background-color: rgba(var(--v-theme-surface));
+.surface {
+    background-color: var(--md-sys-color-surface-container) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
-.v-sheet.elevation-4 {
-    background-color: rgba(var(--v-surface-high));
+.surface-low {
+    background-color: var(--md-sys-color-surface-container-low) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
-.v-sheet.elevation-5 {
-    background-color: rgba(var(--v-surface-highest));
-}
-
-.v-sheet--border {
-    box-shadow: none!important;
-}
-
-/* CARD */
-
-.v-card {
-    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.04), 0px 1px 3px 0px rgba(0, 0, 0, 0.02) !important;
-    border-radius: var(--v-shape-corner-medium)!important;
-}
-
-.v-card.elevation-1 {
-    background-color: rgba(var(--v-surface-lowest));
-}
-
-.v-card.elevation-2 {
-    background-color: rgba(var(--v-surface-low));
-}
-
-.v-card.elevation-3 {
-    background-color: rgba(var(--v-theme-surface));
-}
-
-.v-card.elevation-4 {
-    background-color: rgba(var(--v-surface-high));
-}
-
-.v-card.elevation-5 {
-    background-color: rgba(var(--v-surface-highest));
+.surface-lowest {
+    background-color: var(--md-sys-color-surface-container-lowest) !important;
+    color: var(--md-sys-color-on-surface) !important;
 }
 
 /* Alert */
-
 .v-alert {
-    border-radius: var(--v-shape-corner-medium)!important;
-    width: fit-content !important;
+    border-radius: var(--v-shape-corner-medium) !important;
+    width: auto !important;
 }
 
 .v-alert.bg-success {
@@ -96,12 +73,33 @@
     color: rgba(var(--v-theme-on-error-container)) !important;
 }
 
+/* Expansion panel */
+.v-expansion-panel {
+    border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+}
+
+.v-expansion-panel--disabled .v-expansion-panel-title__overlay {
+    display: none;
+}
+
+.v-expansion-panel--disabled button.v-expansion-panel-title {
+    pointer-events: unset;
+}
+
+.v-expansion-panel__shadow {
+    display: none;
+}
+
 /* v-btn */
 
 .v-btn {
     height: 40px !important;
     text-transform: none !important;
     border-radius: var(--v-shape-corner-full);
+    font-size: var(--md-sys-typescale-label-medium-size) !important;
+    line-height: var(--md-sys-typescale-label-medium-line-height) !important;
+    font-weight: var(--md-sys-typescale-label-medium-weight) !important;
+    letter-spacing: var(--md-sys-typescale-label-medium-tracking) !important;
 }
 
 .v-btn--icon {
@@ -113,7 +111,7 @@
     border: thin solid rgba(var(--v-theme-outline)) !important;
 }
 
-.v-btn:not(.v-btn--icon){
+.v-btn:not(.v-btn--icon) {
     padding: 0 24px !important;
 }
 
@@ -121,7 +119,7 @@
 /* Chip */
 
 .v-chip {
-    border-radius: var(--v-shape-corner-small)!important;
+    border-radius: var(--v-shape-corner-small) !important;
 }
 
 .v-chip.text-success {
@@ -138,7 +136,7 @@
 }
 
 .v-chip.text-info.v-chip--variant-outlined {
-    border: thin solid rgba(var(--v-theme-outline))!important;
+    border: thin solid rgba(var(--v-theme-outline)) !important;
 }
 
 .v-chip.text-info.v-chip__prepend {
@@ -156,7 +154,6 @@
 .v-chip.text-error {
     background: rgba(var(--v-theme-error-container));
 }
-
 
 .v-chip__close {
     color: rgba(var(--v-theme-on-surface-variant));
@@ -257,6 +254,27 @@
     letter-spacing: var(--md-sys-typescale-body-small-tracking) !important;
 }
 
+.text-label-1 {
+    font-size: var(--md-sys-typescale-label-large-size) !important;
+    line-height: var(--md-sys-typescale-label-large-line-height) !important;
+    font-weight: var(--md-sys-typescale-label-large-weight);
+    letter-spacing: var(--md-sys-typescale-label-large-tracking) !important;
+}
+
+.text-label-2 {
+    font-size: var(--md-sys-typescale-label-medium-size) !important;
+    line-height: var(--md-sys-typescale-label-medium-line-height) !important;
+    font-weight: var(--md-sys-typescale-label-medium-weight) !important;
+    letter-spacing: var(--md-sys-typescale-label-medium-tracking) !important;
+}
+
+.text-label-3 {
+    font-size: var(--md-sys-typescale-label-small-size) !important;
+    line-height: var(--md-sys-typescale-label-small-line-height) !important;
+    font-weight: var(--md-sys-typescale-label-small-weight) !important;
+    letter-spacing: var(--md-sys-typescale-label-small-tracking) !important;
+}
+
 .text-button {
     font-size: var(--md-sys-typescale-label-medium-size) !important;
     line-height: var(--md-sys-typescale-label-medium-line-height) !important;
@@ -315,15 +333,15 @@
 
 /* SELECT */
 
-.v-menu > .v-overlay__content > .v-card, .v-menu > .v-overlay__content > .v-sheet, .v-menu > .v-overlay__content > .v-list {
+.v-menu > .v-overlay__content > .v-card,
+.v-menu > .v-overlay__content > .v-sheet,
+.v-menu > .v-overlay__content > .v-list {
     background: rgb(var(--v-theme-surface-container)) !important;
 }
 
 
 /* Textfield */
 
-
-.v-field{
-    border-radius: var(--v-shape-corner-extra-small)!important;
+.v-field {
+    border-radius: var(--v-shape-corner-extra-small) !important;
 }
-  
