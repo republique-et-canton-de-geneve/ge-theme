@@ -69,14 +69,16 @@ class GeFooter extends LitElement {
   })
   links;
 
-    willUpdate(changedProperties) {
-      if (changedProperties.has('theme')) {
-        if (this.theme === 'light' || this.theme === 'dark') {
-        } else {
-          this.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        }
-      }
-    }
+  constructor() {
+    super();
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      this.theme = e.matches ? "dark" : "light";
+      this.requestUpdate();
+    });
+  }
+
+  // Modifiez la propriété pour qu'elle réagisse aux attributs
+  @property({ type: String, attribute: true }) theme = "light";
 
   setThemeBasedOnSystemPreference() {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
