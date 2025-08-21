@@ -69,13 +69,14 @@ class GeFooter extends LitElement {
   })
   links;
 
-  constructor() {
-    super();
-    this.setThemeBasedOnSystemPreference();
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-      this.theme = e.matches ? "dark" : "light";
-    });
-  }
+    willUpdate(changedProperties) {
+      if (changedProperties.has('theme')) {
+        if (this.theme === 'light' || this.theme === 'dark') {
+        } else {
+          this.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+      }
+    }
 
   setThemeBasedOnSystemPreference() {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -99,6 +100,7 @@ class GeFooter extends LitElement {
 
     return html`
       <footer>
+        ${this.theme}
         <div id="ge-footer" style="max-width:${this.maxWidth}">
           <nav>
             ${links.map((l, i) => html`
