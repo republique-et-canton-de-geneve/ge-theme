@@ -126,6 +126,8 @@ snapshot-build:
       yarn version --no-git-tag-version --prerelease --preid SNAPSHOT
       git add package.json yarn.lock
       git commit -m "ci:internal snapshot bump"
+      git config --global user.email "project_10489_bot_885be50ebe25cb852a5e4e4d17327628@noreply.git.devops.etat-ge.ch"
+      git config --global user.name "${SCM_USER}"
       git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:develop
     fi
 
