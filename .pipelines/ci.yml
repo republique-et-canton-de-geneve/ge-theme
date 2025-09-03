@@ -61,8 +61,9 @@ workflow:
 .before-yarn: &before-yarn |
   set -euo pipefail
   git config --global --add safe.directory "$CI_PROJECT_DIR"
-  git config --global user.email    "${RUNNER_EMAIL}"
-  git config --global user.name     "${RUNNER_USERNAME}"
+  EMAIL=$(curl -sf --header "PRIVATE-TOKEN:$SCM_PASSWORD" "$CI_API_V4_URL/user" | sed -n 's/.*"email":"\([^"]*\)".*/\1/p')
+  git config --global user.email "$EMAIL"
+  git config --global user.name "${SCM_USER}"
   yarn config set strict-ssl false
   yarn config set registry "${YARN_REGISTRY}"
   # IMPORTANT: DO NOT USE [skip ci]; use ci:internal and workflow rule above
@@ -78,8 +79,9 @@ workflow:
 .before-git: &before-git |
   set -euo pipefail
   git config --global --add safe.directory "$CI_PROJECT_DIR"
-  git config --global user.email    "${RUNNER_EMAIL}"
-  git config --global user.name     "${RUNNER_USERNAME}"
+  EMAIL=$(curl -sf --header "PRIVATE-TOKEN:$SCM_PASSWORD" "$CI_API_V4_URL/user" | sed -n 's/.*"email":"\([^"]*\)".*/\1/p')
+  git config --global user.email "$EMAIL"
+  git config --global user.name "${SCM_USER}"
 
 ###############################################################################
 # STAGES (must align with root .gitlab-ci.yml)

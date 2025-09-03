@@ -35,11 +35,15 @@ Le composant `<ge-header>` est un **Web Component** développé avec [Lit](https
     <meta charset="UTF-8" />
     <title>Exemple GE Header</title>
     <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
-    <!-- et, si l'application gère le mode light/dark-->
+    <!-- si l'application ne gère pas le mode light/dark, alors forcer le mode light-->
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+    <!-- si l'application propose le mode light/dark intégré, alors forcer le mode light-->
       <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
       <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-    <!-- ou, si l'application ne gère pas le mode light/dark --> 
+    <!-- si l'application supporte le mode light/dark system, alors forcer le mode light-->      
       <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <!-- si l'application ne gère que le mode dark, alors forcer le mode dark --> 
+      <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
     <!-- puis --> 
     <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header/latest/ge-header.js"></script>
   </head>
@@ -67,6 +71,16 @@ Le composant `<ge-header>` est un **Web Component** développé avec [Lit](https
   </body>
 </html>
 ```
+
+## Propriétés <ge-header>
+- Props disponibles :
+    - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
+    - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+- Événements personnalisés :
+    - `ge-toggle-app-menu`
+    - `ge-manage-account`
+    - `ge-logout`
 
 ## 💚 Intégration dans les frameworks
 

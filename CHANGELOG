@@ -1,3 +1,54 @@
+### Release 0.3.3
+
+Cette version introduit de nouvelles fonctionnalités importantes, des corrections de bogues essentielles, et une refonte majeure de nos processus internes pour améliorer la sécurité et la stabilité. Les points forts incluent des liens de pied de page configurables, une meilleure gestion des thèmes et des couleurs, ainsi qu'une refonte complète du pipeline CI/CD.
+
+---
+
+### ✨ **Nouvelles fonctionnalités et améliorations**
+
+*   **Liens de pied de page configurables :** Le web component `<ge-footer>` accepte désormais une propriété `links`. Cela permet de configurer dynamiquement les liens du pied de page en passant un tableau JSON, offrant une plus grande flexibilité. Si la propriété `links` n'est pas fournie, le composant affichera l'ensemble des liens par défaut (Contact, Accessibilité, etc.).
+*   **Propriété `maxWidth` pour l'en-tête et le pied de page :** Les composants `<ge-footer>` et `<ge-header-public>` incluent maintenant une propriété `maxWidth`. Cela permet aux développeurs de contrôler la largeur maximale de ces composants, facilitant leur intégration dans des applications avec différentes exigences de mise en page (par exemple, contenu pleine largeur ou contenu centré avec des marges).
+*   **Gestion améliorée des couleurs et des thèmes :**
+    *   La gestion de la couleur du pied de page a été améliorée pour respecter les préférences système (mode sombre/clair) ou un attribut `theme` spécifiquement transmis.
+    *   Les jetons de couleur et les variables CSS pour les thèmes sombre et clair ont été mis à jour et corrigés pour garantir une représentation visuelle cohérente et précise dans toute l'application.
+*   **Amélioration des badges dans l'en-tête :** Le badge indiquant le type de compte utilisateur dans le composant `<ge-header>` affiche désormais correctement le type de compte, améliorant la clarté pour les utilisateurs.
+
+---r
+
+### 🐞 **Corrections de bogues**
+
+*   **Email du committer CI :** Un problème où les commits effectués par le pipeline CI/CD utilisaient une adresse email de committer incorrecte a été résolu.
+*   **Variables CSS pour les ombres :** Un problème avec les variables CSS pour les ombres et les effets de scrim a été corrigé. Le système utilise maintenant des variables plus spécifiques pour les modes clair et sombre, garantissant que les ombres s'affichent correctement dans tous les thèmes.
+*   **Références CSS corrigées :** La documentation a été mise à jour pour fournir des instructions plus claires sur la manière d'inclure les fichiers CSS nécessaires, y compris la feuille de style essentielle `primitives.css`.
+
+---
+
+### 🛠️ **Documentation**
+
+*   **Mise à jour des README :** Les fichiers README des composants `<ge-footer>`, `<ge-header-public>` et `<ge-header>` ont été mis à jour avec des instructions plus claires pour l'intégration CSS et une meilleure documentation pour les nouvelles propriétés comme `maxWidth` et `links`.
+
+---
+
+### ⚙️ **Améliorations internes**
+
+*   **Refonte majeure du pipeline CI/CD :** Le pipeline d'intégration et de déploiement continus a été entièrement remanié pour améliorer l'automatisation, la fiabilité et la sécurité.
+    *   **Intégration de l'analyse de sécurité :** Le pipeline inclut désormais des outils d'analyse de sécurité tels que Sonarqube, Nexus IQ et KICS pour identifier proactivement les vulnérabilités.
+    *   **Flux de travail robuste :** Le nouveau flux de travail gère plus efficacement les builds pour les "merge requests", les snapshots de développement et les releases sur la branche principale.
+    *   **Gestion des versions fiabilisée :** Le processus de gestion des versions et de publication est maintenant plus automatisé et prévisible, avec des protections contre les conditions de concurrence (*race conditions*).
+---
+
+### **Améliorations CI/CD et Sécurité (pour les développeurs)**
+
+#### **Refonte majeure du pipeline CI/CD (CYBERTHEME-112, APPSEC-29)**
+Le pipeline d'Intégration Continue et de Déploiement Continu (CI/CD) du projet a été entièrement refactorisé pour améliorer l'automatisation, la fiabilité et la sécurité.
+
+Les améliorations clés incluent :
+*   **Intégration de l'analyse de sécurité :** Le pipeline intègre désormais des outils d'analyse de sécurité tels que Sonarqube, Nexus IQ et KICS pour identifier proactivement les vulnérabilités.
+*   **Workflow robuste :** Le nouveau workflow est conçu pour gérer plus efficacement les builds pour les requêtes de fusion (MR), les pushs sur `develop` (snapshot) et les pushs sur `main` (release).
+*   **Gestion des versions fiabilisée :** Un verrou de ressource a été implémenté pour éviter les conditions de concurrence (*race conditions*) lors de l'incrémentation des versions. Le processus de versionnement et de release est maintenant plus automatisé et prévisible.
+*   **Opérations Git améliorées :** Les scripts du pipeline ont été renforcés avec une logique de relance et de *rebase* pour les opérations `git push`, les rendant plus résilients aux changements concurrents.
+*   **Mise à jour automatisée du BOM :** Les fichiers `bom.env` et `bom-dev.env` sont maintenant mis à jour automatiquement dans le cadre du pipeline, garantissant que la nomenclature (*Bill of Materials*) reflète toujours les dernières versions de build.
+
 ## Release 0.1.23 du 2025.06.25
 - Améliorations du footer: code plus propre, meilleure accessibilité, ajout d'un attribut "theme" (support dark/light)
 - Footer: les liens s'ouvrent dans un onglet nommé "gech"

@@ -19,11 +19,31 @@ Cette procédure décrit comment intégrer directement les Web Components et les
 
 Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
 
-```html
-<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
-```
+  par défaut
+  ```html
+  <link rel="stylesheet" href=https://static.app.ge.ch/theme/css/primitives.css />
+  ```
+
+  si l'application supporte uniquement le thème clair (forcer le thème clair)
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  ```
+
+  si l'application supporte l'affichage system clair et sombre
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+  ```
+
+  si l'application propose une option d'affichage clair et sombre
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
+  ```
+  
+  si l'application supporte uniquement le thème sombre (forcer le thème sombre)
+  ```html
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
+  ```
 
 ## 🔗 Ajoutez les Web Components nécessaires via des balises `<script type="module">`
 
@@ -41,11 +61,17 @@ REC https://static.rec.etat-ge.ch
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge- footer.js"></script>
 ```
 ## Intégration sur une page html
-
+Pour les applications avec contenus pleine largeur (ex: Mon esapce e-démarches)
 ```html
-    <ge-header-public></ge-header-public>
-    <ge-footer></ge-footer>
+    <ge-header-public/>
+    <ge-footer/>
 ```
+Pour les applications avec marges sur le contenus (ex: Formulaires e-démarches, ... )
+```html
+    <ge-header-public maxWidth="80%" />
+    <ge-footer maxWidth="80%" />
+```
+
 
 ## 📁 Installation
 
@@ -74,17 +100,36 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 - Props disponibles :
     - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
     - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
 - Événements personnalisés :
     - `ge-toggle-app-menu`
     - `ge-manage-account`
     - `ge-logout`
 
 #### `<ge-header-public>`
- - Header static
+- Props disponibles :
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
-
+- Props disponibles :
+    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `links='[`
+              `{"title":"Support","href":"https://example.com/support"},`
+              `{"title":"Mentions légales","href":"https://example.com/legal"}`
+            `]'`
+- Valeurs par défaut
+    - `maxWidth = "100%"`
+    - `links =[`
+              `{ title: "Contact", href: this.contactLink },`
+              `{ title: "Accessibilité", href: this.accessibilityLink },`
+              `{ title: "Politique de confidentialité", href: this.privacyLink },`
+              `{ title: "Conditions générales", href: this.termsLink }`
+              `]`
+                `@property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";`
+                `@property({ type: String }) accessibilityLink = "https://www.ge.ch/c/footer-edm-accessibilite";`
+                `@property({ type: String }) privacyLink = "https://www.ge.ch/c/footer-edm-confidentialite";`
+                `@property({ type: String }) termsLink = "https://www.ge.ch/c/footer-edm-cgu";`
 ---
 
 ## 💚 Intégration dans les frameworks

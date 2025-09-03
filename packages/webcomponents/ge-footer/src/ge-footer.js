@@ -71,11 +71,14 @@ class GeFooter extends LitElement {
 
   constructor() {
     super();
-    this.setThemeBasedOnSystemPreference();
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
       this.theme = e.matches ? "dark" : "light";
+      this.requestUpdate();
     });
   }
+
+  // Modifiez la propriété pour qu'elle réagisse aux attributs
+  @property({ type: String, attribute: true }) theme = "light";
 
   setThemeBasedOnSystemPreference() {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
