@@ -1,33 +1,40 @@
-### Release 0.3.3 du 2025.08.12
+### Release 0.3.3
 
-### ✨ **Nouvelles fonctionnalités et améliorations**
-
-#### **Liens du pied de page configurables (CYBERTHEME-107)**
-Le web component `<ge-footer>` a été mis à jour pour offrir une plus grande flexibilité. Auparavant, les liens dans le pied de page étaient codés en dur. Désormais, vous pouvez configurer dynamiquement les liens en passant un tableau JSON à la nouvelle propriété `links`. Cela permet une personnalisation complète du texte et des URL des liens.
-
-**Exemple d'utilisation :**
-```javascript
-const footer = document.querySelector('ge-footer');
-footer.links = [
-  { title: "Lien personnalisé 1", href: "/chemin/vers/page1" },
-  { title: "Autre lien", href: "/chemin/vers/page2" }
-];
-```
-Si la propriété `links` n'est pas fournie, le composant utilisera l'ensemble de liens par défaut (Contact, Accessibilité, etc.).
-
-#### **Affichage amélioré des badges dans l'en-tête**
-Le badge du type de compte utilisateur dans le composant `<ge-header>` affiche désormais correctement le type de compte. La logique a été mise à jour, passant d'une simple troncature de chaîne de caractères à une fonction dédiée (`getBadgeType`), garantissant que les libellés des badges s'affichent comme prévu.
+Cette version introduit de nouvelles fonctionnalités importantes, des corrections de bogues essentielles, et une refonte majeure de nos processus internes pour améliorer la sécurité et la stabilité. Les points forts incluent des liens de pied de page configurables, une meilleure gestion des thèmes et des couleurs, ainsi qu'une refonte complète du pipeline CI/CD.
 
 ---
 
-### **Corrections de bogues**
+### ✨ **Nouvelles fonctionnalités et améliorations**
 
-#### **Correction des variables CSS pour les ombres**
-Correction d'un problème avec les variables CSS pour les ombres et les effets de scrim dans les différents thèmes de couleur. Le système utilise maintenant des variables plus spécifiques pour les modes clair (`--md-ref-shadow-light-opacity-*`) et sombre (`--md-ref-shadow-dark-opacity-*`), assurant un rendu correct des ombres à travers l'application.
+*   **Liens de pied de page configurables :** Le web component `<ge-footer>` accepte désormais une propriété `links`. Cela permet de configurer dynamiquement les liens du pied de page en passant un tableau JSON, offrant une plus grande flexibilité. Si la propriété `links` n'est pas fournie, le composant affichera l'ensemble des liens par défaut (Contact, Accessibilité, etc.).
+*   **Propriété `maxWidth` pour l'en-tête et le pied de page :** Les composants `<ge-footer>` et `<ge-header-public>` incluent maintenant une propriété `maxWidth`. Cela permet aux développeurs de contrôler la largeur maximale de ces composants, facilitant leur intégration dans des applications avec différentes exigences de mise en page (par exemple, contenu pleine largeur ou contenu centré avec des marges).
+*   **Gestion améliorée des couleurs et des thèmes :**
+    *   La gestion de la couleur du pied de page a été améliorée pour respecter les préférences système (mode sombre/clair) ou un attribut `theme` spécifiquement transmis.
+    *   Les jetons de couleur et les variables CSS pour les thèmes sombre et clair ont été mis à jour et corrigés pour garantir une représentation visuelle cohérente et précise dans toute l'application.
+*   **Amélioration des badges dans l'en-tête :** Le badge indiquant le type de compte utilisateur dans le composant `<ge-header>` affiche désormais correctement le type de compte, améliorant la clarté pour les utilisateurs.
 
-#### **Mises à jour de la documentation pour le CSS**
-Les fichiers README des composants `<ge-footer>`, `<ge-header-public>` et `<ge-header>` ont été mis à jour pour fournir des instructions plus claires sur la manière d'inclure les fichiers CSS nécessaires. La documentation distingue maintenant correctement les configurations qui gèrent le mode clair/sombre de celles qui ne le font pas, et inclut la feuille de style essentielle `primitives.css`.
+---r
 
+### 🐞 **Corrections de bogues**
+
+*   **Email du committer CI :** Un problème où les commits effectués par le pipeline CI/CD utilisaient une adresse email de committer incorrecte a été résolu.
+*   **Variables CSS pour les ombres :** Un problème avec les variables CSS pour les ombres et les effets de scrim a été corrigé. Le système utilise maintenant des variables plus spécifiques pour les modes clair et sombre, garantissant que les ombres s'affichent correctement dans tous les thèmes.
+*   **Références CSS corrigées :** La documentation a été mise à jour pour fournir des instructions plus claires sur la manière d'inclure les fichiers CSS nécessaires, y compris la feuille de style essentielle `primitives.css`.
+
+---
+
+### 🛠️ **Documentation**
+
+*   **Mise à jour des README :** Les fichiers README des composants `<ge-footer>`, `<ge-header-public>` et `<ge-header>` ont été mis à jour avec des instructions plus claires pour l'intégration CSS et une meilleure documentation pour les nouvelles propriétés comme `maxWidth` et `links`.
+
+---
+
+### ⚙️ **Améliorations internes**
+
+*   **Refonte majeure du pipeline CI/CD :** Le pipeline d'intégration et de déploiement continus a été entièrement remanié pour améliorer l'automatisation, la fiabilité et la sécurité.
+    *   **Intégration de l'analyse de sécurité :** Le pipeline inclut désormais des outils d'analyse de sécurité tels que Sonarqube, Nexus IQ et KICS pour identifier proactivement les vulnérabilités.
+    *   **Flux de travail robuste :** Le nouveau flux de travail gère plus efficacement les builds pour les "merge requests", les snapshots de développement et les releases sur la branche principale.
+    *   **Gestion des versions fiabilisée :** Le processus de gestion des versions et de publication est maintenant plus automatisé et prévisible, avec des protections contre les conditions de concurrence (*race conditions*).
 ---
 
 ### **Améliorations CI/CD et Sécurité (pour les développeurs)**
