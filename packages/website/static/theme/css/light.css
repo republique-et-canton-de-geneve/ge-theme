@@ -1,6 +1,5 @@
 .light {
   --md-sys-color-secondary-container: var(--md-ref-palette-secondary-90);
-  --md-sys-color-tertiary-tertiary: var(--md-ref-palette-tertiary-40);
   --md-sys-color-tertiary-container: var(--md-ref-palette-tertiary-90);
   --md-sys-color-error-container: var(--md-ref-palette-error-90);
   --md-sys-color-warning-container: var(--md-ref-palette-warning-90);
@@ -35,10 +34,10 @@
   --md-sys-color-on-background: var(--md-ref-palette-neutral-10);
   --md-sys-color-outline: var(--md-ref-palette-neutral-variant-70);
   --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-80);
-  --md-sys-color-outline-error: var(--md-ref-palette-error-10);
-  --md-sys-color-outline-warning: var(--md-ref-palette-warning-10);
+  --md-sys-color-outline-error: var(--md-ref-palette-error-40);
+  --md-sys-color-outline-warning: var(--md-ref-palette-warning-40);
   --md-sys-color-primary: var(--md-ref-palette-primary-40);
-  --md-sys-color-outline-success: var(--md-ref-palette-success-10);
+  --md-sys-color-outline-success: var(--md-ref-palette-success-40);
   --md-sys-color-secondary: var(--md-ref-palette-secondary-40);
   --md-sys-color-tertiary: var(--md-ref-palette-tertiary-40);
   --md-sys-color-error: var(--md-ref-palette-error-40);
