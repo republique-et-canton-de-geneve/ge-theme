@@ -1,3 +1,4 @@
+import { classMap } from "lit/directives/class-map.js";
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "@material/web/button/filled-button.js";
@@ -20,9 +21,9 @@ class GeHeader extends LitElement {
   isMenBurgerOpen = false;
   @property({ type: Boolean })
   userInfoLoaded = false;
-  
-  @property({type: String})
-  maxWidth = css`unset`;
+
+  @property({ type: String }) maxWidth = "true";
+
 
 
   static styles = css`
@@ -84,6 +85,10 @@ class GeHeader extends LitElement {
       transition: all 0.2s;
     }
 
+    .maxwidth-formulaire { max-width: 1107px; }
+    
+    .maxwidth-full { max-width: 100%; }
+    
     .user-menu {
       position: absolute;
       top: calc(100% + 8px);  
@@ -321,9 +326,18 @@ class GeHeader extends LitElement {
   };
 
   render() {
+
+    
+    const maxWidthClasses = {
+      "header": true,
+      "maxwidth-full": this.maxWidth === "true",
+      "maxwidth-formulaire": this.maxWidth === "1107px" || this.maxWidth === "false"
+    };
+
+
     return html`
       <header fix-top">
-        <div class="header" style="max-width: ${this.maxWidth}">
+        <div class=${classMap(maxWidthClasses)} >
           <a href="https://www.ge.ch/" class="logo-section" target="gech">
             <img
               src="https://static.app.ge.ch/theme/icons/common/header/header-armoiries-light.svg"
