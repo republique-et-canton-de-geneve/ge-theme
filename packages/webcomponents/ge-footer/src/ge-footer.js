@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
 @customElement("ge-footer")
 class GeFooter extends LitElement {
@@ -42,10 +43,12 @@ class GeFooter extends LitElement {
       #ge-footer > nav > span { display: none; }
       #ge-footer-armoiries { margin-top: 10px; }
     }
+    .maxwidth-formulaire { max-width: 1107px; }
+    .maxwidth-full { max-width: 100%; }
   `;
 
   @property({ type: String }) theme = "light";
-  @property({ type: String }) maxWidth = "unset";
+  @property({ type: String }) maxWidth = "true";
 
   // Props fallback
   @property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";
@@ -98,11 +101,15 @@ class GeFooter extends LitElement {
   }
 
   render() {
+    const maxWidthClasses = {
+      "maxwidth-full": this.maxWidth === "true",
+      "maxwidth-formulaire": this.maxWidth === "1107px" || this.maxWidth === "false"
+    };
     const links = (this.links && this.links.length) ? this.links : this.defaultLinks;
 
     return html`
       <footer>
-        <div id="ge-footer" style="max-width:${this.maxWidth}">
+        <div id="ge-footer" class=${classMap(maxWidthClasses)}>
           <nav>
             ${links.map((l, i) => html`
               ${i > 0 ? html`<span aria-hidden="true"> | </span>` : null}
