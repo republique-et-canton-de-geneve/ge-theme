@@ -1,12 +1,14 @@
 import {css, html, LitElement} from "lit";
 import {customElement, property} from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
 
 export @customElement("ge-header-public")
 class GeHeaderPublic extends LitElement {
+  
+  
+    @property({ type: String }) maxWidth = "true";
 
-    @property({type: String})
-    maxWidth = css`unset`;
 
 
     static styles = css`
@@ -64,12 +66,22 @@ class GeHeaderPublic extends LitElement {
             text-decoration: underline;
             padding: 8px;
         }
+        
+                  .maxwidth-formulaire { max-width: 1107px; }
+    .maxwidth-full { max-width: 100%; }
     `;
 
     render() {
+    
+        const maxWidthClasses = {
+            "header": true,
+            "maxwidth-full": this.maxWidth === "true",
+            "maxwidth-formulaire": this.maxWidth === "1107px" || this.maxWidth === "false"
+          };
+
         return html`
             <header role="banner">
-                <div class="header" style="max-width: ${this.maxWidth}">
+                <div class=${classMap(maxWidthClasses)}>
                     <a
                             href="https://www.ge.ch/" class="logo-section" target="gech">
                         <img
