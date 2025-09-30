@@ -47,7 +47,6 @@ class GeFooter extends LitElement {
     .maxwidth-full { max-width: 100%; }
   `;
 
-  @property({ type: String }) theme = "light";
   @property({ type: String }) maxWidth = "true";
 
   // Props fallback
@@ -71,25 +70,24 @@ class GeFooter extends LitElement {
     }
   })
   links;
+  
+  
+ @property({ type: String, attribute: true }) theme = 'light';
+
 
   constructor() {
     super();
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-      this.theme = e.matches ? "dark" : "light";
-      this.requestUpdate();
-    });
+    this.setThemeBasedOnSystemPreference()
   }
-
-  // Modifiez la propriété pour qu'elle réagisse aux attributs
-  @property({ type: String, attribute: true }) theme = "light";
-
-  setThemeBasedOnSystemPreference() {
+  
+    setThemeBasedOnSystemPreference() {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       this.theme = "dark";
     } else {
       this.theme = "light";
     }
   }
+
 
   get defaultLinks() {
     return [
