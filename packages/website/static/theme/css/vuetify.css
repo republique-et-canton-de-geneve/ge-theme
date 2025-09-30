@@ -3,6 +3,25 @@
     --v-list-item-subtitle-opacity: 1;
 }
 
+
+/* ROUNDED */
+
+.rounded-sm  {
+    border-radius: var(--md-sys-shape-corner-small)!important;
+}
+
+.rounded {
+    border-radius:var(--md-sys-shape-corner-medium)!important;
+}
+.rounded-lg  {
+    border-radius: var(--md-sys-shape-corner-large)!important;
+}
+.rounded-xl  {
+    border-radius: var(--md-sys-shape-corner-extra-large)!important;
+}
+
+
+
 /* APP BAR */
 
 
@@ -45,6 +64,10 @@
 .surface-lowest {
     background-color: var(--md-sys-color-surface-container-lowest) !important;
     color: var(--md-sys-color-on-surface) !important;
+}
+
+.v-sheet--rounded {
+    border-radius:var(--md-sys-shape-corner-medium)!important;
 }
 
 /* Alert */
@@ -329,6 +352,13 @@
 
 
 }
+
+/* CARD */
+
+.v-card--rounded {
+    border-radius:var(--md-sys-shape-corner-medium)!important;
+}
+
 
 
 /* SELECT */
