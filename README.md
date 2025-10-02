@@ -58,7 +58,7 @@ REC https://static.rec.etat-ge.ch
 ```html
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header/latest/ge-header.js"></script>
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge- footer.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge-footer.js"></script>
 ```
 ## Intégration sur une page html
 Pour les applications avec contenus pleine largeur (ex: Mon esapce e-démarches)
@@ -68,8 +68,8 @@ Pour les applications avec contenus pleine largeur (ex: Mon esapce e-démarches)
 ```
 Pour les applications avec marges sur le contenus (ex: Formulaires e-démarches, ... )
 ```html
-    <ge-header-public maxWidth="80%" />
-    <ge-footer maxWidth="80%" />
+    <ge-header-public maxWidth="false" />
+    <ge-footer maxWidth="false" />
 ```
 
 
@@ -100,7 +100,7 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 - Props disponibles :
     - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
     - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)
 - Événements personnalisés :
     - `ge-toggle-app-menu`
     - `ge-manage-account`
@@ -108,18 +108,18 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
 
 #### `<ge-header-public>`
 - Props disponibles :
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)
 
 #### `<ge-footer>`
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
 - Props disponibles :
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)
     - `links='[`
               `{"title":"Support","href":"https://example.com/support"},`
               `{"title":"Mentions légales","href":"https://example.com/legal"}`
             `]'`
 - Valeurs par défaut
-    - `maxWidth = "100%"`
+    - `maxWidth = "true"`
     - `links =[`
               `{ title: "Contact", href: this.contactLink },`
               `{ title: "Accessibilité", href: this.accessibilityLink },`

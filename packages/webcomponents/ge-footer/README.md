@@ -89,13 +89,13 @@ Le composant `<ge-footer>` est un **Web Component** développé avec [Lit](https
 ## Propriétés <ge-header>
 - Affiche automatiquement les liens d'aide, accessibilité, confidentialité et CGU ainsi que le logo de l'État de Genève.
 - Props disponibles :
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)
     - `links='[`
               `{"title":"Support","href":"https://example.com/support"},`
               `{"title":"Mentions légales","href":"https://example.com/legal"}`
             `]'`
 - Valeurs par défaut
-    - `maxWidth = "100%"`
+    - `maxWidth = "true"
     - `links =[`
               `{ title: "Contact", href: this.contactLink },`
               `{ title: "Accessibilité", href: this.accessibilityLink },`
