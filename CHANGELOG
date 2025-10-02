@@ -1,4 +1,18 @@
-### Release 0.3.3
+## Release 0.3.4
+
+Cette version se concentre sur l'amélioration de la flexibilité des composants, la correction d'incohérences visuelles dans les thèmes et le renforcement de la sécurité et de l'infrastructure sous-jacente.
+✨ Nouvelles fonctionnalités et améliorations
+Liens de pied de page configurables : Le composant <ge-footer> accepte désormais une propriété links qui permet de surcharger les liens par défaut en fournissant un tableau d'objets JSON. Si aucune liste n'est fournie, les liens institutionnels par défaut sont affichés.
+Amélioration du badge utilisateur : La logique d'affichage du badge de type de compte (ex: PRO, ADM) dans le composant <ge-header> a été corrigée pour garantir que l'information affichée est toujours correcte et lisible.
+🐛 Corrections de bogues
+Correction des thèmes couleurs (Light/Dark) : D'importantes corrections ont été apportées aux variables CSS pour les thèmes clair et sombre. Cela résout des incohérences dans l'affichage des couleurs de fond, des ombres et d'autres éléments d'interface, garantissant une expérience visuelle cohérente.
+Mise à jour de la documentation : Les fichiers README ont été mis à jour pour clarifier l'intégration des feuilles de style CSS, en particulier l'importance du fichier primitives.css.
+🔒 Sécurité et Infrastructure
+Amélioration du pipeline CI/CD : Le processus d'intégration continue a été fiabilisé, notamment en améliorant la manière dont l'identité du committer est gérée lors des opérations automatiques.
+Ajout des en-têtes Content-Security-Policy (CSP) : Pour renforcer la sécurité et se prémunir contre les attaques de type XSS, des en-têtes CSP ont été ajoutés sur le serveur Nginx servant les ressources.
+Activation du CORS : L'en-tête Access-Control-Allow-Origin: * a été configuré pour tous les assets, facilitant ainsi leur intégration et leur utilisation sur différents domaines et applications.
+
+## Release 0.3.3
 
 Cette version introduit de nouvelles fonctionnalités importantes, des corrections de bogues essentielles, et une refonte majeure de nos processus internes pour améliorer la sécurité et la stabilité. Les points forts incluent des liens de pied de page configurables, une meilleure gestion des thèmes et des couleurs, ainsi qu'une refonte complète du pipeline CI/CD.
 
@@ -13,7 +27,7 @@ Cette version introduit de nouvelles fonctionnalités importantes, des correctio
     *   Les jetons de couleur et les variables CSS pour les thèmes sombre et clair ont été mis à jour et corrigés pour garantir une représentation visuelle cohérente et précise dans toute l'application.
 *   **Amélioration des badges dans l'en-tête :** Le badge indiquant le type de compte utilisateur dans le composant `<ge-header>` affiche désormais correctement le type de compte, améliorant la clarté pour les utilisateurs.
 
----r
+---
 
 ### 🐞 **Corrections de bogues**
 
