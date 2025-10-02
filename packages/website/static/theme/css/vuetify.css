@@ -126,7 +126,8 @@
 }
 
 .v-btn--icon {
-    height: 48px !important;
+    width: 40px !important;
+    height: 40px !important;
 }
 
 
@@ -141,7 +142,10 @@
 
 /* Chip */
 
-.v-chip {
+.v-chip.rounded-sm,
+.v-chip.rounded-md, 
+.v-chip.rounded-lg,
+.v-chip.rounded-xl {
     border-radius: var(--v-shape-corner-small) !important;
 }
 
@@ -258,7 +262,7 @@
 .text-body-1 {
     font-size: var(--md-sys-typescale-body-large-size) !important;
     line-height: var(--md-sys-typescale-body-large-line-height) !important;
-    font-weight: var(--md-sys-typescale-body-large-weight);
+    font-weight: var(--md-sys-typescale-body-large-weight) !important;
     letter-spacing: var(--md-sys-typescale-body-large-tracking) !important;
 }
 
