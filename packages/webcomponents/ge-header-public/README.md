@@ -88,4 +88,4 @@ Le composant `<ge-header-public>` est un **Web Component** développé avec [Lit
 ## Propriétés <ge-header-public>
 
 - Props disponibles :
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)

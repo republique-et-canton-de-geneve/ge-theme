@@ -76,8 +76,8 @@ Le composant `<ge-header>` est un **Web Component** développé avec [Lit](https
 - Props disponibles :
     - `userInfo`: objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
     - `isMenuOpen`: booléen pour afficher/masquer le menu utilisateur
-    - `maxWidth`: pourcentage ("80%" pour les contenus avec marges)
-- Événements personnalisés :
+    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)    
+    - Événements personnalisés :
     - `ge-toggle-app-menu`
     - `ge-manage-account`
     - `ge-logout`
