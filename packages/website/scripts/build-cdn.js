@@ -1,240 +1,211 @@
 /* eslint-disable no-console */
 import fs from 'fs/promises';
 import path from 'path';
-import {fileURLToPath} from 'url';
-import {execSync} from 'child_process';
-import semver from 'semver';
+import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..'); // packages/website
 const OUT_DIR = path.resolve(ROOT, '../../build');
-const CDN_BASE = 'https://static.app.ge.ch/';
-const NODE_MODULES = path.resolve(ROOT, '../../node_modules/@ael');
+const CDN_BASE = 'https://static.app.ge.ch';
 const SITE_ENTRY = './static/index.html';
 const monorepoRoot = path.resolve(ROOT, '../..');
+const WEB_COMPONENTS_SRC = path.resolve(monorepoRoot, 'packages/webcomponents');
 
-const REBUILD_HISTORICAL = process.env.REBUILD_HISTORICAL === 'true';
+// Known component names (you can also read from node_modules/@ael)
+const COMPONENT_NAMES = [
+    'ge-autres-demarches',
+    'ge-footer',
+    'ge-footer-armoiries',
+    'ge-header',
+    'ge-header-armoiries',
+    'ge-header-public',
+    'ge-menu',
+    'select-mes-espaces'
+];
 
-console.log("ROOT =", ROOT);
-console.log("process.env.REBUILD_HISTORICAL =", process.env.REBUILD_HISTORICAL);
-console.log("REBUILD_HISTORICAL =", REBUILD_HISTORICAL);
+const rootPkg = JSON.parse(await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8'));
+const currentVersion = rootPkg.version.replace(/-SNAPSHOT\.\d+$/, ''); // normalize
 
-// ---------------------------------------------------------------------------
-// 1. copy static + icons  ----------------------------------------------------
-execSync('yarn copy:static && yarn copy:icons', { stdio: 'inherit' });
+console.log(`🎯 Current version: ${currentVersion}`);
 
-// ---------------------------------------------------------------------------
-// 2. Build current version webcomponents ------------------------------------
-const rootPkgVersion = JSON.parse(
-    await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8')
-).version;
+// ------------------------------------------------------------------
+// 1. Ensure OUT_DIR exists
+await fs.mkdir(OUT_DIR, { recursive: true });
 
-console.log(`\nBuilding current version: ${rootPkgVersion}`);
-
-const importMap = { imports: {} };
-const componentPkgs = (await fs.readdir(NODE_MODULES))
-    .filter(name => name.startsWith('ge-'));
-
-for (const name of componentPkgs) {
-    const pkgRoot = path.join(NODE_MODULES, name);
-    const { version, module: modField = 'dist/index.js', main } = JSON.parse(
-        await fs.readFile(path.join(pkgRoot, 'package.json'), 'utf8')
-    );
-    const entry = (modField || main || 'dist/index.js').replace(/^dist[\\/]/, '');
-
-    const srcDist = path.join(pkgRoot, 'dist');
-    const destVer = path.join(OUT_DIR, 'webcomponents', name, version);
-
-    // Copy to versioned folder (overwrite if exists)
-    await fs.rm(destVer, { recursive: true, force: true });
-    await fs.cp(srcDist, destVer, { recursive: true });
-
-    console.log(`  • ${name}@${version}`);
-
-    // Build import-map entry for current version
-    importMap.imports[`@ael/${name}`] = new URL(`webcomponents/${name}/${version}/${entry}`, CDN_BASE).href;
+// ------------------------------------------------------------------
+// 2. Fetch existing versions.json from CDN
+const versionsJsonUrl = `${CDN_BASE}/webcomponents/versions.json`;
+let existingVersions = [];
+try {
+    const res = await fetch(versionsJsonUrl);
+    if (res.ok) {
+        existingVersions = await res.json();
+        console.log(`📥 Fetched existing versions: ${existingVersions.join(', ')}`);
+    } else {
+        console.log('ℹ️ No existing versions.json found on CDN — starting fresh');
+    }
+} catch (e) {
+    console.warn('⚠️ Could not fetch versions.json, using only current version:', e.message);
 }
 
-// ---------------------------------------------------------------------------
-// 3. Build historical tagged versions (if requested) ------------------------
-if (REBUILD_HISTORICAL) {
-    console.log('\n🔄 Rebuilding historical versions from git tags...');
+// ------------------------------------------------------------------
+// 3. Download existing component files for each version
+for (const version of existingVersions) {
+    if (version === currentVersion) continue; // skip current (will rebuild)
 
-    const tagsOutput = execSync('git tag -l "v*"', {
-        cwd: monorepoRoot,
-        encoding: 'utf8'
-    }).trim();
+    for (const name of COMPONENT_NAMES) {
+        const remoteJsUrl = `${CDN_BASE}/webcomponents/${name}/${version}/${name}.js`;
+        const remoteDtsUrl = `${CDN_BASE}/webcomponents/${name}/${version}/types/${name}.d.ts`;
 
-    if (!tagsOutput) {
-        console.log('No release tags found.');
-    } else {
-        const tags = tagsOutput.split('\n').filter(Boolean);
-        const tagVersions = tags.map(t => t.replace(/^v/, '')).sort((a, b) => {
-            const [aMaj, aMin, aPat] = a.split('.').map(Number);
-            const [bMaj, bMin, bPat] = b.split('.').map(Number);
-            return (aMaj - bMaj) || (aMin - bMin) || (aPat - bPat);
-        });
+        const localVersionDir = path.join(OUT_DIR, 'webcomponents', name, version);
+        await fs.mkdir(localVersionDir, { recursive: true });
 
-        console.log(`Found ${tagVersions.length} tagged versions`);
-
-        const currentBranch = execSync('git rev-parse --abbrev-ref HEAD', {
-            cwd: monorepoRoot,
-            encoding: 'utf8'
-        }).trim();
-
-        for (const tagVersion of tagVersions) {
-            const sampleComponent = componentPkgs[0];
-            const checkPath = path.join(OUT_DIR, 'webcomponents', sampleComponent, tagVersion);
-
-            if (tagVersion !== rootPkgVersion) {
-                try {
-                    await fs.access(checkPath);
-                    console.log(`  ⏭  ${tagVersion} already exists, skipping`);
-                    continue;
-                } catch {
-                    // Doesn't exist, need to build
-                }
+        // Download .js
+        try {
+            const jsRes = await fetch(remoteJsUrl);
+            if (jsRes.ok) {
+                const jsContent = await jsRes.text();
+                await fs.writeFile(path.join(localVersionDir, `${name}.js`), jsContent);
+                console.log(`  → ${name}@${version}.js`);
             }
-
-            console.log(`  📦 Building ${tagVersion}...`);
-
-            try {
-                execSync(`git checkout -q v${tagVersion}`, {
-                    cwd: monorepoRoot,
-                    stdio: 'pipe'
-                });
-
-                execSync('yarn install --frozen-lockfile', {
-                    cwd: monorepoRoot,
-                    stdio: 'pipe'
-                });
-
-                execSync('turbo run build --filter="./packages/webcomponents/*"', {
-                    cwd: monorepoRoot,
-                    stdio: 'pipe'
-                });
-
-                for (const name of componentPkgs) {
-                    const pkgRoot = path.join(monorepoRoot, 'node_modules/@ael', name);
-                    const srcDist = path.join(pkgRoot, 'dist');
-                    const destVer = path.join(OUT_DIR, 'webcomponents', name, tagVersion);
-
-                    await fs.rm(destVer, { recursive: true, force: true });
-                    await fs.cp(srcDist, destVer, { recursive: true });
-                }
-
-                console.log(`    ✓ ${tagVersion} built`);
-
-            } catch (error) {
-                console.error(`    ✗ Failed to build ${tagVersion}:`, error.message);
-            }
+        } catch (e) {
+            console.warn(`    ⚠️ Failed to fetch ${remoteJsUrl}`);
         }
 
-        console.log(`\n🔙 Restoring ${currentBranch}...`);
-        execSync(`git checkout -q ${currentBranch}`, { cwd: monorepoRoot });
-        execSync('yarn install --frozen-lockfile', { cwd: monorepoRoot, stdio: 'inherit' });
+        // Download .d.ts (optional)
+        try {
+            const dtsRes = await fetch(remoteDtsUrl);
+            if (dtsRes.ok) {
+                const dtsContent = await dtsRes.text();
+                const typesDir = path.join(localVersionDir, 'types');
+                await fs.mkdir(typesDir, { recursive: true });
+                await fs.writeFile(path.join(typesDir, `${name}.d.ts`), dtsContent);
+                console.log(`  → ${name}@${version}/types/${name}.d.ts`);
+            }
+        } catch (e) {
+            // optional, so ignore
+        }
     }
 }
 
-// ---------------------------------------------------------------------------
-// 4. Create semver-based symlinks (latest, X.latest, X.Y.latest) -----------
+// ------------------------------------------------------------------
+// 4. Build current version from local source
+console.log(`\n📦 Building current version: ${currentVersion}`);
+
+// Copy static + icons
+execSync('yarn copy:static && yarn copy:icons', { stdio: 'inherit', cwd: ROOT });
+
+// Build all webcomponents via turbo (ensure they're built)
+execSync('turbo run build --filter="./packages/webcomponents/*"', {
+    cwd: monorepoRoot,
+    stdio: 'inherit'
+});
+
+// Copy current version to OUT_DIR
+const importMap = { imports: {} };
+for (const name of COMPONENT_NAMES) {
+    const pkgRoot = path.join(WEB_COMPONENTS_SRC, name);
+    const pkgJson = JSON.parse(await fs.readFile(path.join(pkgRoot, 'package.json'), 'utf8'));
+    const entry = pkgJson.module || 'dist/index.js';
+    const entryFile = path.basename(entry); // e.g., ge-footer.js
+
+    const srcDist = path.join(pkgRoot, 'dist');
+    const destVer = path.join(OUT_DIR, 'webcomponents', name, currentVersion);
+
+    await fs.rm(destVer, { recursive: true, force: true });
+    await fs.cp(srcDist, destVer, { recursive: true });
+
+    // Build import map
+    importMap.imports[`@ael/${name}`] = `${CDN_BASE}/webcomponents/${name}/${currentVersion}/${entryFile}`;
+}
+
+// ------------------------------------------------------------------
+// 5. Update versions list
+const allVersions = [...new Set([...existingVersions, currentVersion])]
+    .filter(v => semver.valid(v)) // safety
+    .sort(semver.compare);
+
+const versionsPath = path.join(OUT_DIR, 'webcomponents', 'versions.json');
+await fs.mkdir(path.dirname(versionsPath), { recursive: true });
+await fs.writeFile(versionsPath, JSON.stringify(allVersions, null, 2), 'utf8');
+console.log(`✅ Wrote versions.json with: ${allVersions.join(', ')}`);
+
+// ------------------------------------------------------------------
+// 6. Create symlinks (latest, X.latest, etc.)
 console.log('\n🔗 Creating semver symlinks...');
+import semver from 'semver';
 
-for (const name of componentPkgs) {
+for (const name of COMPONENT_NAMES) {
     const componentDir = path.join(OUT_DIR, 'webcomponents', name);
-
     try {
         const entries = await fs.readdir(componentDir);
-
-        // Filter to only version folders (not symlinks)
         const versions = [];
-        for (const entry of entries) {
-            const stat = await fs.lstat(path.join(componentDir, entry));
-            if (stat.isDirectory() && semver.valid(entry)) {
-                versions.push(entry);
+        for (const v of entries) {
+            if (!semver.valid(v)) continue;
+            const stat = await fs.stat(path.join(componentDir, v));
+            if (stat.isDirectory()) {
+                versions.push(v);
             }
         }
 
         if (versions.length === 0) continue;
-
-        // Sort versions
         versions.sort(semver.compare);
-
-        // Group by major.minor
-        const versionsByMajorMinor = {};
-        const versionsByMajor = {};
-
-        for (const version of versions) {
-            const major = semver.major(version);
-            const minor = semver.minor(version);
-            const key = `${major}.${minor}`;
-
-            // Track latest for each major.minor
-            if (!versionsByMajorMinor[key] || semver.gt(version, versionsByMajorMinor[key])) {
-                versionsByMajorMinor[key] = version;
-            }
-
-            // Track latest for each major
-            if (!versionsByMajor[major] || semver.gt(version, versionsByMajor[major])) {
-                versionsByMajor[major] = version;
-            }
-        }
-
-        // Create 'latest' symlink (absolute latest)
         const absoluteLatest = versions[versions.length - 1];
+
+        // latest
         const latestLink = path.join(componentDir, 'latest');
-        await fs.rm(latestLink, { recursive: true, force: true });
+        await fs.rm(latestLink, { force: true });
         await fs.symlink(absoluteLatest, latestLink, 'junction');
-        console.log(`  ${name}/latest -> ${absoluteLatest}`);
 
-        // Create X.Y.latest symlinks
-        for (const [key, latestVersion] of Object.entries(versionsByMajorMinor)) {
-            const link = path.join(componentDir, `${key}.latest`);
-            await fs.rm(link, { recursive: true, force: true });
-            await fs.symlink(latestVersion, link, 'junction');
-            console.log(`  ${name}/${key}.latest -> ${latestVersion}`);
+        // Group by major.minor and major
+        const byMajorMinor = {};
+        const byMajor = {};
+        for (const v of versions) {
+            const major = semver.major(v);
+            const minor = semver.minor(v);
+            const mm = `${major}.${minor}`;
+            if (!byMajorMinor[mm] || semver.gt(v, byMajorMinor[mm])) byMajorMinor[mm] = v;
+            if (!byMajor[major] || semver.gt(v, byMajor[major])) byMajor[major] = v;
         }
 
-        // Create X.latest symlinks
-        for (const [major, latestVersion] of Object.entries(versionsByMajor)) {
-            const link = path.join(componentDir, `${major}.latest`);
-            await fs.rm(link, { recursive: true, force: true });
-            await fs.symlink(latestVersion, link, 'junction');
-            console.log(`  ${name}/${major}.latest -> ${latestVersion}`);
+        // X.Y.latest
+        for (const [mm, v] of Object.entries(byMajorMinor)) {
+            const link = path.join(componentDir, `${mm}.latest`);
+            await fs.rm(link, { force: true });
+            await fs.symlink(v, link, 'junction');
+        }
+        // X.latest
+        for (const [m, v] of Object.entries(byMajor)) {
+            const link = path.join(componentDir, `${m}.latest`);
+            await fs.rm(link, { force: true });
+            await fs.symlink(v, link, 'junction');
         }
 
-    } catch (error) {
-        console.error(`  ✗ Failed to create symlinks for ${name}:`, error.message);
+        console.log(` ${name}/latest -> ${absoluteLatest}`);
+    } catch (e) {
+        console.error(`  ✗ Symlinks failed for ${name}:`, e.message);
     }
 }
 
-// ---------------------------------------------------------------------------
-// 5. build the site with Parcel ---------------------------------------------
+// ------------------------------------------------------------------
+// 7. Build site
 execSync(
     `parcel build ${SITE_ENTRY} --dist-dir ${OUT_DIR} --public-url / --no-content-hash`,
     { stdio: 'inherit', cwd: ROOT }
 );
 
-// ---------------------------------------------------------------------------
-// 6. write the import-map ----------------------------------------------------
-const mapPath = path.join(OUT_DIR, 'import-map.json');
-await fs.writeFile(mapPath, JSON.stringify(importMap, null, 2));
-console.log(`✓ import-map written → import-map.json`);
+// ------------------------------------------------------------------
+// 8. Write import-map
+await fs.writeFile(path.join(OUT_DIR, 'import-map.json'), JSON.stringify(importMap, null, 2));
 
-// ---------------------------------------------------------------------------
-// 7. Inject build-version meta tag ------------------------------------------
-const buildVersion = process.env.BUILD_VERSION || rootPkgVersion;
-
-const indexPath = path.join(OUT_DIR, 'index.html');
-let html = await fs.readFile(indexPath, 'utf8');
-
+// ------------------------------------------------------------------
+// 9. Inject build-version meta tag
+const buildVersion = process.env.BUILD_VERSION || currentVersion;
+let html = await fs.readFile(path.join(OUT_DIR, 'index.html'), 'utf8');
 if (!html.includes('name="build-version"')) {
-    html = html.replace(
-        /<head[^>]*>/i,
-        (m) => `${m}\n  <meta name="build-version" content="${buildVersion}">`
-    );
-    await fs.writeFile(indexPath, html);
-    console.log(`✓ injected build-version ${buildVersion}`);
+    html = html.replace(/<head[^>]*>/i, `$&\n  <meta name="build-version" content="${buildVersion}">`);
+    await fs.writeFile(path.join(OUT_DIR, 'index.html'), html);
 }
 
-console.log('\n🎉 CDN build complete.\n');
+console.log(`\n🎉 CDN build complete. Current version: ${currentVersion}\n`);
