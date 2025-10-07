@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-autres-demarches",
-  "version": "0.1.0",
+  "version": "0.3.6",
   "private": false,
   "description": "Web‑component that render ge-autres-demarches component.",
   "license": "Apache-2.0",
@@ -16,7 +16,8 @@
       }
     }
   },
-  "exports": {    ".": {
+  "exports": {
+    ".": {
       "import": "./dist/ge-autres-demarches.js",
       "types": "./dist/types/ge-autres-demarches.d.ts"
     }

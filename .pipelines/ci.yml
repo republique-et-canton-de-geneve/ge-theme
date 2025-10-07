@@ -31,28 +31,46 @@ default:
 ###############################################################################
 workflow:
   rules:
-    # 0) Hard skip for CI-internal commits (no [skip ci] anywhere)
+    # Skip internal housekeeping commits (prevents re-trigger when we push our own version bump)
     - if: '$CI_COMMIT_MESSAGE =~ /ci:internal/'
       when: never
 
-    # This ensures the commit has a "success" status before the MR is opened.
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != "main" && $CI_COMMIT_BRANCH != "develop"'
+    # feature push + variable toggle
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^(feature|feat)(\/|-).+$/ && $FEATURE_SNAPSHOT == "true"'
+      variables: { PIPELINE_TYPE: "feature" }
 
-    # 1) MRs (feature -> develop or develop -> main): run "build" validation
+    # feature push + commit message opt-in
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^(feature|feat)(\/|-).+$/ && $CI_COMMIT_MESSAGE =~ /ci:snapshot/'
+      variables: { PIPELINE_TYPE: "feature" }
+
+    # manual/web/schedule on a feature branch (explicit toggle)
+    - if: '$CI_PIPELINE_SOURCE =~ /^(web|schedule|trigger)$/ && $CI_COMMIT_BRANCH =~ /^(feature|feat)(\/|-).+$/ && $FEATURE_SNAPSHOT == "true"'
+      variables: { PIPELINE_TYPE: "feature" }
+
+    - if: '$CI_PIPELINE_SOURCE == "push" &&
+           $CI_COMMIT_BRANCH =~ /^(feature|feat)(\/|-).+$/'
+      when: never
+
+    # Release branches → RC pipeline
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^release\/.+$/'
+      variables: { PIPELINE_TYPE: "rc" }
+
+    # Merge Requests
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-    # 2) Pushes to main = release
+    # Push to main → release
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
       variables: { PIPELINE_TYPE: "release" }
 
-    # 3) Pushes to develop = snapshot
+    # Push to develop → snapshot
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "develop"'
       variables: { PIPELINE_TYPE: "snapshot" }
 
-    # 4) Manual / trigger / schedule allowed (defaults to snapshot path)
-    - if: '$CI_PIPELINE_SOURCE =~ /^(web|schedule|trigger)$/'
+    # Manual / schedules / triggers → snapshot path
+    - if: '$CI_PIPELINE_SOURCE =~ /^(web|schedule|trigger)$/ && $CI_COMMIT_BRANCH == "develop"'
       variables: { PIPELINE_TYPE: "snapshot" }
 
+    # Default fallback
     - when: never
 
 ###############################################################################
