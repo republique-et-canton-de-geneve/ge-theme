@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-header-public",
-  "version": "0.1.0",
+  "version": "0.3.6",
   "private": false,
   "description": "Web‑component that renders public Geneva websites header.",
   "license": "Apache-2.0",
@@ -16,7 +16,8 @@
       }
     }
   },
-  "exports": {    ".": {
+  "exports": {
+    ".": {
       "import": "./dist/ge-header-public.js",
       "types": "./dist/types/ge-header-public.d.ts"
     }

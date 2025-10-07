@@ -2,24 +2,24 @@
   "name": "@ael/static",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
+  "version": "0.3.6",
   "description": "Static site with icons + web‑components pre‑packaged",
   "scripts": {
-    "clean": "rimraf dist",
-    "copy:static": "copyfiles -u 1 \"./static/**/*\" dist",
-    "copy:icons": "copyfiles -u 6 \"../../node_modules/@ael/icons/dist/**/*\" dist/theme/icons",
+    "clean": "rimraf ../../build",
+    "copy:static": "copyfiles -u 1 \"./static/**/*\" ../../build",
+    "copy:icons": "copyfiles -u 6 \"../../node_modules/@ael/icons/dist/**/*\" ../../build/theme/icons",
     "build": "yarn clean && node scripts/build-cdn.js",
     "dev": "parcel static/index.html --port 3000"
   },
   "dependencies": {
-    "@ael/ge-autres-demarches": "^0.1.0",
-    "@ael/ge-footer": "^1.0.0",
-    "@ael/ge-footer-armoiries": "^0.1.0",
-    "@ael/ge-header": "^0.1.0",
-    "@ael/ge-header-armoiries": "^0.1.0",
-    "@ael/ge-header-public": "^0.1.0",
-    "@ael/ge-menu": "^0.1.0",
-    "@ael/icons": "^0.1.0"
+    "@ael/ge-autres-demarches": "0.3.6",
+    "@ael/ge-footer": "0.3.6",
+    "@ael/ge-footer-armoiries": "0.3.6",
+    "@ael/ge-header": "0.3.6",
+    "@ael/ge-header-armoiries": "0.3.6",
+    "@ael/ge-header-public": "0.3.6",
+    "@ael/ge-menu": "0.3.6",
+    "@ael/icons": "0.3.6"
   },
   "devDependencies": {
     "copyfiles": "2.4.1",

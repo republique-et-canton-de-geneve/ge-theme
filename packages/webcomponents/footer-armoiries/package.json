@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-footer-armoiries",
-  "version": "0.1.0",
+  "version": "0.3.6",
   "private": false,
   "description": "Web‑component that renders the Geneva state coat‑of‑arms for the site footer.",
   "license": "Apache-2.0",
@@ -16,7 +16,8 @@
       }
     }
   },
-  "exports": {    ".": {
+  "exports": {
+    ".": {
       "import": "./dist/ge-footer-armoiries.js",
       "types": "./dist/types/ge-footer-armoiries.d.ts"
     }
@@ -36,8 +37,8 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@ael/svg-wrapper-utils": "^0.1.0",
-    "@ael/icons": "^0.1.0"
+    "@ael/svg-wrapper-utils": "0.3.6",
+    "@ael/icons": "0.3.6"
   },
   "devDependencies": {
     "parcel": "2.14.4",
