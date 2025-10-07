@@ -2,7 +2,7 @@
   "name": "ge-theme",
   "description": "Thème et composants partagés pour les sites et applications sur ge.ch",
   "author": "État GE",
-  "version": "0.3.7-SNAPSHOT.2",
+  "version": "1.0.0-SNAPSHOT.0",
   "private": true,
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
@@ -47,6 +47,8 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@fontsource/roboto": "5.2.5"
+    "@fontsource/roboto": "5.2.5",
+    "https-proxy-agent": "^7.0.6",
+    "node-fetch": "^3.3.2"
   }
 }

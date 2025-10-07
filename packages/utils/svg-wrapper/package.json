@@ -1,6 +1,6 @@
 {
   "name": "@ael/svg-wrapper-utils",
-  "version": "0.3.6",
+  "version": "1.0.0",
   "private": false,
   "description": "Utility functions for SVG manipulation in web components (JS + TS types)",
   "license": "Apache-2.0",

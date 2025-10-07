@@ -3,11 +3,14 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import semver from 'semver';
+import {HttpsProxyAgent} from "https-proxy-agent";
+import fetch from "node-fetch";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..'); // packages/website
 const OUT_DIR = path.resolve(ROOT, '../../build');
-const CDN_BASE = 'https://static.app.ge.ch';
+const CDN_BASE = 'https://static.dev.etat-ge.ch/';
 const SITE_ENTRY = './static/index.html';
 const monorepoRoot = path.resolve(ROOT, '../..');
 const WEB_COMPONENTS_SRC = path.resolve(monorepoRoot, 'packages/webcomponents');
@@ -35,10 +38,18 @@ await fs.mkdir(OUT_DIR, { recursive: true });
 
 // ------------------------------------------------------------------
 // 2. Fetch existing versions.json from CDN
+const HTTPS_PROXY = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy || "http://localhost:3128";
+
+const proxyAwareFetch = (() => {
+    console.log(`🌐 Using proxy for CDN requests: ${HTTPS_PROXY}`);
+    const agent = new HttpsProxyAgent(HTTPS_PROXY);
+    return (url, options = {}) => fetch(url, { ...options, agent });
+})();
+
 const versionsJsonUrl = `${CDN_BASE}/webcomponents/versions.json`;
 let existingVersions = [];
 try {
-    const res = await fetch(versionsJsonUrl);
+    const res = await proxyAwareFetch(versionsJsonUrl);
     if (res.ok) {
         existingVersions = await res.json();
         console.log(`📥 Fetched existing versions: ${existingVersions.join(', ')}`);
@@ -63,7 +74,7 @@ for (const version of existingVersions) {
 
         // Download .js
         try {
-            const jsRes = await fetch(remoteJsUrl);
+            const jsRes = await proxyAwareFetch(remoteJsUrl);
             if (jsRes.ok) {
                 const jsContent = await jsRes.text();
                 await fs.writeFile(path.join(localVersionDir, `${name}.js`), jsContent);
@@ -75,7 +86,7 @@ for (const version of existingVersions) {
 
         // Download .d.ts (optional)
         try {
-            const dtsRes = await fetch(remoteDtsUrl);
+            const dtsRes = await proxyAwareFetch(remoteDtsUrl);
             if (dtsRes.ok) {
                 const dtsContent = await dtsRes.text();
                 const typesDir = path.join(localVersionDir, 'types');
@@ -134,7 +145,6 @@ console.log(`✅ Wrote versions.json with: ${allVersions.join(', ')}`);
 // ------------------------------------------------------------------
 // 6. Create symlinks (latest, X.latest, etc.)
 console.log('\n🔗 Creating semver symlinks...');
-import semver from 'semver';
 
 for (const name of COMPONENT_NAMES) {
     const componentDir = path.join(OUT_DIR, 'webcomponents', name);
