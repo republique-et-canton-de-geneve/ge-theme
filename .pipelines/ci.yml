@@ -154,7 +154,7 @@ snapshot-build:
     echo "Building version: ${BUILD_VERSION}"
     CI= BUILD_VERSION=$BUILD_VERSION yarn build
   artifacts:
-    paths: [ packages/website/dist, version.txt ]
+    paths: [ build, version.txt ]
     expire_in: 24h
 
 snapshot-push-image:
@@ -258,7 +258,7 @@ release-build:
     git tag "v${BUILD_VERSION}"
     git push "https://${SCM_USER}:${SCM_PASSWORD}@${GITLAB_PATH}/${CI_PROJECT_PATH}.git" HEAD:main --tags
   artifacts:
-    paths: [ packages/website/dist, version.txt ]
+    paths: [ build, version.txt ]
     expire_in: 1w
 
 release-push-image:
