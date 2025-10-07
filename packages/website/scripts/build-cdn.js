@@ -10,7 +10,7 @@ import fetch from "node-fetch";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..'); // packages/website
 const OUT_DIR = path.resolve(ROOT, '../../build');
-const CDN_BASE = 'https://static.dev.etat-ge.ch/';
+const CDN_BASE = 'https://static.app.ge.ch/';
 const SITE_ENTRY = './static/index.html';
 const monorepoRoot = path.resolve(ROOT, '../..');
 const WEB_COMPONENTS_SRC = path.resolve(monorepoRoot, 'packages/webcomponents');
