@@ -40,7 +40,7 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@ael/icons": "^0.1.0",
+    "@ael/icons": "1.0.0",
     "@fontsource/roboto": "5.2.5",
     "@swc/helpers": "^0.5.17",
     "lit": "3.3.0"

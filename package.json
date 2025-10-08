@@ -2,7 +2,7 @@
   "name": "ge-theme",
   "description": "Thème et composants partagés pour les sites et applications sur ge.ch",
   "author": "État GE",
-  "version": "0.3.6",
+  "version": "1.0.0-SNAPSHOT.3",
   "private": true,
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
@@ -17,7 +17,9 @@
     "Firefox ESR"
   ],
   "scripts": {
+    "prebuild": "node scripts/sync-versions.js",
     "build": "turbo run build",
+    "version:sync": "node scripts/sync-versions.js",
     "dev": "turbo run dev --parallel",
     "clean": "turbo run clean",
     "lint": "turbo run lint",
@@ -45,6 +47,8 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@fontsource/roboto": "5.2.5"
+    "@fontsource/roboto": "5.2.5",
+    "https-proxy-agent": "^7.0.6",
+    "node-fetch": "^3.3.2"
   }
 }

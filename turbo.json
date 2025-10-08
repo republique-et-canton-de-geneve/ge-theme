@@ -1,13 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "package.json",
-    "yarn.lock"
-  ],
+  "envMode": "strict",
+  "globalEnv": ["REBUILD_HISTORICAL"],
+  "globalDependencies": ["package.json", "yarn.lock"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "build/**"]
+      "outputs": ["dist/**", "build/**", "../../build/**"]
     },
     "lint": {
       "outputs": []

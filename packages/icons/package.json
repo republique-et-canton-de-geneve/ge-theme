@@ -1,9 +1,11 @@
 {
   "name": "@ael/icons",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     "./*": "./common/*"
   },
