@@ -1,7 +1,7 @@
 /* Material Primitives - E-démarche-GE.CH */
 :root {
     --md-ref-palette-primary-0: rgba(0, 0, 0, 1);
-    --md-ref-palette-primary-10: rgba(0, 29, 52, 1);
+    --md-ref-palette-primary-10: rgba(0, 28, 51, 1);
     --md-ref-palette-primary-20: rgba(0, 51, 85, 1);
     --md-ref-palette-primary-30: rgba(0, 74, 120, 1);
     --md-ref-palette-primary-40: rgba(1, 98, 157, 1);
@@ -46,7 +46,7 @@
     --md-ref-palette-neutral-40: rgba(82, 96, 112, 1);
     --md-ref-palette-neutral-50: rgba(106, 120, 137, 1);
     --md-ref-palette-neutral-60: rgba(132, 146, 163, 1);
-    --md-ref-palette-neutral-70: rgba(158, 173, 191, 1);
+    --md-ref-palette-neutral-70: rgba(153, 169, 189, 1);
     --md-ref-palette-neutral-80: rgba(213, 228, 240, 1);
     --md-ref-palette-neutral-90: rgba(230, 241, 250, 1);
     --md-ref-palette-neutral-95: rgba(230, 240, 247, 1);
