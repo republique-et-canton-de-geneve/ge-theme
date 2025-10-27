@@ -6,4 +6,4 @@ variables:
   IMAGE_NAME: "ch/ge/common/web/ge-theme"
   BOM_IMAGE_KEY: "getheme"
   FEATURE_SNAPSHOT: "true"
-  BOM_LOCAL: "true"
+  BOM_LOCAL: true
