@@ -1,3 +1,19 @@
+## Release 1.0.2
+
+Cette version introduit une refonte majeure du système de versioning et de build, améliorant la robustesse et la flexibilité de la gestion des webcomponents.
+
+## ✨ Nouveautés (Features)
+
+*   **Amélioration du système de versioning** : Mise en place d'un script pour synchroniser automatiquement les versions de tous les paquets du monorepo.
+*   **Gestion des versions historiques depuis le CDN** : Le processus de build récupère désormais les versions précédentes des webcomponents directement depuis le CDN. Un fichier `versions.json` est utilisé pour indexer toutes les versions publiées, permettant une gestion simplifiée des déploiements. Ex.:
+
+
+## 🐛 Corrections (Fixes)
+
+*   **Accès au CDN via un proxy** : Correction des paramètres de proxy pour garantir une récupération fiable des versions des webcomponents depuis le CDN dans les environnements d'entreprise.
+*   **Standardisation du répertoire de build** : Le répertoire de sortie du build a été déplacé de `packages/website/dist` vers `/build` à la racine du projet pour simplifier les configurations de la CI/CD.
+
+
 ## Release 0.3.4
 
 Cette version se concentre sur l'amélioration de la flexibilité des composants, la correction d'incohérences visuelles dans les thèmes et le renforcement de la sécurité et de l'infrastructure sous-jacente.
