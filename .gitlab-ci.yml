@@ -1,24 +1,14 @@
-include:
-  - project: 'DEVELOPPEUR-AEL/ci-scripts'
-    file: '/frontend.yml'
-
 variables:
-  IMAGE_NAME: "ch/ge/common/web/ge-theme"
-  BOM_IMAGE_KEY: "getheme"
-  FEATURE_SNAPSHOT: "true"
-  BOM_LOCAL: true
-#
-#variables:
-#  SECURITY_MONITORING:
-#    value: "false"
-#    description: Security monitoring enablement
-#
-#stages:
-#  - build
-#  - quality
-#  - push
-#  - post-release
-#
-#include:
-#  - ".pipelines/ci.yml"
-#  - ".pipelines/security.yml"
+  SECURITY_MONITORING:
+    value: "false"
+    description: Security monitoring enablement
+
+stages:
+  - build
+  - quality
+  - push
+  - post-release
+
+include:
+  - ".pipelines/ci.yml"
+  - ".pipelines/security.yml"
