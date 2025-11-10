@@ -143,7 +143,7 @@
 /* Chip */
 
 .v-chip.rounded-sm,
-.v-chip.rounded-md, 
+.v-chip.rounded-md,
 .v-chip.rounded-lg,
 .v-chip.rounded-xl {
     border-radius: var(--v-shape-corner-small) !important;
@@ -199,9 +199,31 @@
 }
 
 .v-table td {
-    background: rgba(var(--v-theme-background)) !important;
     color: rgba(var(--v-theme-on-background)) !important;
 }
+
+.v-data-table tr:nth-child(even):not(.selected):not(:hover)  {
+	background: var(--md-sys-color-surface);;
+}
+
+.v-data-table tr:nth-child(odd):not(.selected):not(:hover)  {
+	background: var(--md-sys-color-surface-container-lowest, #F7FAFC);) ;
+
+}
+
+.v-data-table tr.selected:not(:hover)  {
+	background: linear-gradient(0deg, var(--md-sys-color-state-opacity-12 ) 0%,
+	var(--md-sys-color-state-opacity-12) 100%),
+	var(--md-sys-color-surface);
+}
+
+.v-data-table tr:hover  {
+	background: linear-gradient(0deg,
+	var(--md-sys-color-state-opacity-8) 0%,
+	var(--md-sys-color-state-opacity-8) 100%),
+	var(--md-sys-color-surface-container-lowest, #F7FAFC);
+}
+
 
 
 /* Avatar */
