@@ -52,4 +52,16 @@
   --md-sys-color-state-opacity-16: var(--md-ref-shadow-light-opacity-16);
   --md-sys-color-gradient-grad-0: var(--md-ref-shadow-universal-opacity-0);
   --md-sys-color-gradient-grad-100: var(--md-ref-shadow-universal-opacity-80);
+  --md-sys-shadow-elevation-0-color: var(--md-ref-palette-neutral-0);
+  --md-sys-shadow-elevation-1-color: var(--md-ref-shadow-universal-opacity-8);
+  --md-sys-shadow-elevation-2-color: var(--md-ref-shadow-universal-opacity-30);
+  --md-sys-shadow-elevation-3-color: var(--md-ref-shadow-universal-opacity-15);
+  --md-sys-shadow-elevation-4-color: var(--md-ref-shadow-universal-opacity-15);
+  --md-sys-shadow-elevation-5-color: var(--md-ref-shadow-universal-opacity-30);
+  --md-sys-shadow-elevation-second-1-color: var(--md-ref-shadow-universal-opacity-15);
+  --md-sys-shadow-elevation-second-2-color: var(--md-ref-shadow-universal-opacity-15);
+  --md-sys-shadow-elevation-second-3-color: var(--md-ref-shadow-universal-opacity-30);
+  --md-sys-shadow-elevation-second-4-color: var(--md-ref-shadow-universal-opacity-30);
+  --md-sys-shadow-elevation-second-5-color: var(--md-ref-shadow-universal-opacity-30);
+}
 }
