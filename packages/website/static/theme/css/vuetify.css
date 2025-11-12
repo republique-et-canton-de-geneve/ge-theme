@@ -203,12 +203,11 @@
 }
 
 .v-data-table tr:nth-child(even):not(.selected):not(:hover)  {
-	background: var(--md-sys-color-surface);;
+	background: var(--md-sys-color-surface);
 }
 
 .v-data-table tr:nth-child(odd):not(.selected):not(:hover)  {
-	background: var(--md-sys-color-surface-container-lowest, #F7FAFC);) ;
-
+	background: var(--md-sys-color-surface-container-lowest);
 }
 
 .v-data-table tr.selected:not(:hover)  {
