@@ -1,114 +1,407 @@
-@layer base {
-    :root {
-      --md-sys-color-secondary-container: var(--md-ref-palette-secondary-90);
-      --md-sys-color-tertiary-container: var(--md-ref-palette-tertiary-90);
-      --md-sys-color-error-container: var(--md-ref-palette-error-90);
-      --md-sys-color-warning-container: var(--md-ref-palette-warning-90);
-      --md-sys-color-success-container: var(--md-ref-palette-success-90);
-      --md-sys-color-primary-container: var(--md-ref-palette-primary-90);
-      --md-sys-color-surface: var(--md-ref-palette-neutral-100);
-      --md-sys-color-surface-container-lowest: var(--md-ref-palette-neutral-98);
-      --md-sys-color-surface-dim: var(--md-ref-palette-neutral-80);
-      --md-sys-color-surface-container-low: var(--md-ref-palette-neutral-95);
-      --md-sys-color-surface-bright: var(--md-ref-palette-neutral-98);
-      --md-sys-color-surface-container: var(--md-ref-palette-neutral-98);
-      --md-sys-color-surface-container-high: var(--md-ref-palette-neutral-90);
-      --md-sys-color-surface-container-highest: var(--md-ref-palette-neutral-80);
-      --md-sys-color-surface-variant: var(--md-ref-palette-neutral-90);
-      --md-sys-color-inverse-on-surface: var(--md-ref-palette-neutral-95);
-      --md-sys-color-inverse-surface: var(--md-ref-palette-neutral-20);
-      --md-sys-color-inverse-primary: var(--md-ref-palette-primary-80);
-      --md-sys-color-on-primary: var(--md-ref-palette-primary-100);
-      --md-sys-color-on-secondary: var(--md-ref-palette-secondary-100);
-      --md-sys-color-on-tertiary: var(--md-ref-palette-tertiary-100);
-      --md-sys-color-on-error: var(--md-ref-palette-error-100);
-      --md-sys-color-on-warning: var(--md-ref-palette-warning-100);
-      --md-sys-color-on-success: var(--md-ref-palette-success-100);
-      --md-sys-color-on-primary-container: var(--md-ref-palette-primary-10);
-      --md-sys-color-on-secondary-container: var(--md-ref-palette-secondary-10);
-      --md-sys-color-on-tertiary-container: var(--md-ref-palette-tertiary-10);
-      --md-sys-color-on-error-container: var(--md-ref-palette-error-10);
-      --md-sys-color-on-warning-container: var(--md-ref-palette-warning-10);
-      --md-sys-color-on-success-container: var(--md-ref-palette-success-10);
-      --md-sys-color-on-surface: var(--md-ref-palette-neutral-10);
-      --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-variant-30);
-      --md-sys-color-on-background: var(--md-ref-palette-neutral-10);
-      --md-sys-color-outline: var(--md-ref-palette-neutral-variant-70);
-      --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-80);
-      --md-sys-color-outline-error: var(--md-ref-palette-error-40);
-      --md-sys-color-outline-warning: var(--md-ref-palette-warning-40);
-      --md-sys-color-primary: var(--md-ref-palette-primary-40);
-      --md-sys-color-outline-success: var(--md-ref-palette-success-40);
-      --md-sys-color-secondary: var(--md-ref-palette-secondary-40);
-      --md-sys-color-tertiary: var(--md-ref-palette-tertiary-40);
-      --md-sys-color-error: var(--md-ref-palette-error-40);
-      --md-sys-color-warning: var(--md-ref-palette-warning-40);
-      --md-sys-color-success: var(--md-ref-palette-success-40);
-      --md-sys-color-background: var(--md-ref-palette-secondary-98);
-      --md-sys-color-shadow: var(--md-ref-shadow-light-opacity-0);
-      --md-sys-color-scrim: var(--md-ref-shadow-light-opacity-0);
-      --md-sys-color-state-opacity-0: var(--md-ref-shadow-light-opacity-0);
-      --md-sys-color-state-opacity-8: var(--md-ref-shadow-light-opacity-8);
-      --md-sys-color-state-opacity-12: var(--md-ref-shadow-light-opacity-12);
-      --md-sys-color-state-opacity-16: var(--md-ref-shadow-light-opacity-16);
-      --md-sys-color-gradient-grad-0: var(--md-ref-shadow-universal-opacity-0);
-      --md-sys-color-gradient-grad-100: var(--md-ref-shadow-universal-opacity-80);
-  
-      @variant dark {
-        --md-sys-color-secondary-container: var(--md-ref-palette-secondary-30);
-        --md-sys-color-tertiary-tertiary: var(--md-ref-palette-tertiary-30);
-        --md-sys-color-tertiary-container: var(--md-ref-palette-tertiary-30);
-        --md-sys-color-error-container: var(--md-ref-palette-error-30);
-        --md-sys-color-warning-container: var(--md-ref-palette-warning-20);
-        --md-sys-color-success-container: var(--md-ref-palette-success-20);
-        --md-sys-color-primary-container: var(--md-ref-palette-primary-30);
-        --md-sys-color-surface: var(--md-ref-palette-neutral-0);
-        --md-sys-color-surface-container-lowest: var(--md-ref-palette-neutral-20);
-        --md-sys-color-surface-dim: var(--md-ref-palette-neutral-30);
-        --md-sys-color-surface-container-low: var(--md-ref-palette-neutral-30);
-        --md-sys-color-surface-bright: var(--md-ref-palette-neutral-20);
-        --md-sys-color-surface-container: var(--md-ref-palette-neutral-20);
-        --md-sys-color-surface-container-high: var(--md-ref-palette-neutral-40);
-        --md-sys-color-surface-container-highest: var(--md-ref-palette-neutral-50);
-        --md-sys-color-surface-variant: var(--md-ref-palette-neutral-20);
-        --md-sys-color-inverse-on-surface: var(--md-ref-palette-neutral-20);
-        --md-sys-color-inverse-surface: var(--md-ref-palette-neutral-70);
-        --md-sys-color-inverse-primary: var(--md-ref-palette-primary-40);
-        --md-sys-color-on-primary: var(--md-ref-palette-primary-20);
-        --md-sys-color-on-secondary: var(--md-ref-palette-secondary-20);
-        --md-sys-color-on-tertiary: var(--md-ref-palette-tertiary-20);
-        --md-sys-color-on-error: var(--md-ref-palette-error-20);
-        --md-sys-color-on-warning: var(--md-ref-palette-warning-20);
-        --md-sys-color-on-success: var(--md-ref-palette-success-20);
-        --md-sys-color-on-primary-container: var(--md-ref-palette-primary-90);
-        --md-sys-color-on-secondary-container: var(--md-ref-palette-secondary-90);
-        --md-sys-color-on-tertiary-container: var(--md-ref-palette-tertiary-90);
-        --md-sys-color-on-error-container: var(--md-ref-palette-error-90);
-        --md-sys-color-on-warning-container: var(--md-ref-palette-warning-90);
-        --md-sys-color-on-success-container: var(--md-ref-palette-success-90);
-        --md-sys-color-on-surface: var(--md-ref-palette-neutral-90);
-        --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-variant-80);
-        --md-sys-color-on-background: var(--md-ref-palette-neutral-90);
-        --md-sys-color-outline: var(--md-ref-palette-neutral-variant-80);
-        --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant-30);
-        --md-sys-color-outline-error: var(--md-ref-palette-error-90);
-        --md-sys-color-outline-warning: var(--md-ref-palette-warning-90);
-        --md-sys-color-primary: var(--md-ref-palette-primary-80);
-        --md-sys-color-outline-success: var(--md-ref-palette-success-90);
-        --md-sys-color-secondary: var(--md-ref-palette-secondary-80);
-        --md-sys-color-tertiary: var(--md-ref-palette-tertiary-80);
-        --md-sys-color-error: var(--md-ref-palette-error-80);
-        --md-sys-color-warning: var(--md-ref-palette-warning-80);
-        --md-sys-color-success: var(--md-ref-palette-success-80);
-        --md-sys-color-background: var(--md-ref-palette-secondary-10);
-        --md-sys-color-shadow: var(--md-ref-shadow-dark-opacity-0);
-        --md-sys-color-scrim: var(--md-ref-shadow-dark-opacity-0);
-        --md-sys-color-state-opacity-0: var(--md-ref-shadow-dark-opacity-0);
-        --md-sys-color-state-opacity-8: var(--md-ref-shadow-dark-opacity-8);
-        --md-sys-color-state-opacity-12: var(--md-ref-shadow-dark-opacity-12);
-        --md-sys-color-state-opacity-16: var(--md-ref-shadow-dark-opacity-16);
-        --md-sys-color-gradient-grad-0: var(--md-ref-shadow-dark-opacity-0);
-        --md-sys-color-gradient-grad-100: var(--md-ref-palette-neutral-95);
-      }
+@import "./tailwind_lightmode.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom variables */
+:root {
+    --header-height: 81px;
+    --header-mobile-height: 75px;
+
+    /* Additional and necessary colors for ge_theme */
+    --light-primary-hover: #156fa5;
+    --light-primary-focus: #1f75a9;
+    --dark-primary-hover: #8fbdee;
+    --dark-primary-focus: #8ab6e5;
+
+    --light-surface-hover: #ebeff1;
+    --light-surface-focus: #e0e7eb;
+    --dark-surface-hover: #293036;
+    --dark-surface-focus: #31383f;
+
+    --light-inverse-surface-hover: #203241;
+    --light-inverse-surface-focus: #1f3445;
+    --dark-inverse-surface-hover: #99acc2;
+    --dark-inverse-surface-focus: #99adc5;
+
+    --light-surface-container-highest-hover: #c4d6e4;
+    --light-surface-container-highest-focus: #bbcfdd;
+    --dark-surface-container-highest-hover: #5e6c7b;
+    --dark-surface-container-highest-focus: #647281;
+
+    --light-surface-container-high-hover: #d4e2ed;
+    --light-surface-container-high-focus: #cadae6;
+    --dark-surface-container-high-hover: #485664;
+    --dark-surface-container-high-focus: #4f5d6b;
+
+    --light-surface-container-low-hover: #d4e1ea;
+    --light-surface-container-low-focus: #cad9e4;
+    --dark-surface-container-low-hover: #333e49;
+    --dark-surface-container-low-focus: #3b4651;
+}
+
+.dark {
+    /* Additional and necessary colors for ge_theme */
+    --color-primary-hover: var(--dark-primary-hover);
+    --color-primary-focus: var(--dark-primary-focus);
+    --color-surface-hover: var(--dark-surface-hover);
+    --color-surface-focus: var(--dark-surface-focus);
+    --color-inverse-surface-hover: var(--dark-inverse-surface-hover);
+    --color-inverse-surface-focus: var(--dark-inverse-surface-focus);
+    --color-surface-container-highest-hover: var(
+            --dark-surface-container-highest-hover
+    );
+    --color-surface-container-highest-focus: var(
+            --dark-surface-container-highest-focus
+    );
+    --color-surface-container-high-hover: var(
+            --dark-surface-container-high-hover
+    );
+    --color-surface-container-high-focus: var(
+            --dark-surface-container-high-focus
+    );
+    --color-surface-container-low-hover: var(--dark-surface-container-low-hover);
+    --color-surface-container-low-focus: var(--dark-surface-container-low-focus);
+}
+
+@theme {
+    /* Re-init all colors */
+    --color-*: initial;
+
+    /* Colors */
+    --color-primary-hover: var(--light-primary-hover);
+    --color-primary-focus: var(--light-primary-focus);
+    --color-surface-hover: var(--light-surface-hover);
+    --color-surface-focus: var(--light-surface-focus);
+    --color-inverse-surface-hover: var(--light-inverse-surface-hover);
+    --color-inverse-surface-focus: var(--light-inverse-surface-focus);
+    --color-surface-container-highest-hover: var(
+            --light-surface-container-highest-hover
+    );
+    --color-surface-container-highest-focus: var(
+            --light-surface-container-highest-focus
+    );
+    --color-surface-container-high-hover: var(
+            --light-surface-container-high-hover
+    );
+    --color-surface-container-high-focus: var(
+            --light-surface-container-high-focus
+    );
+    --color-surface-container-low-hover: var(--light-surface-container-low-hover);
+    --color-surface-container-low-focus: var(--light-surface-container-low-focus);
+
+    /* Font */
+    --default-font-family: Roboto, Arial, "sans-serif";
+    --font-icon: "Material Icons Outlined";
+
+    /* Spacing (width...) */
+    --spacing-8xl: 83rem;
+
+    /* Radius */
+    --radius-*: initial;
+
+    /* Typography */
+    --text-icon-large: 37px;
+    --text-icon-medium: 37px;
+    --text-icon-small: 20px;
+
+    /* Animations */
+    --animate-smoothscroll: smoothscroll 0.8s ease-in-out;
+    @keyframes smoothscroll {
+        0% {
+            transform: translateY(-81px);
+        }
+        100% {
+            transform: translateY(0);
+        }
     }
-  }
+}
+
+/* Mapping from external CSS variables to Tailwind.
+   Note: Each new variables from ge_theme must be mapped here.
+*/
+@theme inline {
+    /* Colors */
+    --color-secondary-container: var(--md-sys-color-secondary-container);
+    --color-tertiary-container: var(--md-sys-color-tertiary-container);
+    --color-error-container: var(--md-sys-color-error-container);
+    --color-warning-container: var(--md-sys-color-warning-container);
+    --color-success-container: var(--md-sys-color-success-container);
+    --color-primary-container: var(--md-sys-color-primary-container);
+    --color-surface: var(--md-sys-color-surface);
+    --color-surface-container-lowest: var(--md-sys-color-surface-container-lowest);
+    --color-surface-dim: var(--md-sys-color-surface-dim);
+    --color-surface-container-low: var(--md-sys-color-surface-container-low);
+    --color-surface-bright: var(--md-sys-color-surface-bright);
+    --color-surface-container: var(--md-sys-color-surface-container);
+    --color-surface-container-high: var(--md-sys-color-surface-container-high);
+    --color-surface-container-highest: var(--md-sys-color-surface-container-highest);
+    --color-surface-variant: var(--md-sys-color-surface-variant);
+    --color-inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+    --color-inverse-surface: var(--md-sys-color-inverse-surface);
+    --color-inverse-primary: var(--md-sys-color-inverse-primary);
+    --color-on-primary: var(--md-sys-color-on-primary);
+    --color-on-secondary: var(--md-sys-color-on-secondary);
+    --color-on-tertiary: var(--md-sys-color-on-tertiary);
+    --color-on-error: var(--md-sys-color-on-error);
+    --color-on-warning: var(--md-sys-color-on-warning);
+    --color-on-success: var(--md-sys-color-on-success);
+    --color-on-primary-container: var(--md-sys-color-on-primary-container);
+    --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+    --color-on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+    --color-on-error-container: var(--md-sys-color-on-error-container);
+    --color-on-warning-container: var(--md-sys-color-on-warning-container);
+    --color-on-success-container: var(--md-sys-color-on-success-container);
+    --color-on-surface: var(--md-sys-color-on-surface);
+    --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+    --color-on-background: var(--md-sys-color-on-background);
+    --color-outline: var(--md-sys-color-outline);
+    --color-outline-variant: var(--md-sys-color-outline-variant);
+    --color-outline-error: var(--md-sys-color-outline-error);
+    --color-outline-warning: var(--md-sys-color-outline-warning);
+    --color-primary: var(--md-sys-color-primary);
+    --color-outline-success: var(--md-sys-color-outline-success);
+    --color-secondary: var(--md-sys-color-secondary);
+    --color-tertiary: var(--md-sys-color-tertiary);
+    --color-error: var(--md-sys-color-error);
+    --color-warning: var(--md-sys-color-warning);
+    --color-success: var(--md-sys-color-success);
+    --color-background: var(--md-sys-color-background);
+    --color-shadow: var(--md-sys-color-shadow);
+    --color-scrim: var(--md-sys-color-scrim);
+    --color-state-opacity-0: var(--md-sys-color-state-opacity-0);
+    --color-state-opacity-8: var(--md-sys-color-state-opacity-8);
+    --color-state-opacity-12: var(--md-sys-color-state-opacity-12);
+    --color-state-opacity-16: var(--md-sys-color-state-opacity-16);
+    --color-gradient-grad-0: var(--md-sys-color-gradient-grad-0);
+    --color-gradient-grad-100: var(--md-sys-color-gradient-grad-100);
+
+    /* H1 */
+    --text-headline-large: var(--md-sys-typescale-headline-large-size);
+    --text-headline-large--line-height: var(
+            --md-sys-typescale-headline-large-line-height
+    );
+    --text-headline-large--letter-spacing: var(
+            --md-sys-typescale-headline-large-tracking
+    );
+    --text-headline-large--font-weight: 700;
+
+    /* H2 */
+    --text-headline-medium: var(--md-sys-typescale-headline-medium-size);
+    --text-headline-medium--line-height: var(
+            --md-sys-typescale-headline-medium-line-height
+    );
+    --text-headline-medium--letter-spacing: var(
+            --md-sys-typescale-headline-medium-tracking
+    );
+    --text-headline-medium--font-weight: 700;
+
+    /* H3 */
+    --text-headline-small: var(--md-sys-typescale-headline-small-size);
+    --text-headline-small--line-height: var(
+            --md-sys-typescale-headline-small-line-height
+    );
+    --text-headline-small--letter-spacing: var(
+            --md-sys-typescale-headline-small-tracking
+    );
+    --text-headline-small--font-weight: 700;
+
+    /* Title: large */
+    --text-title-large: var(--md-sys-typescale-title-large-size);
+    --text-title-large--line-height: var(
+            --md-sys-typescale-title-large-line-height
+    );
+    --text-title-large--letter-spacing: var(
+            --md-sys-typescale-title-medium-tracking
+    );
+    --text-title-large--font-weight: 700;
+
+    /* Title: medium */
+    --text-title-medium: var(--md-sys-typescale-title-medium-size);
+    --text-title-medium--line-height: var(
+            --md-sys-typescale-title-medium-line-height
+    );
+    --text-title-medium--letter-spacing: var(
+            --md-sys-typescale-title-medium-tracking
+    );
+    --text-title-medium--font-weight: 700;
+
+    /* Title: small */
+    --text-title-small: var(--md-sys-typescale-title-small-size);
+    --text-title-small--line-height: var(
+            --md-sys-typescale-title-small-line-height
+    );
+    --text-title-small--letter-spacing: var(
+            --md-sys-typescale-title-small-tracking
+    );
+    --text-title-small--font-weight: 500;
+
+    /* Body text: large */
+    --text-body-large: var(--md-sys-typescale-body-large-size);
+    --text-body-large--line-height: var(
+            --md-sys-typescale-body-large-line-height
+    );
+    --text-body-large--letter-spacing: var(
+            --md-sys-typescale-body-large-tracking
+    );
+    --text-body-large--font-weight: 400;
+
+    /* Body text: medium */
+    --text-body-medium: var(--md-sys-typescale-body-medium-size);
+    --text-body-medium--line-height: var(
+            --md-sys-typescale-body-medium-line-height
+    );
+    --text-body-medium--letter-spacing: var(
+            --md-sys-typescale-body-medium-tracking
+    );
+    --text-body-medium--font-weight: 400;
+
+    /* Body text: small */
+    --text-body-small: var(--md-sys-typescale-body-small-size);
+    --text-body-small--line-height: var(
+            --md-sys-typescale-body-small-line-height
+    );
+    --text-body-small--letter-spacing: var(
+            --md-sys-typescale-body-small-tracking
+    );
+    --text-body-small--font-weight: 400;
+
+    /* Label text: large */
+    --text-label-large: var(--md-sys-typescale-label-large-size);
+    --text-label-large--line-height: var(
+            --md-sys-typescale-label-large-line-height
+    );
+    --text-label-large--letter-spacing: var(
+            --md-sys-typescale-label-large-tracking
+    );
+    --text-label-large--font-weight: 500;
+
+    /* Label text: medium */
+    --text-label-medium: var(--md-sys-typescale-label-medium-size);
+    --text-label-medium--line-height: var(
+            --md-sys-typescale-label-medium-line-height
+    );
+    --text-label-medium--letter-spacing: var(
+            --md-sys-typescale-label-medium-tracking
+    );
+    --text-label-medium--font-weight: 500;
+
+    /* Label text: medium */
+    --text-label-small: var(--md-sys-typescale-label-small-size);
+    --text-label-small--line-height: var(
+            --md-sys-typescale-label-small-line-height
+    );
+    --text-label-small--letter-spacing: var(
+            --md-sys-typescale-label-small-tracking
+    );
+    --text-label-small--font-weight: 500;
+
+    /* Radius */
+    --radius-none: var(--md-sys-shape-corner-none);
+    --radius-extra-small: var(--md-sys-shape-corner-extra-small);
+    --radius-small: var(--md-sys-shape-corner-small);
+    --radius-medium: var(--md-sys-shape-corner-medium);
+    --radius-large: var(--md-sys-shape-corner-large);
+    --radius-extra-large: var(--md-sys-shape-corner-extra-large);
+    --radius-full: var(--md-sys-shape-corner-full);
+}
+
+/* The utilities layer is a good place to add simple utility-based classes. Example: a class that hides an element. */
+@layer utilities {
+    .visually-hidden {
+        @apply sr-only;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-outline-primary,
+    .btn-text {
+        @apply inline-flex items-center justify-center gap-2 text-label-medium rounded-full cursor-pointer px-4 py-[10px] hover:no-underline;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-center text-on-primary hover:shadow-sm hover:bg-primary-hover focus:bg-primary-focus active:bg-primary-focus disabled:bg-primary/12 disabled:text-on-surface/12 disabled:pointer-events-none;
+    }
+
+    .btn-secondary,
+    .btn-outline-primary {
+        @apply border text-center border-outline text-primary hover:bg-surface-hover focus:bg-surface-focus active:bg-surface-focus;
+    }
+
+    .btn-text {
+        @apply text-primary hover:bg-surface-hover focus:bg-surface-focus active:bg-surface-focus;
+    }
+
+    .link-with-icon {
+        @apply flex items-center gap-2 text-label-medium text-primary hover:[&_[data-text]]:underline;
+    }
+
+    .btn-icon,
+    .btn-icon-filled,
+    .btn-icon-filled-secondary {
+        @apply inline-flex cursor-pointer w-[44px] h-[44px] rounded-full hover:shadow-sm items-center justify-center p-3;
+    }
+
+    .btn-icon {
+        @apply text-primary hover:bg-surface-hover focus:bg-surface-focus active:bg-surface-focus;
+    }
+
+    .btn-icon-filled {
+        @apply bg-primary text-on-primary hover:bg-primary-hover focus:bg-primary-focus active:bg-primary-focus;
+    }
+
+    .btn-icon-filled-secondary {
+        @apply bg-surface-container-highest hover:bg-surface-container-highest-hover focus:bg-surface-container-highest-focus active:bg-surface-container-highest-focus;
+    }
+
+    .chips,
+    .chips-outlined {
+        @apply inline-block w-fit text-on-surface font-normal rounded-small text-sm transition-all border;
+    }
+
+    .chips {
+        @apply cursor-pointer bg-secondary-container border-secondary-container hover:[&_[data-text]]:bg-state-opacity-8 active:[&_[data-text]]:bg-state-opacity-12 focus:[&_[data-text]]:bg-state-opacity-12;
+        span[data-text] {
+            @apply block w-full h-full rounded-small px-2 py-[6px];
+        }
+    }
+
+    .chips-outlined {
+        @apply border-outline px-2 py-[6px];
+    }
+
+    /* Rounded corner table inspired by https://unused-css.com/blog/css-rounded-table-corners/ */
+    table {
+        @apply rounded-extra-small border border-outline-variant border-separate border-spacing-0 overflow-hidden;
+
+        thead > tr > th {
+            @apply text-left text-label-medium border-b border-outline-variant bg-surface-container-high;
+        }
+
+        tbody > tr > th {
+            @apply text-left text-label-medium;
+        }
+
+        tr {
+            @apply even:bg-surface-container-lowest;
+        }
+
+        td,
+        th {
+            @apply p-4;
+        }
+
+        & > thead,
+        & > tbody,
+        & > tfoot,
+        & {
+            & > tr:not(:last-child) {
+                @apply border-b border-outline-variant;
+
+                & > th,
+                & > td {
+                    @apply border-b border-outline-variant;
+                }
+            }
+        }
+    }
+}
