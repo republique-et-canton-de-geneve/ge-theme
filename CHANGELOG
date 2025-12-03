@@ -1,3 +1,26 @@
+# Release Note - v1.0.3
+
+Cette version se concentre principalement sur une refonte de l'intégration continue (CI) et des améliorations visuelles pour les tableaux de données, ainsi qu'une mise à jour de sécurité de l'image Docker de base.
+
+## ✨ Fonctionnalités (Features)
+
+### 🎨 Interface Utilisateur (UI)
+*   **Support étendu des Datatables (AFCELNAV-717) :**
+    *   Amélioration du style des composants `v-data-table` de Vuetify.
+    *   Ajout de la gestion visuelle pour :
+        *   L'alternance de couleurs des lignes (zebra striping) pour une meilleure lisibilité.
+        *   L'effet de survol (hover) sur les lignes.
+        *   L'état "sélectionné" des lignes.
+
+### ⚙️ Infrastructure & DevOps
+*   **CI Centralisée :**
+    *   Refonte complète du pipeline CI/CD (`.pipelines/ci.yml`).
+    *   Le projet hérite désormais des scripts de CI centralisés (`DEVELOPPEUR-AEL/ci-scripts`), ce qui allège la configuration locale et facilite la maintenance future.
+
+## 🔧 Maintenance & Correctifs
+
+*   **Docker :** Mise à jour de l'image de base Nginx. Passage de la version `ubi9` à `nginx1.26-ubi10` pour renforcer la sécurité et la compatibilité.
+
 ## Release 1.0.2
 
 Cette version introduit une refonte majeure du système de versioning et de build, améliorant la robustesse et la flexibilité de la gestion des webcomponents.
