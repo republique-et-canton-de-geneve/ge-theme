@@ -6,6 +6,9 @@ Ce package fournit une bibliothèque de composants Web (Web Components) réutili
 - `<ge-header-public>` : En-tête.
 - `<ge-footer>` : Pied de page avec liens utiles.
 
+# ☇ Gestion des versions pour les webcomponents
+
+[Voir la documentation ici](/packages/webcomponents/README.md)
 
 # 📦 Intégration des Web Components via Static
 
