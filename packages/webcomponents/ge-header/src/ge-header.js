@@ -3,10 +3,6 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "@material/web/button/filled-button.js";
 
-/**
- * Custom converter for parsing JSON from the userInfo attribute.
- */
-
 export
 @customElement("ge-header")
 class GeHeader extends LitElement {
@@ -336,7 +332,7 @@ class GeHeader extends LitElement {
 
 
     return html`
-      <header fix-top">
+      <header class="fixed-top">
         <div class=${classMap(maxWidthClasses)} >
           <a href="https://www.ge.ch/" class="logo-section" target="gech">
             <img
