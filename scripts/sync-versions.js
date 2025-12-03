@@ -1,87 +1,110 @@
-// scripts/sync-version.js
-import fs from 'fs/promises';
+#!/usr/bin/env node
+
+/**
+ * sync-versions.js
+ *
+ * Synchronizes all workspace package versions with the root package.json version.
+ * Also updates internal @ael/* dependency references to match.
+ *
+ * Usage:
+ *   node scripts/sync-versions.js
+ *   yarn version:sync
+ */
+
+import fs from 'fs';
 import path from 'path';
-import {fileURLToPath} from 'url';
-import semver from 'semver';
+import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '..');
 
-// Read root version
-const rootPkg = JSON.parse(await fs.readFile(path.join(ROOT, 'package.json'), 'utf8'));
-let version = rootPkg.version;
+// Read root package.json
+const rootPkgPath = path.join(root, 'package.json');
+const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf8'));
 
-// Normalize: strip -SNAPSHOT.x or any prerelease suffix for internal packages
-if (semver.prerelease(version)) {
-    version = semver.coerce(version).version;
-    console.log(`⚠️ Root version is prerelease. Using normalized version: ${version}`);
+// Normalize version: strip -SNAPSHOT.N suffix for package versions
+const rawVersion = rootPkg.version;
+const version = rawVersion.replace(/-SNAPSHOT\.\d+$/, '');
+
+console.log(`\n📦 Syncing versions to: ${version}`);
+if (rawVersion !== version) {
+    console.log(`   (from root: ${rawVersion})\n`);
 } else {
-    console.log(`Using version: ${version}`);
+    console.log();
 }
 
-// Helper to update a package.json file
-async function updatePackage(pkgPath, newVersion) {
-    const pkg = JSON.parse(await fs.readFile(pkgPath, 'utf8'));
-    const originalVersion = pkg.version;
-    let depsUpdated = false;
+/**
+ * Recursively find all package.json files in a directory (1 level deep)
+ */
+function findPackages(dir) {
+    const packages = [];
 
-    // Update package version
-    if (pkg.version !== newVersion) {
-        pkg.version = newVersion;
+    if (!fs.existsSync(dir)) return packages;
+
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+        if (!entry.isDirectory()) continue;
+
+        const pkgPath = path.join(dir, entry.name, 'package.json');
+        if (fs.existsSync(pkgPath)) {
+            packages.push(pkgPath);
+        }
     }
 
-    // Update all @ael/* dependencies in all dependency sections
-    const depTypes = ['dependencies', 'devDependencies', 'optionalDependencies'];
-    for (const depType of depTypes) {
-        if (pkg[depType]) {
-            for (const dep of Object.keys(pkg[depType])) {
-                if (dep.startsWith('@ael/')) {
-                    pkg[depType][dep] = newVersion;
-                    depsUpdated = true;
+    return packages;
+}
+
+// Collect all workspace package.json paths
+const workspacePackages = [
+    path.join(root, 'packages/icons/package.json'),
+    path.join(root, 'packages/website/package.json'),
+    ...findPackages(path.join(root, 'packages/utils')),
+    ...findPackages(path.join(root, 'packages/webcomponents')),
+].filter(p => fs.existsSync(p));
+
+let updatedCount = 0;
+let skippedCount = 0;
+
+for (const pkgPath of workspacePackages) {
+    const relativePath = path.relative(root, pkgPath);
+
+    try {
+        const content = fs.readFileSync(pkgPath, 'utf8');
+        const pkg = JSON.parse(content);
+        const oldVersion = pkg.version;
+
+        let modified = false;
+
+        // Update package version
+        if (pkg.version !== version) {
+            pkg.version = version;
+            modified = true;
+        }
+
+        // Update @ael/* dependencies
+        for (const depType of ['dependencies', 'devDependencies', 'peerDependencies']) {
+            if (!pkg[depType]) continue;
+
+            for (const depName of Object.keys(pkg[depType])) {
+                if (depName.startsWith('@ael/') && pkg[depType][depName] !== version) {
+                    pkg[depType][depName] = version;
+                    modified = true;
                 }
             }
         }
-    }
 
-    // Write only if changed
-    if (originalVersion !== newVersion || depsUpdated) {
-        await fs.writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
-        console.log(`  ✓ ${pkg.name}@${newVersion}${depsUpdated ? ' (deps synced)' : ''}`);
-    }
-}
-
-console.log(`Syncing version ${version} to all packages...`);
-
-// Update all webcomponents
-const componentsDir = path.join(ROOT, 'packages/webcomponents');
-for (const name of await fs.readdir(componentsDir)) {
-    const pkgPath = path.join(componentsDir, name, 'package.json');
-    try {
-        await updatePackage(pkgPath, version);
-    } catch (e) {
-        // Skip if not a package folder
-    }
-}
-
-// Update icons
-await updatePackage(path.join(ROOT, 'packages/icons/package.json'), version);
-
-// Update utils (if any have @ael deps)
-const utilsDir = path.join(ROOT, 'packages/utils');
-try {
-    for (const name of await fs.readdir(utilsDir)) {
-        const pkgPath = path.join(utilsDir, name, 'package.json');
-        try {
-            await updatePackage(pkgPath, version);
-        } catch (e) {
-            // skip
+        if (modified) {
+            // Preserve original formatting (2-space indent, trailing newline)
+            fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+            console.log(`  ✓ ${relativePath} (${oldVersion} → ${version})`);
+            updatedCount++;
+        } else {
+            skippedCount++;
         }
+
+    } catch (err) {
+        console.error(`  ✗ ${relativePath}: ${err.message}`);
     }
-} catch (e) {
-    // utils may not exist or be empty
 }
 
-// Update website (dependencies only — keep its own version as 1.0.0)
-await updatePackage(path.join(ROOT, 'packages/website/package.json'), version);
-
-console.log('✓ Version and dependency sync complete\n');
+console.log(`\n✅ Done: ${updatedCount} updated, ${skippedCount} already in sync\n`);

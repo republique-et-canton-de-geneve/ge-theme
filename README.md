@@ -6,6 +6,9 @@ Ce package fournit une bibliothèque de composants Web (Web Components) réutili
 - `<ge-header-public>` : En-tête.
 - `<ge-footer>` : Pied de page avec liens utiles.
 
+# ☇ Gestion des versions pour les webcomponents
+
+[Voir la documentation ici](/packages/webcomponents/README.md)
 
 # 📦 Intégration des Web Components via Static
 
@@ -145,7 +148,7 @@ Dans un composant Vue :
 ## 📄 Installer la dépendence
 
 ```yarn
-yarn add @opf/ge-theme;
+yarn add @ael/ge-theme;
 ```
 
 Importez le package dans votre projet :
@@ -163,7 +166,7 @@ Importez le package dans votre projet :
 <script setup>
 import { ref, watch } from 'vue';
 import { userStore } from '@/stores/user';
-import '@opf/ge-theme';
+import '@ael/ge-theme';
 
 const headerRef = ref(null);
 const isMenuOpen = ref(false);
@@ -186,10 +189,10 @@ watch(
 
 Pour utiliser des Web Components dans React :
 
-1. Ajoutez `@opf/ge-theme` dans le `index.js` ou `App.js` :
+1. Ajoutez `@ael/ge-theme` dans le `index.js` ou `App.js` :
 
 ```jsx
-import '@opf/ge-theme';
+import '@ael/ge-theme';
 ```
 
 2. Utilisez-les dans votre JSX :
@@ -219,7 +222,7 @@ const HeaderWrapper = ({ userInfo }) => {
 
 ### Angular
 
-1. Ajoutez `@opf/ge-theme` dans `angular.json` (scripts et styles si besoin).
+1. Ajoutez `@ael/ge-theme` dans `angular.json` (scripts et styles si besoin).
 2. Activez les **Custom Elements** dans votre module :
 
 ```ts

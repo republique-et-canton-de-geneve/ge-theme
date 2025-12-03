@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-menu-select-mes-espaces",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": false,
   "description": "Web‑component used to select from a dropdown menu an arbitrary list of websites the user can navigate to.",
   "license": "Apache-2.0",
