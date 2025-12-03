@@ -1,4 +1,4 @@
-$Base = "v0.3.6"
+$Base = "v1.0.2"
 $Head = "develop"
 $Out  = "changes-$Head-vs-$Base.md"
 
