@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-header",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "Web‑component that renders public Geneva websites header.",
   "license": "Apache-2.0",
