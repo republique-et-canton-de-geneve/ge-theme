@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-footer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "description": "Web‑component that renders public Geneva websites footer.",
   "license": "Apache-2.0",
@@ -40,7 +40,7 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@ael/icons": "1.0.4",
+    "@ael/icons": "1.0.5",
     "@fontsource/roboto": "5.2.5",
     "@swc/helpers": "^0.5.17",
     "lit": "3.3.0"
