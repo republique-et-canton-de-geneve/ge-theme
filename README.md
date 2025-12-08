@@ -5,6 +5,7 @@ Ce package fournit une bibliothèque de composants Web (Web Components) réutili
 - `<ge-header>` : En-tête avec gestion de l'utilisateur connecté.
 - `<ge-header-public>` : En-tête.
 - `<ge-footer>` : Pied de page avec liens utiles.
+- `<ge-skiplink>` : Liens d'accès rapide.
 
 # ☇ Gestion des versions pour les webcomponents
 
@@ -64,7 +65,7 @@ REC https://static.rec.etat-ge.ch
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge-footer.js"></script>
 ```
 ## Intégration sur une page html
-Pour les applications avec contenus pleine largeur (ex: Mon esapce e-démarches)
+Pour les applications avec contenus pleine largeur (ex: Mon espace e-démarches)
 ```html
     <ge-header-public/>
     <ge-footer/>
@@ -134,6 +135,14 @@ Dans src/web-components/xxx, créez un répertoire contenant votre composant, o�
                 `@property({ type: String }) privacyLink = "https://www.ge.ch/c/footer-edm-confidentialite";`
                 `@property({ type: String }) termsLink = "https://www.ge.ch/c/footer-edm-cgu";`
 ---
+#### `<ge-skiplink>`
+- Ajoute un ensemble de liens d'accès rapide au début de la page.
+- Props disponibles :
+  - `links` _(type: **Array**)_  : Définit la liste des liens affichés dans le composant. Chaque élément est un objet contenant :
+      - `href`: cible du lien (id de section, URL interne, etc)
+      - `title`: texte affiché
+- Valeurs par défaut
+    - ```links=[{ href: '#content', title: 'Contenu' }]```
 
 ## 💚 Intégration dans les frameworks
 
