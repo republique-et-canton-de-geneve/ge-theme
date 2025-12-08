@@ -39,15 +39,24 @@ await fs.mkdir(OUT_DIR, { recursive: true });
 
 // ------------------------------------------------------------------
 // 2. Fetch existing versions.json from CDN
-const HTTPS_PROXY = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy || "http://localhost:3128";
+const HTTPS_PROXY = process.env.HTTPS_PROXY
+    || process.env.https_proxy
+    || process.env.HTTP_PROXY
+    || process.env.http_proxy
+    || (process.env.PROXY_HOST && process.env.PROXY_PORT ? `http://${process.env.PROXY_HOST}:${process.env.PROXY_PORT}` : null);
 
 const proxyAwareFetch = (() => {
-    console.log(`🌐 Using proxy for CDN requests: ${HTTPS_PROXY}`);
-    const agent = new HttpsProxyAgent(HTTPS_PROXY);
-    return (url, options = {}) => fetch(url, { ...options, agent });
+    if (HTTPS_PROXY) {
+        console.log(`🌐 Using proxy for CDN requests: ${HTTPS_PROXY}`);
+        const agent = new HttpsProxyAgent(HTTPS_PROXY);
+        return (url, options = {}) => fetch(url, { ...options, agent });
+    } else {
+        console.log(`🌐 No proxy configured, using direct connection`);
+        return fetch;
+    }
 })();
 
-const versionsJsonUrl = `${CDN_BASE}/webcomponents/versions.json`;
+const versionsJsonUrl = `${CDN_BASE}webcomponents/versions.json`;
 let existingVersions = [];
 try {
     const res = await proxyAwareFetch(versionsJsonUrl);

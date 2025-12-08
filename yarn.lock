@@ -1350,9 +1350,9 @@ callsites@^3.0.0:
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
 caniuse-lite@^1.0.30001746:
-  version "1.0.30001751"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/caniuse-lite/-/caniuse-lite-1.0.30001751.tgz"
-  integrity sha512-A0QJhug0Ly64Ii3eIqHu5X51ebln3k4yTUkY1j8drqpWHVreg/VLijN48cZ1bYPiqOQuqpkIKnzr/Ul8V+p6Cw==
+  version "1.0.30001759"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/caniuse-lite/-/caniuse-lite-1.0.30001759.tgz"
+  integrity sha512-Pzfx9fOKoKvevQf8oCXoyNRQ5QyxJj+3O0Rqx2V5oxT61KGx8+n6hV/IUyJeifUci2clnmmKVpvtiqRzgiWjSw==
 
 chalk@^4.0.0, chalk@^4.1.2:
   version "4.1.2"
