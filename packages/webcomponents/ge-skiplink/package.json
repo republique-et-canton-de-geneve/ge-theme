@@ -1,0 +1,47 @@
+{
+  "name": "@ael/ge-skiplink",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Web‑component that renders public Geneva websites skiplink.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "source": {
+    "./dist/*": "./src/$1"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
+    "build": "yarn clean && parcel build src/ge-skiplink.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
+    "lint": "eslint . --ext .js",
+    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
+    "prepublishOnly": "yarn build",
+    "dev": "set PARCEL_WORKERS=0&& parcel index.html --open --no-cache"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "5.2.5",
+    "@swc/helpers": "^0.5.17",
+    "lit": "3.3.0"
+  },
+  "devDependencies": {
+    "copyfiles": "2.4.1",
+    "eslint": "9.24.0",
+    "parcel": "2.14.4",
+    "rimraf": "6.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
+  },
+  "keywords": [
+    "web‑components",
+    "geneva",
+    "skiplink",
+    "design‑system"
+  ]
+}
