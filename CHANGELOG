@@ -1,4 +1,4 @@
-# Release Note - v1.0.3
+# Release Note - v1.0.3 
 
 Cette version se concentre principalement sur une refonte de l'intégration continue (CI) et des améliorations visuelles pour les tableaux de données, ainsi qu'une mise à jour de sécurité de l'image Docker de base.
 
