@@ -44,14 +44,6 @@ class GeHeader extends LitElement {
       margin:auto;
     }
 
-    .fixed-top {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
-    }
-
     .logo-section {
       display: flex;
       align-items: center;
@@ -332,7 +324,7 @@ class GeHeader extends LitElement {
 
 
     return html`
-      <header class="fixed-top">
+      <header>
         <div class=${classMap(maxWidthClasses)} >
           <a href="https://www.ge.ch/" class="logo-section" target="gech">
             <img
