@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-menu",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "description": "Web‑component that manages an interactive SPA vertical menu.",
   "license": "Apache-2.0",
