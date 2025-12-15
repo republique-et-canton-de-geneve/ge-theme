@@ -14,8 +14,12 @@
     "module": {
       "includeNodeModules": {
         "lit": true,
-        "lit/decorators.js": true
+        "lit/decorators.js": true,
+        "@fontsource/roboto": true
       }
+    },
+    "default": {
+      "includeNodeModules": true
     }
   },
   "exports": {
@@ -28,28 +32,27 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist .parcel-dev .parcel-cache",
     "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
     "build": "yarn clean && parcel build src/ge-footer.js --dist-dir dist --no-content-hash --no-source-maps && yarn copy:types",
     "lint": "eslint . --ext .js",
-    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build",
-    "dev": "parcel index.html --open --no-cache"
+    "dev": "parcel index.html --target default --open --host localhost",
+    "start": "parcel index.html --target default --open --host localhost"
   },
   "alias": {
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@ael/icons": "1.0.6",
-    "@fontsource/roboto": "5.2.5",
+    "@fontsource/roboto": "5.2.9",
     "@swc/helpers": "^0.5.17",
-    "lit": "3.3.0"
+    "lit": "3.3.1"
   },
   "devDependencies": {
     "copyfiles": "2.4.1",
-    "eslint": "9.24.0",
-    "parcel": "2.14.4",
-    "rimraf": "6.0.1"
+    "eslint": "9.39.2",
+    "parcel": "2.16.3",
+    "rimraf": "6.1.2"
   },
   "engines": {
     "node": ">=16.0.0"
