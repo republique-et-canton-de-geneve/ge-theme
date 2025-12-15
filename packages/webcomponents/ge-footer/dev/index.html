@@ -138,8 +138,8 @@
         <div class="control-group">
             <label>Full Width</label>
             <div>
-                <button id="btn-full" class="active" onclick="setFullWidth(true)">Full</button>
-                <button id="btn-constrained" onclick="setFullWidth(false)">Constrained (1107px)</button>
+                <button id="btn-full" class="active" onclick="setMaxWidth(true)">Full</button>
+                <button id="btn-constrained" onclick="setMaxWidth(false)">Constrained (1107px)</button>
             </div>
         </div>
     </div>
@@ -179,13 +179,13 @@
         setTimeout(updateDisplay, 0);
     }
 
-    function setFullWidth(full) {
+    function setMaxWidth(full) {
         document.getElementById('btn-full').classList.toggle('active', full);
         document.getElementById('btn-constrained').classList.toggle('active', !full);
         if (full) {
-            footer.setAttribute('fullwidth', '');
+            footer.setAttribute('maxWidth', '');
         } else {
-            footer.removeAttribute('fullwidth');
+            footer.removeAttribute('maxWidth');
         }
     }
 
