@@ -79,4 +79,5 @@ yarn-error.log*
 /json/
 .turbo/
 /packages/*/build
-/packages/webcomponents/ge-footer/.parcel-dev/
+**/.parcel-dev/
+**/.dev-dist/

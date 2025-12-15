@@ -15,6 +15,9 @@ class GeFooter extends LitElement {
         footer {
             background: var(--md-sys-color-surface);
             border-top: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .ge-footer-container {
             transition: max-width 0.3s ease;
             display: flex;
             justify-content: space-between;
@@ -24,14 +27,14 @@ class GeFooter extends LitElement {
             margin: auto;
         }
 
-        footer > nav {
+        .ge-footer-container > nav {
             display: flex;
             align-items: center;
             gap: 16px;
             margin-right: 20px;
         }
 
-        footer > nav > a {
+        .ge-footer-container > nav > a {
             color: var(--md-sys-color-on-surface-variant);
             font-family: 'Roboto', var(--md-ref-typeface-brand), Arial, Helvetica, sans-serif;
             font-size: var(--md-sys-typescale-body-medium-size, 14px);
@@ -42,39 +45,39 @@ class GeFooter extends LitElement {
             text-decoration: none;
         }
 
-        footer > nav > span {
+        .ge-footer-container > nav > span {
             color: var(--md-sys-color-outline-variant);
         }
 
-        footer > nav > a:hover {
+        .ge-footer-container > nav > a:hover {
             color: var(--md-sys-color-primary);
         }
 
-    footer > nav > a:focus-visible {
-      outline: 2px solid var(--md-sys-color-primary);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
+        .ge-footer-container > nav > a:focus-visible {
+            outline: 2px solid var(--md-sys-color-primary);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
 
-    .ge-footer-armoiries {
-      cursor: pointer;
-    }
+        .ge-footer-armoiries {
+            cursor: pointer;
+        }
 
         @media (max-width: 768px) {
-            footer {
+            .ge-footer-container {
                 display: block;
                 padding: 12px;
                 height: auto;
             }
 
-            footer > nav {
+            .ge-footer-container > nav {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
                 margin-right: 0;
             }
 
-            footer > nav > span {
+            .ge-footer-container > nav > span {
                 display: none;
             }
 
@@ -83,27 +86,27 @@ class GeFooter extends LitElement {
             }
         }
 
-        footer.fullwidth-false {
+        .ge-footer-container.fullwidth-false {
             max-width: 1107px;
         }
 
-        footer.fullwidth-true {
+        .ge-footer-container.fullwidth-true {
             max-width: 100%;
         }
     `;
 
     /** When true, footer spans full width. When false, constrained to 1107px. */
     @property({ type: Boolean, reflect: true, attribute: 'fullwidth' })
-    get maxWidth() {
-        return this.#maxWidthValue;
+    get fullWidth() {
+        return this.#fullWidthValue;
     }
-    set maxWidth(value) {
-        const oldValue = this.#maxWidthValue;
-        this.#maxWidthValue = Boolean(value);
-        this.requestUpdate('maxWidth', oldValue);
+    set fullWidth(value) {
+        const oldValue = this.#fullWidthValue;
+        this.#fullWidthValue = Boolean(value);
+        this.requestUpdate('fullWidth', oldValue);
     }
 
-    #maxWidthValue = true;
+    #fullWidthValue = true;
 
     /** URL for the Contact link */
     @property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";
@@ -198,26 +201,29 @@ class GeFooter extends LitElement {
     }
 
     render() {
-        const footerClasses = {
-            "fullwidth-true": this.maxWidth,
-            "fullwidth-false": !this.maxWidth
+        const containerClasses = {
+            "ge-footer-container": true,
+            "fullwidth-true": this.fullWidth,
+            "fullwidth-false": !this.fullWidth
         };
 
         return html`
-            <footer class=${classMap(footerClasses)}>
-                <nav>
-                    ${this.#resolvedLinks.map((link, index) => html`
-                        ${index > 0 ? html`<span aria-hidden="true">|</span>` : null}
-                        <a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.title}</a>
-                    `)}
-                </nav>
-                <img
-                        class="ge-footer-armoiries"
-                        src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
-                        alt="Armoiries de la République et canton de Genève"
-                        height="62"
-                        @click="${this.#onImageClick}"
-                />
+            <footer>
+                <div class=${classMap(containerClasses)}>
+                    <nav>
+                        ${this.#resolvedLinks.map((link, index) => html`
+                            ${index > 0 ? html`<span aria-hidden="true">|</span>` : null}
+                            <a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.title}</a>
+                        `)}
+                    </nav>
+                    <img
+                            class="ge-footer-armoiries"
+                            src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
+                            alt="Armoiries de la République et canton de Genève"
+                            height="62"
+                            @click="${this.#onImageClick}"
+                    />
+                </div>
             </footer>
         `;
     }

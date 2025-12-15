@@ -2,21 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/code-frame@^7.0.0":
-  version "7.27.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@babel/code-frame/-/code-frame-7.27.1.tgz"
-  integrity sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==
-  dependencies:
-    "@babel/helper-validator-identifier" "^7.27.1"
-    js-tokens "^4.0.0"
-    picocolors "^1.1.1"
-
-"@babel/helper-validator-identifier@^7.27.1":
-  version "7.27.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@babel/helper-validator-identifier/-/helper-validator-identifier-7.27.1.tgz"
-  integrity sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==
-
-"@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.8.0":
+"@eslint-community/eslint-utils@^4.8.0":
   version "4.9.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint-community/eslint-utils/-/eslint-utils-4.9.0.tgz"
   integrity sha512-ayVFHdtZ+hsq1t2Dy24wCmGXGe4q9Gu3smhLYALJrr473ZH27MsnSL+LKUlimp4BWJqMDMLmPpx/Q9R3OAlL4g==
@@ -28,15 +14,6 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint-community/regexpp/-/regexpp-4.12.1.tgz"
   integrity sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==
 
-"@eslint/config-array@^0.20.0":
-  version "0.20.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/config-array/-/config-array-0.20.1.tgz"
-  integrity sha512-OL0RJzC/CBzli0DrrR31qzj6d6i6Mm3HByuhflhl4LOBiWxN+3i6/t/ZQQNii4tjksXi8r2CRW1wMpWA2ULUEw==
-  dependencies:
-    "@eslint/object-schema" "^2.1.6"
-    debug "^4.3.1"
-    minimatch "^3.1.2"
-
 "@eslint/config-array@^0.21.1":
   version "0.21.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/config-array/-/config-array-0.21.1.tgz#7d1b0060fea407f8301e932492ba8c18aff29713"
@@ -46,31 +23,12 @@
     debug "^4.3.1"
     minimatch "^3.1.2"
 
-"@eslint/config-helpers@^0.2.0":
-  version "0.2.3"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/config-helpers/-/config-helpers-0.2.3.tgz"
-  integrity sha512-u180qk2Um1le4yf0ruXH3PYFeEZeYC3p/4wCTKrr2U1CmGdzGi3KtY0nuPDH48UJxlKCC5RDzbcbh4X0XlqgHg==
-
 "@eslint/config-helpers@^0.4.2":
   version "0.4.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/config-helpers/-/config-helpers-0.4.2.tgz#1bd006ceeb7e2e55b2b773ab318d300e1a66aeda"
   integrity sha512-gBrxN88gOIf3R7ja5K9slwNayVcZgK6SOUORm2uBzTeIEfeVaIhOpCtTox3P6R7o2jLFwLFTLnC7kU/RGcYEgw==
   dependencies:
     "@eslint/core" "^0.17.0"
-
-"@eslint/core@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/core/-/core-0.12.0.tgz"
-  integrity sha512-cmrR6pytBuSMTaBweKoGMwu3EiHiEC+DoyupPmlZ0HxBJBtIxwe+j/E4XPIKNx+Q74c8lXKPwYawBf5glsTkHg==
-  dependencies:
-    "@types/json-schema" "^7.0.15"
-
-"@eslint/core@^0.13.0":
-  version "0.13.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/core/-/core-0.13.0.tgz"
-  integrity sha512-yfkgDw1KR66rkT5A8ci4irzDysN7FRpq3ttJolR88OqQikAWqwA8j5VZyas+vjyBNFIJ7MfybJ9plMILI2UrCw==
-  dependencies:
-    "@types/json-schema" "^7.0.15"
 
 "@eslint/core@^0.17.0":
   version "0.17.0"
@@ -94,33 +52,15 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@9.24.0":
-  version "9.24.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/js/-/js-9.24.0.tgz"
-  integrity sha512-uIY/y3z0uvOGX8cp1C2fiC4+ZmBhp6yZWkojtHL1YEMnRt1Y63HB9TM17proGEmeG7HeUY+UP36F0aknKYTpYA==
-
 "@eslint/js@9.39.2":
   version "9.39.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/js/-/js-9.39.2.tgz#2d4b8ec4c3ea13c1b3748e0c97ecd766bdd80599"
   integrity sha512-q1mjIoW1VX4IvSocvM/vbTiveKC4k9eLrajNEuSsmjymSDEbpGddtpfOoN7YGAqBK3NG+uqo8ia4PDTt8buCYA==
 
-"@eslint/object-schema@^2.1.6":
-  version "2.1.6"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/object-schema/-/object-schema-2.1.6.tgz"
-  integrity sha512-RBMg5FRL0I0gs51M/guSAj5/e14VQ4tpZnQNWwuDT66P14I43ItmPfIZRhO9fUVIPOAQXU47atlywZ/czoqFPA==
-
 "@eslint/object-schema@^2.1.7":
   version "2.1.7"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/object-schema/-/object-schema-2.1.7.tgz#6e2126a1347e86a4dedf8706ec67ff8e107ebbad"
   integrity sha512-VtAOaymWVfZcmZbp6E2mympDIHvyjXs/12LqWYjVw6qjrfF+VK+fyG33kChz3nnK+SU5/NeHOqrTEHS8sXO3OA==
-
-"@eslint/plugin-kit@^0.2.7":
-  version "0.2.8"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@eslint/plugin-kit/-/plugin-kit-0.2.8.tgz"
-  integrity sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==
-  dependencies:
-    "@eslint/core" "^0.13.0"
-    levn "^0.4.1"
 
 "@eslint/plugin-kit@^0.4.1":
   version "0.4.1"
@@ -249,7 +189,7 @@
     lit "^2.8.0 || ^3.0.0"
     tslib "^2.4.0"
 
-"@mischnic/json-sourcemap@^0.1.0", "@mischnic/json-sourcemap@^0.1.1":
+"@mischnic/json-sourcemap@^0.1.1":
   version "0.1.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@mischnic/json-sourcemap/-/json-sourcemap-0.1.1.tgz"
   integrity sha512-iA7+tyVqfrATAIsIRWQG+a7ZLLD0VaOCKV2Wd/v4mqIU3J9c4jx9p7S0nw1XH3gJCKNBOOwACOPYYSUu9pgT+w==
@@ -288,18 +228,6 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.3.tgz"
   integrity sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ==
 
-"@parcel/bundler-default@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/bundler-default/-/bundler-default-2.14.4.tgz"
-  integrity sha512-JVqi5Sb7wv2KCTJFAAjHbnl6KC61jKNVYw/GtZm5s/Wxqvxx2tcp93rmRoBFo9X3gSgkg8jp4HkNAUHTxnsPnQ==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/graph" "3.4.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-
 "@parcel/bundler-default@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/bundler-default/-/bundler-default-2.16.3.tgz#1f868c6172bf874ad558c69321c5c49d65d62810"
@@ -312,16 +240,6 @@
     "@parcel/utils" "2.16.3"
     nullthrows "^1.1.1"
 
-"@parcel/cache@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/cache/-/cache-2.14.4.tgz"
-  integrity sha512-CTTMySgNSgcSwbNWL4gODU1h9hMjBRyiC8/gcKDFqzw0wC/T+ZwX7wc5zNc/S9aJRTmmgvndcYKoVlds7YV2sg==
-  dependencies:
-    "@parcel/fs" "2.14.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    lmdb "2.8.5"
-
 "@parcel/cache@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/cache/-/cache-2.16.3.tgz#dd65df6a10501478cf44621df08136b41de51098"
@@ -331,13 +249,6 @@
     "@parcel/logger" "2.16.3"
     "@parcel/utils" "2.16.3"
     lmdb "2.8.5"
-
-"@parcel/codeframe@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/codeframe/-/codeframe-2.14.4.tgz"
-  integrity sha512-fRKkmFGnQIa/X+Kr8csTWjOwRRh2JfJfTpNS8JhbjBSWvOoKsDG9T2U5Ky8akIG7c9WDGwB3ngONauI1vtaInA==
-  dependencies:
-    chalk "^4.1.2"
 
 "@parcel/codeframe@2.16.0":
   version "2.16.0"
@@ -353,57 +264,12 @@
   dependencies:
     chalk "^4.1.2"
 
-"@parcel/compressor-raw@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/compressor-raw/-/compressor-raw-2.14.4.tgz"
-  integrity sha512-wYRdokznP1iI3n6M6leQ0nI65tCIWhZaD0vW3G3qodDFi+qsdpvZymCpNUkh6AYkFFr3Lur+r/+xkWDoqNoMWA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-
 "@parcel/compressor-raw@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/compressor-raw/-/compressor-raw-2.16.3.tgz#2f6c426552398136fdfc5e6abf154a652f49a169"
   integrity sha512-84lI0ULxvjnqDn3yHorMHj2X2g0oQsIwNFYopQWz9UWjnF7g5IU0EFgAAqMCQxKKUV6fttqaQiDDPikXLR6hHA==
   dependencies:
     "@parcel/plugin" "2.16.3"
-
-"@parcel/config-default@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/config-default/-/config-default-2.14.4.tgz"
-  integrity sha512-bHtr8yT2IZDv5w44/VKoNz07goidO99c6hsp9s0hjSVC1G6krdE+nriryPVfUFbw044LeQThSvA8EwTas72QZg==
-  dependencies:
-    "@parcel/bundler-default" "2.14.4"
-    "@parcel/compressor-raw" "2.14.4"
-    "@parcel/namer-default" "2.14.4"
-    "@parcel/optimizer-css" "2.14.4"
-    "@parcel/optimizer-htmlnano" "2.14.4"
-    "@parcel/optimizer-image" "2.14.4"
-    "@parcel/optimizer-svgo" "2.14.4"
-    "@parcel/optimizer-swc" "2.14.4"
-    "@parcel/packager-css" "2.14.4"
-    "@parcel/packager-html" "2.14.4"
-    "@parcel/packager-js" "2.14.4"
-    "@parcel/packager-raw" "2.14.4"
-    "@parcel/packager-svg" "2.14.4"
-    "@parcel/packager-wasm" "2.14.4"
-    "@parcel/reporter-dev-server" "2.14.4"
-    "@parcel/resolver-default" "2.14.4"
-    "@parcel/runtime-browser-hmr" "2.14.4"
-    "@parcel/runtime-js" "2.14.4"
-    "@parcel/runtime-rsc" "2.14.4"
-    "@parcel/runtime-service-worker" "2.14.4"
-    "@parcel/transformer-babel" "2.14.4"
-    "@parcel/transformer-css" "2.14.4"
-    "@parcel/transformer-html" "2.14.4"
-    "@parcel/transformer-image" "2.14.4"
-    "@parcel/transformer-js" "2.14.4"
-    "@parcel/transformer-json" "2.14.4"
-    "@parcel/transformer-node" "2.14.4"
-    "@parcel/transformer-postcss" "2.14.4"
-    "@parcel/transformer-posthtml" "2.14.4"
-    "@parcel/transformer-raw" "2.14.4"
-    "@parcel/transformer-react-refresh-wrap" "2.14.4"
-    "@parcel/transformer-svg" "2.14.4"
 
 "@parcel/config-default@2.16.3":
   version "2.16.3"
@@ -443,37 +309,6 @@
     "@parcel/transformer-react-refresh-wrap" "2.16.3"
     "@parcel/transformer-svg" "2.16.3"
 
-"@parcel/core@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/core/-/core-2.14.4.tgz"
-  integrity sha512-dtUMmPDXd7CRAWwMlOc6jh6yLRL4wMi/vNMNdX9J/fafCLFgFBmPqWBhQ9tlX015Q8DEcIRWYPumHIn5dzqEbg==
-  dependencies:
-    "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/cache" "2.14.4"
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/events" "2.14.4"
-    "@parcel/feature-flags" "2.14.4"
-    "@parcel/fs" "2.14.4"
-    "@parcel/graph" "3.4.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/package-manager" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/profiler" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    "@parcel/workers" "2.14.4"
-    base-x "^3.0.8"
-    browserslist "^4.6.6"
-    clone "^2.1.1"
-    dotenv "^16.4.5"
-    dotenv-expand "^11.0.6"
-    json5 "^2.2.0"
-    msgpackr "^1.9.9"
-    nullthrows "^1.1.1"
-    semver "^7.5.2"
-
 "@parcel/core@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/core/-/core-2.16.3.tgz#fb805957022880cd014f6815e58b315cacd4bd74"
@@ -505,14 +340,6 @@
     nullthrows "^1.1.1"
     semver "^7.7.1"
 
-"@parcel/diagnostic@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/diagnostic/-/diagnostic-2.14.4.tgz"
-  integrity sha512-+pElcMMlTnpEIm9MrrSEOh38ylKYYdTYMgv2iZQU7799yzD9sSac9dkGSbbKGDYWhALCuzWQOgdaGG9ExJZw6w==
-  dependencies:
-    "@mischnic/json-sourcemap" "^0.1.0"
-    nullthrows "^1.1.1"
-
 "@parcel/diagnostic@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/diagnostic/-/diagnostic-2.16.0.tgz"
@@ -529,20 +356,10 @@
     "@mischnic/json-sourcemap" "^0.1.1"
     nullthrows "^1.1.1"
 
-"@parcel/error-overlay@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/error-overlay/-/error-overlay-2.14.4.tgz"
-  integrity sha512-GZ6Z1XO/VYqIFNwa3iAYWX7Pskwd+xw9tPw9kjF7tG8wdL9VipkcILJ4APj/G5CKw8XrXH/6NsC7HndNbR7EqA==
-
 "@parcel/error-overlay@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/error-overlay/-/error-overlay-2.16.3.tgz#89e726c7a955b37441b00e0ff8bca3244dfd7c17"
   integrity sha512-JqJR4Fl5SwTmqDEuCAC8F1LmNLWpjfiJ+hGp3CoLb0/9EElRxlpkuP/SxTe2/hyXevpfn3bfvS1cn/mWhHUc3w==
-
-"@parcel/events@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/events/-/events-2.14.4.tgz"
-  integrity sha512-QzZr291JuENw7BsehKc3z29ukLMApPdjRFcOYXFuMWaHkpC7lzFK/KAY4Mi9HCa3aQe90zCcuxZg+bBsNF9XxQ==
 
 "@parcel/events@2.16.0":
   version "2.16.0"
@@ -554,11 +371,6 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/events/-/events-2.16.3.tgz#69d6e54410b8de0d28c00f31c6527af4dab82db8"
   integrity sha512-rAh/yXwtHYcKWmi9Tjjf5t95UdBVhhlyJkIYN25/PYKdSRBcQ9c1rd8/fvOeZKy1/fSiOcEXqm6dK7bhLSCaww==
 
-"@parcel/feature-flags@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/feature-flags/-/feature-flags-2.14.4.tgz"
-  integrity sha512-T2HE+lOmlU6PZOUnuXn6UZPXV4higCPgF2c2YXhrzTlSFcLMiAXATyzrylbYY/i/WjiYAlqvmEcaBX5fSaW95g==
-
 "@parcel/feature-flags@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/feature-flags/-/feature-flags-2.16.0.tgz"
@@ -568,18 +380,6 @@
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/feature-flags/-/feature-flags-2.16.3.tgz#b74f66fcd7b3e63b020bd6b534e77376a150c668"
   integrity sha512-D15/cM/mAO8yv0NQ9kFBxXZ7C3A+jAq+9tVfrjYegofMk18pQoXJz6X/po2Kq1PzO7pjydn7PqYMB/O9p/+zbQ==
-
-"@parcel/fs@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/fs/-/fs-2.14.4.tgz"
-  integrity sha512-SQbuW6v1URv871FVj23HoC8+UUwpgkQ7iWmG7EITpp6AV42ojRr/jZ93hLjzkQQfYlRI64jUExn6AQAZDN3bqQ==
-  dependencies:
-    "@parcel/feature-flags" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/types-internal" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    "@parcel/watcher" "^2.0.7"
-    "@parcel/workers" "2.14.4"
 
 "@parcel/fs@2.16.3":
   version "2.16.3"
@@ -593,14 +393,6 @@
     "@parcel/watcher" "^2.0.7"
     "@parcel/workers" "2.16.3"
 
-"@parcel/graph@3.4.4":
-  version "3.4.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/graph/-/graph-3.4.4.tgz"
-  integrity sha512-AIbJ8d8aCPcKAkqc45LENjAMIrp8nRGlmky5LyY5244qqnR1B+tsvU47XoGymM3OaXLdVjv8knJ4K0ci9/l/4w==
-  dependencies:
-    "@parcel/feature-flags" "2.14.4"
-    nullthrows "^1.1.1"
-
 "@parcel/graph@3.6.3":
   version "3.6.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/graph/-/graph-3.6.3.tgz#122a892d32fec190a08a251d2a856fbdb8f6a776"
@@ -608,14 +400,6 @@
   dependencies:
     "@parcel/feature-flags" "2.16.3"
     nullthrows "^1.1.1"
-
-"@parcel/logger@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/logger/-/logger-2.14.4.tgz"
-  integrity sha512-uqSGeCqraWpbe8gqbb1k9ePrlzdKoOwkdQPcRIv8TTTWZfCt6Qcl08w8didO4iAOz4H5C4Ng82wbVO/ieaMoKg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/events" "2.14.4"
 
 "@parcel/logger@2.16.0":
   version "2.16.0"
@@ -633,13 +417,6 @@
     "@parcel/diagnostic" "2.16.3"
     "@parcel/events" "2.16.3"
 
-"@parcel/markdown-ansi@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/markdown-ansi/-/markdown-ansi-2.14.4.tgz"
-  integrity sha512-B4787HHXHi0wcuYbV4qBibws/yaX4RXoNel5xWdwzn1ZFmeLAXluNjMO2Q6FmII/Lej9OIQEaTppl7/DxJGifg==
-  dependencies:
-    chalk "^4.1.2"
-
 "@parcel/markdown-ansi@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/markdown-ansi/-/markdown-ansi-2.16.0.tgz"
@@ -654,15 +431,6 @@
   dependencies:
     chalk "^4.1.2"
 
-"@parcel/namer-default@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/namer-default/-/namer-default-2.14.4.tgz"
-  integrity sha512-3FvZhkRgYlipj0NGRmw/rZ9ZiuM+a9ZcNW/MHRpytiNNBgcGCpR00XKhhvn0O5//MH13nLpiQXUf+J279CuN2A==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    nullthrows "^1.1.1"
-
 "@parcel/namer-default@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/namer-default/-/namer-default-2.16.3.tgz#e67ea39e3e1dc19a3b65694721147db0323f44e1"
@@ -671,19 +439,6 @@
     "@parcel/diagnostic" "2.16.3"
     "@parcel/plugin" "2.16.3"
     nullthrows "^1.1.1"
-
-"@parcel/node-resolver-core@3.5.4":
-  version "3.5.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/node-resolver-core/-/node-resolver-core-3.5.4.tgz"
-  integrity sha512-KmmsVD8Ym+19DIbe0Y2SUbdcB+iUfgstR4dBpaogV36DlxV4d0uiia4GCpOO3kG9zlRYMVsfZEwy/NNZHELx3w==
-  dependencies:
-    "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/fs" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-    semver "^7.5.2"
 
 "@parcel/node-resolver-core@3.7.3":
   version "3.7.3"
@@ -697,19 +452,6 @@
     "@parcel/utils" "2.16.3"
     nullthrows "^1.1.1"
     semver "^7.7.1"
-
-"@parcel/optimizer-css@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-css/-/optimizer-css-2.14.4.tgz"
-  integrity sha512-5rwwnsP8pnTqis5fs2YyNUvke6YprWlU8Y9pD55hK1Y1MbYmvCqaIyQv9lcpHJQiqrwsZ2pl5B3Ph5buDSQehQ==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    browserslist "^4.6.6"
-    lightningcss "^1.22.1"
-    nullthrows "^1.1.1"
 
 "@parcel/optimizer-css@2.16.3":
   version "2.16.3"
@@ -733,29 +475,6 @@
     "@parcel/rust" "2.16.3"
     "@parcel/utils" "2.16.3"
 
-"@parcel/optimizer-htmlnano@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-htmlnano/-/optimizer-htmlnano-2.14.4.tgz"
-  integrity sha512-hLVaN7ResQcgKRo9uDm7oddC4DwR7qoTFsYn4Ftj8qGbgqB2nRpCCK0R66PA/9U98LyTOlAl1J6TEvxWR+IlKw==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    htmlnano "^2.0.0"
-    nullthrows "^1.1.1"
-    posthtml "^0.16.5"
-
-"@parcel/optimizer-image@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-image/-/optimizer-image-2.14.4.tgz"
-  integrity sha512-F5xw6ayFWOxu2XP5MI8g9khOCKNkVj4nGoXrBcgLoCKW4o07buCUKY4Sy04P3u7Leip6TOk7qpt3Q1179h6KTQ==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    "@parcel/workers" "2.14.4"
-
 "@parcel/optimizer-image@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-image/-/optimizer-image-2.16.3.tgz#9b43f33ed8db0c6da254dec27546026b38248785"
@@ -776,27 +495,6 @@
     "@parcel/rust" "2.16.3"
     "@parcel/utils" "2.16.3"
 
-"@parcel/optimizer-svgo@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-svgo/-/optimizer-svgo-2.14.4.tgz"
-  integrity sha512-bjZ2VHhzclBQ99SC2ZXsFKJ6zi0hXTPbGdaVblMu0iheeXcATdoNzey0eizaoSmLe9IyFJoN6gvnLdQqGfZLZg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-
-"@parcel/optimizer-swc@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-swc/-/optimizer-swc-2.14.4.tgz"
-  integrity sha512-7+p5ILEj2S02Rs6YzwF74g0kpAZzF9idDP9zjLVZWo9JYvoRvH0LW90bI7yKXWpKB8QOtwziqgWkcgItSIWBnA==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    "@swc/core" "^1.11.5"
-    nullthrows "^1.1.1"
-
 "@parcel/optimizer-swc@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/optimizer-swc/-/optimizer-swc-2.16.3.tgz#50241771fea269cbcaa4b62bfbc900ab3f91856b"
@@ -808,21 +506,6 @@
     "@parcel/utils" "2.16.3"
     "@swc/core" "^1.11.24"
     nullthrows "^1.1.1"
-
-"@parcel/package-manager@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/package-manager/-/package-manager-2.14.4.tgz"
-  integrity sha512-chF2rBmLtLPZe0qtbqJtq6hNGCRu0+1wFs2j5sqxr1ZttvvhRpATu/7pD+gKTFmfL7iJkOpGTU485SYmyO1xjg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/fs" "2.14.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/node-resolver-core" "3.5.4"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    "@parcel/workers" "2.14.4"
-    "@swc/core" "^1.11.5"
-    semver "^7.5.2"
 
 "@parcel/package-manager@2.16.3":
   version "2.16.3"
@@ -839,18 +522,6 @@
     "@swc/core" "^1.11.24"
     semver "^7.7.1"
 
-"@parcel/packager-css@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-css/-/packager-css-2.14.4.tgz"
-  integrity sha512-AvJhE1AQ4OcuOUtKoifhE1Y8KgYitzKMvmgsgQlwySdrkk6dz+XGHfZ9goTzIUaz9xZzwbJH7h/pvaIP8jQ9yQ==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    lightningcss "^1.22.1"
-    nullthrows "^1.1.1"
-
 "@parcel/packager-css@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-css/-/packager-css-2.16.3.tgz#b30411bedf8e7351f3d3d5a7046a30a405767153"
@@ -863,17 +534,6 @@
     lightningcss "^1.30.1"
     nullthrows "^1.1.1"
 
-"@parcel/packager-html@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-html/-/packager-html-2.14.4.tgz"
-  integrity sha512-rsYz3NDaKRCuQOAWGc3eYJ2GHesm62iRCQTMGlZ7Oplp748vu2c1Uee/mP43WlslvDxHtV7rzVNyo88MS6sc5w==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-    posthtml "^0.16.5"
-
 "@parcel/packager-html@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-html/-/packager-html-2.16.3.tgz#349610c6fd5c586553ddbfda4f854c33c518293b"
@@ -883,20 +543,6 @@
     "@parcel/rust" "2.16.3"
     "@parcel/types" "2.16.3"
     "@parcel/utils" "2.16.3"
-
-"@parcel/packager-js@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-js/-/packager-js-2.14.4.tgz"
-  integrity sha512-Fz98TzYFcd9xCj6jqMtyd7c3n65GRmuoG7u0S/2g4sJrR5Zen70n1zlBGX7mEoOvB5lKRijzoNqBtB+7bWqS5A==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    globals "^13.2.0"
-    nullthrows "^1.1.1"
 
 "@parcel/packager-js@2.16.3":
   version "2.16.3"
@@ -912,20 +558,13 @@
     globals "^13.24.0"
     nullthrows "^1.1.1"
 
-"@parcel/packager-raw-url@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-raw-url/-/packager-raw-url-2.14.4.tgz"
-  integrity sha512-WWxQ1kPhRe6NUF509LEjnz+cQ0l5382dTUCHJ4terfDN8Wz49PW+Lmcd/C34NHB4lAiv456EzaBbMs7bxrIEOQ==
+"@parcel/packager-raw-url@2.16.3":
+  version "2.16.3"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-raw-url/-/packager-raw-url-2.16.3.tgz#b70dea46583bffd75d2f8f19f6b07d438c012d53"
+  integrity sha512-9JCLO7N13eQDtSDDimx1xdDyRKvycA/bcGeSoLn9F1vH1pMGMMMCLwU1YUky7Sw5bO4FF9fT1AQKaReopWvQmA==
   dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-
-"@parcel/packager-raw@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-raw/-/packager-raw-2.14.4.tgz"
-  integrity sha512-7yDcPGsSSz4WiCWj2KoC2pNBXNislulI1RXaWyBAMzQhevQ+9D2ga/ZPgpcNjcWr8Y1tRb3QITETkTmZVHmPXQ==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
+    "@parcel/plugin" "2.16.3"
+    "@parcel/utils" "2.16.3"
 
 "@parcel/packager-raw@2.16.3":
   version "2.16.3"
@@ -933,16 +572,6 @@
   integrity sha512-GCehb36D2xe8P8gftyZcjNr3XcUzBgRzWcasM4I0oPaLRZw4nuIu60cwTsGk6/HhUYDq8uPze+gr1L4pApRrjw==
   dependencies:
     "@parcel/plugin" "2.16.3"
-
-"@parcel/packager-svg@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-svg/-/packager-svg-2.14.4.tgz"
-  integrity sha512-ja5P9PXp+v/mh+UXUXdQ1O35yr2kRqdRlytYrzmAaeILuS1ko2n3ZJoeUYYprYOh/UmLmkgbXh/DyzrhEH7TZw==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    posthtml "^0.16.4"
 
 "@parcel/packager-svg@2.16.3":
   version "2.16.3"
@@ -954,26 +583,12 @@
     "@parcel/types" "2.16.3"
     "@parcel/utils" "2.16.3"
 
-"@parcel/packager-wasm@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-wasm/-/packager-wasm-2.14.4.tgz"
-  integrity sha512-sgGCitPjl80Ku+xZIu3wCIAjOYXVEGJ00uXeexR8hgMx/PMhiHXLWUG8eLYAvxXx/CcLmHDOEBNrl6G3JxsP9g==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-
 "@parcel/packager-wasm@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/packager-wasm/-/packager-wasm-2.16.3.tgz#ef5fdff348659a59d26bee936786b15db39be430"
   integrity sha512-RfRM/RaA4eWV+qUt7A9Vo2VlvZx50Rfs81kZ4WBhxzey2BGAvBSJWceYEUnI7JuDmrHjDMDe6y0+gLNmELeL1g==
   dependencies:
     "@parcel/plugin" "2.16.3"
-
-"@parcel/plugin@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/plugin/-/plugin-2.14.4.tgz"
-  integrity sha512-EcehbthkBtQ9S2jWAzIiSlodbIMZ0bSsN3PC1q9jVaCM16ueObjZohKkzMjzR6Qot91qL0EJoMLzuNvtryvpHA==
-  dependencies:
-    "@parcel/types" "2.14.4"
 
 "@parcel/plugin@2.16.3":
   version "2.16.3"
@@ -988,16 +603,6 @@
   integrity sha512-Rdk5e/VGmMp6s2DmC0AbjWYmea3Vv8Tx1SC5ln+lf+qRlhndrbFV9o5QKirTY9C8GWd20qH1ZqOxPDEzK/YSGA==
   dependencies:
     "@parcel/types" "2.16.0"
-
-"@parcel/profiler@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/profiler/-/profiler-2.14.4.tgz"
-  integrity sha512-oZAdCDW3bYRpBOuL4coq4OQDN6HXADaSd4X8xJCeGsEsbVfJt0Qg5RgxdWC1L86mukyZMQ9ZrQUpC8aU9CAmFg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/events" "2.14.4"
-    "@parcel/types-internal" "2.14.4"
-    chrome-trace-event "^1.0.2"
 
 "@parcel/profiler@2.16.0":
   version "2.16.0"
@@ -1019,17 +624,6 @@
     "@parcel/types-internal" "2.16.3"
     chrome-trace-event "^1.0.2"
 
-"@parcel/reporter-cli@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/reporter-cli/-/reporter-cli-2.14.4.tgz"
-  integrity sha512-KgBXBiwGb9hqf3A6vw6eIqX1uYaMRjSqYXUUybGTOxonc+yB6J5q+skv1Wuty6IYuBfjNlV/zdvgggVZMl0ZxA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/types" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    chalk "^4.1.2"
-    term-size "^2.2.1"
-
 "@parcel/reporter-cli@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/reporter-cli/-/reporter-cli-2.16.3.tgz#bb95adaeae85d4d54f5d9d06703fa556a5872ca4"
@@ -1041,16 +635,6 @@
     chalk "^4.1.2"
     term-size "^2.2.1"
 
-"@parcel/reporter-dev-server@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/reporter-dev-server/-/reporter-dev-server-2.14.4.tgz"
-  integrity sha512-Ezg24vHftV0El0tWcxnsGAxwSdNTMs9M+l9Nbm1k4rydx1lCoKBAhpa2Icv8vKZY8K075giww8TOkjk6zVkAmQ==
-  dependencies:
-    "@parcel/codeframe" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-
 "@parcel/reporter-dev-server@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/reporter-dev-server/-/reporter-dev-server-2.16.3.tgz#45022541c20adcd524dd6875141492f4eee452b8"
@@ -1060,16 +644,6 @@
     "@parcel/plugin" "2.16.3"
     "@parcel/source-map" "^2.1.1"
     "@parcel/utils" "2.16.3"
-
-"@parcel/reporter-tracer@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/reporter-tracer/-/reporter-tracer-2.14.4.tgz"
-  integrity sha512-EN+rzdEnoMuC5qbYIcuP6v1vTb/dDPrrnIEtDFEsSyuBuDfQevtOech8oHzjGEBOlC8svm+OzW/wIj2L2rmF2A==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    chrome-trace-event "^1.0.3"
-    nullthrows "^1.1.1"
 
 "@parcel/reporter-tracer@2.16.3":
   version "2.16.3"
@@ -1081,14 +655,6 @@
     chrome-trace-event "^1.0.3"
     nullthrows "^1.1.1"
 
-"@parcel/resolver-default@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/resolver-default/-/resolver-default-2.14.4.tgz"
-  integrity sha512-s4XKnfScF/cwqGyYG/sB4WpktIJ55dvpu64ZiglHkkPvY5wT4p7A61mTIp6ck0ZPYmeG/zfd+P0B3qPpNF5mUw==
-  dependencies:
-    "@parcel/node-resolver-core" "3.5.4"
-    "@parcel/plugin" "2.14.4"
-
 "@parcel/resolver-default@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/resolver-default/-/resolver-default-2.16.3.tgz#cbdf25cc229734780251baab6b19b329224923a8"
@@ -1097,24 +663,16 @@
     "@parcel/node-resolver-core" "3.7.3"
     "@parcel/plugin" "2.16.3"
 
-"@parcel/resolver-glob@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/resolver-glob/-/resolver-glob-2.14.4.tgz"
-  integrity sha512-ODEEOz76etvOKjWQF6bDEMQ3ejdZvL3lgCsM9A50IFcCgWAHw5/NMly4MSZe3d8p0HF8K4gkWVUmfbw1aEYAJg==
+"@parcel/resolver-glob@2.16.3":
+  version "2.16.3"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/resolver-glob/-/resolver-glob-2.16.3.tgz#6f6077fe697b37cc192c0f004c66b164cfe9c6d9"
+  integrity sha512-U4G/kX1bVEW6Huv1DyY/AgwWvvkgtuX6brxordAQ2doO9DvRp+0DEO90u64ASqRC/mvjFqSJ5IHWrYTQZ5yO0Q==
   dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/node-resolver-core" "3.5.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
+    "@parcel/diagnostic" "2.16.3"
+    "@parcel/node-resolver-core" "3.7.3"
+    "@parcel/plugin" "2.16.3"
+    "@parcel/utils" "2.16.3"
     nullthrows "^1.1.1"
-
-"@parcel/runtime-browser-hmr@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/runtime-browser-hmr/-/runtime-browser-hmr-2.14.4.tgz"
-  integrity sha512-7o3XHOkuNy2jUH8xdKJSzIfatdAqvr/PHg9vQN0Cz4r80XCXDh1ovfz/x0Q9gpBv+LMBs+ufZ4tP+RfgJ/jKpQ==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
 
 "@parcel/runtime-browser-hmr@2.16.3":
   version "2.16.3"
@@ -1123,16 +681,6 @@
   dependencies:
     "@parcel/plugin" "2.16.3"
     "@parcel/utils" "2.16.3"
-
-"@parcel/runtime-js@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/runtime-js/-/runtime-js-2.14.4.tgz"
-  integrity sha512-F9RvDELU/0fyV2/rHkjpPcLeKF/ZU3gnHIQnkh2Q5/41XhymyNAvMmYGPM6VpbOAnDlYeVjwfyJ41x8FOL6u4Q==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
 
 "@parcel/runtime-js@2.16.3":
   version "2.16.3"
@@ -1144,16 +692,6 @@
     "@parcel/utils" "2.16.3"
     nullthrows "^1.1.1"
 
-"@parcel/runtime-rsc@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/runtime-rsc/-/runtime-rsc-2.14.4.tgz"
-  integrity sha512-FXoO1GWvC/yQOUYX+0rTUQVku91DSJnjegqJaiJSUOEGeJWF9mBmY/3QDkksvhwB25vJkLYsu/M5Fx83OA2u6w==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-
 "@parcel/runtime-rsc@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/runtime-rsc/-/runtime-rsc-2.16.3.tgz#1cc804e83473b3fecb0e528571283ae53925a0ec"
@@ -1162,15 +700,6 @@
     "@parcel/plugin" "2.16.3"
     "@parcel/rust" "2.16.3"
     "@parcel/utils" "2.16.3"
-    nullthrows "^1.1.1"
-
-"@parcel/runtime-service-worker@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/runtime-service-worker/-/runtime-service-worker-2.14.4.tgz"
-  integrity sha512-6+vz2DYP9tK+GHRPwW/qfUNvGOHvFpsN/Thk+tSIZ+PHT1DTWfpf02eo7fzpImdZAzllSz3m1IXgrOH00LdOKA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
     nullthrows "^1.1.1"
 
 "@parcel/runtime-service-worker@2.16.3":
@@ -1262,11 +791,6 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/rust-win32-x64-msvc/-/rust-win32-x64-msvc-2.16.3.tgz#25e37325fc6333e7ca58d4585385dd88911b07ce"
   integrity sha512-/kyr5CL4XFJpMj9CvW8K1NNNqkzyOhxc7ibXhykiPyPiGOwO/ZbqnfDhqVx3JMSjOASeW1e6UlGNjnfTPvFkGQ==
 
-"@parcel/rust@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/rust/-/rust-2.14.4.tgz"
-  integrity sha512-Ti+ZVr8mMTgrSA7UHcFXxG98anD0C8dGzYfP1+DTgxkcU16nywTv5F/VsPqpV2qiDWrHbm06CEWQbOrowjzvVw==
-
 "@parcel/rust@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/rust/-/rust-2.16.0.tgz"
@@ -1302,20 +826,6 @@
   dependencies:
     detect-libc "^1.0.3"
 
-"@parcel/transformer-babel@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-babel/-/transformer-babel-2.14.4.tgz"
-  integrity sha512-9yMnlFuKQYgXJY8OWpcR2vSigpMm5MCEJJl6r+g3KkXHFwK1Gket2sC4Wd5JbHv98SNzJ9rdD4Xrre/eXJu6pw==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    browserslist "^4.6.6"
-    json5 "^2.2.0"
-    nullthrows "^1.1.1"
-    semver "^7.5.2"
-
 "@parcel/transformer-babel@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-babel/-/transformer-babel-2.16.3.tgz#623f1261c654b5177a4d6b9c8b13feaf33b70986"
@@ -1330,19 +840,6 @@
     nullthrows "^1.1.1"
     semver "^7.7.1"
 
-"@parcel/transformer-css@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-css/-/transformer-css-2.14.4.tgz"
-  integrity sha512-sf0NuzPH4kSpL4VgV94xY5kPxoAndoNouUFPaHmN3hW6QiTHShRubfDsginSOHl5QhghSfr4qtP7t7HxCSDq6A==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    browserslist "^4.6.6"
-    lightningcss "^1.22.1"
-    nullthrows "^1.1.1"
-
 "@parcel/transformer-css@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-css/-/transformer-css-2.16.3.tgz#dd4f7b5c5835a8283fcae3faa694fd9d09be0e4d"
@@ -1356,21 +853,6 @@
     lightningcss "^1.30.1"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-html@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-html/-/transformer-html-2.14.4.tgz"
-  integrity sha512-h0iCfU2SN+gh5LTfZTRiXHavl3CdJ2i3F9jzVrRjdH8pfLqy5eOy1tQ8vyqMsshk+VdlZ1+vUiZ7uaKkkBq/fg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    nullthrows "^1.1.1"
-    posthtml "^0.16.5"
-    posthtml-parser "^0.12.1"
-    posthtml-render "^3.0.0"
-    semver "^7.5.2"
-    srcset "4"
-
 "@parcel/transformer-html@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-html/-/transformer-html-2.16.3.tgz#d8609fdcd6e8090356ef6e4a9e8f33948007b52b"
@@ -1379,16 +861,6 @@
     "@parcel/diagnostic" "2.16.3"
     "@parcel/plugin" "2.16.3"
     "@parcel/rust" "2.16.3"
-
-"@parcel/transformer-image@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-image/-/transformer-image-2.14.4.tgz"
-  integrity sha512-QVGAdQ16YxNo7PTzBazUabmrn4dss1EDeMrh0bFUeRTZdYaYu5z/+gnRc5R4oHcHK6oxnECi808TquMQcQxDEA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    "@parcel/workers" "2.14.4"
-    nullthrows "^1.1.1"
 
 "@parcel/transformer-image@2.16.3":
   version "2.16.3"
@@ -1400,29 +872,12 @@
     "@parcel/workers" "2.16.3"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-inline-string@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-inline-string/-/transformer-inline-string-2.14.4.tgz"
-  integrity sha512-WZ7bSsKavHuUOTIfJs5YH1a7NrkLGkin0HxhwQY0a9RAoxEBm56kKd4OSDIOIaCy8/wo1OZQZjbSrJD3NQvEaw==
+"@parcel/transformer-inline-string@2.16.3":
+  version "2.16.3"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-inline-string/-/transformer-inline-string-2.16.3.tgz#f081e4079878fd0a4f10792ec58961ca2af4c960"
+  integrity sha512-oMjqqf/TfYQScy66ODEHWMInQYxpnlEpJDysT/OH4m+5+Q//Oh1hd6dl2g4SPmXUbgA9Y89ZfuifakoADpiCMg==
   dependencies:
-    "@parcel/plugin" "2.14.4"
-
-"@parcel/transformer-js@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-js/-/transformer-js-2.14.4.tgz"
-  integrity sha512-fBC8NVM8xXxjGQY5r88Z46akSErFO5hRVA4kuRI0tkXorjov3Mu4hu6MLq974TEQluSvGXUYGT5Mq2iXZ75M7w==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.14.4"
-    "@parcel/workers" "2.14.4"
-    "@swc/helpers" "^0.5.0"
-    browserslist "^4.6.6"
-    nullthrows "^1.1.1"
-    regenerator-runtime "^0.14.1"
-    semver "^7.5.2"
+    "@parcel/plugin" "2.16.3"
 
 "@parcel/transformer-js@2.16.3":
   version "2.16.3"
@@ -1441,14 +896,6 @@
     regenerator-runtime "^0.14.1"
     semver "^7.7.1"
 
-"@parcel/transformer-json@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-json/-/transformer-json-2.14.4.tgz"
-  integrity sha512-+28n3/qhc2q6Zoqhufk1YKU442a2JyyE0ILFsT17Of+lcNX+QtXYPOYcky7TNENnoUz9TpOAFev64P99UN7huA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    json5 "^2.2.0"
-
 "@parcel/transformer-json@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-json/-/transformer-json-2.16.3.tgz#9f2e0f311a4a7e5bfcf8514f78baea0d05d8e362"
@@ -1457,33 +904,12 @@
     "@parcel/plugin" "2.16.3"
     json5 "^2.2.3"
 
-"@parcel/transformer-node@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-node/-/transformer-node-2.14.4.tgz"
-  integrity sha512-K5k/GkGN4SwGdil8g10AcPPJn+hV0vzcv4l2qYoCqaxxIPCrpjmMnoA8a3kRgxvD8s54KciFYYjmU5Cj5NjvbA==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-
 "@parcel/transformer-node@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-node/-/transformer-node-2.16.3.tgz#3bdb74d6f30019aec36df34a8e96183fd614b021"
   integrity sha512-FIbSphLisxmzwqE43ALsGeSPSYBA3ZE6xmhAIgwoFdeI6VfTSkCZnGhSqUhP3m9R55IuWm/+NP6BlePWADmkwg==
   dependencies:
     "@parcel/plugin" "2.16.3"
-
-"@parcel/transformer-postcss@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-postcss/-/transformer-postcss-2.14.4.tgz"
-  integrity sha512-GxkXkcgG2XGt6ivoUF5yD1tmQPV+d71gUxyBGv1i1jg4x65R12Gc/npzWk9TCH2dShSdHOA90OJpNL4k0JlLtg==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    clone "^2.1.1"
-    nullthrows "^1.1.1"
-    postcss-value-parser "^4.2.0"
-    semver "^7.5.2"
 
 "@parcel/transformer-postcss@2.16.3":
   version "2.16.3"
@@ -1499,19 +925,6 @@
     postcss-value-parser "^4.2.0"
     semver "^7.7.1"
 
-"@parcel/transformer-posthtml@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-posthtml/-/transformer-posthtml-2.14.4.tgz"
-  integrity sha512-V9dnsA5+t7uF/hWc9HwJcaKkmP8K2go6yAQOpxu+knyszfz3t2jw/k4L/VFjqCATf90agal/iRTPVkHvWDCzZw==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-    posthtml "^0.16.5"
-    posthtml-parser "^0.12.1"
-    posthtml-render "^3.0.0"
-    semver "^7.5.2"
-
 "@parcel/transformer-posthtml@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-posthtml/-/transformer-posthtml-2.16.3.tgz#2ad23334de71ecafdbb58ee5f2cc5fab8af5e8cc"
@@ -1520,29 +933,12 @@
     "@parcel/plugin" "2.16.3"
     "@parcel/utils" "2.16.3"
 
-"@parcel/transformer-raw@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-raw/-/transformer-raw-2.14.4.tgz"
-  integrity sha512-GCuUWKAb9YHB/krmzBeQbtHKKZopT3c3AzoPTq/4woV4Ti1zUZ83oFyTX1tBKQ+MMB1BW+HrPkFld0iY4gp/Ng==
-  dependencies:
-    "@parcel/plugin" "2.14.4"
-
 "@parcel/transformer-raw@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-raw/-/transformer-raw-2.16.3.tgz#440f623d0ba7b7a9cdb401942c42a42ae8508a2e"
   integrity sha512-Lha1+z75QbNAsxMAffp5K+ykGXEYSNOFUqI/8XtetYfuqIvS5s/OBkwsg8MWbjtPkbKo1F3EwNBaIAagw/BbIg==
   dependencies:
     "@parcel/plugin" "2.16.3"
-
-"@parcel/transformer-react-refresh-wrap@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-react-refresh-wrap/-/transformer-react-refresh-wrap-2.14.4.tgz"
-  integrity sha512-nb70CAvjDizAIQ1naZ39P/PxYWtPllWvvxrkpldNnk8AF74OcHodrsuHKwhyPZHMmnMdexFonsenf+VeN4l/aQ==
-  dependencies:
-    "@parcel/error-overlay" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    react-refresh ">=0.9 <=0.16"
 
 "@parcel/transformer-react-refresh-wrap@2.16.3":
   version "2.16.3"
@@ -1554,20 +950,6 @@
     "@parcel/utils" "2.16.3"
     react-refresh "^0.16.0"
 
-"@parcel/transformer-svg@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-svg/-/transformer-svg-2.14.4.tgz"
-  integrity sha512-iqnyvgGmwu4wNh+khEBkMEu1hAGZWnc7/xQnhiuQBAcoy5qGNEjyVUv6PbMLWWAVK/0PjqV4FaB2deXBYKeW0A==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    nullthrows "^1.1.1"
-    posthtml "^0.16.5"
-    posthtml-parser "^0.12.1"
-    posthtml-render "^3.0.0"
-    semver "^7.5.2"
-
 "@parcel/transformer-svg@2.16.3":
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-svg/-/transformer-svg-2.16.3.tgz#a28f94b0cfbf85f202eec5fc68c01404df30a331"
@@ -1577,25 +959,15 @@
     "@parcel/plugin" "2.16.3"
     "@parcel/rust" "2.16.3"
 
-"@parcel/transformer-webmanifest@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.14.4.tgz"
-  integrity sha512-cS+grnjeT+Vw7kkfQDeH/SAlX2YtcW3Y6voBfxxLJcHK3GMR/fw95JyAcCDEfoAX1DMM/NT5HNcqBvwyUQIoHA==
+"@parcel/transformer-webmanifest@2.16.3":
+  version "2.16.3"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.16.3.tgz#1de45364467fc409b6c3400e3bfbddef3732498b"
+  integrity sha512-MKujLIOTIMFQwhDsHuhGpgC85ZMICdzMngRt7Ch3fw8tmdOOzVIpSAzk47zj6vyD25lILRXjNUhagxrg0rH6zg==
   dependencies:
-    "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/plugin" "2.14.4"
-    "@parcel/utils" "2.14.4"
-
-"@parcel/types-internal@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/types-internal/-/types-internal-2.14.4.tgz"
-  integrity sha512-Y2JnljFG7KcxLrCiYNCqBfjDo12alhRVpNugm0jwz1EQ3OQNO3HYiB0f3djq6pv2clZ5ndpgkNgYsn6L7KR9Nw==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/feature-flags" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    utility-types "^3.10.0"
+    "@mischnic/json-sourcemap" "^0.1.1"
+    "@parcel/diagnostic" "2.16.3"
+    "@parcel/plugin" "2.16.3"
+    "@parcel/utils" "2.16.3"
 
 "@parcel/types-internal@2.16.0":
   version "2.16.0"
@@ -1617,14 +989,6 @@
     "@parcel/source-map" "^2.1.1"
     utility-types "^3.11.0"
 
-"@parcel/types@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/types/-/types-2.14.4.tgz"
-  integrity sha512-NL4N9M6IPwBquAo1DKOPqy66nwJLXMX3KPalzAA7ktt3HYr5YNG5h3GeVXPOLNIVVMrSIiodYGPEeEBYy6kyYA==
-  dependencies:
-    "@parcel/types-internal" "2.14.4"
-    "@parcel/workers" "2.14.4"
-
 "@parcel/types@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/types/-/types-2.16.0.tgz"
@@ -1640,20 +1004,6 @@
   dependencies:
     "@parcel/types-internal" "2.16.3"
     "@parcel/workers" "2.16.3"
-
-"@parcel/utils@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/utils/-/utils-2.14.4.tgz"
-  integrity sha512-icK6QgKjis+UZLyaHJcsKXYOSKYeYr41m8ZB9j20/yEcvrMqj/LMVsNjLz3iWVhLwfgussG2ODxycCdu3M5cvQ==
-  dependencies:
-    "@parcel/codeframe" "2.14.4"
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/markdown-ansi" "2.14.4"
-    "@parcel/rust" "2.14.4"
-    "@parcel/source-map" "^2.1.1"
-    chalk "^4.1.2"
-    nullthrows "^1.1.1"
 
 "@parcel/utils@2.16.0":
   version "2.16.0"
@@ -1772,18 +1122,6 @@
     "@parcel/watcher-win32-ia32" "2.5.1"
     "@parcel/watcher-win32-x64" "2.5.1"
 
-"@parcel/workers@2.14.4":
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/workers/-/workers-2.14.4.tgz"
-  integrity sha512-OAjW2dJOaRKy4UD5YwnUi7mY+gt/QbjagjrKh2fQDnrvuK8dpr5GrjEOLOe6QsxEE0vpe3jshhGMJTYqLni3kQ==
-  dependencies:
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/profiler" "2.14.4"
-    "@parcel/types-internal" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    nullthrows "^1.1.1"
-
 "@parcel/workers@2.16.0":
   version "2.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@parcel/workers/-/workers-2.16.0.tgz"
@@ -1808,100 +1146,55 @@
     "@parcel/utils" "2.16.3"
     nullthrows "^1.1.1"
 
-"@swc/core-darwin-arm64@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-darwin-arm64/-/core-darwin-arm64-1.13.5.tgz#7638c073946f9297753ed9a2eb198d07b2336a24"
-  integrity sha512-lKNv7SujeXvKn16gvQqUQI5DdyY8v7xcoO3k06/FJbHJS90zEwZdQiMNRiqpYw/orU543tPaWgz7cIYWhbopiQ==
+"@polka/url@^1.0.0-next.24":
+  version "1.0.0-next.29"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@polka/url/-/url-1.0.0-next.29.tgz#5a40109a1ab5f84d6fd8fc928b19f367cbe7e7b1"
+  integrity sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==
 
 "@swc/core-darwin-arm64@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-darwin-arm64/-/core-darwin-arm64-1.15.4.tgz#de9f00f218b9c0f40db21ecba1c8d4513759eeba"
   integrity sha512-NU/Of+ShFGG/i0lXKsF6GaGeTBNsr9iD8uUzdXxFfGbEjTeuKNXc5CWn3/Uo4Gr4LMAGD3hsRwG2Jq5iBDMalw==
 
-"@swc/core-darwin-x64@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-darwin-x64/-/core-darwin-x64-1.13.5.tgz#18061167378f0fb285e17818494bc6c89dd07551"
-  integrity sha512-ILd38Fg/w23vHb0yVjlWvQBoE37ZJTdlLHa8LRCFDdX4WKfnVBiblsCU9ar4QTMNdeTBEX9iUF4IrbNWhaF1Ng==
-
 "@swc/core-darwin-x64@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-darwin-x64/-/core-darwin-x64-1.15.4.tgz#010a5433d1d9eff68f52f0b6cbb65ceb3c3280d6"
   integrity sha512-9oWYMZHiEfHLqjjRGrXL17I8HdAOpWK/Rps34RKQ74O+eliygi1Iyq1TDUzYqUXcNvqN2K5fHgoMLRIni41ClQ==
-
-"@swc/core-linux-arm-gnueabihf@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.13.5.tgz#4c8062bd598049b5b9b0beb762e075e76b4c23c3"
-  integrity sha512-Q6eS3Pt8GLkXxqz9TAw+AUk9HpVJt8Uzm54MvPsqp2yuGmY0/sNaPPNVqctCX9fu/Nu8eaWUen0si6iEiCsazQ==
 
 "@swc/core-linux-arm-gnueabihf@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.15.4.tgz#6935366277740c36196645e93288ffd9068b0b35"
   integrity sha512-I1dPxXli3N1Vr71JXogUTLcspM5ICgCYaA16RE+JKchj3XKKmxLlYjwAHAA4lh/Cy486ikzACaG6pIBcegoGkg==
 
-"@swc/core-linux-arm64-gnu@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.13.5.tgz#7222d321197ea9304e387933e87d775849fc1ae6"
-  integrity sha512-aNDfeN+9af+y+M2MYfxCzCy/VDq7Z5YIbMqRI739o8Ganz6ST+27kjQFd8Y/57JN/hcnUEa9xqdS3XY7WaVtSw==
-
 "@swc/core-linux-arm64-gnu@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.15.4.tgz#a13343cec41946f1e6d92edb64fc4f9fe4613993"
   integrity sha512-iGpuS/2PDZ68ioAlhkxiN5M4+pB9uDJolTKk4mZ0JM29uFf9YIkiyk7Bbr2y1QtmD82rF0tDHhoG9jtnV8mZMg==
-
-"@swc/core-linux-arm64-musl@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.13.5.tgz#51e7958deaf37edc212bd9dc0ea1476f151d2bea"
-  integrity sha512-9+ZxFN5GJag4CnYnq6apKTnnezpfJhCumyz0504/JbHLo+Ue+ZtJnf3RhyA9W9TINtLE0bC4hKpWi8ZKoETyOQ==
 
 "@swc/core-linux-arm64-musl@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.15.4.tgz#cb5eadbd87ae54a615b31927108501a0c600e031"
   integrity sha512-Ly95wc+VXDhl08pjAoPUhVu5vNbuPMbURknRZa5QOZuiizJ6DkaSI0/zsEc26PpC6HTc4prNLY3ARVwZ7j/IJQ==
 
-"@swc/core-linux-x64-gnu@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.13.5.tgz#3476beab93ab03e92844d955ca9d9289aa4a5993"
-  integrity sha512-WD530qvHrki8Ywt/PloKUjaRKgstQqNGvmZl54g06kA+hqtSE2FTG9gngXr3UJxYu/cNAjJYiBifm7+w4nbHbA==
-
 "@swc/core-linux-x64-gnu@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.15.4.tgz#261b1f1122b822fa62e2db2915eabd7444ac6ac3"
   integrity sha512-7pIG0BnaMn4zTpHeColPwyrWoTY9Drr+ISZQIgYHUKh3oaPtNCrXb289ScGbPPPjLsSfcGTeOy2pXmNczMC+yg==
-
-"@swc/core-linux-x64-musl@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.13.5.tgz#f4934b1e77e2a297909bb3ab977836205c36e5e0"
-  integrity sha512-Luj8y4OFYx4DHNQTWjdIuKTq2f5k6uSXICqx+FSabnXptaOBAbJHNbHT/06JZh6NRUouaf0mYXN0mcsqvkhd7Q==
 
 "@swc/core-linux-x64-musl@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.15.4.tgz#9aaf802973da7e31dcb12b7958d0eb6a40ea0fda"
   integrity sha512-oaqTV25V9H+PpSkvTcK25q6Q56FvXc6d2xBu486dv9LAPCHWgeAworE8WpBLV26g8rubcN5nGhO5HwSunXA7Ww==
 
-"@swc/core-win32-arm64-msvc@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.13.5.tgz#5084c107435cfc82d4d901bfb388dc319d38a236"
-  integrity sha512-cZ6UpumhF9SDJvv4DA2fo9WIzlNFuKSkZpZmPG1c+4PFSEMy5DFOjBSllCvnqihCabzXzpn6ykCwBmHpy31vQw==
-
 "@swc/core-win32-arm64-msvc@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.15.4.tgz#cecdc5ed0f3007ce1534ae2a3a8cc72754587864"
   integrity sha512-VcPuUJw27YbGo1HcOaAriI50dpM3ZZeDW3x2cMnJW6vtkeyzUFk1TADmTwFax0Fn+yicCxhaWjnFE3eAzGAxIQ==
 
-"@swc/core-win32-ia32-msvc@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.13.5.tgz#f8b2e28bc51b30467e316ed736a130c1324b9880"
-  integrity sha512-C5Yi/xIikrFUzZcyGj9L3RpKljFvKiDMtyDzPKzlsDrKIw2EYY+bF88gB6oGY5RGmv4DAX8dbnpRAqgFD0FMEw==
-
 "@swc/core-win32-ia32-msvc@1.15.4":
   version "1.15.4"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.15.4.tgz#0b71752d88cd5f6470a93a145fb22994a47c603d"
   integrity sha512-dREjghAZEuKAK9nQzJETAiCSihSpAVS6Vk9+y2ElaoeTj68tNB1txV/m1RTPPD/+Kgbz6ITPNyXRWxPdkP5aXw==
-
-"@swc/core-win32-x64-msvc@1.13.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.13.5.tgz"
-  integrity sha512-YrKdMVxbYmlfybCSbRtrilc6UA8GF5aPmGKBdPvjrarvsmf4i7ZHGCEnLtfOMd3Lwbs2WUZq3WdMbozYeLU93Q==
 
 "@swc/core-win32-x64-msvc@1.15.4":
   version "1.15.4"
@@ -1927,25 +1220,6 @@
     "@swc/core-win32-ia32-msvc" "1.15.4"
     "@swc/core-win32-x64-msvc" "1.15.4"
 
-"@swc/core@^1.11.5":
-  version "1.13.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/core/-/core-1.13.5.tgz"
-  integrity sha512-WezcBo8a0Dg2rnR82zhwoR6aRNxeTGfK5QCD6TQ+kg3xx/zNT02s/0o+81h/3zhvFSB24NtqEr8FTw88O5W/JQ==
-  dependencies:
-    "@swc/counter" "^0.1.3"
-    "@swc/types" "^0.1.24"
-  optionalDependencies:
-    "@swc/core-darwin-arm64" "1.13.5"
-    "@swc/core-darwin-x64" "1.13.5"
-    "@swc/core-linux-arm-gnueabihf" "1.13.5"
-    "@swc/core-linux-arm64-gnu" "1.13.5"
-    "@swc/core-linux-arm64-musl" "1.13.5"
-    "@swc/core-linux-x64-gnu" "1.13.5"
-    "@swc/core-linux-x64-musl" "1.13.5"
-    "@swc/core-win32-arm64-msvc" "1.13.5"
-    "@swc/core-win32-ia32-msvc" "1.13.5"
-    "@swc/core-win32-x64-msvc" "1.13.5"
-
 "@swc/counter@^0.1.3":
   version "0.1.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/counter/-/counter-0.1.3.tgz"
@@ -1958,7 +1232,7 @@
   dependencies:
     tslib "^2.8.0"
 
-"@swc/types@^0.1.24", "@swc/types@^0.1.25":
+"@swc/types@^0.1.25":
   version "0.1.25"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@swc/types/-/types-0.1.25.tgz"
   integrity sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==
@@ -1979,11 +1253,6 @@
   version "7.0.15"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@types/json-schema/-/json-schema-7.0.15.tgz"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
-
-"@types/relateurl@^0.2.33":
-  version "0.2.33"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@types/relateurl/-/relateurl-0.2.33.tgz"
-  integrity sha512-bTQCKsVbIdzLqZhLkF5fcJQreE4y1ro4DIyVrlDNSCJRRwHhB8Z+4zXXa8jN6eDvc2HbRsEYgbvrnGvi54EpSw==
 
 "@types/trusted-types@^2.0.2":
   version "2.0.7"
@@ -2047,17 +1316,12 @@ balanced-match@^1.0.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-base-x@^3.0.11, base-x@^3.0.8:
+base-x@^3.0.11:
   version "3.0.11"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/base-x/-/base-x-3.0.11.tgz"
   integrity sha512-xz7wQ8xDhdyP7tQxwdteLYeFfS68tSMNCZ/Y37WJ4bhGfKPpqEIlmIyueQHqOyoPhE6xNUqjzRr8ra0eF9VRvA==
   dependencies:
     safe-buffer "^5.0.1"
-
-baseline-browser-mapping@^2.8.9:
-  version "2.8.12"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/baseline-browser-mapping/-/baseline-browser-mapping-2.8.12.tgz"
-  integrity sha512-vAPMQdnyKCBtkmQA6FMCBvU9qFIppS3nzyXnEM+Lo2IAhG4Mpjv9cCxMudhgV3YdNNJv6TNqXy97dfRVL2LmaQ==
 
 baseline-browser-mapping@^2.9.0:
   version "2.9.7"
@@ -2095,26 +1359,10 @@ browserslist@^4.24.5:
     node-releases "^2.0.27"
     update-browserslist-db "^1.2.0"
 
-browserslist@^4.6.6:
-  version "4.26.3"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/browserslist/-/browserslist-4.26.3.tgz"
-  integrity sha512-lAUU+02RFBuCKQPj/P6NgjlbCnLBMp4UtgTx7vNHd3XSIJF87s9a5rA3aH2yw3GS9DqZAUbOtZdCCiZeVRqt0w==
-  dependencies:
-    baseline-browser-mapping "^2.8.9"
-    caniuse-lite "^1.0.30001746"
-    electron-to-chromium "^1.5.227"
-    node-releases "^2.0.21"
-    update-browserslist-db "^1.1.3"
-
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/callsites/-/callsites-3.1.0.tgz"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
-
-caniuse-lite@^1.0.30001746:
-  version "1.0.30001759"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/caniuse-lite/-/caniuse-lite-1.0.30001759.tgz"
-  integrity sha512-Pzfx9fOKoKvevQf8oCXoyNRQ5QyxJj+3O0Rqx2V5oxT61KGx8+n6hV/IUyJeifUci2clnmmKVpvtiqRzgiWjSw==
 
 caniuse-lite@^1.0.30001759:
   version "1.0.30001760"
@@ -2143,7 +1391,16 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
-clone@^2.1.1, clone@^2.1.2:
+cliui@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/cliui/-/cliui-8.0.1.tgz#0c04b075db02cbfe60dc8e6cf2f5486b1a3608aa"
+  integrity sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==
+  dependencies:
+    string-width "^4.2.0"
+    strip-ansi "^6.0.1"
+    wrap-ansi "^7.0.0"
+
+clone@^2.1.2:
   version "2.1.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/clone/-/clone-2.1.2.tgz"
   integrity sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==
@@ -2175,7 +1432,25 @@ concat-map@0.0.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/concat-map/-/concat-map-0.0.1.tgz"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-copyfiles@2.4.1, copyfiles@^2.4.1:
+concurrently@9.1.2:
+  version "9.1.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/concurrently/-/concurrently-9.1.2.tgz#22d9109296961eaee773e12bfb1ce9a66bc9836c"
+  integrity sha512-H9MWcoPsYddwbOGM6difjVwVZHl63nwMEwDJG/L7VGtuaJhb12h2caPG2tVPWs7emuYix252iGfqOyrz1GczTQ==
+  dependencies:
+    chalk "^4.1.2"
+    lodash "^4.17.21"
+    rxjs "^7.8.1"
+    shell-quote "^1.8.1"
+    supports-color "^8.1.1"
+    tree-kill "^1.2.2"
+    yargs "^17.7.2"
+
+console-clear@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/console-clear/-/console-clear-1.1.1.tgz#995e20cbfbf14dd792b672cde387bd128d674bf7"
+  integrity sha512-pMD+MVR538ipqkG5JXeOEbKWS5um1H4LUUccUQG68qpeqBYbzYy79Gh55jkd2TtPdRfUaLWdv6LPP//5Zt0aPQ==
+
+copyfiles@2.4.1:
   version "2.4.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/copyfiles/-/copyfiles-2.4.1.tgz"
   integrity sha512-fereAvAvxDrQDOXybk3Qu3dPbOoKoysFMWtkY3mv5BsL8//OSZVL5DCLYqgRfY5cWirgRzlC+WSrxp6Bo3eNZg==
@@ -2192,16 +1467,6 @@ core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/core-util-is/-/core-util-is-1.0.3.tgz"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
-
-cosmiconfig@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/cosmiconfig/-/cosmiconfig-9.0.0.tgz"
-  integrity sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==
-  dependencies:
-    env-paths "^2.2.1"
-    import-fresh "^3.3.0"
-    js-yaml "^4.1.0"
-    parse-json "^5.2.0"
 
 cross-spawn@^7.0.6:
   version "7.0.6"
@@ -2278,15 +1543,6 @@ detect-libc@^2.0.1, detect-libc@^2.0.3:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/detect-libc/-/detect-libc-2.1.2.tgz"
   integrity sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==
 
-dom-serializer@^1.0.1:
-  version "1.4.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/dom-serializer/-/dom-serializer-1.4.1.tgz"
-  integrity sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==
-  dependencies:
-    domelementtype "^2.0.1"
-    domhandler "^4.2.0"
-    entities "^2.0.0"
-
 dom-serializer@^2.0.0:
   version "2.0.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/dom-serializer/-/dom-serializer-2.0.0.tgz"
@@ -2296,17 +1552,10 @@ dom-serializer@^2.0.0:
     domhandler "^5.0.2"
     entities "^4.2.0"
 
-domelementtype@^2.0.1, domelementtype@^2.2.0, domelementtype@^2.3.0:
+domelementtype@^2.3.0:
   version "2.3.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/domelementtype/-/domelementtype-2.3.0.tgz"
   integrity sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==
-
-domhandler@^4.2.0, domhandler@^4.2.2:
-  version "4.3.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/domhandler/-/domhandler-4.3.1.tgz"
-  integrity sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==
-  dependencies:
-    domelementtype "^2.2.0"
 
 domhandler@^5.0.2, domhandler@^5.0.3:
   version "5.0.3"
@@ -2315,16 +1564,7 @@ domhandler@^5.0.2, domhandler@^5.0.3:
   dependencies:
     domelementtype "^2.3.0"
 
-domutils@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/domutils/-/domutils-2.8.0.tgz"
-  integrity sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==
-  dependencies:
-    dom-serializer "^1.0.1"
-    domelementtype "^2.2.0"
-    domhandler "^4.2.0"
-
-domutils@^3.0.1, domutils@^3.1.0:
+domutils@^3.0.1:
   version "3.2.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/domutils/-/domutils-3.2.2.tgz"
   integrity sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==
@@ -2333,7 +1573,7 @@ domutils@^3.0.1, domutils@^3.1.0:
     domelementtype "^2.3.0"
     domhandler "^5.0.3"
 
-dotenv-expand@^11.0.6, dotenv-expand@^11.0.7:
+dotenv-expand@^11.0.7:
   version "11.0.7"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/dotenv-expand/-/dotenv-expand-11.0.7.tgz"
   integrity sha512-zIHwmZPRshsCdpMDyVsqGmgyP0yT8GAgXUnkdAoJisxvf33k7yO6OuoKmcTGuXPWSsm8Oh88nZicRLA9Y0rUeA==
@@ -2350,11 +1590,6 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eastasianwidth/-/eastasianwidth-0.2.0.tgz"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-electron-to-chromium@^1.5.227:
-  version "1.5.232"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/electron-to-chromium/-/electron-to-chromium-1.5.232.tgz"
-  integrity sha512-ENirSe7wf8WzyPCibqKUG1Cg43cPaxH4wRR7AJsX7MCABCHBIOFqvaYODSLKUuZdraxUTHRE/0A2Aq8BYKEHOg==
-
 electron-to-chromium@^1.5.263:
   version "1.5.267"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/electron-to-chromium/-/electron-to-chromium-1.5.267.tgz#5d84f2df8cdb6bfe7e873706bb21bd4bfb574dc7"
@@ -2370,32 +1605,10 @@ emoji-regex@^9.2.2:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/emoji-regex/-/emoji-regex-9.2.2.tgz"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
-entities@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/entities/-/entities-2.2.0.tgz"
-  integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
-
-entities@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/entities/-/entities-3.0.1.tgz"
-  integrity sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q==
-
-entities@^4.2.0, entities@^4.5.0:
+entities@^4.2.0:
   version "4.5.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/entities/-/entities-4.5.0.tgz"
   integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
-
-env-paths@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/env-paths/-/env-paths-2.2.1.tgz"
-  integrity sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==
-
-error-ex@^1.3.1:
-  version "1.3.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/error-ex/-/error-ex-1.3.4.tgz"
-  integrity sha512-sqQamAnR14VgCr1A618A3sGrygcpK+HEbenA/HiEAkkUwcZIIB/tgWqHFxWgOyDh4nB4JCRimh79dR5Ywc9MDQ==
-  dependencies:
-    is-arrayish "^0.2.1"
 
 escalade@^3.1.1, escalade@^3.2.0:
   version "3.2.0"
@@ -2412,7 +1625,7 @@ eslint-config-prettier@10.1.2:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eslint-config-prettier/-/eslint-config-prettier-10.1.2.tgz"
   integrity sha512-Epgp/EofAUeEpIdZkW60MHKvPyru1ruQJxPL+WIycnaPApuseK0Zpkrh/FwL9oIpQvIhJwV7ptOy0DWUjTlCiA==
 
-eslint-scope@^8.3.0, eslint-scope@^8.4.0:
+eslint-scope@^8.4.0:
   version "8.4.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eslint-scope/-/eslint-scope-8.4.0.tgz"
   integrity sha512-sNXOfKCn74rt8RICKMvJS7XKV/Xk9kA7DyJr8mJik3S7Cwgy3qlkkmyS2uQB3jiJg6VNdZd/pDBJu0nvG2NlTg==
@@ -2425,51 +1638,10 @@ eslint-visitor-keys@^3.4.3:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eslint-visitor-keys/-/eslint-visitor-keys-3.4.3.tgz"
   integrity sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==
 
-eslint-visitor-keys@^4.2.0, eslint-visitor-keys@^4.2.1:
+eslint-visitor-keys@^4.2.1:
   version "4.2.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eslint-visitor-keys/-/eslint-visitor-keys-4.2.1.tgz"
   integrity sha512-Uhdk5sfqcee/9H/rCOJikYz67o0a2Tw2hGRPOG2Y1R2dg7brRe1uG0yaNQDHu+TO/uQPF/5eCapvYSmHUjt7JQ==
-
-eslint@9.24.0:
-  version "9.24.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/eslint/-/eslint-9.24.0.tgz"
-  integrity sha512-eh/jxIEJyZrvbWRe4XuVclLPDYSYYYgLy5zXGGxD6j8zjSAxFEzI2fL/8xNq6O2yKqVt+eF2YhV+hxjV6UKXwQ==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.2.0"
-    "@eslint-community/regexpp" "^4.12.1"
-    "@eslint/config-array" "^0.20.0"
-    "@eslint/config-helpers" "^0.2.0"
-    "@eslint/core" "^0.12.0"
-    "@eslint/eslintrc" "^3.3.1"
-    "@eslint/js" "9.24.0"
-    "@eslint/plugin-kit" "^0.2.7"
-    "@humanfs/node" "^0.16.6"
-    "@humanwhocodes/module-importer" "^1.0.1"
-    "@humanwhocodes/retry" "^0.4.2"
-    "@types/estree" "^1.0.6"
-    "@types/json-schema" "^7.0.15"
-    ajv "^6.12.4"
-    chalk "^4.0.0"
-    cross-spawn "^7.0.6"
-    debug "^4.3.2"
-    escape-string-regexp "^4.0.0"
-    eslint-scope "^8.3.0"
-    eslint-visitor-keys "^4.2.0"
-    espree "^10.3.0"
-    esquery "^1.5.0"
-    esutils "^2.0.2"
-    fast-deep-equal "^3.1.3"
-    file-entry-cache "^8.0.0"
-    find-up "^5.0.0"
-    glob-parent "^6.0.2"
-    ignore "^5.2.0"
-    imurmurhash "^0.1.4"
-    is-glob "^4.0.0"
-    json-stable-stringify-without-jsonify "^1.0.1"
-    lodash.merge "^4.6.2"
-    minimatch "^3.1.2"
-    natural-compare "^1.4.0"
-    optionator "^0.9.3"
 
 eslint@9.39.2:
   version "9.39.2"
@@ -2511,7 +1683,7 @@ eslint@9.39.2:
     natural-compare "^1.4.0"
     optionator "^0.9.3"
 
-espree@^10.0.1, espree@^10.3.0, espree@^10.4.0:
+espree@^10.0.1, espree@^10.4.0:
   version "10.4.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/espree/-/espree-10.4.0.tgz"
   integrity sha512-j6PAQ2uUr79PZhBjP5C5fhl8e39FmRnOjsD5lGnWrFU8i2G776tBK7+nP8KuQUTTyAZUwfQqXAgrVH5MbH9CYQ==
@@ -2632,6 +1804,11 @@ get-port@^4.2.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/get-port/-/get-port-4.2.0.tgz"
   integrity sha512-/b3jarXkH8KJoOMQc3uVGHASwGLPq3gSFJ7tgJm2diza+bydJPTGOibin2steecKeOylE8oY2JERlVWkAJO6yw==
 
+get-port@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/get-port/-/get-port-5.1.1.tgz#0469ed07563479de6efb986baf053dcd7d4e3193"
+  integrity sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==
+
 glob-parent@^6.0.2:
   version "6.0.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/glob-parent/-/glob-parent-6.0.2.tgz"
@@ -2672,7 +1849,7 @@ glob@^7.0.5:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@^13.2.0, globals@^13.24.0:
+globals@^13.24.0:
   version "13.24.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/globals/-/globals-13.24.0.tgz"
   integrity sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==
@@ -2689,35 +1866,6 @@ has-flag@^4.0.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/has-flag/-/has-flag-4.0.0.tgz"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
-htmlnano@^2.0.0:
-  version "2.1.5"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/htmlnano/-/htmlnano-2.1.5.tgz"
-  integrity sha512-IXffzXq1beGQN2rsr03aIPK/rVU1jR2uwHymlAIEf97Tl5WdpG50IsQ5nWGvSGQJ+x6U7S6yac9rRiFgAg4/xQ==
-  dependencies:
-    "@types/relateurl" "^0.2.33"
-    cosmiconfig "^9.0.0"
-    posthtml "^0.16.5"
-
-htmlparser2@^7.1.1:
-  version "7.2.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/htmlparser2/-/htmlparser2-7.2.0.tgz"
-  integrity sha512-H7MImA4MS6cw7nbyURtLPO1Tms7C5H602LRETv95z1MxO/7CP7rDVROehUYeYBUYEON94NXXDEPmZuq+hX4sog==
-  dependencies:
-    domelementtype "^2.0.1"
-    domhandler "^4.2.2"
-    domutils "^2.8.0"
-    entities "^3.0.1"
-
-htmlparser2@^9.0.0:
-  version "9.1.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/htmlparser2/-/htmlparser2-9.1.0.tgz"
-  integrity sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==
-  dependencies:
-    domelementtype "^2.3.0"
-    domhandler "^5.0.3"
-    domutils "^3.1.0"
-    entities "^4.5.0"
-
 https-proxy-agent@^7.0.6:
   version "7.0.6"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz#da8dfeac7da130b05c2ba4b59c9b6cd66611a6b9"
@@ -2731,7 +1879,7 @@ ignore@^5.2.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/ignore/-/ignore-5.3.2.tgz"
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 
-import-fresh@^3.2.1, import-fresh@^3.3.0:
+import-fresh@^3.2.1:
   version "3.3.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/import-fresh/-/import-fresh-3.3.1.tgz"
   integrity sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==
@@ -2757,11 +1905,6 @@ inherits@2, inherits@^2.0.1, inherits@~2.0.1, inherits@~2.0.3:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/inherits/-/inherits-2.0.4.tgz"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
-is-arrayish@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/is-arrayish/-/is-arrayish-0.2.1.tgz"
-  integrity sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==
-
 is-extglob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/is-extglob/-/is-extglob-2.1.1.tgz"
@@ -2778,11 +1921,6 @@ is-glob@^4.0.0, is-glob@^4.0.3:
   integrity sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==
   dependencies:
     is-extglob "^2.1.1"
-
-is-json@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/is-json/-/is-json-2.0.1.tgz"
-  integrity sha512-6BEnpVn1rcf3ngfmViLM6vjUjGErbdrL4rwlv+u1NO1XO8kqT4YGL8+19Q+Z/bas8tY90BTWMk2+fW1g6hQjbA==
 
 is-number@^7.0.0:
   version "7.0.0"
@@ -2811,7 +1949,7 @@ jackspeak@^4.1.1:
   dependencies:
     "@isaacs/cliui" "^8.0.2"
 
-"js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
+"js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/js-tokens/-/js-tokens-4.0.0.tgz"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
@@ -2828,11 +1966,6 @@ json-buffer@3.0.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/json-buffer/-/json-buffer-3.0.1.tgz"
   integrity sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==
 
-json-parse-even-better-errors@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz"
-  integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
-
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz"
@@ -2843,7 +1976,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
-json5@^2.2.0, json5@^2.2.1, json5@^2.2.3:
+json5@^2.2.1, json5@^2.2.3:
   version "2.2.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
@@ -2854,6 +1987,11 @@ keyv@^4.5.4:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
+
+kleur@^4.1.4:
+  version "4.1.5"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
+  integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
 levn@^0.4.1:
   version "0.4.1"
@@ -2918,7 +2056,7 @@ lightningcss-win32-x64-msvc@1.30.2:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.30.2.tgz"
   integrity sha512-5g1yc73p+iAkid5phb4oVFMB45417DkRevRbt/El/gKXJk4jid+vPFF/AXbxn05Aky8PapwzZrdJShv5C0avjw==
 
-lightningcss@^1.22.1, lightningcss@^1.30.1:
+lightningcss@^1.30.1:
   version "1.30.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lightningcss/-/lightningcss-1.30.2.tgz"
   integrity sha512-utfs7Pr5uJyyvDETitgsaqSyjCb2qNRAtuqUeWIAKztsOYdcACf2KtARYXg2pSvhkt+9NfoaNY7fxjl6nuMjIQ==
@@ -2936,11 +2074,6 @@ lightningcss@^1.22.1, lightningcss@^1.30.1:
     lightningcss-linux-x64-musl "1.30.2"
     lightningcss-win32-arm64-msvc "1.30.2"
     lightningcss-win32-x64-msvc "1.30.2"
-
-lines-and-columns@^1.1.6:
-  version "1.2.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
-  integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
 lit-element@^4.2.0:
   version "4.2.1"
@@ -2994,6 +2127,11 @@ lmdb@2.8.5:
     "@lmdb/lmdb-linux-x64" "2.8.5"
     "@lmdb/lmdb-win32-x64" "2.8.5"
 
+local-access@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/local-access/-/local-access-1.1.0.tgz#e007c76ba2ca83d5877ba1a125fc8dfe23ba4798"
+  integrity sha512-XfegD5pyTAfb+GY6chk283Ox5z8WexG56OvM06RWLpAc/UHozO8X6xAxEkIitZOtsSMM1Yr3DkHgW5W+onLhCw==
+
 locate-path@^6.0.0:
   version "6.0.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/locate-path/-/locate-path-6.0.0.tgz"
@@ -3005,6 +2143,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 loose-envify@^1.4.0:
   version "1.4.0"
@@ -3067,6 +2210,16 @@ mkdirp@^1.0.4:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+mri@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/mri/-/mri-1.2.0.tgz#6721480fec2a11a4889861115a48b6cbe7cc8f0b"
+  integrity sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==
+
+mrmime@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/mrmime/-/mrmime-2.0.1.tgz#bc3e87f7987853a54c9850eeb1f1078cd44adddc"
+  integrity sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==
+
 ms@^2.1.3:
   version "2.1.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/ms/-/ms-2.1.3.tgz"
@@ -3086,7 +2239,7 @@ msgpackr-extract@^3.0.2:
     "@msgpackr-extract/msgpackr-extract-linux-x64" "3.0.3"
     "@msgpackr-extract/msgpackr-extract-win32-x64" "3.0.3"
 
-msgpackr@^1.11.2, msgpackr@^1.9.5, msgpackr@^1.9.9:
+msgpackr@^1.11.2, msgpackr@^1.9.5:
   version "1.11.5"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/msgpackr/-/msgpackr-1.11.5.tgz"
   integrity sha512-UjkUHN0yqp9RWKy0Lplhh+wlpdt9oQBYgULZOiFhV3VclSF1JnSQWZ5r9gORQlNYaUKQoR8itv7g7z1xDDuACA==
@@ -3135,11 +2288,6 @@ node-gyp-build-optional-packages@5.2.2:
   integrity sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw==
   dependencies:
     detect-libc "^2.0.1"
-
-node-releases@^2.0.21:
-  version "2.0.23"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/node-releases/-/node-releases-2.0.23.tgz"
-  integrity sha512-cCmFDMSm26S6tQSDpBCg/NR8NENrVPhAJSf+XbxBG4rPFaaonlEoE9wHQmun+cls499TQGSb7ZyPBRlzgKfpeg==
 
 node-releases@^2.0.27:
   version "2.0.27"
@@ -3221,27 +2369,6 @@ parcel-resolver-ignore@^2.2.0:
   dependencies:
     "@parcel/plugin" "^2.10.3"
 
-parcel@2.14.4:
-  version "2.14.4"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/parcel/-/parcel-2.14.4.tgz"
-  integrity sha512-XmnIurC4CPdQm9OFJMbjgvto5Jz2szZ5/p6EY4pAljU/SLPhtBzJ3+J6OyljGFdbVxEXx4dp+7Cvf7eaDZsEEg==
-  dependencies:
-    "@parcel/config-default" "2.14.4"
-    "@parcel/core" "2.14.4"
-    "@parcel/diagnostic" "2.14.4"
-    "@parcel/events" "2.14.4"
-    "@parcel/feature-flags" "2.14.4"
-    "@parcel/fs" "2.14.4"
-    "@parcel/logger" "2.14.4"
-    "@parcel/package-manager" "2.14.4"
-    "@parcel/reporter-cli" "2.14.4"
-    "@parcel/reporter-dev-server" "2.14.4"
-    "@parcel/reporter-tracer" "2.14.4"
-    "@parcel/utils" "2.14.4"
-    chalk "^4.1.2"
-    commander "^12.1.0"
-    get-port "^4.2.0"
-
 parcel@2.16.3:
   version "2.16.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/parcel/-/parcel-2.16.3.tgz#6dc495713138d8f748ced14b8da77b3825e0491a"
@@ -3269,16 +2396,6 @@ parent-module@^1.0.0:
   integrity sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==
   dependencies:
     callsites "^3.0.0"
-
-parse-json@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/parse-json/-/parse-json-5.2.0.tgz"
-  integrity sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==
-  dependencies:
-    "@babel/code-frame" "^7.0.0"
-    error-ex "^1.3.1"
-    json-parse-even-better-errors "^2.3.0"
-    lines-and-columns "^1.1.6"
 
 path-exists@^4.0.0:
   version "4.0.0"
@@ -3317,35 +2434,6 @@ postcss-value-parser@^4.2.0:
   version "4.2.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
-
-posthtml-parser@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/posthtml-parser/-/posthtml-parser-0.11.0.tgz"
-  integrity sha512-QecJtfLekJbWVo/dMAA+OSwY79wpRmbqS5TeXvXSX+f0c6pW4/SE6inzZ2qkU7oAMCPqIDkZDvd/bQsSFUnKyw==
-  dependencies:
-    htmlparser2 "^7.1.1"
-
-posthtml-parser@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/posthtml-parser/-/posthtml-parser-0.12.1.tgz"
-  integrity sha512-rYFmsDLfYm+4Ts2Oh4DCDSZPtdC1BLnRXAobypVzX9alj28KGl65dIFtgDY9zB57D0TC4Qxqrawuq/2et1P0GA==
-  dependencies:
-    htmlparser2 "^9.0.0"
-
-posthtml-render@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/posthtml-render/-/posthtml-render-3.0.0.tgz"
-  integrity sha512-z+16RoxK3fUPgwaIgH9NGnK1HKY9XIDpydky5eQGgAFVXTCSezalv9U2jQuNV+Z9qV1fDWNzldcw4eK0SSbqKA==
-  dependencies:
-    is-json "^2.0.1"
-
-posthtml@^0.16.4, posthtml@^0.16.5:
-  version "0.16.6"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/posthtml/-/posthtml-0.16.6.tgz"
-  integrity sha512-JcEmHlyLK/o0uGAlj65vgg+7LIms0xKXe60lcDOTU7oVX/3LuEuLwrQpW3VJ7de5TaFKiW4kWkaIpJL42FEgxQ==
-  dependencies:
-    posthtml-parser "^0.11.0"
-    posthtml-render "^3.0.0"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -3386,7 +2474,7 @@ react-is@^16.13.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-"react-refresh@>=0.9 <=0.16", react-refresh@^0.16.0:
+react-refresh@^0.16.0:
   version "0.16.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/react-refresh/-/react-refresh-0.16.0.tgz"
   integrity sha512-FPvF2XxTSikpJxcr+bHut2H4gJ17+18Uy20D5/F+SKzFap62R3cM5wH6b8WN3LyGSYeQilLEcJcR1fjBSI2S1A==
@@ -3429,7 +2517,7 @@ resolve-from@^4.0.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/resolve-from/-/resolve-from-4.0.0.tgz"
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
 
-rimraf@6.0.1, rimraf@^6.0.1:
+rimraf@6.0.1:
   version "6.0.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/rimraf/-/rimraf-6.0.1.tgz"
   integrity sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==
@@ -3445,6 +2533,20 @@ rimraf@6.1.2:
     glob "^13.0.0"
     package-json-from-dist "^1.0.1"
 
+rxjs@^7.8.1:
+  version "7.8.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/rxjs/-/rxjs-7.8.2.tgz#955bc473ed8af11a002a2be52071bf475638607b"
+  integrity sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==
+  dependencies:
+    tslib "^2.1.0"
+
+sade@^1.6.0:
+  version "1.8.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/sade/-/sade-1.8.1.tgz#0a78e81d658d394887be57d2a409bf703a3b2701"
+  integrity sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==
+  dependencies:
+    mri "^1.1.0"
+
 safe-buffer@^5.0.1:
   version "5.2.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/safe-buffer/-/safe-buffer-5.2.1.tgz"
@@ -3455,7 +2557,12 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/safe-buffer/-/safe-buffer-5.1.2.tgz"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-semver@^7.5.2, semver@^7.7.1:
+semiver@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/semiver/-/semiver-1.1.0.tgz#9c97fb02c21c7ce4fcf1b73e2c7a24324bdddd5f"
+  integrity sha512-QNI2ChmuioGC1/xjyYwyZYADILWyW6AmS1UH6gDj/SFUUUS4MBAWs/7mxnkRPc/F4iHezDP+O8t0dO8WHiEOdg==
+
+semver@^7.7.1:
   version "7.7.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/semver/-/semver-7.7.2.tgz"
   integrity sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==
@@ -3472,20 +2579,43 @@ shebang-regex@^3.0.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/shebang-regex/-/shebang-regex-3.0.0.tgz"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+shell-quote@^1.8.1:
+  version "1.8.3"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/shell-quote/-/shell-quote-1.8.3.tgz#55e40ef33cf5c689902353a3d8cd1a6725f08b4b"
+  integrity sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==
+
 signal-exit@^4.0.1:
   version "4.1.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/signal-exit/-/signal-exit-4.1.0.tgz"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
 
+sirv-cli@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/sirv-cli/-/sirv-cli-3.0.1.tgz#9a53e4fa85fdc08d54a76fd76a7c866cd4c3988b"
+  integrity sha512-ICXaF2u6IQhLZ0EXF6nqUF4YODfSQSt+mGykt4qqO5rY+oIiwdg7B8w2PVDBJlQulaS2a3J8666CUoDoAuCGvg==
+  dependencies:
+    console-clear "^1.1.0"
+    get-port "^5.1.1"
+    kleur "^4.1.4"
+    local-access "^1.0.1"
+    sade "^1.6.0"
+    semiver "^1.0.0"
+    sirv "^3.0.0"
+    tinydate "^1.0.0"
+
+sirv@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/sirv/-/sirv-3.0.2.tgz#f775fccf10e22a40832684848d636346f41cd970"
+  integrity sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==
+  dependencies:
+    "@polka/url" "^1.0.0-next.24"
+    mrmime "^2.0.0"
+    totalist "^3.0.0"
+
 source-map-js@^1.0.1:
   version "1.2.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/source-map-js/-/source-map-js-1.2.1.tgz"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
-
-srcset@4:
-  version "4.0.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/srcset/-/srcset-4.0.0.tgz"
-  integrity sha512-wvLeHgcVHKO8Sc/H/5lkGreJQVeYMm9rlmt8PuR1xE31rIuXhuzznUUqAt8MqLhB3MqJdFzlNAfpcWnxiFUcPw==
 
 "string-width-cjs@npm:string-width@^4.2.0":
   version "4.2.3"
@@ -3496,7 +2626,7 @@ srcset@4:
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^6.0.1"
 
-string-width@^4.1.0, string-width@^4.2.0:
+string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/string-width/-/string-width-4.2.3.tgz"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -3559,6 +2689,13 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+supports-color@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/supports-color/-/supports-color-8.1.1.tgz#cd6fc17e28500cff56c1b86c0a7fd4a54a73005c"
+  integrity sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==
+  dependencies:
+    has-flag "^4.0.0"
+
 svgo@^3:
   version "3.3.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/svgo/-/svgo-3.3.2.tgz"
@@ -3585,6 +2722,11 @@ through2@^2.0.1:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
+tinydate@^1.0.0:
+  version "1.3.0"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/tinydate/-/tinydate-1.3.0.tgz#e6ca8e5a22b51bb4ea1c3a2a4fd1352dbd4c57fb"
+  integrity sha512-7cR8rLy2QhYHpsBDBVYnnWXm8uRTr38RoZakFSW7Bs7PzfMPNZthuMLkwqZv7MTu8lhQ91cOFYS5a7iFj2oR3w==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/to-regex-range/-/to-regex-range-5.0.1.tgz"
@@ -3592,7 +2734,17 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tslib@^2.4.0, tslib@^2.8.0:
+totalist@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/totalist/-/totalist-3.0.1.tgz#ba3a3d600c915b1a97872348f79c127475f6acf8"
+  integrity sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==
+
+tree-kill@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
+  integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
+
+tslib@^2.1.0, tslib@^2.4.0, tslib@^2.8.0:
   version "2.8.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/tslib/-/tslib-2.8.1.tgz"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
@@ -3661,14 +2813,6 @@ untildify@^4.0.0:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/untildify/-/untildify-4.0.0.tgz"
   integrity sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==
 
-update-browserslist-db@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/update-browserslist-db/-/update-browserslist-db-1.1.3.tgz"
-  integrity sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==
-  dependencies:
-    escalade "^3.2.0"
-    picocolors "^1.1.1"
-
 update-browserslist-db@^1.2.0:
   version "1.2.2"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/update-browserslist-db/-/update-browserslist-db-1.2.2.tgz#cfb4358afa08b3d5731a2ecd95eebf4ddef8033e"
@@ -3689,7 +2833,7 @@ util-deprecate@~1.0.1:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-utility-types@^3.10.0, utility-types@^3.11.0:
+utility-types@^3.11.0:
   version "3.11.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/utility-types/-/utility-types-3.11.0.tgz"
   integrity sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==
@@ -3763,6 +2907,11 @@ yargs-parser@^20.2.2:
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/yargs-parser/-/yargs-parser-20.2.9.tgz"
   integrity sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==
 
+yargs-parser@^21.1.1:
+  version "21.1.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
+  integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
+
 yargs@^16.1.0:
   version "16.2.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/yargs/-/yargs-16.2.0.tgz"
@@ -3775,6 +2924,19 @@ yargs@^16.1.0:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+yargs@^17.7.2:
+  version "17.7.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/yargs/-/yargs-17.7.2.tgz#991df39aca675a192b816e1e0363f9d75d2aa269"
+  integrity sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==
+  dependencies:
+    cliui "^8.0.1"
+    escalade "^3.1.1"
+    get-caller-file "^2.0.5"
+    require-directory "^2.1.1"
+    string-width "^4.2.3"
+    y18n "^5.0.5"
+    yargs-parser "^21.1.1"
 
 yocto-queue@^0.1.0:
   version "0.1.0"

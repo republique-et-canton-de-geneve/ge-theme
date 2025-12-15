@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GE Footer Component - Test Page</title>
-    <script type="module" src="./src/ge-footer.js"></script>
-    <link rel="stylesheet" href="../../website/static/theme/css/primitives.css">
-    <link rel="stylesheet" href="../../website/static/theme/css/theme.css">
+    <script type="module" src="../src/ge-footer.js"></script>
+    <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
+    <link rel="stylesheet" href="../../../website/static/theme/css/theme.css">
     <style>
         * {
             box-sizing: border-box;
@@ -81,7 +81,7 @@
         button {
             padding: 8px 16px;
             border: 1px solid var(--md-sys-color-outline, #ccc);
-            border-radius: 4px;
+            border-radius: 25px;
             background: var(--md-sys-color-surface, #fff);
             cursor: pointer;
             font-family: inherit;
@@ -138,8 +138,8 @@
         <div class="control-group">
             <label>Full Width</label>
             <div>
-                <button id="btn-full" class="active" onclick="setMaxWidth(true)">Full</button>
-                <button id="btn-constrained" onclick="setMaxWidth(false)">Constrained (1107px)</button>
+                <button id="btn-full" class="active" onclick="setFullWidth(true)">Full</button>
+                <button id="btn-constrained" onclick="setFullWidth(false)">Constrained (1107px)</button>
             </div>
         </div>
     </div>
@@ -179,7 +179,7 @@
         setTimeout(updateDisplay, 0);
     }
 
-    function setMaxWidth(full) {
+    function setFullWidth(full) {
         document.getElementById('btn-full').classList.toggle('active', full);
         document.getElementById('btn-constrained').classList.toggle('active', !full);
         if (full) {
