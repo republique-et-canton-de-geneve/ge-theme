@@ -86,17 +86,17 @@ class GeFooter extends LitElement {
             }
         }
 
-        .ge-footer-container.fullwidth-false {
+        .ge-footer-container.maxwidth-false {
             max-width: 1107px;
         }
 
-        .ge-footer-container.fullwidth-true {
+        .ge-footer-container.maxwidth-true {
             max-width: 100%;
         }
     `;
 
     /** When true, footer spans full width. When false, constrained to 1107px. */
-    @property({ type: Boolean, reflect: true, attribute: 'fullwidth' })
+    @property({ type: Boolean, reflect: true, attribute: 'maxwidth' })
     get maxWidth() {
         return this.#maxWidthValue;
     }
@@ -203,8 +203,8 @@ class GeFooter extends LitElement {
     render() {
         const containerClasses = {
             "ge-footer-container": true,
-            "fullwidth-true": this.maxWidth,
-            "fullwidth-false": !this.maxWidth
+            "maxwidth-true": this.maxWidth,
+            "maxwidth-false": !this.maxWidth
         };
 
         return html`
