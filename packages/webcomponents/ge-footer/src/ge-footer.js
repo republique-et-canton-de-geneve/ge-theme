@@ -86,27 +86,27 @@ class GeFooter extends LitElement {
             }
         }
 
-        .ge-footer-container.fullwidth-false {
+        .ge-footer-container.maxwidth-false {
             max-width: 1107px;
         }
 
-        .ge-footer-container.fullwidth-true {
+        .ge-footer-container.maxwidth-true {
             max-width: 100%;
         }
     `;
 
     /** When true, footer spans full width. When false, constrained to 1107px. */
-    @property({ type: Boolean, reflect: true, attribute: 'fullwidth' })
-    get fullWidth() {
-        return this.#fullWidthValue;
+    @property({ type: Boolean, reflect: true, attribute: 'maxwidth' })
+    get maxWidth() {
+        return this.#maxWidthValue;
     }
-    set fullWidth(value) {
-        const oldValue = this.#fullWidthValue;
-        this.#fullWidthValue = Boolean(value);
-        this.requestUpdate('fullWidth', oldValue);
+    set maxWidth(value) {
+        const oldValue = this.#maxWidthValue;
+        this.#maxWidthValue = Boolean(value);
+        this.requestUpdate('maxWidth', oldValue);
     }
 
-    #fullWidthValue = true;
+    #maxWidthValue = true;
 
     /** URL for the Contact link */
     @property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";
@@ -203,8 +203,8 @@ class GeFooter extends LitElement {
     render() {
         const containerClasses = {
             "ge-footer-container": true,
-            "fullwidth-true": this.fullWidth,
-            "fullwidth-false": !this.fullWidth
+            "maxwidth-true": this.maxWidth,
+            "maxwidth-false": !this.maxWidth
         };
 
         return html`

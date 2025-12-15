@@ -183,9 +183,9 @@
         document.getElementById('btn-full').classList.toggle('active', full);
         document.getElementById('btn-constrained').classList.toggle('active', !full);
         if (full) {
-            footer.setAttribute('fullwidth', '');
+            footer.setAttribute('maxwidth', '');
         } else {
-            footer.removeAttribute('fullwidth');
+            footer.removeAttribute('maxwidth');
         }
     }
 
