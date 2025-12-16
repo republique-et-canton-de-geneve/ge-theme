@@ -39,11 +39,6 @@
     border-bottom-width: thin;
 }
 
-.v-list--rounded {
-    border-radius: var(--md-sys-shape-corner-extra-small) !important;
-    overflow: hidden;
-}
-
 /* SHEET (PAPER) */
 .v-application .v-sheet {
     box-shadow: none;
