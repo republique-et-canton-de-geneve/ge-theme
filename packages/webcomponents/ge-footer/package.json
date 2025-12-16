@@ -8,7 +8,9 @@
   "module": "dist/ge-footer.js",
   "targets": {
     "module": {
-      "source": "src/ge-footer.js"
+      "source": "src/ge-footer.js",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule"
     },
     "dev": {
       "source": "dev/index.html",
@@ -43,6 +45,7 @@
     "lit": "3.3.1"
   },
   "devDependencies": {
+    "@parcel/transformer-inline-string": "2.16.3",
     "concurrently": "9.1.2",
     "copyfiles": "2.4.1",
     "eslint": "9.39.2",
