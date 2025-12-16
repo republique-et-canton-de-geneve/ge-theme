@@ -1,13 +1,10 @@
-import { LitElement, html, css, unsafeCSS } from "lit";
+import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import robotoCSS from "bundle-text:@fontsource/roboto/400.css";
 
 @customElement("ge-footer")
 class GeFooter extends LitElement {
     static styles = css`
-        ${unsafeCSS(robotoCSS)}
-
         :host {
             display: block;
             grid-area: footer;

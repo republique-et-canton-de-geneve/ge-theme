@@ -40,12 +40,10 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@fontsource/roboto": "5.2.9",
     "@swc/helpers": "^0.5.17",
     "lit": "3.3.1"
   },
   "devDependencies": {
-    "@parcel/transformer-inline-string": "2.16.3",
     "concurrently": "9.1.2",
     "copyfiles": "2.4.1",
     "eslint": "9.39.2",
