@@ -36,6 +36,11 @@
     border-bottom-width: thin;
 }
 
+.v-list {
+    border-radius: var(--md-sys-shape-corner-extra-small) !important;
+    overflow: hidden;
+}
+
 /* SHEET (PAPER) */
 .v-application .v-sheet {
     box-shadow: none;
@@ -139,6 +144,21 @@
     padding: 0 24px !important;
 }
 
+.v-btn.v-btn--disabled {
+	opacity:  0.38 !important;
+	
+    /* Couleur du texte / icône */
+    color: rgba(
+        var(--v-theme-on-surface),
+        var(--md-sys-color-state-opacity-12)
+    ) !important;
+
+    /* Fond du bouton */
+    background-color: rgba(
+        var(--v-theme-on-surface),
+	    var(--md-sys-color-state-opacity-12)
+    ) !important;
+}
 
 /* Chip */
 
@@ -305,7 +325,7 @@
 .text-label-1 {
     font-size: var(--md-sys-typescale-label-large-size) !important;
     line-height: var(--md-sys-typescale-label-large-line-height) !important;
-    font-weight: var(--md-sys-typescale-label-large-weight);
+    font-weight: var(--md-sys-typescale-label-large-weight) !important;
     letter-spacing: var(--md-sys-typescale-label-large-tracking) !important;
 }
 
