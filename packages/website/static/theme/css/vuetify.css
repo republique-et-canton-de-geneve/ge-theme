@@ -6,10 +6,13 @@
 
 /* ROUNDED */
 
+.rounded-xs  {
+    border-radius: var(--md-sys-shape-corner-extra-small) !important;
+}
+
 .rounded-sm  {
     border-radius: var(--md-sys-shape-corner-small)!important;
 }
-
 .rounded {
     border-radius:var(--md-sys-shape-corner-medium)!important;
 }
@@ -162,12 +165,6 @@
 
 /* Chip */
 
-.v-chip.rounded-sm,
-.v-chip.rounded-md,
-.v-chip.rounded-lg,
-.v-chip.rounded-xl {
-    border-radius: var(--v-shape-corner-small) !important;
-}
 
 .v-chip.text-success {
     background: rgba(var(--v-theme-success-container));
