@@ -1,14 +1,14 @@
 {
-  "name": "@ael/file-selector",
+  "name": "@ael/ge-file-selector",
   "version": "1.0.6",
   "private": false,
   "description": "Web‑component that renders public Geneva websites footer.",
   "license": "Apache-2.0",
   "type": "module",
-  "module": "dist/file-selector.js",
+  "module": "dist/ge-file-selector.js",
   "targets": {
     "module": {
-      "source": "src/file-selector.js"
+      "source": "src/ge-file-selector.js"
     },
     "dev": {
       "source": "dev/index.html",
@@ -18,8 +18,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/file-selector.js",
-      "types": "./dist/types/file-selector.d.ts"
+      "import": "./dist/ge-file-selector.js"
     }
   },
   "files": [

@@ -10,8 +10,8 @@ import '@material/web/iconbutton/icon-button.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/checkbox/checkbox.js';
 
-@customElement('file-selector')
-class FileSelector extends LitElement {
+@customElement('ge-file-selector')
+class GeFileSelector extends LitElement {
     @property({ attribute: 'api-endpoint' }) apiEndpoint = '';
     @property({ attribute: 'auth-token' }) authToken = '';
     @state() files = [];
@@ -467,4 +467,4 @@ class FileSelector extends LitElement {
     }
 }
 
-export default FileSelector;
+export default GeFileSelector;
