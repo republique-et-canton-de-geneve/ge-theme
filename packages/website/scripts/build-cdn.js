@@ -24,7 +24,8 @@ const COMPONENT_NAMES = [
     'ge-header-armoiries',
     'ge-header-public',
     'ge-menu',
-    'select-mes-espaces'
+    'select-mes-espaces',
+    'file-selector'
 ];
 
 const rootPkg = JSON.parse(await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8'));
