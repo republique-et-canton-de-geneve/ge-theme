@@ -198,6 +198,7 @@ class GeFileSelector extends LitElement {
         if (this.apiEndpoint && this.files.length === 0) {
             this.fetchFiles();
         }
+        this.requestUpdate();
     }
 
     async fetchFiles() {
