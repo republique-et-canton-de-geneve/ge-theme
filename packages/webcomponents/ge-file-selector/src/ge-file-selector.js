@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit';
 
 import '@material/web/list/list-item.js';
 import '@material/web/button/filled-button.js';
+import '@material/web/button/outlined-button.js';
 import '@material/web/button/text-button.js';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/icon/icon.js';
@@ -27,89 +28,88 @@ class GeFileSelector extends LitElement {
     };
 
     static styles = css`
-    .container { padding: 16px; }
-    .error { color: red; margin-bottom: 8px; }
-    md-list { max-height: 300px; overflow-y: auto; }
+        .error { color: red; margin-bottom: 8px; }
+        md-list { max-height: 300px; overflow-y: auto; }
 
-    .modal {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+        .modal {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    .modal-content {
-      background: white;
-      padding: 16px;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-    }
+        .modal-content {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .centered { display: flex; justify-content: center; align-items: center; flex: 1; }
+        .centered { display: flex; justify-content: center; align-items: center; flex: 1; }
 
-    .drop-zone {
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      padding: 24px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #fafafa;
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-    }
+        .drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fafafa;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
 
-    .drop-zone.dragover { border-color: #00796b; background-color: #e0f2f1; }
+        .drop-zone.dragover { border-color: #00796b; background-color: #e0f2f1; }
 
-    .drop-zone-icon { font-size: 32px; color: #666; }
-    .drop-zone-text { font-size: 16px; color: #333; margin: 8px 0; }
+        .drop-zone-icon { font-size: 32px; color: #666; }
+        .drop-zone-text { font-size: 16px; color: #333; margin: 8px 0; }
 
-    .drop-zone-or { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
-    .drop-zone-or::before, .drop-zone-or::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: red;
-    }
+        .drop-zone-or { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+        .drop-zone-or::before, .drop-zone-or::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: red;
+        }
 
-    .button-row { display: flex; gap: 8px; }
-    .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
-    .form-section { display: flex; flex-direction: column; gap: 16px; }
-    .add-button { margin-top: 16px; align-self: flex-end; }
+        .button-row { display: flex; gap: 8px; }
+        .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
+        .form-section { display: flex; flex-direction: column; gap: 16px; }
+        .add-button { margin-top: 16px; align-self: flex-end; }
 
-    .back-button {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      color: #00796b;
-      font-weight: bold;
-    }
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #00796b;
+            font-weight: bold;
+        }
 
-    .file-item {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-top: 8px;
-      background: white;
-    }
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 8px;
+            background: white;
+        }
 
-    .file-item img { width: 32px; height: 32px; margin-right: 8px; }
-    .file-item-info { flex: 1; }
-    .file-item-name { font-weight: bold; margin: 0; }
-    .file-item-meta { font-size: 12px; color: #666; }
-    .added-files { margin-top: 16px; margin-bottom: 16px; }
-  `;
+        .file-item img { width: 32px; height: 32px; margin-right: 8px; }
+        .file-item-info { flex: 1; }
+        .file-item-name { font-weight: bold; margin: 0; }
+        .file-item-meta { font-size: 12px; color: #666; }
+        .added-files { margin-top: 16px; margin-bottom: 16px; }
+    `;
 
     constructor() {
         super();
@@ -301,12 +301,22 @@ class GeFileSelector extends LitElement {
     }
 
     uploadAllSelected() {
-        const selectedFiles = this.files.filter((f) => f.selected);
-        if (selectedFiles.length === 0) {
+        const selected = this.files.filter((f) => f.selected);
+        if (selected.length === 0) {
             alert('Aucun fichier sélectionné.');
             return;
         }
-        alert(`Upload de ${selectedFiles.length} fichier(s) sélectionné(s)`);
+
+        // On envoie le premier fichier sélectionné (le script legacy gère 1 par 1)
+        const fileToUpload = selected[0].blob;
+
+        this.dispatchEvent(new CustomEvent('file-selected', {
+            detail: { file: fileToUpload },
+            bubbles: true,
+            composed: true
+        }));
+
+        this.closeModal();
     }
 
     getThumbnailForFileByMimeType(mimeType) {
@@ -329,7 +339,7 @@ class GeFileSelector extends LitElement {
     render() {
         return html`
       <div class="container">
-        <md-filled-button @click=${this.handleOpenModal}>Ouvrir le coffre-fort</md-filled-button>
+        <md-outlined-button @click=${this.handleOpenModal}>Ouvrir le coffre-fort</md-outlined-button>
 
         ${this.modalOpen
             ? html`
@@ -350,7 +360,7 @@ class GeFileSelector extends LitElement {
                               <md-icon slot="icon">arrow_back</md-icon>
                               Retour
                             </md-text-button>
-                            <md-filled-button @click=${this.handleAddFile}>Ajouter</md-filled-button>
+                            <md-outlined-button @click=${this.handleAddFile}>Ajouter</md-outlined-button>
                           </div>
 
                           <div style="max-height:400px; overflow-y:auto; padding:8px; border:1px solid #eee; border-radius:4px;">
@@ -364,10 +374,10 @@ class GeFileSelector extends LitElement {
                               <md-icon class="drop-zone-icon">upload</md-icon>
                               <p class="drop-zone-text">Glisser et déposer vos fichiers ici</p>
                               <div class="drop-zone-or">ou</div>
-                              <md-filled-button class="drop-zone-button" type="button">
+                              <md-text-button class="drop-zone-button" type="button">
                                 Charger des fichiers
                                 <md-icon slot="end">upload</md-icon>
-                              </md-filled-button>
+                              </md-text-button>
 
                               <input type="file" multiple style="display:none;" @change=${this.onFileInput} />
                             </div>
@@ -413,7 +423,7 @@ class GeFileSelector extends LitElement {
                     : html`
                           <div class="header-actions">
                             <div><p>Si votre fichier ne figure pas dans la liste, vous pouvez l’ajouter</p></div>
-                            <md-filled-button @click=${this.handleAddClick}>Ajouter</md-filled-button>
+                            <md-outlined-button @click=${this.handleAddClick}>Ajouter</md-outlined-button>
                           </div>
 
                           <md-list>
