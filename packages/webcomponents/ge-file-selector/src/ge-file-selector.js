@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import {css, html, LitElement} from 'lit';
 
 import '@material/web/list/list-item.js';
 import '@material/web/button/filled-button.js';
@@ -12,28 +12,36 @@ import '@material/web/checkbox/checkbox.js';
 
 class GeFileSelector extends LitElement {
     static properties = {
-        apiEndpoint: { type: String, attribute: 'api-endpoint' },
-        authToken: { type: String, attribute: 'auth-token' },
+        apiEndpoint: {type: String, attribute: 'api-endpoint'},
+        authToken: {type: String, attribute: 'auth-token'},
 
         // state internes
-        files: { state: true },
-        loading: { state: true },
-        error: { state: true },
-        modalOpen: { state: true },
-        isAddingFile: { state: true },
-        selectedFiles: { state: true },
-        addedFiles: { state: true },
-        label1: { state: true },
-        label2: { state: true },
+        files: {state: true},
+        loading: {state: true},
+        error: {state: true},
+        modalOpen: {state: true},
+        isAddingFile: {state: true},
+        selectedFiles: {state: true},
+        addedFiles: {state: true},
+        label1: {state: true},
+        label2: {state: true},
     };
 
     static styles = css`
-        .error { color: red; margin-bottom: 8px; }
-        md-list { max-height: 300px; overflow-y: auto; }
+        .error {
+            color: red;
+            margin-bottom: 8px;
+        }
+
+        md-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
 
         .modal {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.5);
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -51,7 +59,12 @@ class GeFileSelector extends LitElement {
             flex-direction: column;
         }
 
-        .centered { display: flex; justify-content: center; align-items: center; flex: 1; }
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
 
         .drop-zone {
             border: 2px dashed #ccc;
@@ -67,12 +80,29 @@ class GeFileSelector extends LitElement {
             align-items: center;
         }
 
-        .drop-zone.dragover { border-color: #00796b; background-color: #e0f2f1; }
+        .drop-zone.dragover {
+            border-color: #00796b;
+            background-color: #e0f2f1;
+        }
 
-        .drop-zone-icon { font-size: 32px; color: #666; }
-        .drop-zone-text { font-size: 16px; color: #333; margin: 8px 0; }
+        .drop-zone-icon {
+            font-size: 32px;
+            color: #666;
+        }
 
-        .drop-zone-or { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+        .drop-zone-text {
+            font-size: 16px;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        .drop-zone-or {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+        }
+
         .drop-zone-or::before, .drop-zone-or::after {
             content: '';
             flex: 1;
@@ -80,10 +110,27 @@ class GeFileSelector extends LitElement {
             background: red;
         }
 
-        .button-row { display: flex; gap: 8px; }
-        .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
-        .form-section { display: flex; flex-direction: column; gap: 16px; }
-        .add-button { margin-top: 16px; align-self: flex-end; }
+        .button-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .add-button {
+            margin-top: 16px;
+            align-self: flex-end;
+        }
 
         .back-button {
             display: flex;
@@ -104,11 +151,30 @@ class GeFileSelector extends LitElement {
             background: white;
         }
 
-        .file-item img { width: 32px; height: 32px; margin-right: 8px; }
-        .file-item-info { flex: 1; }
-        .file-item-name { font-weight: bold; margin: 0; }
-        .file-item-meta { font-size: 12px; color: #666; }
-        .added-files { margin-top: 16px; margin-bottom: 16px; }
+        .file-item img {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+
+        .file-item-info {
+            flex: 1;
+        }
+
+        .file-item-name {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .file-item-meta {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .added-files {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
     `;
 
     constructor() {
@@ -171,7 +237,7 @@ class GeFileSelector extends LitElement {
             const headers = new Headers();
             if (this.authToken) headers.set('Authorization', `Bearer ${this.authToken}`);
 
-            const response = await fetch(this.apiEndpoint, { headers });
+            const response = await fetch(this.apiEndpoint, {headers});
             if (!response.ok) throw new Error('Erreur réseau');
 
             const data = await response.json();
@@ -184,7 +250,7 @@ class GeFileSelector extends LitElement {
                 const ia = new Uint8Array(ab);
                 for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
 
-                const blob = new Blob([ia], { type: mimeType });
+                const blob = new Blob([ia], {type: mimeType});
                 const url = URL.createObjectURL(blob);
 
                 return {
@@ -249,9 +315,9 @@ class GeFileSelector extends LitElement {
             return;
         }
 
-        const newAddedFiles = Array.from(this.selectedFiles).map((file) => ({
+        const newAddedFiles = Array.from(files).map((file) => ({
             id: this._id('local'),
-            file,
+            file: file, // On garde l'objet File natif ici
             objectUrl: URL.createObjectURL(file),
         }));
 
@@ -260,10 +326,7 @@ class GeFileSelector extends LitElement {
     }
 
     handleValidateAddedFiles() {
-        if (this.addedFiles.length === 0) {
-            alert('Aucun fichier à valider.');
-            return;
-        }
+        if (this.addedFiles.length === 0) return;
 
         this.files = [
             ...this.files,
@@ -271,9 +334,10 @@ class GeFileSelector extends LitElement {
                 id: f.id,
                 name: f.file.name,
                 url: f.objectUrl,
+                blob: f.file, // CRUCIAL: On stocke le fichier physique ici
                 mimeType: f.file.type,
                 size: f.file.size,
-                selected: false,
+                selected: true, // On le sélectionne par défaut à l'ajout
             })),
         ];
 
@@ -286,7 +350,7 @@ class GeFileSelector extends LitElement {
     }
 
     handleCheckboxChange(fileId, checked) {
-        this.files = this.files.map((f) => (f.id === fileId ? { ...f, selected: checked } : f));
+        this.files = this.files.map((f) => (f.id === fileId ? {...f, selected: checked} : f));
     }
 
     async openFileInNewTab(url) {
@@ -307,16 +371,19 @@ class GeFileSelector extends LitElement {
             return;
         }
 
-        // On envoie le premier fichier sélectionné (le script legacy gère 1 par 1)
+        // On prend le premier fichier sélectionné pour l'envoyer au script legacy
         const fileToUpload = selected[0].blob;
 
-        this.dispatchEvent(new CustomEvent('file-selected', {
-            detail: { file: fileToUpload },
-            bubbles: true,
-            composed: true
-        }));
-
-        this.closeModal();
+        if (fileToUpload) {
+            this.dispatchEvent(new CustomEvent('file-selected', {
+                detail: {file: fileToUpload},
+                bubbles: true,
+                composed: true
+            }));
+            this.closeModal();
+        } else {
+            console.error("Le contenu binaire du fichier est introuvable.");
+        }
     }
 
     getThumbnailForFileByMimeType(mimeType) {
@@ -338,131 +405,154 @@ class GeFileSelector extends LitElement {
 
     render() {
         return html`
-      <div class="container">
-        <md-outlined-button @click=${this.handleOpenModal}>Ouvrir le coffre-fort</md-outlined-button>
+            <div class="container">
+                <md-outlined-button @click=${this.handleOpenModal}>Ouvrir le coffre-fort</md-outlined-button>
 
-        ${this.modalOpen
-            ? html`
-              <div class="modal" @click=${this.handleModalClick}>
-                <div class="modal-content">
-                  <div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
-                    <md-icon-button @click=${this.closeModal}>
-                      <md-icon>close</md-icon>
-                    </md-icon-button>
-                  </div>
-
-                  ${this.loading
-                ? html`<div class="centered"><md-circular-progress indeterminate></md-circular-progress></div>`
-                : this.isAddingFile
-                    ? html`
-                          <div class="header-actions">
-                            <md-text-button class="back-button" @click=${this.handleBackClick}>
-                              <md-icon slot="icon">arrow_back</md-icon>
-                              Retour
-                            </md-text-button>
-                            <md-outlined-button @click=${this.handleAddFile}>Ajouter</md-outlined-button>
-                          </div>
-
-                          <div style="max-height:400px; overflow-y:auto; padding:8px; border:1px solid #eee; border-radius:4px;">
-                            <div
-                              class="drop-zone"
-                              @dragover=${this.onDragOver}
-                              @dragleave=${this.onDragLeave}
-                              @drop=${this.onDrop}
-                              @click=${() => this._openFilePicker()}
-                            >
-                              <md-icon class="drop-zone-icon">upload</md-icon>
-                              <p class="drop-zone-text">Glisser et déposer vos fichiers ici</p>
-                              <div class="drop-zone-or">ou</div>
-                              <md-text-button class="drop-zone-button" type="button">
-                                Charger des fichiers
-                                <md-icon slot="end">upload</md-icon>
-                              </md-text-button>
-
-                              <input type="file" multiple style="display:none;" @change=${this.onFileInput} />
-                            </div>
-
-                            <div class="added-files">
-                              ${this.addedFiles.map(
-                        (f) => html`
-                                  <div class="file-item">
-                                    <img src=${this.getThumbnailForFileByMimeType(f.file.type)} alt="Icone fichier" />
-                                    <div class="file-item-info">
-                                      <div class="file-item-name">${f.file.name}</div>
-                                      <div class="file-item-meta">
-                                        ${f.file.type || 'format_inconnu'} • ${(f.file.size / 1024).toFixed(1)} KB
-                                      </div>
+                ${this.modalOpen
+                        ? html`
+                            <div class="modal" @click=${this.handleModalClick}>
+                                <div class="modal-content">
+                                    <div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
+                                        <md-icon-button @click=${this.closeModal}>
+                                            <md-icon>close</md-icon>
+                                        </md-icon-button>
                                     </div>
-                                    <md-icon-button @click=${() => this.removeAddedFile(f.id)}>
-                                      <md-icon>delete</md-icon>
-                                    </md-icon-button>
-                                  </div>
-                                `
-                    )}
+
+                                    ${this.loading
+                                            ? html`
+                                                <div class="centered">
+                                                    <md-circular-progress indeterminate></md-circular-progress>
+                                                </div>`
+                                            : this.isAddingFile
+                                                    ? html`
+                                                        <div class="header-actions">
+                                                            <md-text-button class="back-button"
+                                                                            @click=${this.handleBackClick}>
+                                                                <md-icon slot="icon">arrow_back</md-icon>
+                                                                Retour
+                                                            </md-text-button>
+                                                            <md-outlined-button @click=${this.handleAddFile}>Ajouter
+                                                            </md-outlined-button>
+                                                        </div>
+
+                                                        <div style="max-height:400px; overflow-y:auto; padding:8px; border:1px solid #eee; border-radius:4px;">
+                                                            <div
+                                                                    class="drop-zone"
+                                                                    @dragover=${this.onDragOver}
+                                                                    @dragleave=${this.onDragLeave}
+                                                                    @drop=${this.onDrop}
+                                                                    @click=${() => this._openFilePicker()}
+                                                            >
+                                                                <md-icon class="drop-zone-icon">upload</md-icon>
+                                                                <p class="drop-zone-text">Glisser et déposer vos
+                                                                    fichiers ici</p>
+                                                                <div class="drop-zone-or">ou</div>
+                                                                <md-text-button class="drop-zone-button" type="button">
+                                                                    Charger des fichiers
+                                                                    <md-icon slot="end">upload</md-icon>
+                                                                </md-text-button>
+
+                                                                <input type="file" multiple style="display:none;"
+                                                                       @change=${this.onFileInput}/>
+                                                            </div>
+
+                                                            <div class="added-files">
+                                                                ${this.addedFiles.map(
+                                                                        (f) => html`
+                                                                            <div class="file-item">
+                                                                                <img src=${this.getThumbnailForFileByMimeType(f.file.type)}
+                                                                                     alt="Icone fichier"/>
+                                                                                <div class="file-item-info">
+                                                                                    <div class="file-item-name">
+                                                                                        ${f.file.name}
+                                                                                    </div>
+                                                                                    <div class="file-item-meta">
+                                                                                        ${f.file.type || 'format_inconnu'}
+                                                                                        •
+                                                                                        ${(f.file.size / 1024).toFixed(1)}
+                                                                                        KB
+                                                                                    </div>
+                                                                                </div>
+                                                                                <md-icon-button
+                                                                                        @click=${() => this.removeAddedFile(f.id)}>
+                                                                                    <md-icon>delete</md-icon>
+                                                                                </md-icon-button>
+                                                                            </div>
+                                                                        `
+                                                                )}
+                                                            </div>
+
+                                                            <div class="form-section">
+                                                                <md-outlined-text-field
+                                                                        label="Date d'échéance"
+                                                                        helper-text="Helper Text"
+                                                                        .value=${this.label1}
+                                                                        @input=${(e) => (this.label1 = this._readValue(e))}
+                                                                ></md-outlined-text-field>
+
+                                                                <md-outlined-text-field
+                                                                        label="Pouet pouet"
+                                                                        helper-text="Helper Text"
+                                                                        .value=${this.label2}
+                                                                        @input=${(e) => (this.label2 = this._readValue(e))}
+                                                                ></md-outlined-text-field>
+                                                            </div>
+                                                        </div>
+
+                                                        <md-filled-button class="add-button"
+                                                                          @click=${this.handleValidateAddedFiles}>
+                                                            Valider
+                                                        </md-filled-button>
+                                                    `
+                                                    : html`
+                                                        <div class="header-actions">
+                                                            <div><p>Si votre fichier ne figure pas dans la liste, vous
+                                                                pouvez l’ajouter</p></div>
+                                                            <md-outlined-button @click=${this.handleAddClick}>Ajouter
+                                                            </md-outlined-button>
+                                                        </div>
+
+                                                        <md-list>
+                                                            ${this.files.map(
+                                                                    (f) => html`
+                                                                        <md-list-item type="button"
+                                                                                      ?selected=${!!f.selected}>
+                                                                            <md-checkbox
+                                                                                    slot="start"
+                                                                                    touch-target="wrapper"
+                                                                                    .checked=${!!f.selected}
+                                                                                    @input=${(e) => this.handleCheckboxChange(f.id, e.target?.checked ?? false)}
+                                                                            ></md-checkbox>
+
+                                                                            <img slot="start" style="width:56px"
+                                                                                 src=${this.getThumbnailForFileByMimeType(f.mimeType)}/>
+                                                                            <div slot="headline">${f.name || f.id}</div>
+
+                                                                            <div class="button-row" slot="end">
+                                                                                <md-icon-button
+                                                                                        @click=${(e) => {
+                                                                                            e.stopPropagation();
+                                                                                            this.openFileInNewTab(f.url);
+                                                                                        }}
+                                                                                >
+                                                                                    <md-icon>visibility</md-icon>
+                                                                                </md-icon-button>
+                                                                            </div>
+                                                                        </md-list-item>
+                                                                    `
+                                                            )}
+                                                        </md-list>
+
+                                                        <md-filled-button class="add-button"
+                                                                          @click=${this.uploadAllSelected}>Upload
+                                                        </md-filled-button>
+                                                    `}
+                                </div>
                             </div>
-
-                            <div class="form-section">
-                              <md-outlined-text-field
-                                label="Date d'échéance"
-                                helper-text="Helper Text"
-                                .value=${this.label1}
-                                @input=${(e) => (this.label1 = this._readValue(e))}
-                              ></md-outlined-text-field>
-
-                              <md-outlined-text-field
-                                label="Pouet pouet"
-                                helper-text="Helper Text"
-                                .value=${this.label2}
-                                @input=${(e) => (this.label2 = this._readValue(e))}
-                              ></md-outlined-text-field>
-                            </div>
-                          </div>
-
-                          <md-filled-button class="add-button" @click=${this.handleValidateAddedFiles}>Valider</md-filled-button>
                         `
-                    : html`
-                          <div class="header-actions">
-                            <div><p>Si votre fichier ne figure pas dans la liste, vous pouvez l’ajouter</p></div>
-                            <md-outlined-button @click=${this.handleAddClick}>Ajouter</md-outlined-button>
-                          </div>
-
-                          <md-list>
-                            ${this.files.map(
-                        (f) => html`
-                                <md-list-item type="button" ?selected=${!!f.selected}>
-                                  <md-checkbox
-                                    slot="start"
-                                    touch-target="wrapper"
-                                    .checked=${!!f.selected}
-                                    @input=${(e) => this.handleCheckboxChange(f.id, e.target?.checked ?? false)}
-                                  ></md-checkbox>
-
-                                  <img slot="start" style="width:56px" src=${this.getThumbnailForFileByMimeType(f.mimeType)} />
-                                  <div slot="headline">${f.name || f.id}</div>
-
-                                  <div class="button-row" slot="end">
-                                    <md-icon-button
-                                      @click=${(e) => {
-                            e.stopPropagation();
-                            this.openFileInNewTab(f.url);
-                        }}
-                                    >
-                                      <md-icon>visibility</md-icon>
-                                    </md-icon-button>
-                                  </div>
-                                </md-list-item>
-                              `
-                    )}
-                          </md-list>
-
-                          <md-filled-button class="add-button" @click=${this.uploadAllSelected}>Upload</md-filled-button>
-                        `}
-                </div>
-              </div>
-            `
-            : null}
-      </div>
-    `;
+                        : null}
+            </div>
+        `;
     }
 }
 
