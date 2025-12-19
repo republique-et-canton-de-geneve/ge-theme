@@ -28,88 +28,88 @@ class GeFileSelector extends LitElement {
     };
 
     static styles = css`
-    .error { color: red; margin-bottom: 8px; }
-    md-list { max-height: 300px; overflow-y: auto; }
+        .error { color: red; margin-bottom: 8px; }
+        md-list { max-height: 300px; overflow-y: auto; }
 
-    .modal {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+        .modal {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    .modal-content {
-      background: white;
-      padding: 16px;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-    }
+        .modal-content {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .centered { display: flex; justify-content: center; align-items: center; flex: 1; }
+        .centered { display: flex; justify-content: center; align-items: center; flex: 1; }
 
-    .drop-zone {
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      padding: 24px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #fafafa;
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-    }
+        .drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fafafa;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
 
-    .drop-zone.dragover { border-color: #00796b; background-color: #e0f2f1; }
+        .drop-zone.dragover { border-color: #00796b; background-color: #e0f2f1; }
 
-    .drop-zone-icon { font-size: 32px; color: #666; }
-    .drop-zone-text { font-size: 16px; color: #333; margin: 8px 0; }
+        .drop-zone-icon { font-size: 32px; color: #666; }
+        .drop-zone-text { font-size: 16px; color: #333; margin: 8px 0; }
 
-    .drop-zone-or { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
-    .drop-zone-or::before, .drop-zone-or::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: red;
-    }
+        .drop-zone-or { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+        .drop-zone-or::before, .drop-zone-or::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: red;
+        }
 
-    .button-row { display: flex; gap: 8px; }
-    .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
-    .form-section { display: flex; flex-direction: column; gap: 16px; }
-    .add-button { margin-top: 16px; align-self: flex-end; }
+        .button-row { display: flex; gap: 8px; }
+        .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
+        .form-section { display: flex; flex-direction: column; gap: 16px; }
+        .add-button { margin-top: 16px; align-self: flex-end; }
 
-    .back-button {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      color: #00796b;
-      font-weight: bold;
-    }
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #00796b;
+            font-weight: bold;
+        }
 
-    .file-item {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-top: 8px;
-      background: white;
-    }
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 8px;
+            background: white;
+        }
 
-    .file-item img { width: 32px; height: 32px; margin-right: 8px; }
-    .file-item-info { flex: 1; }
-    .file-item-name { font-weight: bold; margin: 0; }
-    .file-item-meta { font-size: 12px; color: #666; }
-    .added-files { margin-top: 16px; margin-bottom: 16px; }
-  `;
+        .file-item img { width: 32px; height: 32px; margin-right: 8px; }
+        .file-item-info { flex: 1; }
+        .file-item-name { font-weight: bold; margin: 0; }
+        .file-item-meta { font-size: 12px; color: #666; }
+        .added-files { margin-top: 16px; margin-bottom: 16px; }
+    `;
 
     constructor() {
         super();
@@ -187,12 +187,15 @@ class GeFileSelector extends LitElement {
                 const blob = new Blob([ia], { type: mimeType });
                 const url = URL.createObjectURL(blob);
 
+                const fileObject = new File([blob], doc.libelle, { type: mimeType });
+
+
                 return {
                     id: this._id('api'),
                     name: doc.libelle,
                     url,
                     mimeType,
-                    blob: blob,
+                    blob: fileObject,
                     size: doc.taille,
                     originalBase64: doc.content,
                     selected: false,
