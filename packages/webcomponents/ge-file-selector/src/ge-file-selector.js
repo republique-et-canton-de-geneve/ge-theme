@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
 
 import '@material/web/list/list-item.js';
 import '@material/web/button/filled-button.js';
@@ -10,59 +9,22 @@ import '@material/web/iconbutton/icon-button.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/checkbox/checkbox.js';
 
-@customElement('ge-file-selector')
 class GeFileSelector extends LitElement {
-    @property({ attribute: 'api-endpoint' }) apiEndpoint;
-    @property({ attribute: 'auth-token' }) authToken;
+    static properties = {
+        apiEndpoint: { type: String, attribute: 'api-endpoint' },
+        authToken: { type: String, attribute: 'auth-token' },
 
-    @state() files;
-    @state() loading;
-    @state() error;
-    @state() modalOpen;
-    @state() isAddingFile;
-    @state() selectedFiles;
-    @state() addedFiles;
-    @state() label1;
-    @state() label2;
-
-    @query('input[type=file]') fileInput;
-
-    constructor() {
-        super();
-
-        // ✅ Init dans constructor : évite les soucis de réactivité avec transpilation/decorators
-        this.apiEndpoint = '';
-        this.authToken = '';
-
-        this.files = [];
-        this.loading = false;
-        this.error = '';
-
-        this.modalOpen = false;
-        this.isAddingFile = false;
-
-        this.selectedFiles = null;
-        this.addedFiles = [];
-
-        this.label1 = '';
-        this.label2 = '';
-
-        // ✅ Bind des handlers (sinon `this` peut être perdu selon l’appel)
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.handleModalClick = this.handleModalClick.bind(this);
-
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.onFileInput = this.onFileInput.bind(this);
-
-        this.handleAddClick = this.handleAddClick.bind(this);
-        this.handleBackClick = this.handleBackClick.bind(this);
-        this.handleAddFile = this.handleAddFile.bind(this);
-        this.handleValidateAddedFiles = this.handleValidateAddedFiles.bind(this);
-        this.uploadAllSelected = this.uploadAllSelected.bind(this);
-    }
+        // state internes
+        files: { state: true },
+        loading: { state: true },
+        error: { state: true },
+        modalOpen: { state: true },
+        isAddingFile: { state: true },
+        selectedFiles: { state: true },
+        addedFiles: { state: true },
+        label1: { state: true },
+        label2: { state: true },
+    };
 
     static styles = css`
     .container { padding: 16px; }
@@ -119,7 +81,6 @@ class GeFileSelector extends LitElement {
     }
 
     .button-row { display: flex; gap: 8px; }
-
     .header-actions { display: flex; justify-content: space-between; margin-bottom: 16px; }
     .form-section { display: flex; flex-direction: column; gap: 16px; }
     .add-button { margin-top: 16px; align-self: flex-end; }
@@ -150,23 +111,56 @@ class GeFileSelector extends LitElement {
     .added-files { margin-top: 16px; margin-bottom: 16px; }
   `;
 
-    // ---------- utils ----------
+    constructor() {
+        super();
+
+        this.apiEndpoint = '';
+        this.authToken = '';
+
+        this.files = [];
+        this.loading = false;
+        this.error = '';
+
+        this.modalOpen = false;
+        this.isAddingFile = false;
+
+        this.selectedFiles = null;
+        this.addedFiles = [];
+
+        this.label1 = '';
+        this.label2 = '';
+
+        // bind
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.handleModalClick = this.handleModalClick.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDragLeave = this.onDragLeave.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.onFileInput = this.onFileInput.bind(this);
+        this.handleAddClick = this.handleAddClick.bind(this);
+        this.handleBackClick = this.handleBackClick.bind(this);
+        this.handleAddFile = this.handleAddFile.bind(this);
+        this.handleValidateAddedFiles = this.handleValidateAddedFiles.bind(this);
+        this.uploadAllSelected = this.uploadAllSelected.bind(this);
+    }
+
     _id(prefix) {
         if (globalThis.crypto?.randomUUID) return `${prefix}-${crypto.randomUUID()}`;
         return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     }
 
-    _readInputValue(e) {
-        // md-outlined-text-field peut retargeter l’event
+    _readValue(e) {
         return e?.target?.value ?? e?.detail?.value ?? '';
     }
 
-    // ---------- actions ----------
+    _openFilePicker() {
+        this.renderRoot?.querySelector('input[type=file]')?.click();
+    }
+
     handleOpenModal() {
         this.modalOpen = true;
-        if (this.apiEndpoint && this.files.length === 0) {
-            this.fetchFiles();
-        }
+        if (this.apiEndpoint && this.files.length === 0) this.fetchFiles();
     }
 
     async fetchFiles() {
@@ -213,17 +207,16 @@ class GeFileSelector extends LitElement {
     onDragOver(e) {
         e.preventDefault();
         if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
-        this.shadowRoot?.querySelector('.drop-zone')?.classList.add('dragover');
+        this.renderRoot?.querySelector('.drop-zone')?.classList.add('dragover');
     }
 
     onDragLeave() {
-        this.shadowRoot?.querySelector('.drop-zone')?.classList.remove('dragover');
+        this.renderRoot?.querySelector('.drop-zone')?.classList.remove('dragover');
     }
 
     onDrop(e) {
         e.preventDefault();
-        this.shadowRoot?.querySelector('.drop-zone')?.classList.remove('dragover');
-
+        this.renderRoot?.querySelector('.drop-zone')?.classList.remove('dragover');
         const files = e.dataTransfer?.files;
         if (files && files.length) {
             this.selectedFiles = files;
@@ -301,8 +294,7 @@ class GeFileSelector extends LitElement {
             const response = await fetch(url);
             if (!response.ok) throw new Error('Erreur de téléchargement');
             const blob = await response.blob();
-            const blobUrl = URL.createObjectURL(blob);
-            window.open(blobUrl, '_blank');
+            window.open(URL.createObjectURL(blob), '_blank');
         } catch (e) {
             alert('Erreur lors de l’ouverture du fichier : ' + (e?.message ?? String(e)));
         }
@@ -332,10 +324,6 @@ class GeFileSelector extends LitElement {
 
     handleModalClick(e) {
         if (e.target === e.currentTarget) this.closeModal();
-    }
-
-    _openFilePicker() {
-        this.fileInput?.click();
     }
 
     render() {
@@ -408,14 +396,14 @@ class GeFileSelector extends LitElement {
                                 label="Date d'échéance"
                                 helper-text="Helper Text"
                                 .value=${this.label1}
-                                @input=${(e) => (this.label1 = this._readInputValue(e))}
+                                @input=${(e) => (this.label1 = this._readValue(e))}
                               ></md-outlined-text-field>
 
                               <md-outlined-text-field
                                 label="Pouet pouet"
                                 helper-text="Helper Text"
                                 .value=${this.label2}
-                                @input=${(e) => (this.label2 = this._readInputValue(e))}
+                                @input=${(e) => (this.label2 = this._readValue(e))}
                               ></md-outlined-text-field>
                             </div>
                           </div>
@@ -467,5 +455,7 @@ class GeFileSelector extends LitElement {
     `;
     }
 }
+
+customElements.define('ge-file-selector', GeFileSelector);
 
 export default GeFileSelector;
