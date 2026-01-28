@@ -1,7 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import "@fontsource/roboto/400.css";
 
 @customElement("ge-footer")
 class GeFooter extends LitElement {
@@ -22,7 +21,7 @@ class GeFooter extends LitElement {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 74px;
             padding: 0 32px;
             margin: auto;
         }
@@ -66,8 +65,7 @@ class GeFooter extends LitElement {
         @media (max-width: 768px) {
             .ge-footer-container {
                 display: block;
-                padding: 12px;
-                height: auto;
+                height: 278px;
             }
 
             .ge-footer-container > nav {
@@ -82,7 +80,7 @@ class GeFooter extends LitElement {
             }
 
             .ge-footer-armoiries {
-                margin-top: 10px;
+                margin-top: 32px;
             }
         }
 
@@ -220,7 +218,7 @@ class GeFooter extends LitElement {
                             class="ge-footer-armoiries"
                             src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
                             alt="Armoiries de la République et canton de Genève"
-                            height="62"
+                            height="54"
                             @click="${this.#onImageClick}"
                     />
                 </div>
