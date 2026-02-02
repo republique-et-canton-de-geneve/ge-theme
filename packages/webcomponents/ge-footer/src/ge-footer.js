@@ -1,7 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import "@fontsource/roboto/400.css";
 
 @customElement("ge-footer")
 class GeFooter extends LitElement {
@@ -17,7 +16,7 @@ class GeFooter extends LitElement {
             border-top: 1px solid var(--md-sys-color-outline-variant);
         }
 
-        .ge-footer-container {
+        #ge-footer {
             transition: max-width 0.3s ease;
             display: flex;
             justify-content: space-between;
@@ -27,14 +26,24 @@ class GeFooter extends LitElement {
             margin: auto;
         }
 
-        .ge-footer-container > nav {
+        #ge-footer hr {
+            border-color: var(--md-sys-color-outline-variant);
+            border-style: solid;
+            border-bottom: none;
+            border-width: 1px;
+            width: calc(100% - 16px);
+            margin: 4px 0 8px 0;
+            display: none;
+        }
+
+        #ge-footer > nav {
             display: flex;
             align-items: center;
             gap: 16px;
             margin-right: 20px;
         }
 
-        .ge-footer-container > nav > a {
+        #ge-footer > nav > a {
             color: var(--md-sys-color-on-surface-variant);
             font-family: 'Roboto', var(--md-ref-typeface-brand), Arial, Helvetica, sans-serif;
             font-size: var(--md-sys-typescale-body-medium-size, 14px);
@@ -45,52 +54,56 @@ class GeFooter extends LitElement {
             text-decoration: none;
         }
 
-        .ge-footer-container > nav > span {
+        #ge-footer > nav > span {
             color: var(--md-sys-color-outline-variant);
         }
 
-        .ge-footer-container > nav > a:hover {
+        #ge-footer > nav > a:hover {
             color: var(--md-sys-color-primary);
         }
 
-        .ge-footer-container > nav > a:focus-visible {
+        #ge-footer > nav > a:focus-visible {
             outline: 2px solid var(--md-sys-color-primary);
             outline-offset: 2px;
             border-radius: 2px;
         }
 
-        .ge-footer-armoiries {
+        #ge-footer-armoiries {
             cursor: pointer;
         }
 
         @media (max-width: 768px) {
-            .ge-footer-container {
+            #ge-footer {
                 display: block;
                 padding: 12px;
                 height: auto;
             }
 
-            .ge-footer-container > nav {
+            #ge-footer > nav {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
                 margin-right: 0;
             }
 
-            .ge-footer-container > nav > span {
+            #ge-footer > nav > span {
                 display: none;
             }
 
-            .ge-footer-armoiries {
+            #ge-footer-armoiries {
                 margin-top: 10px;
+            }
+
+            #ge-footer hr {
+                display: block;
             }
         }
 
-        .ge-footer-container.maxwidth-false {
+        #ge-footer.maxwidth-false {
             max-width: 1107px;
         }
 
-        .ge-footer-container.maxwidth-true {
+        #ge-footer.maxwidth-true {
             max-width: 100%;
         }
     `;
@@ -202,22 +215,22 @@ class GeFooter extends LitElement {
 
     render() {
         const containerClasses = {
-            "ge-footer-container": true,
             "maxwidth-true": this.maxWidth,
             "maxwidth-false": !this.maxWidth
         };
 
         return html`
             <footer>
-                <div class=${classMap(containerClasses)}>
+                <div id="ge-footer" class=${classMap(containerClasses)}>
                     <nav>
                         ${this.#resolvedLinks.map((link, index) => html`
                             ${index > 0 ? html`<span aria-hidden="true">|</span>` : null}
                             <a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.title}</a>
+                            ${index < this.#resolvedLinks.length - 1 ? html`<hr />` : null}
                         `)}
                     </nav>
                     <img
-                            class="ge-footer-armoiries"
+                            id="ge-footer-armoiries"
                             src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
                             alt="Armoiries de la République et canton de Genève"
                             height="62"

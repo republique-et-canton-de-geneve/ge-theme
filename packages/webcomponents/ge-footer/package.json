@@ -8,7 +8,9 @@
   "module": "dist/ge-footer.js",
   "targets": {
     "module": {
-      "source": "src/ge-footer.js"
+      "source": "src/ge-footer.js",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule"
     },
     "dev": {
       "source": "dev/index.html",
@@ -38,7 +40,6 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@fontsource/roboto": "5.2.9",
     "@swc/helpers": "^0.5.17",
     "lit": "3.3.1"
   },
