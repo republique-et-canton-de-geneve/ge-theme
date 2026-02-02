@@ -37,15 +37,16 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.17",
     "@fontsource/roboto": "5.2.5",
+    "@material/web": "^2.4.1",
+    "@swc/helpers": "^0.5.17",
     "lit": "3.3.0"
   },
   "devDependencies": {
-    "parcel": "2.16.3",
+    "copyfiles": "2.4.1",
     "eslint": "9.39.2",
-    "rimraf": "6.0.1",
-    "copyfiles": "2.4.1"
+    "parcel": "2.16.3",
+    "rimraf": "6.0.1"
   },
   "engines": {
     "node": ">=16.0.0"
