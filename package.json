@@ -2,7 +2,7 @@
   "name": "ge-theme",
   "description": "Thème et composants partagés pour les sites et applications sur ge.ch",
   "author": "État GE",
-  "version": "1.0.6-SNAPSHOT.7",
+  "version": "1.0.7-SNAPSHOT.0",
   "private": true,
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
