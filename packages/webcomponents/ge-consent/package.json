@@ -1,14 +1,14 @@
 {
-  "name": "@ael/ge-footer",
-  "version": "1.0.6",
+  "name": "@ael/ge-consent",
+  "version": "1.0.0",
   "private": false,
-  "description": "Web‑component that renders public Geneva websites footer.",
+  "description": "Web‑component that manages consent for Matomo Tag Manager tracking cookie.",
   "license": "Apache-2.0",
   "type": "module",
-  "module": "dist/ge-footer.js",
+  "module": "dist/ge-consent.js",
   "targets": {
     "module": {
-      "source": "src/ge-footer.js",
+      "source": "src/ge-consent.js",
       "includeNodeModules": true,
       "outputFormat": "esmodule"
     },
@@ -20,8 +20,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/ge-footer.js",
-      "types": "./dist/types/ge-footer.d.ts"
+      "import": "./dist/ge-consent.js",
+      "types": "./dist/types/ge-consent.d.ts"
     }
   },
   "files": [
@@ -40,6 +40,9 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
+    "@m3e/core": "^1.1.8",
+    "@m3e/button": "^1.1.8",
+    "@m3e/dialog": "^1.1.8",
     "@swc/helpers": "^0.5.17",
     "lit": "3.3.1"
   },
@@ -61,7 +64,9 @@
   "keywords": [
     "web‑components",
     "geneva",
-    "footer",
+    "consent",
+    "cookies",
+    "matomo",
     "design‑system"
   ]
 }

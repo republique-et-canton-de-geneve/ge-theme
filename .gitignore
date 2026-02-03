@@ -79,3 +79,5 @@ yarn-error.log*
 /json/
 .turbo/
 /packages/*/build
+**/.parcel-dev/
+**/.dev-dist/
