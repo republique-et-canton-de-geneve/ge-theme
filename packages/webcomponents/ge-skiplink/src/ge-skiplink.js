@@ -31,7 +31,7 @@ class GeSkiplink extends LitElement {
         }
 
         .skiplink ul > li a {
-            color: #0C6BA8;
+            color: var(--md-sys-color-primary, #0C6BA8);
             text-decoration: none;
             background-color: transparent;
         }

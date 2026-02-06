@@ -8,6 +8,22 @@
   "source": {
     "./dist/*": "./src/$1"
   },
+  "module": "dist/ge-skiplink.js",
+  "targets": {
+    "types": false,
+    "module": {
+      "includeNodeModules": {
+        "lit": true,
+        "lit/decorators.js": true
+      }
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/ge-skiplink.js",
+      "types": "./dist/types/ge-skiplink.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -18,7 +34,7 @@
     "lint": "eslint . --ext .js",
     "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build",
-    "dev": "set PARCEL_WORKERS=0&& parcel index.html --open --no-cache"
+    "dev": "parcel index.html --open --no-cache"
   },
   "dependencies": {
     "@fontsource/roboto": "5.2.5",

@@ -93,7 +93,7 @@ Le composant `<ge-skiplink>` est un **Web Component** développé avec [Lit](htt
 
 ```
 
-## Propriétés <ge-header>
+## Propriétés <ge-skiplink>
 - `links` _(type: **Array**)_  : Définit la liste des liens affichés dans le composant. Chaque élément est un objet contenant :
   - `href`: cible du lien (id de section, URL interne, etc)
   - `title`: texte affiché
