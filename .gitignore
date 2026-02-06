@@ -81,3 +81,7 @@ yarn-error.log*
 /packages/*/build
 **/.parcel-dev/
 **/.dev-dist/
+
+# Claude Code
+CLAUDE.md
+.claude/
