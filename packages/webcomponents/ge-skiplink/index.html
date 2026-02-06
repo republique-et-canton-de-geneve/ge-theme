@@ -62,7 +62,7 @@
         }
     </style>
 </head>
-<body>
+<body id="home">
     <ge-skiplink id="skiplinkId"></ge-skiplink>
 
     <header>
@@ -78,6 +78,9 @@
         <h1>Testing GE Skiplink</h1>
         <p>This is a test page for the ge-skiplink web component.</p>
         <p>Press <b>tab key</b> to show skiplink menu.</p>
+        <a href="#" class="cta-test" style="display:inline-block; margin-top:1rem; padding:12px 24px; background-color:var(--md-sys-color-primary, #0162a0); color:white; text-decoration:none; border-radius:8px; font-weight:700;">
+            CTA de test - vérifier le focus clavier
+        </a>
     </main>
 
     <footer id="footer">
@@ -86,11 +89,3 @@
 </body>
 </html>
 
-<script>
-    document.getElementById('skiplinkId').links = [
-        { href: '#content', title: 'Contenu' },
-        { href: '#main-navigation', title: 'Menu' },
-        { href: '#search', title: 'Recherche' },
-        { href: '#footer', title: 'Pied de page' }
-    ]
-</script>
