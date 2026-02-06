@@ -10,7 +10,8 @@
     "packages/icons",
     "packages/utils/*",
     "packages/website",
-    "packages/webcomponents/*"
+    "packages/webcomponents/*",
+    "packages/storybook"
   ],
   "browserslist": [
     "> 0.2% in CH and not dead",
@@ -26,7 +27,9 @@
     "typecheck": "turbo run typecheck",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "publish-packages": "turbo run build --filter=\"./packages/webcomponents/*\" && cd packages/webcomponents && yarn npm publish",
-    "test": "web-test-runner"
+    "test": "web-test-runner",
+    "storybook": "yarn workspace @ael/storybook dev",
+    "storybook:build": "yarn workspace @ael/storybook build"
   },
   "alias": {
     "@icons/common": "./packages/website/static/theme/icons/common"
