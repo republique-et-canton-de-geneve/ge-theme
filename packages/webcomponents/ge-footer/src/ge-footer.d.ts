@@ -24,6 +24,9 @@ export declare class GeFooter extends LitElement {
     /** Custom links array. Overrides default links when provided. */
     links?: FooterLink[];
 
+    /** Override language for footer labels. If not set, inherits from nearest ancestor [lang] attribute, defaults to 'fr'. */
+    locale?: "fr" | "en" | "es" | "pt";
+
     /** Theme: 'light' or 'dark'. Defaults to system preference, attribute overrides. */
     theme: "light" | "dark";
 }
