@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE Consent Component - Test Page</title>
+    <script type="module" src="../src/ge-consent.js"></script>
+    <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
+    <link rel="stylesheet" href="../../../website/static/theme/css/theme.css">
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--md-sys-color-surface, #fafafa);
+            color: var(--md-sys-color-on-surface, #1a1a1a);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--md-sys-color-surface-container, #f0f0f0);
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant, #ccc);
+        }
+
+        main {
+            padding: 32px;
+            max-width: 800px;
+        }
+
+        h1 { margin: 0 0 8px 0; font-size: 24px; }
+        h2 { font-size: 18px; margin: 32px 0 16px 0; }
+        h2:first-of-type { margin-top: 0; }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 1px solid var(--md-sys-color-outline, #ccc);
+            border-radius: 25px;
+            background: var(--md-sys-color-surface, #fff);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: var(--md-sys-color-surface-container-high, #eee);
+        }
+
+        .status {
+            padding: 16px;
+            background: var(--md-sys-color-surface-container, #f5f5f5);
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .status strong { color: var(--md-sys-color-primary, #6750A4); }
+
+        .event-log {
+            margin-top: 24px;
+            padding: 16px;
+            background: var(--md-sys-color-surface-container-low, #fafafa);
+            border: 1px solid var(--md-sys-color-outline-variant, #ddd);
+            border-radius: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .event-log h3 { margin: 0 0 12px 0; font-size: 14px; }
+
+        .event-log ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .event-log li {
+            padding: 4px 0;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant, #eee);
+        }
+
+        .event-log li:last-child { border-bottom: none; }
+
+        .granted { color: green; }
+        .revoked { color: crimson; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>GE Consent Component - Test Page</h1>
+    <p>Interactive testing for the <code>&lt;ge-consent&gt;</code> web component</p>
+</header>
+
+<main>
+    <h2>Controls</h2>
+    <div class="controls">
+        <button id="btn-show">Show Dialog</button>
+        <button id="btn-reset">Reset Consent</button>
+        <button id="btn-refresh-status">Refresh Status</button>
+    </div>
+
+    <h2>Cookie Status</h2>
+    <div class="status" id="status">Loading...</div>
+
+    <div class="event-log">
+        <h3>Event Log</h3>
+        <ul id="event-list"></ul>
+    </div>
+</main>
+
+<ge-consent></ge-consent>
+
+<script type="module">
+    const consent = document.querySelector('ge-consent');
+    const status = document.getElementById('status');
+    const eventList = document.getElementById('event-list');
+
+    function updateStatus() {
+        const cookies = document.cookie;
+        const hasConsent = cookies.includes('mtm_consent=');
+        const hasRemoved = cookies.includes('mtm_consent_removed=');
+
+        let state = 'No decision yet';
+        if (hasConsent) state = '<span class="granted">✓ Consent granted</span>';
+        if (hasRemoved) state = '<span class="revoked">✗ Consent revoked</span>';
+
+        status.innerHTML = `
+      <strong>State:</strong> ${state}<br>
+      <strong>Cookies:</strong> ${cookies || '(none)'}
+    `;
+    }
+
+    function logEvent(granted) {
+        const li = document.createElement('li');
+        li.className = granted ? 'granted' : 'revoked';
+        li.textContent = `[${new Date().toLocaleTimeString()}] consent: ${granted ? 'granted' : 'revoked'}`;
+        eventList.prepend(li);
+    }
+
+    document.getElementById('btn-show').addEventListener('click', () => consent.show());
+    document.getElementById('btn-reset').addEventListener('click', () => consent.reset());
+    document.getElementById('btn-refresh-status').addEventListener('click', updateStatus);
+
+    consent.addEventListener('consent', (e) => {
+        logEvent(e.detail.granted);
+        updateStatus();
+    });
+
+    updateStatus();
+</script>
+</body>
+</html>

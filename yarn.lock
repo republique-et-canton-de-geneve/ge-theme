@@ -70,6 +70,26 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
+"@floating-ui/core@^1.7.4":
+  version "1.7.4"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@floating-ui/core/-/core-1.7.4.tgz#4a006a6e01565c0f87ba222c317b056a2cffd2f4"
+  integrity sha512-C3HlIdsBxszvm5McXlB8PeOEWfBhcGBTZGkGlWc2U0KFY5IwG5OQEuQ8rq52DZmcHDlPLd+YFBK+cZcytwIFWg==
+  dependencies:
+    "@floating-ui/utils" "^0.2.10"
+
+"@floating-ui/dom@^1.6.13":
+  version "1.7.5"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@floating-ui/dom/-/dom-1.7.5.tgz#60bfc83a4d1275b2a90db76bf42ca2a5f2c231c2"
+  integrity sha512-N0bD2kIPInNHUHehXhMke1rBGs1dwqvC9O9KYMyyjK7iXt7GAhnro7UlcuYcGdS/yYOlq0MAVgrow8IbWJwyqg==
+  dependencies:
+    "@floating-ui/core" "^1.7.4"
+    "@floating-ui/utils" "^0.2.10"
+
+"@floating-ui/utils@^0.2.10":
+  version "0.2.10"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@floating-ui/utils/-/utils-0.2.10.tgz#a2a1e3812d14525f725d011a73eceb41fef5bc1c"
+  integrity sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==
+
 "@fontsource/roboto@5.2.5":
   version "5.2.5"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@fontsource/roboto/-/roboto-5.2.5.tgz"
@@ -181,10 +201,28 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-2.8.5.tgz"
   integrity sha512-4wvrf5BgnR8RpogHhtpCPJMKBmvyZPhhUtEwMJbXh0ni2BucpfF07jlmyM11zRqQ2XIq6PbC2j7W7UCCcm1rRQ==
 
-"@material/web@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@material/web/-/web-2.3.0.tgz"
-  integrity sha512-r7ccZHthMk5tM05goPJ965hQ99ptMyZt7i8Xi8+RmEqK3ZXaMtjx+s4p+9OVX+vgOS3zpop+g1yGYXtOOlrwUg==
+"@m3e/button@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@m3e/button/-/button-1.1.8.tgz#1f5b3ef573796e7f456078951613a4edda8b7935"
+  integrity sha512-uZKeJq43LgpS8s6SptTSC8Bq0ORGgd+SBxOQcypMmfFWx7K/kGdsT9o7jp1xJyr8mNcFSft6eYKkUSXdrppFdQ==
+
+"@m3e/core@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@m3e/core/-/core-1.1.8.tgz#0257d7834a2e208054d39acd3364317deb34df89"
+  integrity sha512-kMwmErfA/kWmj90zaziRYJIfxP3LbmNUyVMxbc4UEVd8qTHXDNtcntrLd06Nwn57hf/D4HVK8CmbjNCP8D5tJQ==
+  dependencies:
+    "@floating-ui/dom" "^1.6.13"
+    composed-offset-position "^0.0.6"
+
+"@m3e/dialog@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@m3e/dialog/-/dialog-1.1.8.tgz#9fcaf2c7448ff7f44be85ad2c45541532af2c12a"
+  integrity sha512-cGJ9A/u9//9V3JOZbjw/G91oAJtoWh7TdhrfZBbqt7gmUWBZ2FkBBdTwqXXpKuhHZF1WUOCRGG+CWR+Qept/SA==
+
+"@material/web@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@material/web/-/web-2.4.1.tgz#afd629ba350cf9485c3e19a7bfeb0476f02a0ec1"
+  integrity sha512-0sk9t25acJ72Qv3r0n9r0lgDbPaAKnpm0p+QmEAAwYyZomHxuVbgrrAdtNXaRm7jFyGh+WsTr8bhtvCnpPRFjw==
   dependencies:
     lit "^2.8.0 || ^3.0.0"
     tslib "^2.4.0"
@@ -1365,9 +1403,9 @@ callsites@^3.0.0:
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
 caniuse-lite@^1.0.30001759:
-  version "1.0.30001762"
-  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/caniuse-lite/-/caniuse-lite-1.0.30001762.tgz"
-  integrity sha512-PxZwGNvH7Ak8WX5iXzoK1KPZttBXNPuaOvI2ZYU7NrlM+d9Ov+TUvlLOBNGzVXAntMSMMlJPd+jY6ovrVjSmUw==
+  version "1.0.30001770"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/caniuse-lite/-/caniuse-lite-1.0.30001770.tgz"
+  integrity sha512-x/2CLQ1jHENRbHg5PSId2sXq1CIO1CISvwWAj027ltMVG2UNgW+w9oH2+HzgEIRFembL8bUlXtfbBHR1fCg2xw==
 
 chalk@^4.0.0, chalk@^4.1.2:
   version "4.1.2"
@@ -1426,6 +1464,11 @@ commander@^7.2.0:
   version "7.2.0"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/commander/-/commander-7.2.0.tgz"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
+
+composed-offset-position@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/composed-offset-position/-/composed-offset-position-0.0.6.tgz#0b027a880401ed5a9f777f59134ff606b406d0a7"
+  integrity sha512-Q7dLompI6lUwd7LWyIcP66r4WcS9u7AL2h8HaeipiRfCRPLMWqRx8fYsjb4OHi6UQFifO7XtNC2IlEJ1ozIFxw==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -2100,7 +2143,7 @@ lit@3.3.0:
     lit-element "^4.2.0"
     lit-html "^3.3.0"
 
-lit@3.3.1, "lit@^2.8.0 || ^3.0.0", lit@^3.3.0:
+lit@3.3.1, "lit@^2.8.0 || ^3.0.0":
   version "3.3.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/lit/-/lit-3.3.1.tgz"
   integrity sha512-Ksr/8L3PTapbdXJCk+EJVB78jDodUMaP54gD24W186zGRARvwrsPfS60wae/SSCTCNZVPd1chXqio1qHQmu4NA==
