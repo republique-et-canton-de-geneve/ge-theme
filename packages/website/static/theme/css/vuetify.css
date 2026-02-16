@@ -412,3 +412,37 @@
 .v-field {
     border-radius: var(--v-shape-corner-extra-small) !important;
 }
+
+/* Switch */
+
+.v-switch .v-selection-control__wrapper  {
+	display: flex;
+	width: 52px;
+	height: 32px;
+	padding: 2px 4px;
+	align-items: center;
+}
+
+/* ON (checked) */
+.v-switch .v-selection-control.v-selection-control--dirty .v-switch__track {
+  opacity: 1 !important;
+}
+
+/* ON: thumb */
+.v-switch .v-selection-control.v-selection-control--dirty .v-switch__thumb {
+  border-radius: 24px !important;
+  background: var(--md-sys-color-on-primary) !important;
+}
+
+/* OFF */
+.v-switch .v-selection-control:not(.v-selection-control--dirty) .v-switch__track {
+  outline: 2px solid var(--md-sys-color-state-opacity-12) !important;
+  outline-offset: -2px !important;
+  background: var(--md-sys-color-state-opacity-8) !important;
+}
+
+/* OFF: thumb */
+.v-switch .v-selection-control:not(.v-selection-control--dirty) .v-switch__thumb {
+  opacity: 0.38 !important;
+  background: var(--md-sys-color-on-surface) !important;
+}
