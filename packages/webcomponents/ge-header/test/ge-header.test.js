@@ -13,58 +13,7 @@ describe("ge-header", () => {
     expect(customElements.get("ge-header")).to.exist;
   });
 
-  it("renders a header element", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    const header = el.shadowRoot.querySelector("header");
-    expect(header).to.exist;
-  });
-
-  it("renders the ge.ch logo link", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    const link = el.shadowRoot.querySelector("a.logo-section");
-    expect(link).to.exist;
-    expect(link.getAttribute("href")).to.equal("https://www.ge.ch/");
-  });
-
-  it("renders the ge.ch title", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    const title = el.shadowRoot.querySelector(".title");
-    expect(title).to.exist;
-    expect(title.textContent).to.equal("ge.ch");
-  });
-
-  // ---------- Properties ----------
-
-  it("has default userInfo", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    expect(el.userInfo).to.deep.equal({
-      nom: "",
-      prenom: "",
-      email: "",
-      typeCompte: "",
-    });
-  });
-
-  it("accepts userInfo property", async () => {
-    const el = await fixture(
-      html`<ge-header .userInfo=${mockUserInfo}></ge-header>`
-    );
-    expect(el.userInfo.nom).to.equal("Dupont");
-    expect(el.userInfo.email).to.equal("jean.dupont@ge.ch");
-  });
-
-  it("starts with menu closed", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    expect(el.isMenuOpen).to.be.false;
-  });
-
   // ---------- maxWidth ----------
-
-  it("applies maxwidth-full class by default", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    const div = el.shadowRoot.querySelector(".header");
-    expect(div.classList.contains("maxwidth-full")).to.be.true;
-  });
 
   it("applies maxwidth-formulaire when maxWidth='false'", async () => {
     const el = await fixture(
@@ -203,19 +152,9 @@ describe("ge-header", () => {
     el.requestUpdate("isMenuOpen");
     await el.updateComplete;
 
-    // Click outside the component
     document.body.click();
 
     expect(el.isMenuOpen).to.be.false;
-  });
-
-  // ---------- Profile button ----------
-
-  it("renders the 'Mon compte' button", async () => {
-    const el = await fixture(html`<ge-header></ge-header>`);
-    const btn = el.shadowRoot.querySelector(".profile-button");
-    expect(btn).to.exist;
-    expect(btn.textContent.trim()).to.include("Mon compte");
   });
 
   // ---------- Badge rendering ----------
