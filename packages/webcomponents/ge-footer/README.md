@@ -77,6 +77,7 @@ Le composant se place automatiquement dans la zone `footer` d'une grille CSS si 
 |----------|------|--------|-------------|
 | `theme` | `'light'` \| `'dark'` | Auto (système) | Thème d'affichage. Par défaut, suit les préférences système. |
 | `maxWidth` | `boolean` | `true` | `true` = pleine largeur, `false` = largeur max 1107px |
+| `locale` | `'fr'` \| `'en'` \| `'es'` \| `'pt'` | Auto (DOM) | Langue des libellés. Par défaut, hérite de l'attribut `lang` de l'ancêtre le plus proche, fallback `fr`. |
 | `links` | `JSON` | Liens par défaut | Tableau JSON de liens personnalisés |
 | `contactLink` | `string` | `https://www.ge.ch/c/footer-edm-aide` | URL du lien Contact |
 | `accessibilityLink` | `string` | `https://www.ge.ch/c/footer-edm-accessibilite` | URL du lien Accessibilité |
@@ -100,6 +101,31 @@ Le thème est déterminé selon la priorité suivante :
 <!-- Forcer le thème sombre -->
 <ge-footer theme="dark"></ge-footer>
 ```
+
+### Gestion de la langue (i18n)
+
+Les libellés du footer (Contact, Accessibilité, etc.) sont traduits automatiquement selon la langue détectée. La résolution suit cet ordre de priorité :
+
+1. **Attribut `locale`** : Si présent, force la langue spécifiée
+2. **Ancêtre `[lang]`** : Remonte le DOM jusqu'à trouver un attribut `lang` (ex: `<html lang="en">`)
+3. **Fallback `fr`** : Si aucune langue n'est détectée
+
+Les variantes régionales sont supportées : `fr-CH` → `fr`, `pt-BR` → `pt`.
+
+```html
+<!-- Détection automatique depuis <html lang="en"> → anglais -->
+<html lang="en">
+  <ge-footer></ge-footer>
+</html>
+
+<!-- Override explicite → espagnol (ignore html[lang]) -->
+<ge-footer locale="es"></ge-footer>
+
+<!-- Pas de lang sur le document → fallback français -->
+<ge-footer></ge-footer>
+```
+
+Dans un contexte SPA, le composant réagit automatiquement aux changements de `document.documentElement.lang` grâce à un `MutationObserver`.
 
 ### Personnalisation des liens
 

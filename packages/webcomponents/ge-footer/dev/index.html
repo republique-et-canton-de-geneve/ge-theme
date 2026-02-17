@@ -142,6 +142,24 @@
                 <button id="btn-constrained" onclick="setFullWidth(false)">Constrained (1107px)</button>
             </div>
         </div>
+        <div class="control-group">
+            <label>Document lang (html[lang])</label>
+            <div>
+                <button id="btn-lang-fr" class="active" onclick="setDocLang('fr')">FR</button>
+                <button id="btn-lang-en" onclick="setDocLang('en')">EN</button>
+                <button id="btn-lang-es" onclick="setDocLang('es')">ES</button>
+                <button id="btn-lang-pt" onclick="setDocLang('pt')">PT</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Override (locale attr)</label>
+            <div>
+                <button id="btn-locale-auto" class="active" onclick="setLocale(null)">Auto</button>
+                <button id="btn-locale-en" onclick="setLocale('en')">EN</button>
+                <button id="btn-locale-es" onclick="setLocale('es')">ES</button>
+                <button id="btn-locale-pt" onclick="setLocale('pt')">PT</button>
+            </div>
+        </div>
     </div>
 
     <h2>Current State</h2>
@@ -186,6 +204,22 @@
             footer.setAttribute('maxwidth', '');
         } else {
             footer.removeAttribute('maxwidth');
+        }
+    }
+
+    function setDocLang(lang) {
+        document.querySelectorAll('[id^="btn-lang-"]').forEach(b => b.classList.remove('active'));
+        document.getElementById(`btn-lang-${lang}`).classList.add('active');
+        document.documentElement.lang = lang;
+    }
+
+    function setLocale(locale) {
+        document.querySelectorAll('[id^="btn-locale-"]').forEach(b => b.classList.remove('active'));
+        document.getElementById(`btn-locale-${locale || 'auto'}`).classList.add('active');
+        if (locale) {
+            footer.setAttribute('locale', locale);
+        } else {
+            footer.removeAttribute('locale');
         }
     }
 
