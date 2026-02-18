@@ -48,7 +48,7 @@ class GeFooter extends LitElement {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 74px;
             padding: 0 32px;
             margin: auto;
         }
@@ -102,8 +102,7 @@ class GeFooter extends LitElement {
         @media (max-width: 768px) {
             #ge-footer {
                 display: block;
-                padding: 12px;
-                height: auto;
+                height: 278px;
             }
 
             #ge-footer > nav {
@@ -118,7 +117,7 @@ class GeFooter extends LitElement {
             }
 
             #ge-footer-armoiries {
-                margin-top: 10px;
+                margin-top: 32px;
             }
 
             #ge-footer hr {
@@ -293,7 +292,7 @@ class GeFooter extends LitElement {
                             id="ge-footer-armoiries"
                             src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
                             alt="Armoiries de la République et canton de Genève"
-                            height="62"
+                            height="54"
                             @click="${this.#onImageClick}"
                     />
                 </div>
