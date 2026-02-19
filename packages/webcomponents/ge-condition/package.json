@@ -1,0 +1,69 @@
+{
+  "name": "@ael/ge-condition",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Web‑component that displays terms and conditions (CGV/CGU) in a dialog with accordion content.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "module": "dist/ge-condition.js",
+  "targets": {
+    "module": {
+      "source": "src/ge-condition.js",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule"
+    },
+    "dev": {
+      "source": "dev/index.html",
+      "distDir": ".dev-dist",
+      "includeNodeModules": true
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/ge-condition.js",
+      "types": "./dist/types/ge-condition.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist .parcel-cache .dev-dist",
+    "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
+    "build": "yarn clean && parcel build --target module --no-content-hash --no-source-maps && yarn copy:types",
+    "lint": "eslint . --ext .js",
+    "prepublishOnly": "yarn build",
+    "dev": "concurrently \"parcel watch --target dev --no-hmr\" \"sirv .dev-dist --port 1234 --dev\"",
+    "start": "yarn dev"
+  },
+  "alias": {
+    "@icons/common": "../../website/static/theme/icons/common"
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.17",
+    "lit": "3.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.2",
+    "copyfiles": "2.4.1",
+    "eslint": "9.39.2",
+    "parcel": "2.16.3",
+    "rimraf": "6.1.2",
+    "sirv-cli": "3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.devops.etat-ge.ch/ctinexus/content/repositories/npm_release/"
+  },
+  "keywords": [
+    "web‑components",
+    "geneva",
+    "conditions",
+    "terms",
+    "consent",
+    "design‑system"
+  ]
+}

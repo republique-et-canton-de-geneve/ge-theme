@@ -17,6 +17,7 @@ const WEB_COMPONENTS_SRC = path.resolve(monorepoRoot, 'packages/webcomponents');
 
 const COMPONENT_NAMES = [
     'ge-autres-demarches',
+    'ge-condition',
     'ge-consent',
     'ge-footer',
     'ge-footer-armoiries',

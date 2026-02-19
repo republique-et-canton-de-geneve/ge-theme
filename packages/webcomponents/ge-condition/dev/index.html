@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ge-condition – Démo</title>
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <link rel="stylesheet" id="theme-override" disabled />
+    <style>
+        body {
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: 40px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        }
+        .example {
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .controls label {
+            font-size: 14px;
+        }
+        .controls select, .controls button {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--md-sys-color-outline);
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            font-size: 14px;
+        }
+        .controls button {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            cursor: pointer;
+        }
+        #event-log {
+            font-family: monospace;
+            font-size: 12px;
+            background: var(--md-sys-color-surface-container);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            border-radius: 8px;
+            padding: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 16px;
+        }
+        #event-log div {
+            padding: 2px 0;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        }
+        .form-example {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .form-example button[type="submit"] {
+            align-self: flex-start;
+            padding: 10px 24px;
+            border-radius: 20px;
+            border: none;
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>&lt;ge-condition&gt;</h1>
+    <p>Composant pour afficher les CGV/CGU dans une modale avec contenu en accordéon.</p>
+
+    <!-- Controls -->
+    <div class="controls">
+        <label>
+            Langue :
+            <select id="lang-select">
+                <option value="fr" selected>Français</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="pt">Português</option>
+            </select>
+        </label>
+        <label>
+            Thème :
+            <select id="theme-select">
+                <option value="theme" selected>Auto (système)</option>
+                <option value="light">Clair</option>
+                <option value="dark">Sombre</option>
+            </select>
+        </label>
+    </div>
+
+    <!-- Mode 1 : Checkbox simple -->
+    <h2>Mode 1 – Checkbox simple</h2>
+    <div class="example">
+        <ge-condition
+            id="demo-checkbox"
+            mode="checkbox"
+            required
+        ></ge-condition>
+    </div>
+
+    <!-- Mode 2 : Checkbox + Dialog -->
+    <h2>Mode 2 – Checkbox + Dialog (défaut)</h2>
+    <div class="example">
+        <ge-condition
+            id="demo-dialog"
+            mode="checkbox-dialog"
+            pdf-url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+            required
+        ></ge-condition>
+    </div>
+
+    <!-- Mode 3 : Summary + Checkbox + Dialog -->
+    <h2>Mode 3 – Summary (démarches sensibles)</h2>
+    <div class="example">
+        <ge-condition
+            id="demo-summary"
+            mode="summary"
+            pdf-url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+            summary="En acceptant ces conditions, vous autorisez l'État de Genève à traiter vos données personnelles dans le cadre de votre démarche. Vos données seront conservées pendant la durée légale requise et ne seront pas partagées avec des tiers sans votre consentement."
+            required
+        ></ge-condition>
+    </div>
+
+    <!-- Multi-documents avec onglets -->
+    <h2>Multi-documents avec onglets</h2>
+    <div class="example">
+        <ge-condition
+            id="demo-tabs"
+            mode="checkbox-dialog"
+            required
+            link-label="conditions et politiques"
+            dialog-title="Documents contractuels"
+        ></ge-condition>
+    </div>
+
+    <!-- Formulaire de test -->
+    <h2>Test – Formulaire avec validation</h2>
+    <div class="example">
+        <form class="form-example" id="test-form" novalidate>
+            <ge-condition
+                id="demo-form"
+                mode="checkbox-dialog"
+                pdf-url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                required
+            ></ge-condition>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <!-- Event log -->
+    <h2>Journal des événements</h2>
+    <div id="event-log"></div>
+
+    <!-- Mock CGU content embedded as template for Blob URL -->
+    <template id="mock-cgu-content">
+<h2>1. Objet</h2>
+<p>Les présentes conditions générales d'utilisation (ci-après « CGU ») définissent les règles d'accès et d'utilisation des services numériques proposés par l'État de Genève. Elles s'appliquent à tout utilisateur accédant aux plateformes en ligne de l'administration cantonale.</p>
+<p>L'utilisation des services implique l'acceptation pleine et entière des présentes CGU. Si vous n'acceptez pas ces conditions, vous êtes invité à ne pas utiliser les services concernés.</p>
+
+<h2>2. Accès au service</h2>
+<p>L'accès aux services en ligne est ouvert à toute personne physique ou morale disposant d'un accès internet. Certains services peuvent nécessiter la création d'un compte utilisateur et une authentification préalable.</p>
+<p>L'État de Genève se réserve le droit de suspendre ou de limiter l'accès aux services pour des raisons de maintenance, de sécurité ou de mise à jour, sans préavis ni indemnité.</p>
+
+<h2>3. Données personnelles</h2>
+<p>Les données personnelles collectées dans le cadre de l'utilisation des services sont traitées conformément à la loi sur la protection des données (LPD) et au règlement général sur la protection des données (RGPD) lorsqu'applicable.</p>
+<p>Les données sont collectées uniquement dans la mesure nécessaire à la fourniture du service demandé. Elles ne sont pas transmises à des tiers sauf obligation légale ou consentement explicite de l'utilisateur.</p>
+<p>Vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Pour exercer ces droits, veuillez contacter le responsable de la protection des données de l'État de Genève.</p>
+
+<h2>4. Responsabilités de l'utilisateur</h2>
+<p>L'utilisateur s'engage à utiliser les services de manière conforme aux lois en vigueur et aux présentes CGU. Il est responsable de la confidentialité de ses identifiants de connexion et de toute activité réalisée sous son compte.</p>
+<p>Toute utilisation abusive, frauduleuse ou contraire à l'ordre public est strictement interdite et peut entraîner la suspension immédiate du compte ainsi que des poursuites judiciaires.</p>
+
+<h2>5. Propriété intellectuelle</h2>
+<p>L'ensemble des contenus présents sur les plateformes de l'État de Genève (textes, images, logos, documents) sont protégés par le droit d'auteur et le droit des marques. Toute reproduction, distribution ou utilisation non autorisée est interdite.</p>
+
+<h2>6. Limitation de responsabilité</h2>
+<p>L'État de Genève met tout en œuvre pour assurer la disponibilité et l'exactitude des informations publiées. Toutefois, il ne saurait être tenu responsable des erreurs, omissions ou résultats obtenus suite à l'utilisation des services.</p>
+<p>En aucun cas, l'État de Genève ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation ou de l'impossibilité d'utiliser les services en ligne.</p>
+
+<h2>7. Modifications des CGU</h2>
+<p>L'État de Genève se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés de toute modification substantielle. L'utilisation continue des services après modification vaut acceptation des nouvelles conditions.</p>
+
+<h2>8. Droit applicable et juridiction</h2>
+<p>Les présentes CGU sont régies par le droit suisse. Tout litige relatif à leur interprétation ou exécution relève de la compétence exclusive des tribunaux du canton de Genève.</p>
+    </template>
+
+    <template id="mock-privacy-content">
+<h2>1. Responsable du traitement</h2>
+<p>Le responsable du traitement des données personnelles est l'État de Genève, représenté par le Chancelier d'État. Le délégué à la protection des données peut être contacté à l'adresse dpo@etat.ge.ch.</p>
+
+<h2>2. Données collectées</h2>
+<p>Dans le cadre de l'utilisation de nos services en ligne, nous collectons les catégories de données suivantes : données d'identification (nom, prénom, adresse), données de contact (email, téléphone), données de connexion (adresse IP, logs), et données relatives à votre démarche administrative.</p>
+<p>Ces données sont collectées directement auprès de vous lors de votre utilisation des services ou, le cas échéant, auprès de registres officiels.</p>
+
+<h2>3. Finalités du traitement</h2>
+<p>Vos données sont traitées pour les finalités suivantes : traitement de vos démarches administratives, communication relative à vos dossiers, amélioration de nos services, établissement de statistiques anonymisées, et respect de nos obligations légales.</p>
+
+<h2>4. Base légale</h2>
+<p>Le traitement de vos données repose sur la loi genevoise sur l'information du public, l'accès aux documents et la protection des données personnelles (LIPAD) et, le cas échéant, sur votre consentement explicite.</p>
+
+<h2>5. Durée de conservation</h2>
+<p>Vos données sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément aux délais de conservation légaux applicables. Les données de connexion sont conservées pendant 12 mois maximum.</p>
+
+<h2>6. Vos droits</h2>
+<p>Vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données. Vous pouvez également vous opposer au traitement ou demander sa limitation. Pour exercer ces droits, contactez notre délégué à la protection des données.</p>
+    </template>
+
+    <template id="mock-subscription-content">
+<h2>1. Objet de l'abonnement</h2>
+<p>Les présentes conditions régissent l'abonnement aux services numériques de l'État de Genève, permettant un accès personnalisé aux démarches en ligne et aux notifications relatives à vos dossiers administratifs.</p>
+
+<h2>2. Création du compte</h2>
+<p>L'abonnement nécessite la création d'un compte personnel via le système d'authentification de l'État de Genève. Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée sous votre compte.</p>
+<p>Toute utilisation non autorisée de votre compte doit être signalée immédiatement au support technique.</p>
+
+<h2>3. Services inclus</h2>
+<p>L'abonnement donne accès aux services suivants : suivi en temps réel de vos démarches, notifications par email et SMS, accès à l'historique de vos interactions avec l'administration, et possibilité de pré-remplir les formulaires avec vos données sauvegardées.</p>
+
+<h2>4. Résiliation</h2>
+<p>Vous pouvez résilier votre abonnement à tout moment via votre espace personnel. La résiliation entraîne la suppression de votre compte et des données associées, sous réserve des obligations légales de conservation.</p>
+<p>L'État de Genève se réserve le droit de suspendre ou résilier un compte en cas de violation des conditions d'utilisation.</p>
+
+<h2>5. Disponibilité</h2>
+<p>L'État de Genève s'engage à maintenir une disponibilité optimale des services. Des interruptions programmées pour maintenance seront communiquées à l'avance. Aucune compensation n'est due en cas d'indisponibilité temporaire.</p>
+    </template>
+
+    <script type="module">
+        import "../src/ge-condition.js";
+
+        // Create Blob URLs from the embedded mock content
+        function createBlobUrl(templateId) {
+            const html = document.getElementById(templateId).innerHTML;
+            const blob = new Blob([html], { type: "text/html" });
+            return URL.createObjectURL(blob);
+        }
+
+        const mockCguUrl = createBlobUrl("mock-cgu-content");
+        const mockPrivacyUrl = createBlobUrl("mock-privacy-content");
+        const mockSubscriptionUrl = createBlobUrl("mock-subscription-content");
+
+        // Set content-url on all components that need it
+        document.getElementById("demo-dialog").setAttribute("content-url", mockCguUrl);
+        document.getElementById("demo-summary").setAttribute("content-url", mockCguUrl);
+        document.getElementById("demo-form").setAttribute("content-url", mockCguUrl);
+
+        // Multi-documents with tabs (each with distinct content)
+        document.getElementById("demo-tabs").setAttribute("documents", JSON.stringify([
+            { title: "CGU", contentUrl: mockCguUrl, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+            { title: "Politique de confidentialité", contentUrl: mockPrivacyUrl, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+            { title: "Conditions d'abonnement", contentUrl: mockSubscriptionUrl, pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+        ]));
+
+        const log = document.getElementById("event-log");
+
+        function addLog(msg) {
+            const div = document.createElement("div");
+            const time = new Date().toLocaleTimeString();
+            div.textContent = `[${time}] ${msg}`;
+            log.prepend(div);
+        }
+
+        // Listen to all ge-condition events
+        document.addEventListener("ge-condition-change", (e) => {
+            addLog(`ge-condition-change: checked=${e.detail.checked}, name=${e.detail.name}`);
+        });
+        document.addEventListener("ge-condition-dialog-open", (e) => {
+            addLog(`ge-condition-dialog-open: name=${e.detail.name}`);
+        });
+        document.addEventListener("ge-condition-dialog-close", (e) => {
+            addLog(`ge-condition-dialog-close: name=${e.detail.name}`);
+        });
+
+        // Language selector
+        document.getElementById("lang-select").addEventListener("change", (e) => {
+            document.documentElement.lang = e.target.value;
+            addLog(`Langue changée : ${e.target.value}`);
+        });
+
+        // Theme selector
+        document.getElementById("theme-select").addEventListener("change", (e) => {
+            const theme = e.target.value;
+            const override = document.getElementById("theme-override");
+            document.documentElement.classList.remove("light", "dark");
+            if (theme === "theme") {
+                override.disabled = true;
+            } else {
+                override.href = `https://static.app.ge.ch/theme/css/${theme}.css`;
+                override.disabled = false;
+                document.documentElement.classList.add(theme);
+            }
+            addLog(`Thème changé : ${theme}`);
+        });
+
+        // Form validation
+        document.getElementById("test-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const condition = document.getElementById("demo-form");
+            const valid = condition.validate();
+            if (valid) {
+                addLog("✓ Formulaire valide — envoi simulé");
+            } else {
+                addLog("✗ Formulaire invalide — condition non acceptée");
+            }
+        });
+    </script>
+</body>
+</html>

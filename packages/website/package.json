@@ -18,6 +18,7 @@
     "@ael/ge-header": "1.0.6",
     "@ael/ge-header-armoiries": "1.0.6",
     "@ael/ge-header-public": "1.0.6",
+    "@ael/ge-condition": "1.0.0",
     "@ael/ge-consent": "1.0.0",
     "@ael/icons": "1.0.6"
   },
