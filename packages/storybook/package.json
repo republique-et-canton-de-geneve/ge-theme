@@ -14,8 +14,6 @@
     "@ael/ge-header-armoiries": "1.0.6",
     "@ael/ge-footer-armoiries": "1.0.6",
     "@ael/ge-autres-demarches": "1.0.6",
-    "@ael/ge-menu": "1.0.6",
-    "@ael/ge-menu-select-mes-espaces": "1.0.6",
     "@ael/icons": "1.0.6",
     "@ael/svg-wrapper-utils": "1.0.6",
     "@fontsource/roboto": "5.2.9",
