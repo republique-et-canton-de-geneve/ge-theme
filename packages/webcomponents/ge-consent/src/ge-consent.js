@@ -4,6 +4,9 @@ import '@m3e/button';
 
 class GeConsent extends LitElement {
     static styles = css`
+        .base {
+            background-color: red !important;
+        }
     a {
       color: var(--md-sys-color-primary);
       text-decoration: none;
@@ -11,9 +14,12 @@ class GeConsent extends LitElement {
 
     a:hover {
       text-decoration-color: var(--md-sys-color-primary);
-    }
+    }        .base {
+                 background-color: red;
+             }
 
-    a:focus-visible {
+
+        a:focus-visible {
       outline: 2px solid var(--md-sys-color-primary);
       outline-offset: 2px;
       border-radius: 2px;

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>GE-Téléverse — Test local</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--md-sys-color-background, #fffbfe);
+            color: var(--md-sys-color-on-background, #1c1b1f);
+            margin: 0;
+            padding: 24px;
+        }
+
+        .test-page {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        h1 { font-size: 24px; font-weight: 400; }
+
+        .panel {
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--md-sys-color-surface-container-low, #f7f2fa);
+        }
+
+        .panel h2 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--md-sys-color-on-surface-variant, #49454f);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: flex-end;
+        }
+
+        .form-row label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--md-sys-color-on-surface-variant);
+            flex: 1;
+        }
+
+        .form-row input, .form-row select {
+            padding: 10px 12px;
+            border: 1px solid var(--md-sys-color-outline, #79747e);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--md-sys-color-surface, #fffbfe);
+            color: var(--md-sys-color-on-surface, #1c1b1f);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--md-sys-color-primary, #6750a4);
+            color: var(--md-sys-color-on-primary, #fff);
+        }
+        .btn-primary:hover { filter: brightness(1.1); }
+
+        .btn-secondary {
+            background: var(--md-sys-color-secondary-container, #e8def8);
+            color: var(--md-sys-color-on-secondary-container, #1d192b);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .component-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .upload-link {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: var(--md-sys-color-surface, #fffbfe);
+            border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+            word-break: break-all;
+        }
+
+        .upload-link a {
+            color: var(--md-sys-color-primary, #6750a4);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .upload-link .hint {
+            font-size: 12px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-top: 4px;
+        }
+
+        #event-log {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            background: var(--md-sys-color-surface, #fffbfe);
+            border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+            border-radius: 8px;
+            padding: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .log-event { color: var(--md-sys-color-primary, #6750a4); }
+        .log-time { color: var(--md-sys-color-on-surface-variant, #49454f); }
+        .log-data { color: var(--md-sys-color-on-surface, #1c1b1f); }
+    </style>
+</head>
+<body>
+<div class="test-page">
+    <h1>🧪 GE-Téléverse — Test local du web component</h1>
+
+    <!-- Web Component -->
+    <div class="panel">
+        <h2>1. Web component</h2>
+        <div class="form-row">
+            <label>
+                User ID
+                <input type="text" id="cfg-user-id" value="user-test-1" />
+            </label>
+            <label>
+                Form ID
+                <input type="text" id="cfg-form-id" value="form-test-1" />
+            </label>
+            <label>
+                Document type
+                <select id="cfg-doc-type">
+                    <option value="ID_CARD">ID_CARD</option>
+                    <option value="PROOF_OF_ADDRESS">PROOF_OF_ADDRESS</option>
+                    <option value="INCOME_STATEMENT">INCOME_STATEMENT</option>
+                </select>
+            </label>
+        </div>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="mountComponent()">Monter le composant</button>
+            <button class="btn-secondary" onclick="unmountComponent()">Démonter</button>
+        </div>
+        <div id="upload-link" class="upload-link">
+            <a id="upload-link-anchor" href="#" target="_blank" rel="noopener"></a>
+            <div class="hint">↑ Ouvrir dans un nouvel onglet pour simuler le téléphone</div>
+        </div>
+        <div id="component-host" class="component-wrapper"></div>
+    </div>
+
+    <!-- SSE Simulation -->
+    <div class="panel">
+        <h2>2. Simuler des événements SSE</h2>
+        <p style="font-size: 13px; margin-bottom: 12px; color: var(--md-sys-color-on-surface-variant);">
+            Injecte des événements dans la connexion SSE du composant (sans passer par le backend).
+        </p>
+        <div class="btn-group">
+            <button class="btn-secondary" onclick="simulateUpload()">📤 Simuler upload</button>
+            <button class="btn-secondary" onclick="simulateComplete()">✅ Simuler session-complete</button>
+        </div>
+    </div>
+
+    <!-- Event Log -->
+    <div class="panel">
+        <h2>3. Journal des événements</h2>
+        <button class="btn-secondary" onclick="clearLog()" style="margin-bottom: 8px;">Effacer</button>
+        <div id="event-log">En attente d'événements…</div>
+    </div>
+</div>
+
+<script type="module">
+    import '../src/ge-televerse.js';
+
+    const API_BASE = 'https://ge-televerse.apps.soca.lbdev.etat-ge.ch/api';
+
+    let componentInstance = null;
+    let mockUploadCount = 0;
+
+    // ===== Mount / Unmount =====
+
+    window.mountComponent = () => {
+        unmountComponent();
+
+        const el = document.createElement('ge-televerse');
+        el.setAttribute('api-base-url', API_BASE);
+        el.setAttribute('user-id', document.getElementById('cfg-user-id').value);
+        el.setAttribute('form-id', document.getElementById('cfg-form-id').value);
+        el.setAttribute('document-type', document.getElementById('cfg-doc-type').value);
+
+        ['televerse-ready', 'televerse-upload', 'televerse-complete', 'televerse-error', 'televerse-expired']
+            .forEach(name => {
+                el.addEventListener(name, (e) => {
+                    logEvent(name, e.detail);
+
+                    if (name === 'televerse-ready') {
+                        const linkContainer = document.getElementById('upload-link');
+                        const anchor = document.getElementById('upload-link-anchor');
+                        anchor.href = e.detail.uploadUrl;
+                        anchor.textContent = e.detail.uploadUrl;
+                        linkContainer.style.display = 'block';
+                    }
+                });
+            });
+
+        document.getElementById('component-host').appendChild(el);
+        componentInstance = el;
+        mockUploadCount = 0;
+    };
+
+    window.unmountComponent = () => {
+        document.getElementById('component-host').innerHTML = '';
+        document.getElementById('upload-link').style.display = 'none';
+        componentInstance = null;
+    };
+
+    // ===== SSE Simulation =====
+
+    window.simulateUpload = () => {
+        const es = componentInstance?._eventSource;
+        if (!es) return logEvent('warn', { message: 'Composant non monté ou SSE non connecté' });
+        mockUploadCount++;
+        es.dispatchEvent(new MessageEvent('upload-complete', {
+            data: JSON.stringify({
+                type: 'upload-complete',
+                documentId: 'simulated/doc.pdf',
+                fileName: `photo_${mockUploadCount}.jpg`,
+                contentType: 'image/jpeg',
+                fileSize: 1024 * mockUploadCount,
+                uploadedAt: new Date().toISOString(),
+            }),
+        }));
+    };
+
+    window.simulateComplete = () => {
+        const es = componentInstance?._eventSource;
+        if (!es) return logEvent('warn', { message: 'Composant non monté ou SSE non connecté' });
+        es.dispatchEvent(new MessageEvent('session-complete', {
+            data: JSON.stringify({
+                type: 'session-complete',
+                documentId: 'simulated/doc.pdf',
+                fileSize: mockUploadCount,
+                uploadedAt: new Date().toISOString(),
+            }),
+        }));
+    };
+
+    // ===== Event Log =====
+
+    const logEl = document.getElementById('event-log');
+    let firstLog = true;
+
+    window.logEvent = (name, detail) => {
+        if (firstLog) { logEl.textContent = ''; firstLog = false; }
+        const time = new Date().toLocaleTimeString('fr-CH');
+        const data = detail ? ' ' + JSON.stringify(detail) : '';
+        logEl.innerHTML += `<span class="log-time">[${time}]</span> <span class="log-event">${name}</span><span class="log-data">${data}</span>\n`;
+        logEl.scrollTop = logEl.scrollHeight;
+    };
+
+    window.clearLog = () => {
+        logEl.textContent = 'En attente d\'événements…';
+        firstLog = true;
+    };
+</script>
+</body>
+</html>
