@@ -10,7 +10,6 @@ class GeHeaderPublic extends LitElement {
     @property({ type: String }) maxWidth = "true";
 
 
-
     static styles = css`
         :host {
             display: block;
@@ -20,7 +19,7 @@ class GeHeaderPublic extends LitElement {
         header {
             background: var(--md-sys-color-surface);
             box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
-            min-height: 77px;
+            min-height: 81px;
             border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
         }
         
@@ -67,8 +66,14 @@ class GeHeaderPublic extends LitElement {
             padding: 8px;
         }
         
-                  .maxwidth-formulaire { max-width: 1107px; }
-    .maxwidth-full { max-width: 100%; }
+        .maxwidth-formulaire { max-width: 1107px; }
+        .maxwidth-full { max-width: 100%; }
+
+        @media (max-width: 768px) {
+          header {
+            min-height: 75px;
+          }
+        }
     `;
 
     render() {
