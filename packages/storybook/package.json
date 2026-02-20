@@ -1,0 +1,31 @@
+{
+  "name": "@ael/storybook",
+  "version": "1.0.6",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build -o storybook-static",
+    "clean": "rimraf storybook-static"
+  },
+  "dependencies": {
+    "@ael/ge-footer": "1.0.6",
+    "@ael/ge-header": "1.0.6",
+    "@ael/ge-header-public": "1.0.6",
+    "@ael/ge-header-armoiries": "1.0.6",
+    "@ael/ge-footer-armoiries": "1.0.6",
+    "@ael/ge-autres-demarches": "1.0.6",
+    "@ael/icons": "1.0.6",
+    "@ael/svg-wrapper-utils": "1.0.6",
+    "@fontsource/roboto": "5.2.9",
+    "lit": "3.3.1"
+  },
+  "devDependencies": {
+    "@storybook/web-components-vite": "8.6.14",
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/addon-themes": "8.6.14",
+    "@storybook/blocks": "8.6.14",
+    "storybook": "8.6.14",
+    "vite": "^6.0.0",
+    "rimraf": "6.1.2"
+  }
+}

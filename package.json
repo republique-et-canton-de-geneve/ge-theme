@@ -10,7 +10,8 @@
     "packages/icons",
     "packages/utils/*",
     "packages/website",
-    "packages/webcomponents/*"
+    "packages/webcomponents/*",
+    "packages/storybook"
   ],
   "browserslist": [
     "> 0.2% in CH and not dead",
@@ -25,16 +26,22 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "publish-packages": "turbo run build --filter=\"./packages/webcomponents/*\" && cd packages/webcomponents && yarn npm publish"
+    "publish-packages": "turbo run build --filter=\"./packages/webcomponents/*\" && cd packages/webcomponents && yarn npm publish",
+    "test": "web-test-runner",
+    "storybook": "yarn workspace @ael/storybook dev",
+    "storybook:build": "yarn workspace @ael/storybook build"
   },
   "alias": {
     "@icons/common": "./packages/website/static/theme/icons/common"
   },
   "devDependencies": {
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@open-wc/testing": "^4.0.0",
     "@parcel/packager-raw-url": "2.16.3",
     "@parcel/resolver-glob": "2.16.3",
     "@parcel/transformer-inline-string": "2.16.3",
     "@parcel/transformer-webmanifest": "2.16.3",
+    "@web/test-runner": "^0.19.0",
     "eslint": "9.39.2",
     "eslint-config-prettier": "10.1.2",
     "parcel": "2.16.3",
@@ -50,5 +57,16 @@
     "@fontsource/roboto": "5.2.9",
     "https-proxy-agent": "^7.0.6",
     "node-fetch": "^3.3.2"
+  },
+  "resolutions": {
+    "@storybook/core": "8.6.14",
+    "@storybook/theming": "8.6.14",
+    "@storybook/components": "8.6.14",
+    "@storybook/manager-api": "8.6.14",
+    "@storybook/preview-api": "8.6.14",
+    "@storybook/builder-vite": "8.6.14",
+    "@storybook/csf-plugin": "8.6.14",
+    "@storybook/web-components": "8.6.14",
+    "@storybook/web-components-vite": "8.6.14"
   }
 }
