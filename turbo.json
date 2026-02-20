@@ -6,7 +6,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", "build/**", "../../build/**"]
+      "outputs": ["dist/**", "build/**", "../../build/**", "storybook-static/**"]
     },
     "lint": {
       "outputs": []
@@ -20,6 +20,10 @@
       "cache": false
     },
     "dev": {
+      "cache": false
+    },
+    "test": {
+      "outputs": [],
       "cache": false
     }
   }

@@ -83,6 +83,6 @@ yarn-error.log*
 **/.dev-dist/
 
 # Claude Code
-.claude/
 CLAUDE.md
 custom-claude-scripts/
+.claude/
