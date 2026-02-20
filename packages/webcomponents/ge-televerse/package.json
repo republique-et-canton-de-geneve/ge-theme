@@ -1,16 +1,17 @@
 {
-  "name": "@ael/ge-consent",
+  "name": "@ael/ge-televerse",
   "version": "1.0.0",
   "private": false,
-  "description": "Web‑component that manages consent for Matomo Tag Manager tracking cookie.",
+  "description": "Web‑component to manage the generic document upload application.",
   "license": "Apache-2.0",
   "type": "module",
-  "module": "dist/ge-consent.js",
+  "module": "dist/ge-televerse.js",
   "targets": {
     "module": {
-      "source": "src/ge-consent.js",
+      "source": "src/ge-televerse.js",
       "includeNodeModules": true,
-      "outputFormat": "esmodule"
+      "outputFormat": "esmodule",
+      "isLibrary": true
     },
     "dev": {
       "source": "dev/index.html",
@@ -20,8 +21,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/ge-consent.js",
-      "types": "./dist/types/ge-consent.d.ts"
+      "import": "./dist/ge-televerse.js",
+      "types": "./dist/types/ge-televerse.d.ts"
     }
   },
   "files": [
@@ -40,13 +41,12 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
-    "@m3e/core": "^1.1.8",
-    "@m3e/button": "^1.1.8",
-    "@m3e/dialog": "^1.1.8",
     "@swc/helpers": "^0.5.17",
-    "lit": "3.3.1"
+    "lit": "3.3.1",
+    "qrcode": "1.5.4"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.16.4",
     "concurrently": "9.1.2",
     "copyfiles": "2.4.1",
     "eslint": "9.39.2",
@@ -64,9 +64,7 @@
   "keywords": [
     "web‑components",
     "geneva",
-    "consent",
-    "cookies",
-    "matomo",
+    "upload",
     "design‑system"
   ]
 }
