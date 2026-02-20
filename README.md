@@ -257,10 +257,51 @@ ngOnChanges() {
 
 ---
 
-## 📆 prochaine étapes (proposée)
+## 🧪 Tests unitaires
 
-- [ ] Ajout de tests unitaires avec Playwright ou Testing Library
-- [ ] Ajout d'un composant `ge-breadcrumb` ou lister les composants partagé
+Les tests utilisent [@web/test-runner](https://modern-web.dev/docs/test-runner/overview/) avec Chromium headless et [@open-wc/testing](https://open-wc.org/docs/testing/testing-package/) pour les helpers (fixture, html, expect).
+
+### Lancer les tests
+
+```bash
+yarn test
+```
+
+### Structure
+
+Chaque composant possède un fichier de test dans son répertoire `test/` :
+
+```
+packages/
+├── utils/svg-wrapper/test/svg-wrapper.test.js
+└── webcomponents/
+    ├── ge-header/test/ge-header.test.js
+    ├── ge-header-public/test/ge-header-public.test.js
+    ├── ge-footer/test/ge-footer.test.js
+    ├── ge-menu/test/ge-menu.test.js
+    ├── ge-autres-demarches/test/ge-autres-demarches.test.js
+    ├── select-mes-espaces/test/select-mes-espaces.test.js
+    ├── ge-header-armoiries/test/ge-header-armoiries.test.js
+    └── ge-footer-armoiries/test/ge-footer-armoiries.test.js
+```
+
+### Configuration
+
+Le fichier `web-test-runner.config.mjs` à la racine configure :
+- **Chromium headless** comme navigateur (compatible WSL avec `--no-sandbox`)
+- **Plugins custom** : transformation des décorateurs Lit via esbuild, stub des imports CSS, inline des SVG, résolution des packages `@ael/*` vers les sources
+- **Node resolve** pour résoudre les bare imports (`lit`, `@material/web`, etc.)
+
+### Sous WSL
+
+Chromium doit être installé (`sudo apt install chromium-browser`) et le chemin est configuré dans `web-test-runner.config.mjs` via `executablePath`.
+
+---
+
+## 📆 Prochaines étapes
+
+- [ ] Intégration des tests dans le pipeline GitLab CI/CD
+- [ ] Ajout d'un composant `ge-breadcrumb` ou lister les composants partagés
 - [ ] Storybook pour documentation interactive
 
 ---
