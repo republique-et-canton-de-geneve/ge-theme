@@ -23,6 +23,7 @@ const COMPONENT_NAMES = [
     'ge-header',
     'ge-header-armoiries',
     'ge-header-public',
+    'ge-televerse'
 ];
 
 // ------------------------------------------------------------------
