@@ -1,6 +1,8 @@
 import { LitElement, html, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import '@m3e/dialog';
+import '@m3e/button';
 
 const TRANSLATIONS = {
     fr: {
@@ -57,9 +59,9 @@ class GeCondition extends LitElement {
         .summary {
             background: var(--md-sys-color-surface-container-low);
             border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
+            border-radius: var(--md-sys-shape-corner-small);
+            padding: var(--md-ref-spacings-4);
+            margin-bottom: var(--md-ref-spacings-3);
             font-size: var(--md-sys-typescale-body-medium-size, 14px);
             line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
             color: var(--md-sys-color-on-surface);
@@ -69,11 +71,11 @@ class GeCondition extends LitElement {
         .checkbox-row {
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: var(--md-ref-spacings-2);
         }
 
         .checkbox-row input[type="checkbox"] {
-            margin-top: 2px;
+            margin-top: var(--md-ref-spacings-0-5);
             width: 18px;
             height: 18px;
             accent-color: var(--md-sys-color-primary);
@@ -103,8 +105,8 @@ class GeCondition extends LitElement {
 
         .checkbox-row label a:focus-visible {
             outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-            border-radius: 2px;
+            outline-offset: var(--md-ref-spacings-0-5);
+            border-radius: var(--md-sys-shape-corner-extra-small);
         }
 
         /* --- Validation error --- */
@@ -112,93 +114,40 @@ class GeCondition extends LitElement {
             color: var(--md-sys-color-error);
             font-size: var(--md-sys-typescale-body-small-size, 12px);
             line-height: var(--md-sys-typescale-body-small-line-height, 16px);
-            margin-top: 4px;
+            margin-top: var(--md-ref-spacings-1);
             margin-left: 26px;
         }
 
-        /* --- Dialog --- */
-        dialog:not([open]) {
-            display: none;
+        /* --- Dialog (m3e-dialog) --- */
+        m3e-dialog {
+            --m3e-dialog-min-width: min(var(--md-ref-spacings-180), calc(100vw - var(--md-ref-spacings-12)));
+            --m3e-dialog-max-width: min(var(--md-ref-spacings-180), calc(100vw - var(--md-ref-spacings-12)));
         }
 
-        dialog {
-            border: none;
-            border-radius: 16px;
-            padding: 0;
-            max-width: min(720px, calc(100vw - 48px));
-            width: 100%;
-            max-height: min(80vh, 800px);
-            background: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
-            overflow: hidden;
-        }
-
-        dialog[open] {
-            display: flex;
-            flex-direction: column;
-        }
-
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        /* --- Dialog header --- */
-        .dialog-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--md-sys-color-outline-variant);
-            position: sticky;
-            top: 0;
-            background: var(--md-sys-color-surface);
-            z-index: 1;
-            flex-shrink: 0;
-        }
-
-        .dialog-header h2 {
-            margin: 0;
-            font-size: var(--md-sys-typescale-title-large-size, 24px);
-            line-height: var(--md-sys-typescale-title-large-line-height, 28px);
-            font-weight: var(--md-sys-typescale-title-large-weight, 700);
+        .dialog-body {
+            height: min(60vh, 600px);
+            overflow-y: auto;
+            font-size: var(--md-sys-typescale-body-medium-size, 14px);
+            line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
             color: var(--md-sys-color-on-surface);
         }
 
-        .dialog-header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* --- Icon buttons --- */
-        .icon-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
+        .dialog-body .loading,
+        .dialog-body .error {
+            text-align: center;
+            padding: var(--md-ref-spacings-8);
+            font-size: var(--md-sys-typescale-body-medium-size, 14px);
             color: var(--md-sys-color-on-surface-variant);
-            transition: background-color 0.15s;
         }
 
-        .icon-btn:hover {
-            background: var(--md-sys-color-surface-container-high);
+        .dialog-body .error {
+            color: var(--md-sys-color-error);
         }
 
-        .icon-btn:focus-visible {
-            outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-        }
-
-        .icon-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
+        .dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--md-ref-spacings-2);
         }
 
         /* --- Tabs --- */
@@ -211,12 +160,12 @@ class GeCondition extends LitElement {
         }
 
         .tab {
-            padding: 12px 24px;
+            padding: var(--md-ref-spacings-3) var(--md-ref-spacings-6);
             border: none;
             background: none;
             font-size: var(--md-sys-typescale-body-medium-size, 14px);
             line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
-            font-weight: 500;
+            font-weight: var(--md-sys-typescale-title-small-weight, 500);
             color: var(--md-sys-color-on-surface-variant);
             cursor: pointer;
             white-space: nowrap;
@@ -240,35 +189,16 @@ class GeCondition extends LitElement {
             outline-offset: -2px;
         }
 
-        /* --- Dialog content --- */
-        .dialog-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
-
-        .dialog-content .loading,
-        .dialog-content .error {
-            text-align: center;
-            padding: 32px;
-            font-size: var(--md-sys-typescale-body-medium-size, 14px);
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        .dialog-content .error {
-            color: var(--md-sys-color-error);
-        }
-
         /* --- Accordion (details/summary) --- */
-        .dialog-content details + details {
+        .dialog-body details + details {
             border-top: 1px solid var(--md-sys-color-outline-variant);
         }
 
-        .dialog-content details summary {
+        .dialog-body details summary {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 0;
+            padding: var(--md-ref-spacings-4) 0;
             cursor: pointer;
             font-size: var(--md-sys-typescale-title-small-size, 16px);
             font-weight: var(--md-sys-typescale-title-small-weight, 500);
@@ -278,103 +208,41 @@ class GeCondition extends LitElement {
             user-select: none;
         }
 
-        .dialog-content details summary::-webkit-details-marker {
+        .dialog-body details summary::-webkit-details-marker {
             display: none;
         }
 
-        .dialog-content details summary::after {
+        .dialog-body details summary::after {
             content: "";
-            width: 24px;
-            height: 24px;
+            width: var(--md-ref-spacings-6);
+            height: var(--md-ref-spacings-6);
             flex-shrink: 0;
-            margin-left: 8px;
+            margin-left: var(--md-ref-spacings-2);
             background: currentColor;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z'/%3E%3C/svg%3E") center / contain no-repeat;
             -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z'/%3E%3C/svg%3E") center / contain no-repeat;
             transition: transform 0.2s ease;
         }
 
-        .dialog-content details[open] summary::after {
+        .dialog-body details[open] summary::after {
             transform: rotate(180deg);
         }
 
-        .dialog-content details summary:hover {
+        .dialog-body details summary:hover {
             color: var(--md-sys-color-primary);
         }
 
-        .dialog-content details summary:focus-visible {
+        .dialog-body details summary:focus-visible {
             outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-            border-radius: 2px;
+            outline-offset: var(--md-ref-spacings-0-5);
+            border-radius: var(--md-sys-shape-corner-extra-small);
         }
 
-        .dialog-content details .section-content {
-            padding: 0 0 16px 0;
+        .dialog-body details .section-content {
+            padding: 0 0 var(--md-ref-spacings-4) 0;
             font-size: var(--md-sys-typescale-body-medium-size, 14px);
             line-height: var(--md-sys-typescale-body-medium-line-height, 20px);
             color: var(--md-sys-color-on-surface-variant);
-        }
-
-        /* --- Dialog footer --- */
-        .dialog-footer {
-            display: flex;
-            justify-content: flex-end;
-            padding: 12px 24px;
-            border-top: 1px solid var(--md-sys-color-outline-variant);
-            position: sticky;
-            bottom: 0;
-            background: var(--md-sys-color-surface);
-            z-index: 1;
-            flex-shrink: 0;
-        }
-
-        .close-btn {
-            padding: 10px 24px;
-            border: none;
-            border-radius: 20px;
-            background: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-            font-size: var(--md-sys-typescale-body-medium-size, 14px);
-            font-weight: 500;
-            cursor: pointer;
-            font-family: inherit;
-            transition: opacity 0.15s;
-        }
-
-        .close-btn:hover {
-            opacity: 0.88;
-        }
-
-        .close-btn:focus-visible {
-            outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            dialog {
-                max-width: 100%;
-                max-height: 100%;
-                height: 100%;
-                border-radius: 0;
-                margin: 0;
-            }
-
-            .dialog-header {
-                padding: 12px 16px;
-            }
-
-            .dialog-content {
-                padding: 16px;
-            }
-
-            .dialog-footer {
-                padding: 12px 16px;
-            }
-
-            .tabs {
-                padding: 0 8px;
-            }
         }
     `;
 
@@ -499,6 +367,10 @@ class GeCondition extends LitElement {
         return this.contentUrl;
     }
 
+    get #dialog() {
+        return this.shadowRoot.querySelector('m3e-dialog');
+    }
+
     connectedCallback() {
         super.connectedCallback();
         this.#langObserver = new MutationObserver(() => {
@@ -531,10 +403,9 @@ class GeCondition extends LitElement {
 
     /** Open the dialog programmatically */
     openDialog() {
-        const dialog = this.shadowRoot.querySelector("dialog");
-        if (!dialog || dialog.open) return;
+        if (!this.#dialog || this.#dialog.open) return;
         this.#loadContent(this.#activeContentUrl);
-        dialog.showModal();
+        this.#dialog.open = true;
         this.dispatchEvent(
             new CustomEvent("ge-condition-dialog-open", {
                 detail: { name: this.name },
@@ -546,9 +417,8 @@ class GeCondition extends LitElement {
 
     /** Close the dialog programmatically */
     closeDialog() {
-        const dialog = this.shadowRoot.querySelector("dialog");
-        if (!dialog || !dialog.open) return;
-        dialog.close();
+        if (!this.#dialog || !this.#dialog.open) return;
+        this.#dialog.open = false;
     }
 
     render() {
@@ -598,36 +468,12 @@ class GeCondition extends LitElement {
         const activePdf = this.#activePdfUrl;
 
         return html`
-            <dialog @close=${this.#onDialogClose} @click=${this.#onDialogBackdropClick}>
-                <div class="dialog-header">
-                    <h2>${this.#resolvedDialogTitle}</h2>
-                    <div class="dialog-header-actions">
-                        ${activePdf
-                            ? html`<a
-                                  class="icon-btn"
-                                  href=${activePdf}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  title=${t.download}
-                                  aria-label=${t.download}
-                              >
-                                  <svg viewBox="0 0 24 24">
-                                      <path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.34v4h5.33V9h3.34L12 2z" transform="rotate(180 12 12)" />
-                                  </svg>
-                              </a>`
-                            : nothing}
-                        <button
-                            class="icon-btn"
-                            @click=${this.closeDialog}
-                            title=${t.close}
-                            aria-label=${t.close}
-                        >
-                            <svg viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+            <m3e-dialog
+                dismissible
+                close-label=${t.close}
+                @closed=${this.#onDialogClose}
+            >
+                <span slot="header">${this.#resolvedDialogTitle}</span>
 
                 ${hasTabs
                     ? html`<div class="tabs" role="tablist">
@@ -646,7 +492,7 @@ class GeCondition extends LitElement {
                       </div>`
                     : nothing}
 
-                <div class="dialog-content" role="tabpanel">
+                <div class="dialog-body" role="tabpanel">
                     ${this._contentState === "loading"
                         ? html`<div class="loading">${t.loading}</div>`
                         : this._contentState === "error"
@@ -656,12 +502,24 @@ class GeCondition extends LitElement {
                             : nothing}
                 </div>
 
-                <div class="dialog-footer">
-                    <button class="close-btn" @click=${this.closeDialog}>
+                <div slot="actions" class="dialog-actions">
+                    ${activePdf
+                        ? html`
+                            <m3e-button
+                                variant="text"
+                                href=${activePdf}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                ${t.download}
+                            </m3e-button>
+                        `
+                        : nothing}
+                    <m3e-button variant="text" @click=${this.closeDialog}>
                         ${t.close}
-                    </button>
+                    </m3e-button>
                 </div>
-            </dialog>
+            </m3e-dialog>
         `;
     }
 
@@ -703,13 +561,6 @@ class GeCondition extends LitElement {
                 composed: true,
             })
         );
-    }
-
-    #onDialogBackdropClick(e) {
-        // Close on backdrop click (the dialog element itself is the backdrop target)
-        if (e.target === e.currentTarget) {
-            this.closeDialog();
-        }
     }
 
     #onTabClick(index) {
