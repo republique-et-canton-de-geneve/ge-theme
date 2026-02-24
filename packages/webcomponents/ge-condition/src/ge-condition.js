@@ -70,14 +70,13 @@ class GeCondition extends LitElement {
         /* --- Checkbox row --- */
         .checkbox-row {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: var(--md-ref-spacings-2);
         }
 
         .checkbox-row input[type="checkbox"] {
-            margin-top: var(--md-ref-spacings-0-5);
-            width: 18px;
-            height: 18px;
+            width: 1.125rem;
+            height: 1.125rem;
             accent-color: var(--md-sys-color-primary);
             cursor: pointer;
             flex-shrink: 0;
@@ -115,7 +114,7 @@ class GeCondition extends LitElement {
             font-size: var(--md-sys-typescale-body-small-size, 12px);
             line-height: var(--md-sys-typescale-body-small-line-height, 16px);
             margin-top: var(--md-ref-spacings-1);
-            margin-left: 26px;
+            margin-left: 1.625rem;
         }
 
         /* --- Dialog (m3e-dialog) --- */
