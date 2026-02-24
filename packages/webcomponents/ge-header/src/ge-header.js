@@ -79,7 +79,7 @@ class GeHeader extends LitElement {
     
     .user-menu {
       position: absolute;
-      top: calc(100% + 8px);  
+      top: calc(100% + 32px);  
       right: 0;
       padding: 20px;
       background: var(--md-sys-color-surface);
@@ -231,7 +231,14 @@ class GeHeader extends LitElement {
       .profile-button {
         display: none;
       }
-    }
+
+      .user-menu {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: calc(77px + 8px);
+        width: auto;
+        }
   `;
 
   toggleMenu() {
