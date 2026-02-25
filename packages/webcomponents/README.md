@@ -50,17 +50,18 @@ https://static.app.ge.ch/webcomponents/{nom-composant}/{version}/types/{nom-comp
 
 ### Composants disponibles
 
-| Composant | Description |
-|-----------|-------------|
-| `ge-header` | En-tête avec menu d'authentification utilisateur |
-| `ge-header-public` | En-tête public (sans authentification) |
-| `ge-header-armoiries` | Armoiries SVG pour l'en-tête |
-| `ge-footer` | Pied de page avec liens institutionnels |
-| `ge-footer-armoiries` | Armoiries SVG pour le pied de page |
-| `ge-autres-demarches` | Section dépliable « Autres démarches » |
+| Composant             | Description                                             |
+|-----------------------|---------------------------------------------------------|
+| `ge-header`           | En-tête avec menu d'authentification utilisateur        |
+| `ge-header-public`    | En-tête public (sans authentification)                  |
+| `ge-header-armoiries` | Armoiries SVG pour l'en-tête                            |
+| `ge-footer`           | Pied de page avec liens institutionnels                 |
+| `ge-footer-armoiries` | Armoiries SVG pour le pied de page                      |
+| `ge-consent`          | Popover de consentement pour le tracking Matomo         |
+| `ge-televerse`        | (demo) Composant QR code pour téléversement de fichiers |
 
----
-
+---~~
+~~
 ## Formats de version
 
 ### Version exacte
