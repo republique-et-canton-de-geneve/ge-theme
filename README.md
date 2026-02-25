@@ -1,28 +1,31 @@
-# Web Components GE Theme
+# GE Theme — CDN Design System de l'État de Genève
 
-Ce package fournit une bibliothèque de composants Web (Web Components) réutilisables construits avec [Lit](https://lit.dev) pour les sites et applications de l'État de Genève. Il inclut les composants suivants :
+Ce dépôt produit le **site CDN statique** de l'État de Genève (`static.app.ge.ch`), qui distribue les artefacts partagés du design system :
 
-- `<ge-header>` : En-tête avec gestion de l'utilisateur connecté.
-- `<ge-header-public>` : En-tête public (sans authentification).
-- `<ge-footer>` : Pied de page avec liens institutionnels et armoiries.
-- `<ge-header-armoiries>` : Armoiries SVG pour l'en-tête.
-- `<ge-footer-armoiries>` : Armoiries SVG pour le pied de page.
-- `<ge-consent>` : Consentement cookies pour le tracking Matomo.
-- `<ge-televerse>` : Téléversement de documents via QR code.
+- **CSS du thème** — Tokens Material Design 3 (primitives, thèmes clair/sombre, préférence système)
+- **Polices** — Roboto via `@fontsource`
+- **Icônes** — Jeu d'icônes SVG commun et personnalisé
+- **Web Components** — Composants [Lit](https://lit.dev) réutilisables et indépendants du framework (en-tête, pied de page, consentement cookies, etc.)
 
-## Gestion des versions pour les webcomponents
-
-[Voir la documentation ici](/packages/webcomponents/README.md)
+Pour la documentation détaillée des Web Components (props, événements, méthodes), voir le [README des Web Components](./packages/webcomponents/README.md).
 
 ---
 
-## Intégration des Web Components via Static
+## Intégration via le CDN
 
-Cette procédure décrit comment intégrer directement les Web Components et les feuilles de style hébergés sur les serveurs `static` de l'État de Genève.
+Les artefacts du design system sont hébergés sur les serveurs `static` de l'État de Genève.
 
-### Références aux CSS
+> | Environnement | URL |
+> |---------------|-----|
+> | Production    | `https://static.app.ge.ch` |
+> | Recette       | `https://static.rec.etat-ge.ch` |
+> | Développement | `https://static.dev.etat-ge.ch` |
+>
+> Par défaut, utiliser les URL de production en DEV/REC et PRD. Les URL de DEV ou REC servent à tester d'éventuelles montées de version.
 
-Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
+### CSS du thème
+
+Ajoutez les feuilles de style nécessaires dans le `<head>` de votre application :
 
 Par défaut :
 ```html
@@ -50,22 +53,33 @@ Si l'application supporte uniquement le thème sombre (forcer le thème sombre) 
 <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
 ```
 
-### Ajout des Web Components via `<script type="module">`
+### Web Components
 
-> Par défaut, les URL de production (`static.app.ge.ch`) sont à utiliser en DEV/REC et PRD.
-> Pour tester d'éventuelles montées de version, les URL de DEV ou REC peuvent être utilisées :
->
-> | Environnement | URL |
-> |---------------|-----|
-> | Production    | `https://static.app.ge.ch` |
-> | Recette       | `https://static.rec.etat-ge.ch` |
-> | Développement | `https://static.dev.etat-ge.ch` |
+Les Web Components sont chargés via `<script type="module">`. Chaque composant est disponible à l'adresse :
+
+```
+https://static.app.ge.ch/webcomponents/{nom-composant}/{version}/{nom-composant}.js
+```
+
+#### Versionnement
+
+Plusieurs formats de version sont supportés :
+
+| Format | Exemple | Usage |
+|--------|---------|-------|
+| Version exacte | `.../ge-footer/1.0.3/ge-footer.js` | Production — fige une release spécifique |
+| Majeure glissante | `.../ge-footer/1.latest/ge-footer.js` | Production maintenue — reçoit les nouvelles fonctionnalités et correctifs au sein de la v1 |
+| Mineure glissante | `.../ge-footer/1.0.latest/ge-footer.js` | Conservateur — reçoit uniquement les patches de la v1.0 |
+| Latest | `.../ge-footer/latest/ge-footer.js` | Développement — toujours la dernière version |
+
+La liste complète des versions publiées est disponible sur `https://static.app.ge.ch/webcomponents/versions.json`.
+
+#### Exemple d'intégration
 
 ```html
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header/latest/ge-header.js"></script>
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/latest/ge-footer.js"></script>
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-consent/latest/ge-consent.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/1.latest/ge-header-public.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-footer/1.latest/ge-footer.js"></script>
+<script type="module" src="https://static.app.ge.ch/webcomponents/ge-consent/1.latest/ge-consent.js"></script>
 ```
 
 ### Intégration sur une page HTML
@@ -84,6 +98,8 @@ Pour les applications avec marges sur le contenu (ex : Formulaires e-démarches)
 <ge-footer maxwidth="false"></ge-footer>
 ```
 
+Pour la documentation complète des composants (props, événements, méthodes), voir le [README des Web Components](./packages/webcomponents/README.md).
+
 ---
 
 ## Installation et développement
@@ -99,80 +115,19 @@ yarn test          # Lancer les tests unitaires
 
 ---
 
-## Liste des composants
+## Composants disponibles
 
-### `<ge-header>`
+| Composant | Description |
+|-----------|-------------|
+| `<ge-header>` | En-tête avec menu d'authentification utilisateur |
+| `<ge-header-public>` | En-tête public (sans authentification) |
+| `<ge-footer>` | Pied de page avec liens institutionnels et armoiries |
+| `<ge-header-armoiries>` | Armoiries SVG pour l'en-tête |
+| `<ge-footer-armoiries>` | Armoiries SVG pour le pied de page |
+| `<ge-consent>` | Consentement cookies pour le tracking Matomo |
+| `<ge-televerse>` | Téléversement de documents via QR code |
 
-En-tête avec gestion de l'utilisateur connecté et menu de compte.
-
-- **Props** :
-    - `userInfo` (Object) : objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
-    - `isMenuOpen` (Boolean) : afficher/masquer le menu utilisateur
-    - `maxWidth` (String) : `"true"` = pleine largeur (défaut), `"false"` ou `"1107px"` = avec marges
-- **Événements** :
-    - `ge-toggle-app-menu` : déclenché lors du clic sur le menu burger (mobile)
-    - `ge-manage-account` : déclenché lors du clic sur « Gérer mon compte ». `detail: { userInfo }`
-    - `ge-logout` : déclenché lors du clic sur « Se déconnecter ». `detail: { userInfo }`
-
-### `<ge-header-public>`
-
-En-tête public sans authentification, avec logo et lien vers ge.ch.
-
-- **Props** :
-    - `maxWidth` (String) : `"true"` = pleine largeur (défaut), `"false"` ou `"1107px"` = avec marges
-
-### `<ge-footer>`
-
-Pied de page avec liens institutionnels, support multilingue et détection automatique du thème.
-
-- **Props** :
-    - `maxwidth` (Boolean) : `true` = pleine largeur (défaut), `false` = contraint à 1107px
-    - `links` (Array) : tableau JSON de liens personnalisés `[{"title":"...","href":"..."}]`. Remplace les liens par défaut si fourni.
-    - `contactLink` (String) : URL du lien Contact (défaut : `https://www.ge.ch/c/footer-edm-aide`)
-    - `accessibilityLink` (String) : URL du lien Accessibilité (défaut : `https://www.ge.ch/c/footer-edm-accessibilite`)
-    - `privacyLink` (String) : URL du lien Confidentialité (défaut : `https://www.ge.ch/c/footer-edm-confidentialite`)
-    - `termsLink` (String) : URL du lien CGU (défaut : `https://www.ge.ch/c/footer-edm-cgu`)
-    - `locale` (String) : langue (`fr`, `en`, `es`, `pt`). Par défaut, hérite de l'attribut `lang` du document.
-    - `theme` (String) : `"light"` ou `"dark"`. Par défaut, détecte la préférence système via `prefers-color-scheme`.
-- **Événements** :
-    - `ge-footer-image-click` : déclenché lors du clic sur les armoiries. `detail: { originalEvent }`
-
-### `<ge-header-armoiries>` / `<ge-footer-armoiries>`
-
-Composants SVG affichant les armoiries de la République et canton de Genève (variantes en-tête et pied de page).
-
-- **Attributs** :
-    - `variant` : `"light"` (défaut) ou `"dark"`
-    - `width` / `height` : dimensions du SVG (le ratio est préservé automatiquement)
-    - `onClick` : nom d'une fonction globale à appeler au clic
-
-### `<ge-consent>`
-
-Boîte de dialogue de consentement pour les cookies de tracking Matomo (Matomo Tag Manager).
-
-S'affiche automatiquement si aucun consentement n'a été donné (absence des cookies `mtm_consent` / `mtm_consent_removed`).
-
-- **Méthodes** :
-    - `show()` : ouvre la boîte de dialogue programmatiquement
-    - `reset()` : efface les cookies de consentement et réouvre la boîte de dialogue
-- **Événements** :
-    - `consent` : déclenché après le choix de l'utilisateur. `detail: { granted: boolean }`
-
-### `<ge-televerse>`
-
-Composant de téléversement de documents via QR code avec suivi en temps réel (Server-Sent Events).
-
-- **Attributs** :
-    - `api-base-url` (String) : URL de base de l'API backend (défaut : `/api`)
-    - `user-id` (String) : identifiant de l'utilisateur
-    - `form-id` (String) : identifiant du formulaire
-    - `document-type` (String) : type de document (ex : `ID_CARD`, `PROOF_OF_ADDRESS`)
-- **Événements** :
-    - `televerse-ready` : session créée, QR code affiché. `detail: { token, uploadUrl }`
-    - `televerse-upload` : un fichier a été téléversé. `detail: { documentId, fileName }`
-    - `televerse-complete` : téléversement finalisé. `detail: { documentId, pageCount }`
-    - `televerse-error` : une erreur est survenue. `detail: { message }`
-    - `televerse-expired` : la session a expiré
+Documentation détaillée (props, événements, méthodes) : [README des Web Components](./packages/webcomponents/README.md)
 
 ---
 
