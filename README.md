@@ -302,7 +302,6 @@ Chromium doit être installé (`sudo apt install chromium-browser`) et le chemin
 
 - [ ] Intégration des tests dans le pipeline GitLab CI/CD
 - [ ] Ajout d'un composant `ge-breadcrumb` ou lister les composants partagés
-- [ ] Storybook pour documentation interactive
 
 ---
 
