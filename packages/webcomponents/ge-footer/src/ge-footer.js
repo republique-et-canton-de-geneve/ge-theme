@@ -2,6 +2,33 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 
+const TRANSLATIONS = {
+    fr: {
+        contact: "Contact",
+        accessibility: "Accessibilité",
+        privacy: "Politique de confidentialité",
+        terms: "Conditions générales",
+    },
+    en: {
+        contact: "Contact",
+        accessibility: "Accessibility",
+        privacy: "Privacy Policy",
+        terms: "Terms and Conditions",
+    },
+    es: {
+        contact: "Contacto",
+        accessibility: "Accesibilidad",
+        privacy: "Política de privacidad",
+        terms: "Condiciones generales",
+    },
+    pt: {
+        contact: "Contacto",
+        accessibility: "Acessibilidade",
+        privacy: "Política de privacidade",
+        terms: "Termos e condições",
+    },
+};
+
 @customElement("ge-footer")
 class GeFooter extends LitElement {
     static styles = css`
@@ -21,7 +48,7 @@ class GeFooter extends LitElement {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 74px;
             padding: 0 32px;
             margin: auto;
         }
@@ -75,8 +102,7 @@ class GeFooter extends LitElement {
         @media (max-width: 768px) {
             #ge-footer {
                 display: block;
-                padding: 12px;
-                height: auto;
+                height: 278px;
             }
 
             #ge-footer > nav {
@@ -91,7 +117,7 @@ class GeFooter extends LitElement {
             }
 
             #ge-footer-armoiries {
-                margin-top: 10px;
+                margin-top: 32px;
             }
 
             #ge-footer hr {
@@ -149,6 +175,27 @@ class GeFooter extends LitElement {
     })
     links;
 
+    /** Override language for footer labels. If not set, inherits from nearest ancestor [lang] attribute, defaults to 'fr'. */
+    @property({ type: String, attribute: 'locale' })
+    get locale() {
+        return this.#localeValue;
+    }
+    set locale(value) {
+        const oldValue = this.#localeValue;
+        this.#localeValue = value || undefined;
+        this.requestUpdate('locale', oldValue);
+    }
+
+    #localeValue;
+
+    #langObserver;
+
+    get #resolvedLang() {
+        if (this.locale) return this.locale;
+        const lang = this.closest('[lang]')?.lang;
+        return lang ? lang.split('-')[0] : 'fr';
+    }
+
     /** Theme: 'light' or 'dark'. Defaults to system preference, attribute overrides. */
     @property({ type: String, reflect: true, attribute: 'theme' })
     get theme() {
@@ -194,22 +241,34 @@ class GeFooter extends LitElement {
 
         this.#mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
         this.#mediaQuery.addEventListener("change", this.#onSystemThemeChange);
+
+        this.#langObserver = new MutationObserver(() => {
+            if (!this.locale) {
+                this.requestUpdate();
+            }
+        });
+        this.#langObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['lang'],
+        });
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
         this.#mediaQuery?.removeEventListener("change", this.#onSystemThemeChange);
+        this.#langObserver?.disconnect();
     }
 
     get #resolvedLinks() {
         if (this.links?.length) {
             return this.links;
         }
+        const t = TRANSLATIONS[this.#resolvedLang] || TRANSLATIONS.fr;
         return [
-            { title: "Contact", href: this.contactLink },
-            { title: "Accessibilité", href: this.accessibilityLink },
-            { title: "Politique de confidentialité", href: this.privacyLink },
-            { title: "Conditions générales", href: this.termsLink }
+            { title: t.contact, href: this.contactLink },
+            { title: t.accessibility, href: this.accessibilityLink },
+            { title: t.privacy, href: this.privacyLink },
+            { title: t.terms, href: this.termsLink },
         ];
     }
 
@@ -226,14 +285,13 @@ class GeFooter extends LitElement {
                         ${this.#resolvedLinks.map((link, index) => html`
                             ${index > 0 ? html`<span aria-hidden="true">|</span>` : null}
                             <a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.title}</a>
-                            ${index < this.#resolvedLinks.length - 1 ? html`<hr />` : null}
                         `)}
                     </nav>
                     <img
                             id="ge-footer-armoiries"
                             src="https://static.app.ge.ch/theme/icons/common/footer/footer-armoiries-${this.theme}.svg"
                             alt="Armoiries de la République et canton de Genève"
-                            height="62"
+                            height="54"
                             @click="${this.#onImageClick}"
                     />
                 </div>

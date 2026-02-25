@@ -16,13 +16,13 @@ const monorepoRoot = path.resolve(ROOT, '../..');
 const WEB_COMPONENTS_SRC = path.resolve(monorepoRoot, 'packages/webcomponents');
 
 const COMPONENT_NAMES = [
-    'ge-autres-demarches',
     'ge-consent',
     'ge-footer',
     'ge-footer-armoiries',
     'ge-header',
     'ge-header-armoiries',
     'ge-header-public',
+    'ge-televerse'
 ];
 
 // ------------------------------------------------------------------

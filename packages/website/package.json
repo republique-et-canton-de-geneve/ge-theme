@@ -12,17 +12,17 @@
     "dev": "parcel static/index.html --port 3000"
   },
   "dependencies": {
-    "@ael/ge-autres-demarches": "1.0.6",
     "@ael/ge-footer": "1.0.6",
     "@ael/ge-footer-armoiries": "1.0.6",
     "@ael/ge-header": "1.0.6",
     "@ael/ge-header-armoiries": "1.0.6",
     "@ael/ge-header-public": "1.0.6",
     "@ael/ge-consent": "1.0.0",
+    "@ael/ge-televerse": "1.0.0",
     "@ael/icons": "1.0.6"
   },
   "devDependencies": {
-    "parcel": "2.16.3",
+    "parcel": "2.16.4",
     "rimraf": "6.0.1",
     "copyfiles": "2.4.1",
     "parcel-resolver-ignore": "^2.2.0"

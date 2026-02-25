@@ -50,14 +50,92 @@ https://static.app.ge.ch/webcomponents/{nom-composant}/{version}/types/{nom-comp
 
 ### Composants disponibles
 
-| Composant | Description |
-|-----------|-------------|
-| `ge-header` | En-tête avec menu d'authentification utilisateur |
-| `ge-header-public` | En-tête public (sans authentification) |
-| `ge-header-armoiries` | Armoiries SVG pour l'en-tête |
-| `ge-footer` | Pied de page avec liens institutionnels |
-| `ge-footer-armoiries` | Armoiries SVG pour le pied de page |
-| `ge-autres-demarches` | Section dépliable « Autres démarches » |
+| Composant             | Description                                             |
+|-----------------------|---------------------------------------------------------|
+| `ge-header`           | En-tête avec menu d'authentification utilisateur        |
+| `ge-header-public`    | En-tête public (sans authentification)                  |
+| `ge-header-armoiries` | Armoiries SVG pour l'en-tête                            |
+| `ge-footer`           | Pied de page avec liens institutionnels                 |
+| `ge-footer-armoiries` | Armoiries SVG pour le pied de page                      |
+| `ge-consent`          | Popover de consentement pour le tracking Matomo         |
+| `ge-televerse`        | Composant QR code pour téléversement de fichiers |
+
+---
+
+## Documentation des composants
+
+### `<ge-header>`
+
+En-tête avec gestion de l'utilisateur connecté et menu de compte.
+
+- **Props** :
+    - `userInfo` (Object) : objet contenant `nom`, `prenom`, `email`, `typeCompte` (`PP`, `PM`, `ADM`)
+    - `isMenuOpen` (Boolean) : afficher/masquer le menu utilisateur
+    - `maxWidth` (String) : `"true"` = pleine largeur (défaut), `"false"` ou `"1107px"` = avec marges
+- **Événements** :
+    - `ge-toggle-app-menu` : déclenché lors du clic sur le menu burger (mobile)
+    - `ge-manage-account` : déclenché lors du clic sur « Gérer mon compte ». `detail: { userInfo }`
+    - `ge-logout` : déclenché lors du clic sur « Se déconnecter ». `detail: { userInfo }`
+
+### `<ge-header-public>`
+
+En-tête public sans authentification, avec logo et lien vers ge.ch.
+
+- **Props** :
+    - `maxWidth` (String) : `"true"` = pleine largeur (défaut), `"false"` ou `"1107px"` = avec marges
+
+### `<ge-footer>`
+
+Pied de page avec liens institutionnels, support multilingue et détection automatique du thème.
+
+- **Props** :
+    - `maxwidth` (Boolean) : `true` = pleine largeur (défaut), `false` = contraint à 1107px
+    - `links` (Array) : tableau JSON de liens personnalisés `[{"title":"...","href":"..."}]`. Remplace les liens par défaut si fourni.
+    - `contactLink` (String) : URL du lien Contact (défaut : `https://www.ge.ch/c/footer-edm-aide`)
+    - `accessibilityLink` (String) : URL du lien Accessibilité (défaut : `https://www.ge.ch/c/footer-edm-accessibilite`)
+    - `privacyLink` (String) : URL du lien Confidentialité (défaut : `https://www.ge.ch/c/footer-edm-confidentialite`)
+    - `termsLink` (String) : URL du lien CGU (défaut : `https://www.ge.ch/c/footer-edm-cgu`)
+    - `locale` (String) : langue (`fr`, `en`, `es`, `pt`). Par défaut, hérite de l'attribut `lang` du document.
+    - `theme` (String) : `"light"` ou `"dark"`. Par défaut, détecte la préférence système via `prefers-color-scheme`.
+- **Événements** :
+    - `ge-footer-image-click` : déclenché lors du clic sur les armoiries. `detail: { originalEvent }`
+
+### `<ge-header-armoiries>` / `<ge-footer-armoiries>`
+
+Composants SVG affichant les armoiries de la République et canton de Genève (variantes en-tête et pied de page).
+
+- **Attributs** :
+    - `variant` : `"light"` (défaut) ou `"dark"`
+    - `width` / `height` : dimensions du SVG (le ratio est préservé automatiquement)
+    - `onClick` : nom d'une fonction globale à appeler au clic
+
+### `<ge-consent>`
+
+Boîte de dialogue de consentement pour les cookies de tracking Matomo (Matomo Tag Manager).
+
+S'affiche automatiquement si aucun consentement n'a été donné (absence des cookies `mtm_consent` / `mtm_consent_removed`).
+
+- **Méthodes** :
+    - `show()` : ouvre la boîte de dialogue programmatiquement
+    - `reset()` : efface les cookies de consentement et réouvre la boîte de dialogue
+- **Événements** :
+    - `consent` : déclenché après le choix de l'utilisateur. `detail: { granted: boolean }`
+
+### `<ge-televerse>`
+
+Composant de téléversement de documents via QR code avec suivi en temps réel (Server-Sent Events).
+
+- **Attributs** :
+    - `api-base-url` (String) : URL de base de l'API backend (défaut : `/api`)
+    - `user-id` (String) : identifiant de l'utilisateur
+    - `form-id` (String) : identifiant du formulaire
+    - `document-type` (String) : type de document (ex : `ID_CARD`, `PROOF_OF_ADDRESS`)
+- **Événements** :
+    - `televerse-ready` : session créée, QR code affiché. `detail: { token, uploadUrl }`
+    - `televerse-upload` : un fichier a été téléversé. `detail: { documentId, fileName }`
+    - `televerse-complete` : téléversement finalisé. `detail: { documentId, pageCount }`
+    - `televerse-error` : une erreur est survenue. `detail: { message }`
+    - `televerse-expired` : la session a expiré
 
 ---
 
