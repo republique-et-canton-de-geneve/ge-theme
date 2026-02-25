@@ -285,7 +285,6 @@ class GeFooter extends LitElement {
                         ${this.#resolvedLinks.map((link, index) => html`
                             ${index > 0 ? html`<span aria-hidden="true">|</span>` : null}
                             <a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.title}</a>
-                            ${index < this.#resolvedLinks.length - 1 ? html`<hr />` : null}
                         `)}
                     </nav>
                     <img
