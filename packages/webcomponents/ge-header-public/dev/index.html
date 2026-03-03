@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE Header Public - Test Page</title>
+    <script type="module" src="../src/ge-header-public.js"></script>
+    <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
+    <link rel="stylesheet" id="theme-auto" href="../../../website/static/theme/css/theme.css">
+    <link rel="stylesheet" id="theme-dark" href="../../../website/static/theme/css/dark.css" disabled>
+    <link rel="stylesheet" id="theme-light" href="../../../website/static/theme/css/light.css" disabled>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        main {
+            padding: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 32px 0 16px 0;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--md-sys-color-surface-container);
+            border-radius: 8px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        button {
+            padding: 8px 16px;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 25px;
+            background: var(--md-sys-color-surface);
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        button:hover {
+            background: var(--md-sys-color-surface-container-high);
+        }
+
+        button.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .info-box {
+            padding: 12px 16px;
+            background: var(--md-sys-color-tertiary-container);
+            color: var(--md-sys-color-on-tertiary-container);
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .info-box code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<ge-header-public id="header" showMenu showLogin></ge-header-public>
+
+<main>
+    <h1>GE Header Public - Test Page</h1>
+    <p>Interactive testing for the ge-header-public web component with menu and login features.</p>
+
+    <div class="info-box">
+        Toggle <code>showMenu</code> and <code>showLogin</code> to control which buttons appear.
+        The menu opens a navigation panel with quick access links and thematic sections.
+    </div>
+
+    <h2>Controls</h2>
+    <div class="controls">
+        <div class="control-group">
+            <label>Theme</label>
+            <div>
+                <button id="btn-auto" class="active" data-theme="auto">Auto</button>
+                <button id="btn-light" data-theme="light">Light</button>
+                <button id="btn-dark" data-theme="dark">Dark</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Show Menu</label>
+            <div>
+                <button id="btn-menu-on" class="active" data-show-menu="true">On</button>
+                <button id="btn-menu-off" data-show-menu="false">Off</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Show Login</label>
+            <div>
+                <button id="btn-login-on" class="active" data-show-login="true">On</button>
+                <button id="btn-login-off" data-show-login="false">Off</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Max Width</label>
+            <div>
+                <button id="btn-full" class="active" data-max-width="true">Full</button>
+                <button id="btn-constrained" data-max-width="1107px">1107px</button>
+            </div>
+        </div>
+    </div>
+
+    <h2>Events Log</h2>
+    <div id="events-log" style="
+        padding: 16px;
+        background: var(--md-sys-color-surface-container);
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 13px;
+        min-height: 60px;
+        max-height: 200px;
+        overflow-y: auto;
+    ">
+        <em>Events will appear here...</em>
+    </div>
+
+    <h2>Usage Examples</h2>
+    <div class="info-box">
+        <strong>Minimal (original behavior):</strong><br>
+        <code>&lt;ge-header-public&gt;&lt;/ge-header-public&gt;</code>
+    </div>
+    <div class="info-box">
+        <strong>With menu and login:</strong><br>
+        <code>&lt;ge-header-public showMenu showLogin&gt;&lt;/ge-header-public&gt;</code>
+    </div>
+    <div class="info-box">
+        <strong>Custom login URL:</strong><br>
+        <code>&lt;ge-header-public showLogin loginUrl="https://example.com/login" loginLabel="Se connecter"&gt;&lt;/ge-header-public&gt;</code>
+    </div>
+</main>
+
+<script type="module">
+    const header = document.getElementById('header');
+    const eventsLog = document.getElementById('events-log');
+    let logEntries = [];
+
+    function logEvent(name, detail) {
+        const time = new Date().toLocaleTimeString();
+        logEntries.unshift(`[${time}] ${name}: ${JSON.stringify(detail)}`);
+        if (logEntries.length > 20) logEntries.pop();
+        eventsLog.innerHTML = logEntries.map(e => `<div>${e}</div>`).join('');
+    }
+
+    document.addEventListener('ge-menu-toggle', (e) => {
+        logEvent('ge-menu-toggle', e.detail);
+    });
+
+    // Theme toggle
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.dataset.theme;
+            document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const root = document.documentElement;
+            root.classList.remove('dark', 'light');
+
+            document.getElementById('theme-auto').disabled = mode !== 'auto';
+            document.getElementById('theme-dark').disabled = mode !== 'dark';
+            document.getElementById('theme-light').disabled = mode !== 'light';
+
+            if (mode !== 'auto') {
+                root.classList.add(mode);
+            }
+        });
+    });
+
+    // Show Menu toggle
+    document.querySelectorAll('[data-show-menu]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const show = btn.dataset.showMenu === 'true';
+            header.showMenu = show;
+            header.requestUpdate();
+            document.getElementById('btn-menu-on').classList.toggle('active', show);
+            document.getElementById('btn-menu-off').classList.toggle('active', !show);
+        });
+    });
+
+    // Show Login toggle
+    document.querySelectorAll('[data-show-login]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const show = btn.dataset.showLogin === 'true';
+            header.showLogin = show;
+            header.requestUpdate();
+            document.getElementById('btn-login-on').classList.toggle('active', show);
+            document.getElementById('btn-login-off').classList.toggle('active', !show);
+        });
+    });
+
+    // Max Width toggle
+    document.querySelectorAll('[data-max-width]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const value = btn.dataset.maxWidth;
+            header.maxWidth = value;
+            header.requestUpdate();
+            document.getElementById('btn-full').classList.toggle('active', value === 'true');
+            document.getElementById('btn-constrained').classList.toggle('active', value === '1107px');
+        });
+    });
+</script>
+</body>
+</html>
