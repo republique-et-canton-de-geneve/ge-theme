@@ -50,6 +50,7 @@ class GeHeaderPublicMenu extends LitElement {
       max-height: 80vh;
       overflow-y: auto;
       box-shadow: 0 var(--md-ref-spacings-1, 4px) var(--md-ref-spacings-2, 8px) var(--md-ref-shadow-light-opacity-12, rgba(0,0,0,0.12));
+      border-top: 1px solid var(--md-sys-color-outline-variant);
     }
 
     .panel--constrained {
@@ -63,7 +64,7 @@ class GeHeaderPublicMenu extends LitElement {
 
     /* Quick access — lighter background */
     .quick-access {
-      background: var(--md-sys-color-surface-container-lowest);
+      background: var(--md-sys-color-surface-container);
       padding: var(--md-ref-spacings-4, 16px) var(--md-ref-spacings-6, 24px);
     }
 

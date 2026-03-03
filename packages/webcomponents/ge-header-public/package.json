@@ -37,6 +37,7 @@
     "lint": "eslint . --ext .js",
     "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build",
+    "build:demo": "parcel build --target dev",
     "dev": "concurrently \"parcel watch --target dev --no-hmr\" \"sirv .dev-dist --port 1234 --dev\"",
     "start": "yarn dev"
   },
