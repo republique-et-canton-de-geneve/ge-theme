@@ -6,7 +6,7 @@
 export const DEFAULT_MENU_DATA = {
   quickAccess: [
     { label: "Démarches", url: "https://www.ge.ch/demarches", variant: "filled" },
-    { label: "Offres d'emploi", url: "https://www.ge.ch/old/offres-emploi-etat-geneve/liste-offres" },
+    { label: "Offres d'emploi", url: "https://www.ge.ch/offres-emploi-etat-geneve/liste-offres" },
     { label: "Vacances scolaires", url: "https://www.ge.ch/c/vacances-scolaires" },
   ],
   sections: [

@@ -69,7 +69,7 @@ class GeHeaderPublic extends LitElement {
         .title {
             font-family: var(--md-sys-typescale-headline-medium-font);
             font-size: var(--md-sys-typescale-headline-medium-size);
-            font-weight: var(--md-sys-typescale-headline-medium-weight);
+            font-weight: var(--md-ref-typeface-weight-400);
             color: var(--md-sys-color-on-surface-variant);
         }
 

@@ -163,7 +163,7 @@ class GeHeaderPublicMenu extends LitElement {
     .thematique-title {
       font-family: var(--md-sys-typescale-label-medium-font);
       font-size: var(--md-sys-typescale-label-medium-size);
-      font-weight: var(--md-sys-typescale-label-medium-weight);
+      font-weight: var(--md-ref-typeface-weight-700);
       line-height: var(--md-sys-typescale-label-medium-line-height);
       color: var(--md-sys-color-on-surface);
       margin: 0 0 var(--md-ref-spacings-3, 12px) 0;
@@ -186,7 +186,7 @@ class GeHeaderPublicMenu extends LitElement {
       text-decoration: none;
       font-family: var(--md-sys-typescale-label-medium-font);
       font-size: var(--md-sys-typescale-label-medium-size);
-      font-weight: var(--md-sys-typescale-label-medium-weight);
+      font-weight: var(--md-ref-typeface-weight-700);
       line-height: var(--md-sys-typescale-label-medium-line-height);
       display: block;
       padding: var(--md-ref-spacings-1, 4px) 0;
@@ -204,6 +204,23 @@ class GeHeaderPublicMenu extends LitElement {
       outline: 2px solid var(--md-sys-color-primary);
       outline-offset: 2px;
       border-radius: var(--md-sys-shape-corner-extra-small);
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .thematiques-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: dense;
+        gap: var(--md-ref-spacings-6, 24px);
+      }
+
+      .thematique-column--wide {
+        grid-column: 1 / -1;
+      }
+
+      .thematique-column--wide .thematique-links-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
