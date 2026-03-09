@@ -5,7 +5,6 @@ import {css, html, LitElement} from 'lit'
 class GeSkiplink extends LitElement {
     @property({ type: Array })
     links = [
-        { href: '#home', title: 'Accueil' },
         { href: '#content', title: 'Contenu' },
         { href: '#main-navigation', title: 'Menu' },
         { href: '#search', title: 'Recherche' },
@@ -43,10 +42,18 @@ class GeSkiplink extends LitElement {
 
         .skiplink ul {
             display: flex;
+            align-items: center;
             list-style-type: none;
             margin: 0;
             padding: 0;
             gap: var(--md-ref-spacings-2, 8px);
+        }
+
+        .divider {
+            display: block;
+            width: 1px;
+            height: var(--md-ref-spacings-10, 40px);
+            background-color: var(--md-sys-color-outline-variant, #c4c4c4);
         }
 
         .skiplink ul > li a {
@@ -54,13 +61,14 @@ class GeSkiplink extends LitElement {
             color: var(--md-sys-color-primary, #0162a0);
             text-decoration: none;
             background-color: transparent;
-            border: none;
+            border: 2px solid transparent;
             border-radius: var(--md-sys-shape-corner-full, 50px);
             padding: var(--md-ref-spacings-2, 8px) var(--md-ref-spacings-4, 16px);
-            font-family: var(--md-sys-typescale-label-large-font, Roboto, Arial, sans-serif);
-            font-size: var(--md-sys-typescale-label-large-size, 16px);
-            font-weight: var(--md-sys-typescale-label-large-weight, 700);
-            line-height: var(--md-sys-typescale-label-large-line-height, 22px);
+            font-family: var(--md-sys-typescale-label-medium-font, Roboto, Arial, sans-serif);
+            font-size: var(--md-sys-typescale-label-medium-size, 14px);
+            font-weight: var(--md-sys-typescale-label-medium-weight, 500);
+            line-height: var(--md-sys-typescale-label-medium-line-height, 20px);
+            letter-spacing: var(--md-sys-typescale-label-medium-tracking, 0.1px);
             transition: background-color 0.2s ease;
             cursor: pointer;
         }
@@ -70,9 +78,9 @@ class GeSkiplink extends LitElement {
         }
 
         .skiplink ul > li a:focus {
-            outline: 2px solid var(--md-sys-color-primary, #0162a0);
-            outline-offset: 2px;
-            background-color: var(--md-sys-color-state-opacity-8, rgba(0, 0, 0, 0.08));
+            border: 2px solid var(--md-sys-color-primary, #0162a0);
+            background-color: var(--md-sys-color-state-opacity-12, rgba(0, 0, 0, 0.12));
+            outline: none;
         }
 
         .skiplink ul > li a:active {
@@ -90,12 +98,15 @@ class GeSkiplink extends LitElement {
                 <nav role="navigation" aria-label="Accès rapide">
                     <ul>
                         ${this.links.map(
-                            (link) => html`
+                            (link, index) => html`
                                 <li>
                                     <a href="${link.href}">
                                         ${link.title}
                                     </a>
                                 </li>
+                                ${index < this.links.length - 1
+                                    ? html`<span class="divider" aria-hidden="true"></span>`
+                                    : ''}
                             `
                         )}
                     </ul>
