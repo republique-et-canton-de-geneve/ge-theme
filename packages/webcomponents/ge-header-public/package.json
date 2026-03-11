@@ -45,6 +45,9 @@
     "@icons/common": "../../website/static/theme/icons/common"
   },
   "dependencies": {
+    "@m3e/button": "^1.1.8",
+    "@m3e/core": "^1.2.0",
+    "@material/web": "^2.4.1",
     "@swc/helpers": "^0.5.17",
     "@fontsource/roboto": "5.2.5",
     "lit": "3.3.0"

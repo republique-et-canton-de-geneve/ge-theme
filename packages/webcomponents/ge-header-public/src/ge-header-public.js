@@ -96,7 +96,11 @@ class GeHeaderPublic extends LitElement {
         }
 
         .action-button:hover {
-            color: var(--md-sys-color-on-surface);
+            color: var(--md-sys-color-primary);
+        }
+
+        .action-button--active {
+            color: var(--md-sys-color-primary);
         }
 
         .action-button:focus-visible {
@@ -161,6 +165,37 @@ class GeHeaderPublic extends LitElement {
     _handleKeydown(event) {
         if (event.key === "Escape" && this._menuOpen) {
             this._closeMenu();
+            return;
+        }
+
+        // Focus trap when menu is open
+        if (event.key === "Tab" && this._menuOpen) {
+            const menuEl = this.shadowRoot?.querySelector('ge-header-public-menu');
+            const menuButton = this.shadowRoot?.querySelector('.action-button--active');
+            if (!menuEl) return;
+
+            const focusable = menuEl.getFocusableElements();
+            if (focusable.length === 0) return;
+
+            const allFocusable = menuButton ? [menuButton, ...focusable] : focusable;
+            const first = allFocusable[0];
+            const last = allFocusable[allFocusable.length - 1];
+
+            // Determine currently focused element (may be in shadow DOM)
+            const active = this.shadowRoot.activeElement ||
+                           menuEl.shadowRoot?.activeElement;
+
+            if (event.shiftKey) {
+                if (active === first || !allFocusable.includes(active)) {
+                    event.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (active === last || !allFocusable.includes(active)) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
         }
     }
 
@@ -172,6 +207,21 @@ class GeHeaderPublic extends LitElement {
             bubbles: true,
             composed: true,
         }));
+
+        if (this._menuOpen) {
+            // Focus first focusable element in the menu after render
+            this.updateComplete.then(() => {
+                const menuEl = this.shadowRoot?.querySelector('ge-header-public-menu');
+                if (menuEl) {
+                    menuEl.updateComplete.then(() => {
+                        const focusable = menuEl.getFocusableElements();
+                        if (focusable.length > 0) {
+                            focusable[0].focus();
+                        }
+                    });
+                }
+            });
+        }
     }
 
     _closeMenu() {
@@ -183,6 +233,14 @@ class GeHeaderPublic extends LitElement {
             bubbles: true,
             composed: true,
         }));
+
+        // Return focus to menu button
+        this.updateComplete.then(() => {
+            const menuButton = this.shadowRoot?.querySelector('button.action-button');
+            if (menuButton) {
+                menuButton.focus();
+            }
+        });
     }
 
     _renderLoginButton() {
@@ -199,9 +257,13 @@ class GeHeaderPublic extends LitElement {
 
     _renderMenuButton() {
         if (!this.showMenu) return nothing;
+        const btnClasses = {
+            'action-button': true,
+            'action-button--active': this._menuOpen,
+        };
         return html`
             <button
-                class="action-button"
+                class=${classMap(btnClasses)}
                 @click=${this._toggleMenu}
                 aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded=${this._menuOpen}

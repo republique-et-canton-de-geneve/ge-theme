@@ -156,6 +156,27 @@
         <em>Events will appear here...</em>
     </div>
 
+    <h2>Test Menu</h2>
+    <div class="controls">
+        <div class="control-group">
+            <label>Menu</label>
+            <div>
+                <button data-open-menu="true">Ouvrir le menu</button>
+                <button data-open-menu="false">Fermer le menu</button>
+            </div>
+        </div>
+    </div>
+
+    <h2>Contenu de page (test scroll & scrim)</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="https://example.com/link1" onclick="logEvent('click', {target: 'link1'}); return false;">Cliquez ici (lien 1)</a>. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+    <p>Duis semper. <a href="https://example.com/link2" onclick="logEvent('click', {target: 'link2'}); return false;">Cliquez ici (lien 2)</a>. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.</p>
+    <p><button onclick="logEvent('click', {target: 'bouton test'})">Bouton test (cliquable)</button></p>
+    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. <a href="https://example.com/link3" onclick="logEvent('click', {target: 'link3'}); return false;">Cliquez ici (lien 3)</a>. Mauris ac mauris sed pede pellentesque fermentum.</p>
+    <p>Nulla sollicitudin. Fusce varius, ligula non consequat interdum. <a href="https://example.com/link4" onclick="logEvent('click', {target: 'link4'}); return false;">Cliquez ici (lien 4)</a>. Donec sollicitudin.</p>
+    <p><button onclick="logEvent('click', {target: 'bouton test 2'})">Autre bouton test</button> — Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris.</p>
+    <p>Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci.</p>
+    <p>Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu.</p>
+
     <h2>Usage Examples</h2>
     <div class="info-box">
         <strong>Minimal (original behavior):</strong><br>
@@ -226,6 +247,15 @@
             header.requestUpdate();
             document.getElementById('btn-login-on').classList.toggle('active', show);
             document.getElementById('btn-login-off').classList.toggle('active', !show);
+        });
+    });
+
+    // Open/Close menu
+    document.querySelectorAll('[data-open-menu]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const open = btn.dataset.openMenu === 'true';
+            header._menuOpen = open;
+            header.requestUpdate();
         });
     });
 
