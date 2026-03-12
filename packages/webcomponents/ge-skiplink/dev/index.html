@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE Skiplink Component - Test Page</title>
+    <script type="module" src="../src/ge-skiplink.js"></script>
+    <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
+    <link rel="stylesheet" href="../../../website/static/theme/css/theme.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--md-sys-color-surface, #fafafa);
+            color: var(--md-sys-color-on-surface, #1a1a1a);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            background-color: var(--md-sys-color-surface-container, #e9e9e9);
+            padding: var(--md-ref-spacings-4, 16px) var(--md-ref-spacings-8, 32px);
+            border-top: 1px solid var(--md-sys-color-outline-variant, #999);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant, #999);
+        }
+
+        main {
+            padding: var(--md-ref-spacings-8, 32px);
+            min-height: 600px;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 32px 0 16px 0;
+            color: var(--md-sys-color-on-surface-variant, #666);
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--md-sys-color-surface-container, #f5f5f5);
+            border-radius: 8px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant, #666);
+        }
+
+        button {
+            padding: 8px 16px;
+            border: 1px solid var(--md-sys-color-outline, #ccc);
+            border-radius: 25px;
+            background: var(--md-sys-color-surface, #fff);
+            color: var(--md-sys-color-on-surface, #1a1a1a);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: var(--md-sys-color-surface-container-high, #eee);
+        }
+
+        button.active {
+            background: var(--md-sys-color-primary, #0066cc);
+            color: var(--md-sys-color-on-primary, #fff);
+            border-color: var(--md-sys-color-primary, #0066cc);
+        }
+
+        .info-box {
+            padding: 12px 16px;
+            background: var(--md-sys-color-tertiary-container, #e0f7fa);
+            color: var(--md-sys-color-on-tertiary-container, #004d40);
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .info-box code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <ge-skiplink id="skiplink"></ge-skiplink>
+
+    <header>
+        <h1>GE Skiplink Component - Test Page</h1>
+        <nav id="main-navigation">
+            <p>Menu de navigation</p>
+        </nav>
+        <div id="search">
+            <p>Zone de recherche</p>
+        </div>
+    </header>
+
+    <main id="content">
+        <div class="info-box">
+            Press <code>Tab</code> to show the skiplink bar. It appears at the top of the page on keyboard focus.
+        </div>
+
+        <h2>Controls</h2>
+        <div class="controls">
+            <div class="control-group">
+                <label>Language</label>
+                <div>
+                    <button data-lang="fr" class="active">FR</button>
+                    <button data-lang="en">EN</button>
+                    <button data-lang="de">DE</button>
+                    <button data-lang="it">IT</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Current State</h2>
+        <p>Language: <strong id="lang-value">fr</strong></p>
+    </main>
+
+    <footer id="footer">
+        <p>Pied de page</p>
+    </footer>
+
+    <script type="module">
+        const skiplink = document.getElementById('skiplink');
+        const langValue = document.getElementById('lang-value');
+
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+
+                document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                document.documentElement.lang = lang;
+                skiplink.requestUpdate();
+
+                langValue.textContent = lang;
+            });
+        });
+    </script>
+</body>
+</html>
