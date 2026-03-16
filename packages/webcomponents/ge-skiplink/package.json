@@ -1,17 +1,14 @@
 {
-  "name": "@ael/ge-header-public",
-  "version": "1.0.6",
+  "name": "@ael/ge-skiplink",
+  "version": "1.0.0",
   "private": false,
-  "description": "Web‑component that renders public Geneva websites header.",
+  "description": "Web‑component that renders public Geneva websites skiplink.",
   "license": "Apache-2.0",
   "type": "module",
-  "source": {
-    "./dist/*": "./src/$1"
-  },
-  "module": "dist/ge-header-public.js",
+  "module": "dist/ge-skiplink.js",
   "targets": {
     "module": {
-      "source": "src/ge-header-public.js",
+      "source": "src/ge-skiplink.js",
       "includeNodeModules": true,
       "outputFormat": "esmodule"
     },
@@ -23,8 +20,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/ge-header-public.js",
-      "types": "./dist/types/ge-header-public.d.ts"
+      "import": "./dist/ge-skiplink.js",
+      "types": "./dist/types/ge-skiplink.d.ts"
     }
   },
   "files": [
@@ -35,29 +32,21 @@
     "copy:types": "copyfiles -u 1 \"src/**/*.d.ts\" dist/types",
     "build": "yarn clean && parcel build --target module --no-content-hash --no-source-maps && yarn copy:types",
     "lint": "eslint . --ext .js",
-    "typecheck": "echo \"No TypeScript check needed for JS package (only manual .d.ts)\"",
     "prepublishOnly": "yarn build",
-    "build:demo": "parcel build --target dev",
     "dev": "concurrently \"parcel watch --target dev --no-hmr\" \"sirv .dev-dist --port 1234 --dev\"",
     "start": "yarn dev"
   },
-  "alias": {
-    "@icons/common": "../../website/static/theme/icons/common"
-  },
   "dependencies": {
-    "@m3e/button": "^1.1.8",
-    "@m3e/core": "^1.2.0",
-    "@material/web": "^2.4.1",
-    "@swc/helpers": "^0.5.17",
     "@fontsource/roboto": "5.2.5",
-    "lit": "3.3.0"
+    "@swc/helpers": "^0.5.17",
+    "lit": "3.3.1"
   },
   "devDependencies": {
     "concurrently": "9.1.2",
     "copyfiles": "2.4.1",
     "eslint": "9.39.2",
     "parcel": "2.16.4",
-    "rimraf": "6.0.1",
+    "rimraf": "6.1.2",
     "sirv-cli": "3.0.1"
   },
   "engines": {
@@ -70,7 +59,7 @@
   "keywords": [
     "web‑components",
     "geneva",
-    "header",
+    "skiplink",
     "design‑system"
   ]
 }

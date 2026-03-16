@@ -82,6 +82,7 @@ La liste complète des versions publiées est disponible sur `https://static.app
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-consent/1.latest/ge-consent.js"></script>
 ```
 
+
 ### Intégration sur une page HTML
 
 Pour les applications avec contenus pleine largeur (ex : Mon espace e-démarches) :
@@ -99,8 +100,6 @@ Pour les applications avec marges sur le contenu (ex : Formulaires e-démarches)
 ```
 
 Pour la documentation complète des composants (props, événements, méthodes), voir le [README des Web Components](./packages/webcomponents/README.md).
-
----
 
 ## Installation et développement
 
@@ -125,6 +124,7 @@ yarn test          # Lancer les tests unitaires
 | `<ge-header-armoiries>` | Armoiries SVG pour l'en-tête |
 | `<ge-footer-armoiries>` | Armoiries SVG pour le pied de page |
 | `<ge-consent>` | Consentement cookies pour le tracking Matomo |
+| `<ge-skiplink>` | Liens d'accès rapide (skip navigation) |
 | `<ge-televerse>` | Téléversement de documents via QR code |
 
 Documentation détaillée (props, événements, méthodes) : [README des Web Components](./packages/webcomponents/README.md)
