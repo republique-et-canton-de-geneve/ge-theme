@@ -10,6 +10,7 @@ export @customElement("ge-header-public")
 class GeHeaderPublic extends LitElement {
 
     @property({ type: String }) maxWidth = "true";
+    @property({ type: Boolean, reflect: true }) fullWidth = true;
     @property({ type: Boolean }) showMenu = false;
     @property({ type: Boolean }) showLogin = false;
     @property({ type: String }) loginUrl = "https://www.ge.ch/connexion";
@@ -22,12 +23,31 @@ class GeHeaderPublic extends LitElement {
         super();
         // SWC transpiles class fields into instance properties that shadow
         // Lit's reactive prototype accessors. Delete them so Lit's setters work.
-        for (const prop of ['maxWidth', 'showMenu', 'showLogin', 'loginUrl', 'loginLabel', 'menuData', '_menuOpen']) {
+        for (const prop of ['maxWidth', 'fullWidth', 'showMenu', 'showLogin', 'loginUrl', 'loginLabel', 'menuData', '_menuOpen']) {
             if (this.hasOwnProperty(prop)) {
                 const val = this[prop];
                 delete this[prop];
                 this[prop] = val;
             }
+        }
+    }
+
+    /**
+     * Effective full-width state. The new `fullWidth` boolean takes precedence,
+     * but legacy `maxWidth="false"|"1107px"` still works for backward compat.
+     */
+    get _isFullWidth() {
+        if (this.maxWidth === "false" || this.maxWidth === "1107px") return false;
+        return this.fullWidth;
+    }
+
+    updated(changed) {
+        super.updated(changed);
+        if (changed.has('maxWidth') && this.maxWidth !== 'true') {
+            console.warn(
+                'ge-header-public: maxWidth attribute is deprecated. Use the fullWidth boolean property instead. ' +
+                'Example: <ge-header-public .fullWidth=${false}>'
+            );
         }
     }
 
@@ -44,6 +64,7 @@ class GeHeaderPublic extends LitElement {
             min-height: 81px;
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
             position: relative;
+            z-index: 100;
         }
 
         .header {
@@ -53,6 +74,7 @@ class GeHeaderPublic extends LitElement {
             padding: var(--md-ref-spacings-2, 8px) var(--md-ref-spacings-4, 16px) 0 var(--md-ref-spacings-4, 16px);
             transition: width 0.3s ease;
             margin: auto;
+            position: relative;
         }
 
         a.logo-section {
@@ -106,6 +128,13 @@ class GeHeaderPublic extends LitElement {
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
             border: 0;
+        }
+
+        ge-header-public-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
         }
 
         .maxwidth-formulaire { max-width: 1107px; }
@@ -260,8 +289,8 @@ class GeHeaderPublic extends LitElement {
     render() {
         const maxWidthClasses = {
             "header": true,
-            "maxwidth-full": this.maxWidth === "true",
-            "maxwidth-formulaire": this.maxWidth === "1107px" || this.maxWidth === "false"
+            "maxwidth-full": this._isFullWidth,
+            "maxwidth-formulaire": !this._isFullWidth,
         };
 
         const showActions = this.showLogin || this.showMenu;
@@ -285,15 +314,15 @@ class GeHeaderPublic extends LitElement {
                             ${this._renderMenuButton()}
                         </div>
                     ` : nothing}
+                    ${this.showMenu ? html`
+                        <ge-header-public-menu
+                            .menuData=${this.menuData}
+                            .open=${this._menuOpen}
+                            .constrained=${true}
+                            @_request-close=${this._closeMenu}
+                        ></ge-header-public-menu>
+                    ` : nothing}
                 </div>
-                ${this.showMenu ? html`
-                    <ge-header-public-menu
-                        .menuData=${this.menuData}
-                        .open=${this._menuOpen}
-                        .constrained=${this.maxWidth !== "true"}
-                        @_request-close=${this._closeMenu}
-                    ></ge-header-public-menu>
-                ` : nothing}
             </header>
         `;
     }

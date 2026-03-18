@@ -44,25 +44,21 @@ class GeHeaderPublicMenu extends LitElement {
     }
 
     .panel {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
+      position: relative;
       z-index: 100;
       overflow: hidden;
       max-height: 80vh;
       overflow-y: auto;
-      box-shadow: 0 var(--md-ref-spacings-1, 4px) var(--md-ref-spacings-2, 8px) var(--md-ref-shadow-light-opacity-12, rgba(0,0,0,0.12));
-      border-top: 1px solid var(--md-sys-color-outline-variant);
+      box-shadow: var(--md-sys-elevation-2,
+        0 1px 2px 0 rgba(0,0,0,0.3),
+        0 2px 6px 2px rgba(0,0,0,0.15));
     }
 
     .panel--constrained {
       /* 1107px content + 16px padding each side = same as .header box */
       max-width: calc(1107px + 2 * var(--md-ref-spacings-4, 16px));
       margin: 0 auto;
-      border-radius: 0 0 var(--md-sys-shape-corner-medium, 12px) var(--md-sys-shape-corner-medium, 12px);
-      border: 1px solid var(--md-sys-color-outline-variant);
-      border-top: none;
+      border-radius: var(--md-sys-shape-corner-medium, 12px);
     }
 
     /* Quick access — lighter background */
@@ -73,8 +69,9 @@ class GeHeaderPublicMenu extends LitElement {
 
     .quick-access-content {
       display: flex;
-      flex-direction: column;
-      gap: var(--md-ref-spacings-8, 32px);
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--md-ref-spacings-4, 16px);
     }
 
     .quick-access-buttons {
@@ -142,6 +139,10 @@ class GeHeaderPublicMenu extends LitElement {
       margin: 0;
     }
 
+    m3e-divider {
+      margin: var(--md-ref-spacings-4, 16px) 0;
+    }
+
     .thematique-links {
       list-style: none;
       margin: 0;
@@ -198,6 +199,11 @@ class GeHeaderPublicMenu extends LitElement {
         padding: var(--md-ref-spacings-4, 16px);
       }
 
+      .quick-access-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .quick-access-buttons {
         flex-direction: column;
         align-items: stretch;
@@ -214,7 +220,7 @@ class GeHeaderPublicMenu extends LitElement {
 
       .thematique-column--wide .thematique-links-grid {
         grid-template-columns: 1fr;
-      }
+      }  
     }
   `;
 
