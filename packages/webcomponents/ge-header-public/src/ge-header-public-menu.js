@@ -2,6 +2,7 @@ import { LitElement, html, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import "@m3e/button";
+import "@m3e/core/a11y";
 import "@m3e/divider";
 
 export
@@ -228,6 +229,7 @@ class GeHeaderPublicMenu extends LitElement {
 
     return html`
       <div class="scrim" @click=${this._close} aria-hidden="true"></div>
+      <m3e-focus-trap ?disabled=${!this.open}>
       <nav class=${classMap(panelClasses)} aria-label="Menu principal">
         ${quickAccess.length > 0 ? html`
           <div class="quick-access">
@@ -294,6 +296,7 @@ class GeHeaderPublicMenu extends LitElement {
           </div>
         ` : nothing}
       </nav>
+      </m3e-focus-trap>
     `;
   }
 

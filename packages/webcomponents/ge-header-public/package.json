@@ -43,7 +43,8 @@
   },
   "alias": {
     "@icons/common": "../../website/static/theme/icons/common",
-    "@m3e/core": "../../../node_modules/@m3e/core"
+    "@m3e/core": "../../../node_modules/@m3e/core",
+    "@m3e/core/a11y": "../../../node_modules/@m3e/core/dist/a11y.js"
   },
   "dependencies": {
     "@m3e/button": "^1.1.8",

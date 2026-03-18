@@ -164,37 +164,6 @@ class GeHeaderPublic extends LitElement {
     _handleKeydown(event) {
         if (event.key === "Escape" && this._menuOpen) {
             this._closeMenu();
-            return;
-        }
-
-        // Focus trap when menu is open
-        if (event.key === "Tab" && this._menuOpen) {
-            const menuEl = this.shadowRoot?.querySelector('ge-header-public-menu');
-            const menuButton = this.shadowRoot?.querySelector('#menu-toggle');
-            if (!menuEl) return;
-
-            const focusable = menuEl.getFocusableElements();
-            if (focusable.length === 0) return;
-
-            const allFocusable = menuButton ? [menuButton, ...focusable] : focusable;
-            const first = allFocusable[0];
-            const last = allFocusable[allFocusable.length - 1];
-
-            // Determine currently focused element (may be in shadow DOM)
-            const active = this.shadowRoot.activeElement ||
-                           menuEl.shadowRoot?.activeElement;
-
-            if (event.shiftKey) {
-                if (active === first || !allFocusable.includes(active)) {
-                    event.preventDefault();
-                    last.focus();
-                }
-            } else {
-                if (active === last || !allFocusable.includes(active)) {
-                    event.preventDefault();
-                    first.focus();
-                }
-            }
         }
     }
 
