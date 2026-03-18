@@ -298,11 +298,7 @@ class GeHeaderPublicMenu extends LitElement {
   }
 
   _close() {
-    this.open = false;
-    this.dispatchEvent(new CustomEvent("ge-menu-close", {
-      bubbles: true,
-      composed: true,
-    }));
+    this.dispatchEvent(new CustomEvent("_request-close"));
   }
 
   /**

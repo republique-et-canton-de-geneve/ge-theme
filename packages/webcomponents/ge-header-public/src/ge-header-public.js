@@ -322,7 +322,7 @@ class GeHeaderPublic extends LitElement {
                         .menuData=${this.menuData}
                         .open=${this._menuOpen}
                         .constrained=${this.maxWidth !== "true"}
-                        @ge-menu-close=${this._closeMenu}
+                        @_request-close=${this._closeMenu}
                     ></ge-header-public-menu>
                 ` : nothing}
             </header>
