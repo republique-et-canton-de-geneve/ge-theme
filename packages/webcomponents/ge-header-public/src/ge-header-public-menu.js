@@ -2,7 +2,7 @@ import { LitElement, html, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import "@m3e/button";
-import "@material/web/divider/divider.js";
+import "@m3e/divider";
 
 export
 @customElement("ge-header-public-menu")
@@ -138,12 +138,7 @@ class GeHeaderPublicMenu extends LitElement {
       font-weight: var(--md-sys-typescale-label-medium-weight);
       line-height: var(--md-sys-typescale-label-medium-line-height);
       color: var(--md-sys-color-on-surface);
-      margin: 0 0 var(--md-ref-spacings-3, 12px) 0;
-      padding-bottom: var(--md-ref-spacings-2, 8px);
-    }
-
-    md-divider {
-      margin-bottom: var(--md-ref-spacings-3, 12px);
+      margin: 0;
     }
 
     .thematique-links {
@@ -267,7 +262,7 @@ class GeHeaderPublicMenu extends LitElement {
                   return html`
                     <div class=${classMap(colClasses)}>
                       <h3 class="thematique-title">${section.title}</h3>
-                      <md-divider></md-divider>
+                      <m3e-divider></m3e-divider>
                       <div class="thematique-links-grid">
                         <ul class="thematique-links">
                           ${col1.map(link => html`
@@ -286,7 +281,7 @@ class GeHeaderPublicMenu extends LitElement {
                 return html`
                   <div class=${classMap(colClasses)}>
                     <h3 class="thematique-title">${section.title}</h3>
-                    <md-divider></md-divider>
+                    <m3e-divider></m3e-divider>
                     <ul class="thematique-links">
                       ${section.links.map(link => html`
                         <li><a href=${link.url}>${link.label}</a></li>
@@ -317,7 +312,7 @@ class GeHeaderPublicMenu extends LitElement {
     const panel = this.shadowRoot?.querySelector('.panel');
     if (!panel) return [];
     const focusable = [];
-    // m3e-button and md-divider are custom elements; get their focusable parts
+    // m3e-button is a custom element; get its focusable parts
     panel.querySelectorAll('a[href], button, m3e-button').forEach(el => {
       focusable.push(el);
     });

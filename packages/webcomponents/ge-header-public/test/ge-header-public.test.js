@@ -29,7 +29,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public></ge-header-public>`
     );
-    const menuBtn = el.shadowRoot.querySelector('.action-button[aria-label="Ouvrir le menu"]');
+    const menuBtn = el.shadowRoot.querySelector('#menu-toggle');
     expect(menuBtn).to.be.null;
   });
 
@@ -37,7 +37,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public showMenu></ge-header-public>`
     );
-    const menuBtn = el.shadowRoot.querySelector('.action-button[aria-expanded]');
+    const menuBtn = el.shadowRoot.querySelector('#menu-toggle');
     expect(menuBtn).to.exist;
   });
 
@@ -47,7 +47,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('a.action-button');
+    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
     expect(loginBtn).to.be.null;
   });
 
@@ -55,7 +55,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public showLogin></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('a.action-button');
+    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
     expect(loginBtn).to.exist;
     expect(loginBtn.getAttribute("href")).to.equal("https://www.ge.ch/connexion");
   });
@@ -64,7 +64,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public showLogin loginUrl="https://example.com/login"></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('a.action-button');
+    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
     expect(loginBtn.getAttribute("href")).to.equal("https://example.com/login");
   });
 
@@ -72,8 +72,8 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public showLogin loginLabel="Se connecter"></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('a.action-button');
-    expect(loginBtn.textContent).to.include("Se connecter");
+    const label = el.shadowRoot.querySelector('.action-label');
+    expect(label.textContent).to.include("Se connecter");
   });
 
   // --- Menu toggle tests ---
@@ -82,7 +82,7 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public showMenu></ge-header-public>`
     );
-    const menuBtn = el.shadowRoot.querySelector('.action-button[aria-expanded]');
+    const menuBtn = el.shadowRoot.querySelector('#menu-toggle');
     expect(menuBtn.getAttribute("aria-expanded")).to.equal("false");
 
     menuBtn.click();
@@ -104,7 +104,7 @@ describe("ge-header-public", () => {
       eventDetail = e.detail;
     });
 
-    const menuBtn = el.shadowRoot.querySelector('.action-button[aria-expanded]');
+    const menuBtn = el.shadowRoot.querySelector('#menu-toggle');
     menuBtn.click();
     await el.updateComplete;
 

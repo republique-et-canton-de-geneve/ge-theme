@@ -42,15 +42,17 @@
     "start": "yarn dev"
   },
   "alias": {
-    "@icons/common": "../../website/static/theme/icons/common"
+    "@icons/common": "../../website/static/theme/icons/common",
+    "@m3e/core": "../../../node_modules/@m3e/core"
   },
   "dependencies": {
     "@m3e/button": "^1.1.8",
-    "@m3e/core": "^1.2.0",
-    "@material/web": "^2.4.1",
-    "@swc/helpers": "^0.5.17",
+    "@m3e/core": "^1.1.8",
+    "@m3e/divider": "~1.2.2",
+    "@m3e/icon-button": "~1.2.2",
+"@swc/helpers": "^0.5.17",
     "@fontsource/roboto": "5.2.5",
-    "lit": "3.3.0"
+    "lit": "3.3.1"
   },
   "devDependencies": {
     "concurrently": "9.1.2",

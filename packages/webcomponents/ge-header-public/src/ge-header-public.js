@@ -1,6 +1,7 @@
 import { css, html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import "@m3e/icon-button";
 import "./ge-header-public-menu.js";
 import { DEFAULT_MENU_DATA } from "./default-menu-data.js";
 
@@ -80,46 +81,19 @@ class GeHeaderPublic extends LitElement {
             gap: var(--md-ref-spacings-4, 16px);
         }
 
-        .action-button {
+        .action-button-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: var(--md-ref-spacings-1, 4px);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--md-ref-spacings-2, 8px);
-            color: var(--md-sys-color-on-surface-variant);
-            text-decoration: none;
-            min-width: 48px;
         }
 
-        .action-button:hover {
-            color: var(--md-sys-color-primary);
-        }
-
-        .action-button--active {
-            color: var(--md-sys-color-primary);
-        }
-
-        .action-button:focus-visible {
-            outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-            border-radius: var(--md-sys-shape-corner-extra-small);
-        }
-
-        .action-button svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
-        }
-
-        .action-button span {
+        .action-label {
             font-family: var(--md-sys-typescale-label-small-font);
             font-size: var(--md-sys-typescale-label-small-size);
             font-weight: var(--md-sys-typescale-label-small-weight);
             line-height: var(--md-sys-typescale-label-small-line-height);
+            color: var(--md-sys-color-on-surface-variant);
         }
 
         .visually-hidden {
@@ -148,7 +122,7 @@ class GeHeaderPublic extends LitElement {
                 min-height: 75px;
             }
 
-            .action-button span {
+            .action-label {
                 display: none;
             }
 
@@ -196,7 +170,7 @@ class GeHeaderPublic extends LitElement {
         // Focus trap when menu is open
         if (event.key === "Tab" && this._menuOpen) {
             const menuEl = this.shadowRoot?.querySelector('ge-header-public-menu');
-            const menuButton = this.shadowRoot?.querySelector('.action-button--active');
+            const menuButton = this.shadowRoot?.querySelector('#menu-toggle');
             if (!menuEl) return;
 
             const focusable = menuEl.getFocusableElements();
@@ -275,40 +249,42 @@ class GeHeaderPublic extends LitElement {
     _renderLoginButton() {
         if (!this.showLogin) return nothing;
         return html`
-            <a class="action-button" href=${this.loginUrl} aria-label=${this.loginLabel}>
-                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                    <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
-                </svg>
-                <span>${this.loginLabel}</span>
-            </a>
+            <div class="action-button-wrapper">
+                <m3e-icon-button
+                    href=${this.loginUrl}
+                    aria-label=${this.loginLabel}
+                >
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
+                    </svg>
+                </m3e-icon-button>
+                <span class="action-label">${this.loginLabel}</span>
+            </div>
         `;
     }
 
     _renderMenuButton() {
         if (!this.showMenu) return nothing;
-        const btnClasses = {
-            'action-button': true,
-            'action-button--active': this._menuOpen,
-        };
         return html`
-            <button
-                class=${classMap(btnClasses)}
-                @click=${this._toggleMenu}
-                aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-                aria-expanded=${this._menuOpen}
-                aria-haspopup="true"
-                id="menu-toggle"
-            >
-                ${this._menuOpen
-                    ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-                    </svg>`
-                    : html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
-                    </svg>`
-                }
-                <span>Menu</span>
-            </button>
+            <div class="action-button-wrapper">
+                <m3e-icon-button
+                    id="menu-toggle"
+                    aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                    aria-expanded=${this._menuOpen}
+                    aria-haspopup="true"
+                    @click=${this._toggleMenu}
+                >
+                    ${this._menuOpen
+                        ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                        </svg>`
+                        : html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                        </svg>`
+                    }
+                </m3e-icon-button>
+                <span class="action-label">Menu</span>
+            </div>
         `;
     }
 
