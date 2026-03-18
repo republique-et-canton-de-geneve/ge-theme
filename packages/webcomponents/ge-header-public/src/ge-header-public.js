@@ -122,8 +122,26 @@ class GeHeaderPublic extends LitElement {
             line-height: var(--md-sys-typescale-label-small-line-height);
         }
 
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .maxwidth-formulaire { max-width: 1107px; }
         .maxwidth-full { max-width: 100%; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .header {
+                transition: none;
+            }
+        }
 
         @media (max-width: 768px) {
             header {
@@ -247,7 +265,7 @@ class GeHeaderPublic extends LitElement {
         if (!this.showLogin) return nothing;
         return html`
             <a class="action-button" href=${this.loginUrl} aria-label=${this.loginLabel}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                     <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
                 </svg>
                 <span>${this.loginLabel}</span>
@@ -267,12 +285,13 @@ class GeHeaderPublic extends LitElement {
                 @click=${this._toggleMenu}
                 aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded=${this._menuOpen}
+                aria-haspopup="true"
             >
                 ${this._menuOpen
-                    ? html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
                     </svg>`
-                    : html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    : html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
                         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
                     </svg>`
                 }
@@ -301,6 +320,7 @@ class GeHeaderPublic extends LitElement {
                             height="45"
                         />
                         <span class="title">ge.ch</span>
+                        <span class="visually-hidden">(s'ouvre dans une nouvelle fenêtre)</span>
                     </a>
                     ${showActions ? html`
                         <div class="header-actions">

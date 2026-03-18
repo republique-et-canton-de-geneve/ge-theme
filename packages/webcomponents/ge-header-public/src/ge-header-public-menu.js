@@ -88,6 +88,7 @@ class GeHeaderPublicMenu extends LitElement {
       font-weight: var(--md-sys-typescale-title-small-weight);
       line-height: var(--md-sys-typescale-title-small-line-height);
       color: var(--md-sys-color-on-surface);
+      margin: 0;
     }
 
     .section-title--medium {
@@ -230,12 +231,12 @@ class GeHeaderPublicMenu extends LitElement {
     };
 
     return html`
-      <div class="scrim" @click=${this._close}></div>
-      <nav class=${classMap(panelClasses)} role="navigation" aria-label="Menu principal">
+      <div class="scrim" @click=${this._close} aria-hidden="true"></div>
+      <nav class=${classMap(panelClasses)} aria-label="Menu principal">
         ${quickAccess.length > 0 ? html`
           <div class="quick-access">
             <div class="quick-access-content">
-              <span class="section-title section-title--medium">Accès rapide</span>
+              <h2 class="section-title section-title--medium">Accès rapide</h2>
               <div class="quick-access-buttons">
                 ${quickAccess.map(item => html`
                   <m3e-button
@@ -250,7 +251,7 @@ class GeHeaderPublicMenu extends LitElement {
 
         ${sections.length > 0 ? html`
           <div class="thematiques">
-            <p class="section-title section-title--medium thematiques-header">Thématiques</p>
+            <h2 class="section-title section-title--medium thematiques-header">Thématiques</h2>
             <div class="thematiques-grid">
               ${sections.map(section => {
                 const isWide = section.links && section.links.length > 7;
