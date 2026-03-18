@@ -37,7 +37,8 @@ class GeHeaderPublicMenu extends LitElement {
     .scrim {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--md-sys-color-scrim, #000);
+      opacity: 0.32;
       z-index: 99;
     }
 

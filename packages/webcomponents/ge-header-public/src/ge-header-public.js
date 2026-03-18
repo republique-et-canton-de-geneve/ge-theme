@@ -162,18 +162,25 @@ class GeHeaderPublic extends LitElement {
         super.connectedCallback();
         this._handleOutsideClick = this._handleOutsideClick.bind(this);
         this._handleKeydown = this._handleKeydown.bind(this);
-        document.addEventListener("click", this._handleOutsideClick);
-        document.addEventListener("keydown", this._handleKeydown);
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
+        this._removeGlobalListeners();
+    }
+
+    _addGlobalListeners() {
+        document.addEventListener("click", this._handleOutsideClick);
+        document.addEventListener("keydown", this._handleKeydown);
+    }
+
+    _removeGlobalListeners() {
         document.removeEventListener("click", this._handleOutsideClick);
         document.removeEventListener("keydown", this._handleKeydown);
     }
 
     _handleOutsideClick(event) {
-        if (!this._menuOpen || !this.shadowRoot) return;
+        if (!this.shadowRoot) return;
         const path = event.composedPath();
         if (!path.includes(this.shadowRoot)) {
             this._closeMenu();
@@ -219,7 +226,11 @@ class GeHeaderPublic extends LitElement {
 
     _toggleMenu() {
         this._menuOpen = !this._menuOpen;
-        this.requestUpdate();
+        if (this._menuOpen) {
+            this._addGlobalListeners();
+        } else {
+            this._removeGlobalListeners();
+        }
         this.dispatchEvent(new CustomEvent("ge-menu-toggle", {
             detail: { open: this._menuOpen },
             bubbles: true,
@@ -245,7 +256,7 @@ class GeHeaderPublic extends LitElement {
     _closeMenu() {
         if (!this._menuOpen) return;
         this._menuOpen = false;
-        this.requestUpdate();
+        this._removeGlobalListeners();
         this.dispatchEvent(new CustomEvent("ge-menu-toggle", {
             detail: { open: false },
             bubbles: true,
@@ -254,7 +265,7 @@ class GeHeaderPublic extends LitElement {
 
         // Return focus to menu button
         this.updateComplete.then(() => {
-            const menuButton = this.shadowRoot?.querySelector('button.action-button');
+            const menuButton = this.shadowRoot?.querySelector('#menu-toggle');
             if (menuButton) {
                 menuButton.focus();
             }
@@ -286,6 +297,7 @@ class GeHeaderPublic extends LitElement {
                 aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded=${this._menuOpen}
                 aria-haspopup="true"
+                id="menu-toggle"
             >
                 ${this._menuOpen
                     ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
