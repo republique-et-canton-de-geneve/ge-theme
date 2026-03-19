@@ -63,7 +63,7 @@ class GeHeaderPublic extends LitElement {
         .scrim {
             position: fixed;
             inset: 0;
-            background: var(--md-sys-color-state-opacity-16);
+            background: var(--md-sys-color-scrim);
             opacity: 0;
             pointer-events: none;
             z-index: 99;
