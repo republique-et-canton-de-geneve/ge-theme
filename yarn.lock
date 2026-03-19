@@ -244,6 +244,16 @@
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npm-all/@m3e/dialog/-/dialog-1.2.2.tgz#41775321271e0c23d4f3e8b120b469abffc39cab"
   integrity sha512-i6RnG5Oj3rjvdiBIsgcWA08h7wgFXp3z+f2hL41pa46JEU5xdnB30xaUOSwYxeyAUIAGslgkbi7VLJ8qdyPMRQ==
 
+"@m3e/divider@~1.2.2":
+  version "1.2.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@m3e/divider/-/divider-1.2.2.tgz#61c4c6963ea9303cf289594812ed6b6c53bb6499"
+  integrity sha512-pvrwzOS0YcVyEJG8g5V5ERhlim3Rzdiv1XbBPz0zdysdNDM92f2d2HVvSeRdcyD/T9YcOaL/33fV+2iQMVhLRg==
+
+"@m3e/icon-button@~1.2.2":
+  version "1.2.2"
+  resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npmjs/@m3e/icon-button/-/icon-button-1.2.2.tgz#d3a0ddf3a65e956b995eb6095534683fb74d9636"
+  integrity sha512-Y0MRharkR9swwjM2ncf1PEzYGtZGXnPALuoy8TT//66IpHcVZ82fAiu/PXh8DIBpOM52BOJ6W/LnASkuiNB6Og==
+
 "@material/web@^2.4.1":
   version "2.4.1"
   resolved "https://registry.devops.etat-ge.ch/ctinexus/repository/npm-all/@material/web/-/web-2.4.1.tgz#afd629ba350cf9485c3e19a7bfeb0476f02a0ec1"

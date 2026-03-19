@@ -1,91 +1,177 @@
-# `<ge-header-public>` – Composant Web Header Public (GE-Theme)
+# `<ge-header-public>` — Composant Web Header Public (GE-Theme)
 
-Le composant `<ge-header-public>` est un **Web Component** développé avec [Lit](https://lit.dev), qui implémente l’en-tête public de la République et canton de Genève, selon la charte graphique **GE-Theme**.
+Le composant `<ge-header-public>` est un **Web Component** developpe avec [Lit](https://lit.dev), qui implemente l'en-tete public de la Republique et canton de Geneve, selon la charte graphique **GE-Theme**.
 
+## Fonctionnalites
 
----
+- Affiche le logo des armoiries genevoises avec un lien vers le site officiel `ge.ch`
+- Bouton de connexion optionnel avec URL configurable
+- Menu de navigation mega-menu avec acces rapide et thematiques
+- Focus trap automatique dans le menu ouvert (via `m3e-focus-trap`)
+- Fermeture du menu par touche Echap, clic hors du panneau, ou bouton
+- Design responsive (adaptation mobile via media queries)
+- Support des variables CSS Material Design 3
 
-## ✨ Fonctionnalités
+## Installation via CDN
 
-- Affiche le logo des **armoiries genevoises** avec un lien vers le site officiel `ge.ch`
-- Présente le titre `ge.ch` en tant qu’identité visuelle principale
-- Entièrement responsive
-- Intègre l'image des **armoiries genevoises**, dynamique selon le thème (`light` ou `dark`)
-- Design responsive compatible mobile
-- Support de la personnalisation via **CSS variables Material Design**
-
----
-
-## ✅  Installation et utilisation via CDN
-
-### Ajouter le script ci-dessous dans votre page HTML
+Ajoutez le script dans votre page HTML :
 
 ```html
 <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
 ```
 
-### Ajoutez les feuilles de style suivantes dans la balise `<head>` de votre application :
+Ajoutez les feuilles de style dans la balise `<head>` :
 
- par défaut
-  ```html
-  <link rel="stylesheet" href=https://static.app.ge.ch/theme/css/primitives.css />
-  ```
+```html
+<!-- Variables de base (requis) -->
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
 
-  si l'application supporte uniquement le thème clair (forcer le thème clair)
-  ```html
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-  ```
+<!-- Theme selon vos besoins (choisir une option) -->
 
-  si l'application supporte l'affichage system clair et sombre
-  ```html
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
-  ```
+<!-- Option 1 : Theme clair uniquement -->
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
 
-  si l'application propose une option d'affichage clair et sombre
-  ```html
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-  ```
-  
-  si l'application supporte uniquement le thème sombre (forcer le thème sombre)
-  ```html
-  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-  ```
+<!-- Option 2 : Theme sombre uniquement -->
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
 
-## Exemple complet avec l'import via CDN 
+<!-- Option 3 : Theme automatique selon les preferences systeme -->
+<link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+```
+
+## Utilisation
+
+### Exemple minimal
+
+```html
+<ge-header-public></ge-header-public>
+```
+
+### Avec menu et bouton de connexion
+
+```html
+<ge-header-public showMenu showLogin></ge-header-public>
+```
+
+### Exemple complet
 
 ```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Exemple GE Footer</title>
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
-
-    <!-- si l'application supporte uniquement le thème clair (forcer le thème clair)-->
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-  
-    <!-- si l'application supporte l'affichage system clair et sombre-->  
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
-
-    <!-- si l'application propose une option d'affichage clair et sombre --> 
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/light.css" />
-    
-    <!-- si l'application supporte uniquement le thème sombre (forcer le thème sombre)-->
-    <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/dark.css" />
-  
-
-<script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
+  <title>Exemple GE Header Public</title>
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/primitives.css" />
+  <link rel="stylesheet" href="https://static.app.ge.ch/theme/css/theme.css" />
+  <script type="module" src="https://static.app.ge.ch/webcomponents/ge-header-public/latest/ge-header-public.js"></script>
 </head>
 <body>
-  <!-- Votre contenu ici -->
-  <ge-header-public theme="light"></ge-header-public>
+  <ge-header-public showMenu showLogin></ge-header-public>
+  <main>Votre contenu ici</main>
 </body>
 </html>
-
 ```
-## Propriétés <ge-header-public>
 
-- Props disponibles :
-    - `maxWidth`: booleen "true" ou "false" (true=sans marge à gauche et à droite / false= avec marge à gauche et à droite)
+## Proprietes
+
+| Attribut     | Type      | Defaut                            | Description                                                                                         |
+|--------------|-----------|-----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `fullWidth`  | `boolean` | `true`                            | `true` = pleine largeur, `false` = largeur max 1107px. Le panneau menu est toujours contraint a 1107px. |
+| `showMenu`   | `boolean` | `false`                           | Affiche le bouton menu et le panneau de navigation.                                                 |
+| `showLogin`  | `boolean` | `false`                           | Affiche le bouton de connexion.                                                                     |
+| `loginUrl`   | `string`  | `https://www.ge.ch/connexion`     | URL cible du bouton de connexion.                                                                   |
+| `loginLabel` | `string`  | `Connexion`                       | Libelle affiche sous le bouton de connexion.                                                        |
+| `menuData`   | `object`  | Donnees de navigation ge.ch       | Donnees du menu (voir structure ci-dessous).                                                        |
+| `maxWidth`   | `string`  | `"true"`                          | **Deprecie.** Utiliser `fullWidth` a la place.                                                      |
+
+### Controle de la largeur
+
+```html
+<!-- Pleine largeur (defaut) -->
+<ge-header-public showMenu></ge-header-public>
+
+<!-- Largeur contrainte a 1107px -->
+<ge-header-public showMenu .fullWidth=${false}></ge-header-public>
+```
+
+Le panneau du menu est toujours contraint a 1107px, meme lorsque le header est en pleine largeur.
+
+### Structure de `menuData`
+
+L'attribut `menuData` accepte un objet avec deux tableaux : `quickAccess` (boutons d'acces rapide) et `sections` (colonnes thematiques).
+
+```javascript
+{
+  quickAccess: [
+    { label: "Demarches", url: "https://www.ge.ch/demarches", variant: "filled" },
+    { label: "Offres d'emploi", url: "https://www.ge.ch/offres-emploi-etat-geneve/liste-offres" },
+  ],
+  sections: [
+    {
+      title: "A la une",
+      links: [
+        { label: "Actualites", url: "https://www.ge.ch/publication?type=460" },
+        { label: "Dossiers", url: "https://www.ge.ch/dossier" },
+      ],
+    },
+    {
+      title: "Demarches",
+      links: [
+        { label: "Ecoles et formations", url: "https://www.ge.ch/demarches/ecoles-formations" },
+        { label: "Entreprises", url: "https://www.ge.ch/demarches/entreprises" },
+      ],
+    },
+  ],
+}
+```
+
+| Champ                    | Type     | Description                                                                 |
+|--------------------------|----------|-----------------------------------------------------------------------------|
+| `quickAccess[].label`    | `string` | Libelle du bouton.                                                          |
+| `quickAccess[].url`      | `string` | URL cible du bouton.                                                        |
+| `quickAccess[].variant`  | `string` | `"filled"` pour un bouton rempli, sinon `"outlined"` par defaut.            |
+| `sections[].title`       | `string` | Titre de la colonne thematique.                                             |
+| `sections[].links`       | `array`  | Tableau de liens `{ label, url }`.                                          |
+
+Les sections avec plus de 7 liens sont automatiquement affichees sur deux colonnes.
+
+## Evenements
+
+| Evenement        | Detail              | Description                                              |
+|------------------|---------------------|----------------------------------------------------------|
+| `ge-menu-toggle` | `{ open: boolean }` | Emis a l'ouverture ou la fermeture du menu.              |
+
+```javascript
+document.querySelector('ge-header-public').addEventListener('ge-menu-toggle', (e) => {
+  console.log('Menu ouvert :', e.detail.open);
+});
+```
+
+## Accessibilite
+
+- Le bouton menu indique son etat via `aria-expanded` et `aria-haspopup`
+- Le panneau de navigation est un `<nav aria-label="Menu principal">`
+- Le focus est piege dans le menu ouvert via `m3e-focus-trap`
+- La touche Echap ferme le menu et rend le focus au bouton menu
+- Toutes les icones SVG sont marquees `aria-hidden="true"`
+- Le lien logo indique l'ouverture dans une nouvelle fenetre aux lecteurs d'ecran
+- `prefers-reduced-motion: reduce` desactive les transitions
+
+## Developpement
+
+```bash
+# Installation des dependances
+yarn install
+
+# Lancement du serveur de developpement
+yarn dev
+
+# Build pour production
+yarn build
+
+# Lint
+yarn lint
+```
+
+## Licence
+
+Apache-2.0

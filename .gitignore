@@ -86,3 +86,4 @@ yarn-error.log*
 CLAUDE.md
 custom-claude-scripts/
 .claude/
+/.yarn/

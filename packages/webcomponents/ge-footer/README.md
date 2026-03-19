@@ -73,16 +73,16 @@ Le composant se place automatiquement dans la zone `footer` d'une grille CSS si 
 
 ## Propriétés
 
-| Attribut | Type | Défaut | Description |
-|----------|------|--------|-------------|
-| `theme` | `'light'` \| `'dark'` | Auto (système) | Thème d'affichage. Par défaut, suit les préférences système. |
-| `maxWidth` | `boolean` | `true` | `true` = pleine largeur, `false` = largeur max 1107px |
-| `locale` | `'fr'` \| `'en'` \| `'es'` \| `'pt'` | Auto (DOM) | Langue des libellés. Par défaut, hérite de l'attribut `lang` de l'ancêtre le plus proche, fallback `fr`. |
-| `links` | `JSON` | Liens par défaut | Tableau JSON de liens personnalisés |
-| `contactLink` | `string` | `https://www.ge.ch/c/footer-edm-aide` | URL du lien Contact |
+| Attribut            | Type | Défaut | Description |
+|---------------------|------|--------|-------------|
+| `theme`             | `'light'` \| `'dark'` | Auto (système) | Thème d'affichage. Par défaut, suit les préférences système. |
+| `maxwidth`          | `boolean` | `true` | `true` = pleine largeur, `false` = largeur max 1107px |
+| `locale`            | `'fr'` \| `'en'` \| `'es'` \| `'pt'` | Auto (DOM) | Langue des libellés. Par défaut, hérite de l'attribut `lang` de l'ancêtre le plus proche, fallback `fr`. |
+| `links`             | `JSON` | Liens par défaut | Tableau JSON de liens personnalisés |
+| `contactLink`       | `string` | `https://www.ge.ch/c/footer-edm-aide` | URL du lien Contact |
 | `accessibilityLink` | `string` | `https://www.ge.ch/c/footer-edm-accessibilite` | URL du lien Accessibilité |
-| `privacyLink` | `string` | `https://www.ge.ch/c/footer-edm-confidentialite` | URL du lien Confidentialité |
-| `termsLink` | `string` | `https://www.ge.ch/c/footer-edm-cgu` | URL du lien CGU |
+| `privacyLink`       | `string` | `https://www.ge.ch/c/footer-edm-confidentialite` | URL du lien Confidentialité |
+| `termsLink`         | `string` | `https://www.ge.ch/c/footer-edm-cgu` | URL du lien CGU |
 
 ### Gestion du thème
 

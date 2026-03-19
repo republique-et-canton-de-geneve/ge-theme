@@ -88,8 +88,10 @@ const STYLES = `
  *
  * Events dispatched:
  *   televerse-ready       - Session created, QR code displayed. Detail: { token, uploadUrl }
- *   televerse-upload      - A file was uploaded. Detail: { documentId, fileName }
- *   televerse-complete    - User finalized uploads. Detail: { documentId, pageCount }
+ *   televerse-upload      - A file was uploaded. Detail: { documentId, fileName, pageId, pageIndex, totalPages }
+ *   televerse-page-deleted   - A page was deleted. Detail: { documentId, pageId, totalPages }
+ *   televerse-pages-reordered - Pages were reordered. Detail: { documentId, totalPages }
+ *   televerse-complete    - User finalized uploads. Detail: { documentId, totalPages }
  *   televerse-error       - An error occurred. Detail: { message }
  *   televerse-expired     - Session expired.
  */
@@ -214,10 +216,37 @@ class GeTeleverse extends HTMLElement {
 
         this._eventSource.addEventListener('upload-complete', (e) => {
             const data = JSON.parse(e.data);
-            this._setStatus('uploading', `Page reçue : ${data.fileName || 'document'}`);
+            const pageLabel = data.totalPages > 0
+                ? `Page ${data.pageIndex + 1}/${data.totalPages} reçue : ${data.fileName || 'document'}`
+                : `Page reçue : ${data.fileName || 'document'}`;
+            this._setStatus('uploading', pageLabel);
             this.dispatchEvent(new CustomEvent('televerse-upload', {
                 bubbles: true, composed: true,
-                detail: { documentId: data.documentId, fileName: data.fileName },
+                detail: {
+                    documentId: data.documentId,
+                    fileName: data.fileName,
+                    pageId: data.pageId,
+                    pageIndex: data.pageIndex,
+                    totalPages: data.totalPages,
+                },
+            }));
+        });
+
+        this._eventSource.addEventListener('page-deleted', (e) => {
+            const data = JSON.parse(e.data);
+            this._setStatus('uploading', `Page supprimée (${data.totalPages} restante${data.totalPages > 1 ? 's' : ''})`);
+            this.dispatchEvent(new CustomEvent('televerse-page-deleted', {
+                bubbles: true, composed: true,
+                detail: { documentId: data.documentId, pageId: data.pageId, totalPages: data.totalPages },
+            }));
+        });
+
+        this._eventSource.addEventListener('pages-reordered', (e) => {
+            const data = JSON.parse(e.data);
+            this._setStatus('uploading', `Pages réordonnées (${data.totalPages})`);
+            this.dispatchEvent(new CustomEvent('televerse-pages-reordered', {
+                bubbles: true, composed: true,
+                detail: { documentId: data.documentId, totalPages: data.totalPages },
             }));
         });
 
@@ -227,7 +256,7 @@ class GeTeleverse extends HTMLElement {
             this._closeSSE();
             this.dispatchEvent(new CustomEvent('televerse-complete', {
                 bubbles: true, composed: true,
-                detail: { documentId: data.documentId, pageCount: data.fileSize },
+                detail: { documentId: data.documentId, totalPages: data.totalPages },
             }));
         });
 
