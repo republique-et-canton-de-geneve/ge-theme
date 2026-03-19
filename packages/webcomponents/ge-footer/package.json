@@ -1,6 +1,6 @@
 {
   "name": "@ael/ge-footer",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "private": false,
   "description": "Web‑component that renders public Geneva websites footer.",
   "license": "Apache-2.0",
