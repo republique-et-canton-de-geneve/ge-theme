@@ -15,11 +15,13 @@ class GeHeaderPublicMenu extends LitElement {
 
   @property({ type: Boolean }) constrained = false;
 
+  @property({ type: Boolean }) rightAligned = false;
+
   constructor() {
     super();
     // SWC transpiles class fields into instance properties that shadow
     // Lit's reactive prototype accessors. Delete them so Lit's setters work.
-    for (const prop of ['menuData', 'open', 'constrained']) {
+    for (const prop of ['menuData', 'open', 'constrained', 'rightAligned']) {
       if (this.hasOwnProperty(prop)) {
         const val = this[prop];
         delete this[prop];
@@ -33,16 +35,10 @@ class GeHeaderPublicMenu extends LitElement {
       display: block;
       font-family: var(--md-sys-typescale-body-medium-font);
       color: var(--md-sys-color-on-surface);
+      pointer-events: none;
     }
 
-    .scrim {
-      position: fixed;
-      inset: 0;
-      background: var(--md-sys-color-scrim, #000);
-      opacity: 0.32;
-      z-index: 99;
-    }
-
+    /* Panel — closing transition */
     .panel {
       position: relative;
       z-index: 100;
@@ -52,13 +48,36 @@ class GeHeaderPublicMenu extends LitElement {
       box-shadow: var(--md-sys-elevation-2,
         0 1px 2px 0 rgba(0,0,0,0.3),
         0 2px 6px 2px rgba(0,0,0,0.15));
+      transform-origin: center;
+      transform: scale(0.8);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 100ms cubic-bezier(0.2, 0.0, 0, 1.0),
+        transform 100ms cubic-bezier(0.2, 0.0, 0, 1.0),
+        visibility 100ms cubic-bezier(0.2, 0.0, 0, 1.0);
+    }
+
+    :host([open]) .panel {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition:
+        opacity 100ms cubic-bezier(0.2, 0.0, 0, 1.0),
+        transform 100ms cubic-bezier(0.2, 0.0, 0, 1.0),
+        visibility 100ms cubic-bezier(0.2, 0.0, 0, 1.0);
     }
 
     .panel--constrained {
-      /* 1107px content + 16px padding each side = same as .header box */
-      max-width: calc(1107px + 2 * var(--md-ref-spacings-4, 16px));
+      width: 1088px;
+      max-width: 100%;
       margin: 0 auto;
       border-radius: var(--md-sys-shape-corner-medium, 12px);
+    }
+
+    .panel--constrained.panel--right-aligned {
+      margin: 0 0 0 auto;
     }
 
     /* Quick access — lighter background */
@@ -131,10 +150,10 @@ class GeHeaderPublicMenu extends LitElement {
     }
 
     .thematique-title {
-      font-family: var(--md-sys-typescale-label-medium-font);
       font-size: var(--md-sys-typescale-label-medium-size);
-      font-weight: var(--md-sys-typescale-label-medium-weight);
       line-height: var(--md-sys-typescale-label-medium-line-height);
+      letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+      font-weight: 500;
       color: var(--md-sys-color-on-surface);
       margin: 0;
     }
@@ -155,12 +174,12 @@ class GeHeaderPublicMenu extends LitElement {
     .thematique-links a {
       color: var(--md-sys-color-primary);
       text-decoration: none;
-      font-family: var(--md-sys-typescale-label-medium-font);
       font-size: var(--md-sys-typescale-label-medium-size);
-      font-weight: var(--md-sys-typescale-label-medium-weight);
       line-height: var(--md-sys-typescale-label-medium-line-height);
+      letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+      font-weight: 500;
       display: block;
-      padding: var(--md-ref-spacings-1, 4px) 0;
+      padding: var(--md-ref-spacings-1, 4px) 0 0 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -220,21 +239,28 @@ class GeHeaderPublicMenu extends LitElement {
 
       .thematique-column--wide .thematique-links-grid {
         grid-template-columns: 1fr;
-      }  
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scrim,
+      :host([open]) .scrim,
+      .panel,
+      :host([open]) .panel {
+        transition: none;
+      }
     }
   `;
 
   render() {
-    if (!this.open) return nothing;
-
     const { quickAccess = [], sections = [] } = this.menuData || {};
     const panelClasses = {
       'panel': true,
       'panel--constrained': this.constrained,
+      'panel--right-aligned': this.rightAligned,
     };
 
     return html`
-      <div class="scrim" @click=${this._close} aria-hidden="true"></div>
       <m3e-focus-trap ?disabled=${!this.open}>
       <nav class=${classMap(panelClasses)} aria-label="Menu principal">
         ${quickAccess.length > 0 ? html`

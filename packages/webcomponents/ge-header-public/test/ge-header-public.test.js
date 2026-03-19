@@ -47,25 +47,25 @@ describe("ge-header-public", () => {
     const el = await fixture(
       html`<ge-header-public></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
-    expect(loginBtn).to.be.null;
+    const loginLink = el.shadowRoot.querySelector('a.action-button-wrapper');
+    expect(loginLink).to.be.null;
   });
 
   it("shows login button when showLogin is set", async () => {
     const el = await fixture(
       html`<ge-header-public showLogin></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
-    expect(loginBtn).to.exist;
-    expect(loginBtn.getAttribute("href")).to.equal("https://www.ge.ch/connexion");
+    const loginLink = el.shadowRoot.querySelector('a.action-button-wrapper');
+    expect(loginLink).to.exist;
+    expect(loginLink.getAttribute("href")).to.equal("https://www.ge.ch/connexion");
   });
 
   it("uses custom loginUrl when provided", async () => {
     const el = await fixture(
       html`<ge-header-public showLogin loginUrl="https://example.com/login"></ge-header-public>`
     );
-    const loginBtn = el.shadowRoot.querySelector('m3e-icon-button[href]');
-    expect(loginBtn.getAttribute("href")).to.equal("https://example.com/login");
+    const loginLink = el.shadowRoot.querySelector('a.action-button-wrapper');
+    expect(loginLink.getAttribute("href")).to.equal("https://example.com/login");
   });
 
   it("uses custom loginLabel when provided", async () => {
