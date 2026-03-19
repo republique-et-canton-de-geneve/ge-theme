@@ -125,27 +125,29 @@ class GeFooter extends LitElement {
             }
         }
 
-        #ge-footer.maxwidth-false {
+        #ge-footer.maxwidth-formulaire {
             max-width: 1107px;
         }
 
-        #ge-footer.maxwidth-true {
+        #ge-footer.maxwidth-full {
             max-width: 100%;
         }
     `;
 
-    /** When true, footer spans full width. When false, constrained to 1107px. */
-    @property({ type: Boolean, reflect: true, attribute: 'maxwidth' })
-    get maxWidth() {
-        return this.#maxWidthValue;
-    }
-    set maxWidth(value) {
-        const oldValue = this.#maxWidthValue;
-        this.#maxWidthValue = Boolean(value);
-        this.requestUpdate('maxWidth', oldValue);
-    }
+    /** @deprecated Use fullWidth instead. */
+    @property({ type: String, attribute: 'maxwidth' }) maxWidth = "true";
 
-    #maxWidthValue = true;
+    /** When true, footer spans full width. When false, constrained to 1107px. */
+    @property({ type: Boolean, reflect: true }) fullWidth = true;
+
+    /**
+     * Effective full-width state. The new `fullWidth` boolean takes precedence,
+     * but legacy `maxWidth="false"` still works for backward compat.
+     */
+    get _isFullWidth() {
+        if (this.maxWidth === "false") return false;
+        return this.fullWidth;
+    }
 
     /** URL for the Contact link */
     @property({ type: String }) contactLink = "https://www.ge.ch/c/footer-edm-aide";
@@ -227,6 +229,16 @@ class GeFooter extends LitElement {
         }
     };
 
+    updated(changed) {
+        super.updated(changed);
+        if (changed.has('maxWidth') && this.maxWidth !== 'true') {
+            console.warn(
+                'ge-footer: maxwidth attribute is deprecated. Use the fullWidth boolean property instead. ' +
+                'Example: <ge-footer .fullWidth=${false}>'
+            );
+        }
+    }
+
     connectedCallback() {
         super.connectedCallback();
 
@@ -274,8 +286,8 @@ class GeFooter extends LitElement {
 
     render() {
         const containerClasses = {
-            "maxwidth-true": this.maxWidth,
-            "maxwidth-false": !this.maxWidth
+            "maxwidth-full": this._isFullWidth,
+            "maxwidth-formulaire": !this._isFullWidth,
         };
 
         return html`
