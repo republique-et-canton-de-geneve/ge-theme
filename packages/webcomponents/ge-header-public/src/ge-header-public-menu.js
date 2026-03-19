@@ -93,6 +93,10 @@ class GeHeaderPublicMenu extends LitElement {
       gap: var(--md-ref-spacings-4, 16px);
     }
 
+    .quick-access-content > .section-title {
+      margin-right: var(--md-ref-spacings-4, 16px);
+    }
+
     .quick-access-buttons {
       display: flex;
       flex-wrap: wrap;
