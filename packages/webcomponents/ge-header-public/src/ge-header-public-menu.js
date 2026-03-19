@@ -104,6 +104,10 @@ class GeHeaderPublicMenu extends LitElement {
       align-items: center;
     }
 
+    .quick-access-buttons m3e-button[variant="outlined"] {
+      --m3e-outlined-button-label-text-color: var(--md-sys-color-primary);
+    }
+
     .section-title {
       font-family: var(--md-sys-typescale-title-small-font);
       font-size: var(--md-sys-typescale-title-small-size);

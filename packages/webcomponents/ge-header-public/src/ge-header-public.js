@@ -107,10 +107,10 @@ class GeHeaderPublic extends LitElement {
         }
 
         .title {
-            font-family: var(--md-sys-typescale-headline-medium-font);
-            font-size: var(--md-sys-typescale-headline-medium-size);
+            font-family: var(--md-sys-typescale-headline-small-font);
+            font-size: var(--md-sys-typescale-headline-small-size);
             font-weight: var(--md-ref-typeface-weight-400);
-            color: var(--md-sys-color-on-surface-variant);
+            color: var(--md-sys-color-on-surface);
         }
 
         /* Action buttons (login, menu) */
@@ -130,6 +130,18 @@ class GeHeaderPublic extends LitElement {
         a.action-button-wrapper {
             text-decoration: none;
             color: inherit;
+        }
+
+        .action-button-wrapper:hover,
+        .action-button-wrapper:active,
+        .action-button-wrapper--active {
+            color: var(--md-sys-color-primary);
+        }
+
+        .action-button-wrapper:hover .action-label,
+        .action-button-wrapper:active .action-label,
+        .action-button-wrapper--active .action-label {
+            color: var(--md-sys-color-primary);
         }
 
         .action-button-wrapper:focus-visible {
@@ -304,7 +316,7 @@ class GeHeaderPublic extends LitElement {
     _renderMenuButton() {
         if (!this.showMenu) return nothing;
         return html`
-            <div class="action-button-wrapper"
+            <div class="action-button-wrapper ${this._menuOpen ? 'action-button-wrapper--active' : ''}"
                 id="menu-toggle"
                 role="button"
                 tabindex="0"
