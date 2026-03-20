@@ -54,14 +54,31 @@ class GeHeaderPublic extends LitElement {
     static styles = css`
         :host {
             display: block;
+            position: relative;
+            z-index: 0;
             font-family: var(--md-sys-typescale-body-medium-font);
             color: var(--md-sys-color-on-surface);
+        }
+
+        .scrim {
+            position: fixed;
+            inset: 0;
+            background: var(--md-sys-color-scrim);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 99;
+            transition: opacity 150ms cubic-bezier(0.2, 0.0, 0, 1.0);
+        }
+
+        .scrim--visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         header {
             background: var(--md-sys-color-surface);
             box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
-            min-height: 81px;
+            height: 80px;
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
             position: relative;
             z-index: 100;
@@ -71,8 +88,8 @@ class GeHeaderPublic extends LitElement {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--md-ref-spacings-2, 8px) var(--md-ref-spacings-4, 16px) 0 var(--md-ref-spacings-4, 16px);
-            transition: width 0.3s ease;
+            height: 100%;
+            padding: 0 var(--md-ref-spacings-4, 16px);
             margin: auto;
             position: relative;
         }
@@ -90,10 +107,10 @@ class GeHeaderPublic extends LitElement {
         }
 
         .title {
-            font-family: var(--md-sys-typescale-headline-medium-font);
-            font-size: var(--md-sys-typescale-headline-medium-size);
+            font-family: var(--md-sys-typescale-headline-small-font);
+            font-size: var(--md-sys-typescale-headline-small-size);
             font-weight: var(--md-ref-typeface-weight-400);
-            color: var(--md-sys-color-on-surface-variant);
+            color: var(--md-sys-color-on-surface);
         }
 
         /* Action buttons (login, menu) */
@@ -107,7 +124,35 @@ class GeHeaderPublic extends LitElement {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--md-ref-spacings-1, 4px);
+            cursor: pointer;
+        }
+
+        a.action-button-wrapper {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-button-wrapper:hover,
+        .action-button-wrapper:active,
+        .action-button-wrapper--active {
+            color: var(--md-sys-color-primary);
+        }
+
+        .action-button-wrapper:hover .action-label,
+        .action-button-wrapper:active .action-label,
+        .action-button-wrapper--active .action-label {
+            color: var(--md-sys-color-primary);
+        }
+
+        .action-button-wrapper:focus-visible {
+            outline: 2px solid var(--md-sys-color-primary);
+            outline-offset: var(--md-ref-spacings-1, 4px);
+            border-radius: var(--md-sys-shape-corner-medium, 12px);
+        }
+
+        .action-button-wrapper m3e-icon-button {
+            --m3e-icon-button-small-icon-size: 37px;
+            --m3e-icon-button-small-container-height: 37px;
         }
 
         .action-label {
@@ -116,6 +161,7 @@ class GeHeaderPublic extends LitElement {
             font-weight: var(--md-sys-typescale-label-small-weight);
             line-height: var(--md-sys-typescale-label-small-line-height);
             color: var(--md-sys-color-on-surface-variant);
+            user-select: none;
         }
 
         .visually-hidden {
@@ -132,25 +178,25 @@ class GeHeaderPublic extends LitElement {
 
         ge-header-public-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% - 11px);
             left: 0;
             right: 0;
+        }
+
+        .maxwidth-full > ge-header-public-menu {
+            right: var(--md-ref-spacings-4, 16px);
         }
 
         .maxwidth-formulaire { max-width: 1107px; }
         .maxwidth-full { max-width: 100%; }
 
         @media (prefers-reduced-motion: reduce) {
-            .header {
+            .scrim {
                 transition: none;
             }
         }
 
         @media (max-width: 768px) {
-            header {
-                min-height: 75px;
-            }
-
             .action-label {
                 display: none;
             }
@@ -182,12 +228,21 @@ class GeHeaderPublic extends LitElement {
         document.removeEventListener("keydown", this._handleKeydown);
     }
 
+    _handleMenuKeydown(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this._toggleMenu();
+        }
+    }
+
     _handleOutsideClick(event) {
         if (!this.shadowRoot) return;
         const path = event.composedPath();
-        if (!path.includes(this.shadowRoot)) {
-            this._closeMenu();
-        }
+        const menuPanel = this.shadowRoot.querySelector('ge-header-public-menu');
+        const menuToggle = this.shadowRoot.querySelector('#menu-toggle');
+        if (menuPanel && path.includes(menuPanel)) return;
+        if (menuToggle && path.includes(menuToggle)) return;
+        this._closeMenu();
     }
 
     _handleKeydown(event) {
@@ -247,31 +302,31 @@ class GeHeaderPublic extends LitElement {
     _renderLoginButton() {
         if (!this.showLogin) return nothing;
         return html`
-            <div class="action-button-wrapper">
-                <m3e-icon-button
-                    href=${this.loginUrl}
-                    aria-label=${this.loginLabel}
-                >
+            <a class="action-button-wrapper" href=${this.loginUrl} aria-label=${this.loginLabel}>
+                <m3e-icon-button tabindex="-1" aria-hidden="true">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
                         <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
                     </svg>
                 </m3e-icon-button>
                 <span class="action-label">${this.loginLabel}</span>
-            </div>
+            </a>
         `;
     }
 
     _renderMenuButton() {
         if (!this.showMenu) return nothing;
         return html`
-            <div class="action-button-wrapper">
-                <m3e-icon-button
-                    id="menu-toggle"
-                    aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-                    aria-expanded=${this._menuOpen}
-                    aria-haspopup="true"
-                    @click=${this._toggleMenu}
-                >
+            <div class="action-button-wrapper ${this._menuOpen ? 'action-button-wrapper--active' : ''}"
+                id="menu-toggle"
+                role="button"
+                tabindex="0"
+                aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded=${this._menuOpen}
+                aria-haspopup="true"
+                @click=${this._toggleMenu}
+                @keydown=${this._handleMenuKeydown}
+            >
+                <m3e-icon-button tabindex="-1" aria-hidden="true">
                     ${this._menuOpen
                         ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
                             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
@@ -294,6 +349,11 @@ class GeHeaderPublic extends LitElement {
         };
 
         const showActions = this.showLogin || this.showMenu;
+
+        const scrimClasses = {
+            'scrim': true,
+            'scrim--visible': this._menuOpen,
+        };
 
         return html`
             <header role="banner">
@@ -319,11 +379,13 @@ class GeHeaderPublic extends LitElement {
                             .menuData=${this.menuData}
                             .open=${this._menuOpen}
                             .constrained=${true}
+                            .rightAligned=${this._isFullWidth}
                             @_request-close=${this._closeMenu}
                         ></ge-header-public-menu>
                     ` : nothing}
                 </div>
             </header>
+            <div class=${classMap(scrimClasses)} @click=${this._closeMenu} aria-hidden="true"></div>
         `;
     }
 }

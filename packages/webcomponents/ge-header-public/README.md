@@ -75,7 +75,7 @@ Ajoutez les feuilles de style dans la balise `<head>` :
 
 | Attribut     | Type      | Defaut                            | Description                                                                                         |
 |--------------|-----------|-----------------------------------|-----------------------------------------------------------------------------------------------------|
-| `fullWidth`  | `boolean` | `true`                            | `true` = pleine largeur, `false` = largeur max 1107px. Le panneau menu est toujours contraint a 1107px. |
+| `fullWidth`  | `boolean` | `true`                            | `true` = pleine largeur, `false` = largeur max 1107px. Le panneau menu est toujours contraint a 1088px. |
 | `showMenu`   | `boolean` | `false`                           | Affiche le bouton menu et le panneau de navigation.                                                 |
 | `showLogin`  | `boolean` | `false`                           | Affiche le bouton de connexion.                                                                     |
 | `loginUrl`   | `string`  | `https://www.ge.ch/connexion`     | URL cible du bouton de connexion.                                                                   |
@@ -93,7 +93,9 @@ Ajoutez les feuilles de style dans la balise `<head>` :
 <ge-header-public showMenu .fullWidth=${false}></ge-header-public>
 ```
 
-Le panneau du menu est toujours contraint a 1107px, meme lorsque le header est en pleine largeur.
+Le panneau du menu est toujours contraint a 1088px, meme lorsque le header est en pleine largeur.
+
+> **Note :** L'attribut `maxWidth` est deprecie. Utilisez `fullWidth` a la place.
 
 ### Structure de `menuData`
 
@@ -146,12 +148,21 @@ document.querySelector('ge-header-public').addEventListener('ge-menu-toggle', (e
 });
 ```
 
+## Comportement visuel
+
+- Le header a une hauteur fixe de 80px (+ 1px de bordure inferieure)
+- Les boutons Connexion et Menu passent en couleur `primary` au survol, a l'activation, et (pour Menu) lorsque le menu est ouvert
+- Le panneau du menu s'ouvre avec une animation de type scale (100ms, depuis le centre)
+- Un scrim semi-transparent (`--md-sys-color-scrim`) recouvre la page lorsque le menu est ouvert
+- Le panneau du menu est toujours contraint a 1088px, meme lorsque le header est en pleine largeur
+
 ## Accessibilite
 
 - Le bouton menu indique son etat via `aria-expanded` et `aria-haspopup`
 - Le panneau de navigation est un `<nav aria-label="Menu principal">`
 - Le focus est piege dans le menu ouvert via `m3e-focus-trap`
 - La touche Echap ferme le menu et rend le focus au bouton menu
+- Les boutons Connexion et Menu sont activables au clavier (Enter / Espace)
 - Toutes les icones SVG sont marquees `aria-hidden="true"`
 - Le lien logo indique l'ouverture dans une nouvelle fenetre aux lecteurs d'ecran
 - `prefers-reduced-motion: reduce` desactive les transitions

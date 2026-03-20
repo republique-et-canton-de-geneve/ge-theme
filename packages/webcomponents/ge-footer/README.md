@@ -75,14 +75,15 @@ Le composant se place automatiquement dans la zone `footer` d'une grille CSS si 
 
 | Attribut            | Type | Défaut | Description |
 |---------------------|------|--------|-------------|
+| `fullWidth`         | `boolean` | `true` | `true` = pleine largeur, `false` = largeur max 1107px. |
 | `theme`             | `'light'` \| `'dark'` | Auto (système) | Thème d'affichage. Par défaut, suit les préférences système. |
-| `maxwidth`          | `boolean` | `true` | `true` = pleine largeur, `false` = largeur max 1107px |
 | `locale`            | `'fr'` \| `'en'` \| `'es'` \| `'pt'` | Auto (DOM) | Langue des libellés. Par défaut, hérite de l'attribut `lang` de l'ancêtre le plus proche, fallback `fr`. |
 | `links`             | `JSON` | Liens par défaut | Tableau JSON de liens personnalisés |
 | `contactLink`       | `string` | `https://www.ge.ch/c/footer-edm-aide` | URL du lien Contact |
 | `accessibilityLink` | `string` | `https://www.ge.ch/c/footer-edm-accessibilite` | URL du lien Accessibilité |
 | `privacyLink`       | `string` | `https://www.ge.ch/c/footer-edm-confidentialite` | URL du lien Confidentialité |
 | `termsLink`         | `string` | `https://www.ge.ch/c/footer-edm-cgu` | URL du lien CGU |
+| `maxwidth`          | `string` | `"true"` | **Déprécié.** Utiliser `fullWidth` à la place. |
 
 ### Gestion du thème
 
@@ -153,11 +154,12 @@ Dans un contexte SPA, le composant réagit automatiquement aux changements de `d
 ```html
 <!-- Pleine largeur (défaut) -->
 <ge-footer></ge-footer>
-<ge-footer maxWidth></ge-footer>
 
 <!-- Largeur contrainte à 1107px -->
-<ge-footer maxWidth="false"></ge-footer>
+<ge-footer .fullWidth=${false}></ge-footer>
 ```
+
+> **Note :** L'attribut `maxwidth` est déprécié. Utilisez `fullWidth` à la place.
 
 ## Événements
 
