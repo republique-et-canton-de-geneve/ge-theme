@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE Header - Test Page</title>
+    <script type="module" src="../src/ge-header.js"></script>
+    <link rel="stylesheet" href="../../../website/static/theme/css/fonts.css">
+    <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
+    <link rel="stylesheet" id="theme-auto" href="../../../website/static/theme/css/theme.css">
+    <link rel="stylesheet" id="theme-dark" href="../../../website/static/theme/css/dark.css" disabled>
+    <link rel="stylesheet" id="theme-light" href="../../../website/static/theme/css/light.css" disabled>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        main {
+            padding: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 32px 0 16px 0;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--md-sys-color-surface-container);
+            border-radius: 8px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        button {
+            padding: 8px 16px;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 25px;
+            background: var(--md-sys-color-surface);
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        button:hover {
+            background: var(--md-sys-color-surface-container-high);
+        }
+
+        button.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .info-box {
+            padding: 12px 16px;
+            background: var(--md-sys-color-tertiary-container);
+            color: var(--md-sys-color-on-tertiary-container);
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .info-box code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<ge-header id="header" showMenu></ge-header>
+
+<main>
+    <h1>GE Header - Test Page</h1>
+    <p>Interactive testing for the ge-header web component with account menu and navigation.</p>
+
+    <div class="info-box">
+        The account button is always visible. Toggle <code>showMenu</code> to show/hide the navigation menu button.
+        Use the user presets to test different account types (PP, PM, ADM).
+    </div>
+
+    <h2>Controls</h2>
+    <div class="controls">
+        <div class="control-group">
+            <label>Theme</label>
+            <div>
+                <button id="btn-auto" class="active" data-theme="auto">Auto</button>
+                <button id="btn-light" data-theme="light">Light</button>
+                <button id="btn-dark" data-theme="dark">Dark</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Show Menu</label>
+            <div>
+                <button id="btn-menu-on" class="active" data-show-menu="true">On</button>
+                <button id="btn-menu-off" data-show-menu="false">Off</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Full Width</label>
+            <div>
+                <button id="btn-full" class="active" data-full-width="true">Full</button>
+                <button id="btn-constrained" data-full-width="false">Constrained</button>
+            </div>
+        </div>
+    </div>
+
+    <h2>User Presets</h2>
+    <div class="controls">
+        <div class="control-group">
+            <label>Account Type</label>
+            <div>
+                <button class="active" data-user="pp">PP (Personnel)</button>
+                <button data-user="pm">PM (Professionnel)</button>
+                <button data-user="adm">ADM (Administratif)</button>
+            </div>
+        </div>
+    </div>
+
+    <h2>Events Log</h2>
+    <div id="events-log" style="
+        padding: 16px;
+        background: var(--md-sys-color-surface-container);
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 13px;
+        min-height: 60px;
+        max-height: 200px;
+        overflow-y: auto;
+    ">
+        <em>Events will appear here...</em>
+    </div>
+
+    <h2>Contenu de page (test scroll & scrim)</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+    <p>Duis semper. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.</p>
+    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Mauris ac mauris sed pede pellentesque fermentum.</p>
+    <p>Nulla sollicitudin. Fusce varius, ligula non consequat interdum. Donec sollicitudin.</p>
+    <p>Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci.</p>
+    <p>Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu.</p>
+
+    <h2>Usage Examples</h2>
+    <div class="info-box">
+        <strong>Minimal:</strong><br>
+        <code>&lt;ge-header .userInfo=${{ nom: 'Dupont', prenom: 'Jean', email: 'jean@ge.ch', typeCompte: 'PP' }}&gt;&lt;/ge-header&gt;</code>
+    </div>
+    <div class="info-box">
+        <strong>With navigation menu:</strong><br>
+        <code>&lt;ge-header showMenu .userInfo=${'{...}'}&gt;&lt;/ge-header&gt;</code>
+    </div>
+    <div class="info-box">
+        <strong>Constrained width:</strong><br>
+        <code>&lt;ge-header .fullWidth=${'{false}'} showMenu .userInfo=${'{...}'}&gt;&lt;/ge-header&gt;</code>
+    </div>
+</main>
+
+<script type="module">
+    const header = document.getElementById('header');
+    const eventsLog = document.getElementById('events-log');
+    let logEntries = [];
+
+    const USER_PRESETS = {
+        pp: { nom: 'Dupont', prenom: 'Jean', email: 'jean.dupont@ge.ch', typeCompte: 'PP' },
+        pm: { nom: 'Martin', prenom: 'Sophie', email: 'sophie.martin@entreprise.ch', typeCompte: 'PM' },
+        adm: { nom: 'Admin', prenom: 'System', email: 'admin@etat-ge.ch', typeCompte: 'ADM' },
+    };
+
+    // Set initial user info
+    header.userInfo = USER_PRESETS.pp;
+
+    function logEvent(name, detail) {
+        const time = new Date().toLocaleTimeString();
+        logEntries.unshift(`[${time}] ${name}: ${JSON.stringify(detail)}`);
+        if (logEntries.length > 20) logEntries.pop();
+        eventsLog.innerHTML = logEntries.map(e => `<div>${e}</div>`).join('');
+    }
+
+    // Listen for all events
+    ['ge-menu-toggle', 'ge-account-toggle', 'ge-manage-account', 'ge-logout'].forEach(eventName => {
+        document.addEventListener(eventName, (e) => {
+            logEvent(eventName, e.detail);
+        });
+    });
+
+    // Theme toggle
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.dataset.theme;
+            document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const root = document.documentElement;
+            root.classList.remove('dark', 'light');
+
+            document.getElementById('theme-auto').disabled = mode !== 'auto';
+            document.getElementById('theme-dark').disabled = mode !== 'dark';
+            document.getElementById('theme-light').disabled = mode !== 'light';
+
+            if (mode !== 'auto') {
+                root.classList.add(mode);
+            }
+        });
+    });
+
+    // Show Menu toggle
+    document.querySelectorAll('[data-show-menu]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const show = btn.dataset.showMenu === 'true';
+            header.showMenu = show;
+            header.requestUpdate();
+            document.getElementById('btn-menu-on').classList.toggle('active', show);
+            document.getElementById('btn-menu-off').classList.toggle('active', !show);
+        });
+    });
+
+    // Full Width toggle
+    document.querySelectorAll('[data-full-width]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const full = btn.dataset.fullWidth === 'true';
+            header.fullWidth = full;
+            header.requestUpdate();
+            document.getElementById('btn-full').classList.toggle('active', full);
+            document.getElementById('btn-constrained').classList.toggle('active', !full);
+        });
+    });
+
+    // User preset buttons
+    document.querySelectorAll('[data-user]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const preset = btn.dataset.user;
+            header.userInfo = USER_PRESETS[preset];
+            header.requestUpdate();
+            document.querySelectorAll('[data-user]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            logEvent('userInfo-changed', USER_PRESETS[preset]);
+        });
+    });
+</script>
+</body>
+</html>

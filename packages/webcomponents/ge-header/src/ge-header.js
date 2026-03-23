@@ -1,398 +1,528 @@
+import { css, html, LitElement, nothing } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { LitElement, html, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import "@material/web/button/filled-button.js";
+import "@m3e/icon-button";
+import "./ge-header-nav-menu.js";
+import "./ge-header-account-menu.js";
+import { DEFAULT_MENU_DATA } from "./default-menu-data.js";
 
-export
-@customElement("ge-header")
+
+export @customElement("ge-header")
 class GeHeader extends LitElement {
 
-  @property({ type: Object })
-  userInfo = { nom: "", prenom: "", email: "", typeCompte: "" };
+    @property({ type: String }) maxWidth = "true";
+    @property({ type: Boolean, reflect: true }) fullWidth = true;
+    @property({ type: Boolean }) showMenu = false;
+    @property({ type: Object }) menuData = DEFAULT_MENU_DATA;
+    @property({ type: Object }) userInfo = { nom: "", prenom: "", email: "", typeCompte: "" };
 
-  @property({ type: Boolean })
-  isMenuOpen = false;
+    @state() _menuOpen = false;
+    @state() _accountOpen = false;
 
-  @property({ type: Boolean })
-  isMenBurgerOpen = false;
-  @property({ type: Boolean })
-  userInfoLoaded = false;
-
-  @property({ type: String }) maxWidth = "true";
-
-
-
-  static styles = css`
-    :host {
-      display: block;
-      font-family: Arial, sans-serif;
+    constructor() {
+        super();
+        // SWC transpiles class fields into instance properties that shadow
+        // Lit's reactive prototype accessors. Delete them so Lit's setters work.
+        for (const prop of ['maxWidth', 'fullWidth', 'showMenu', 'menuData', 'userInfo', '_menuOpen', '_accountOpen']) {
+            if (this.hasOwnProperty(prop)) {
+                const val = this[prop];
+                delete this[prop];
+                this[prop] = val;
+            }
+        }
     }
 
-    header {
-      background: var(--md-sys-color-surface);
-      box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
-      min-height: 77px;
-      border-bottom: 1px solid var(--md-sys-color-outline-variant, #d4d2cf);
-    }
-    
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 16px 0 16px;
-      transition: width 0.3s ease;
-      margin:auto;
+    /**
+     * Effective full-width state. The new `fullWidth` boolean takes precedence,
+     * but legacy `maxWidth="false"|"1107px"` still works for backward compat.
+     */
+    get _isFullWidth() {
+        if (this.maxWidth === "false" || this.maxWidth === "1107px") return false;
+        return this.fullWidth;
     }
 
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
+    updated(changed) {
+        super.updated(changed);
+        if (changed.has('maxWidth') && this.maxWidth !== 'true') {
+            console.warn(
+                'ge-header: maxWidth attribute is deprecated. Use the fullWidth boolean property instead. ' +
+                'Example: <ge-header .fullWidth=${false}>'
+            );
+        }
     }
 
-    .title {
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--md-sys-color-on-surface-variant);
-    }
+    static styles = css`
+        :host {
+            display: block;
+            position: relative;
+            z-index: 0;
+            font-family: var(--md-sys-typescale-body-medium-font);
+            color: var(--md-sys-color-on-surface);
+        }
 
-    .account-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+        .scrim {
+            position: fixed;
+            inset: 0;
+            background: var(--md-sys-color-scrim);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 99;
+            transition: opacity 150ms cubic-bezier(0.2, 0.0, 0, 1.0);
+        }
 
-    .profile-button {
-      background: none;
-      color: var(--md-sys-color-on-surface-variant);
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      transition: all 0.2s;
-    }
+        .scrim--visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    .maxwidth-formulaire { max-width: 1107px; }
-    
-    .maxwidth-full { max-width: 100%; }
-    
-    .user-menu {
-      position: absolute;
-      top: calc(100% + 8px);  
-      right: 0;
-      padding: 20px;
-      background: var(--md-sys-color-surface);
-      border-right: 1px solid var(--md-sys-color-surface-variant);
-      border-bottom: 1px solid var(--md-sys-color-surface-variant);
-      border-top: none;
-      border-radius:16px;
-      width: 288px;
-      height: auto;
-      list-style: none;
-      margin: 0;
-      box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12); 
-      z-index:9999;
-    }
+        header {
+            background: var(--md-sys-color-surface);
+            box-shadow: 0 0.5px 0.5px var(--md-sys-color-surface-5);
+            height: 80px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            position: relative;
+            z-index: 100;
+        }
 
-    .user-menu li {
-      display: flex;
-      flex-direction: column;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--md-ref-spacings-4, 16px);
+            margin: auto;
+            position: relative;
+        }
 
-    .user-info {
-      margin-bottom: 16px;
-    }
+        a.logo-section {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    .user-information {
-      color: var(--md-sys-color-on-background);
-      font-size: 15px;
-      opacity: 0.7;
-      margin-bottom: 9px;
-      font-weight: 700;
-      margin-top: 9px;
-    }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: var(--md-ref-spacings-4, 16px);
+            cursor: pointer;
+        }
 
-    .account-type-title {
-      color: var(--md-sys-color-on-surface);
-      margin-bottom: 8px;
-      opacity: 100%;
-    }
+        .title {
+            font-family: var(--md-sys-typescale-headline-small-font);
+            font-size: var(--md-sys-typescale-headline-small-size);
+            font-weight: var(--md-ref-typeface-weight-400);
+            color: var(--md-sys-color-on-surface);
+        }
 
-    .user-name {
-      color: var(--md-sys-color-on-surface-variant);
-      margin-bottom: 4px;
-      font-size: 16px;
-    }
+        /* Action buttons (account, menu) */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--md-ref-spacings-4, 16px);
+        }
 
-    .user-email {
-      font-weight: 400;
-      color: var(--md-sys-color-on-surface);
-      font-size: 14px;
-      opacity: 0.7;
-    }
+        .action-button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
 
-    .account-type {
-      border-radius: 5px;
-      border: 1px solid var(--md-sys-color-on-warning-container);
-      opacity: 0.5;
-      width: fit-content;
-      padding: 8px;
-      font-size: 14px;
-      margin-top: 8px;
-      color: var(--md-sys-color-on-surface);
-      font-weight: 700;
-    }
+        .action-button-wrapper:hover,
+        .action-button-wrapper:active,
+        .action-button-wrapper--active {
+            color: var(--md-sys-color-primary);
+        }
 
-    .manage-account {
-      color: var(--md-sys-color-primary);
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 14px;
-      display: block;
-      margin-top: 16px;
-      margin-bottom: 16px;
-    }
+        .action-button-wrapper:hover .action-label,
+        .action-button-wrapper:active .action-label,
+        .action-button-wrapper--active .action-label {
+            color: var(--md-sys-color-primary);
+        }
 
-    .logout-button {
-      width: 80%;
-      margin-top: 8px;
-      margin-bottom: 32px;
-      font-weight: 500;
-    }
+        .action-button-wrapper:focus-visible {
+            outline: 2px solid var(--md-sys-color-primary);
+            outline-offset: var(--md-ref-spacings-1, 4px);
+            border-radius: var(--md-sys-shape-corner-medium, 12px);
+        }
 
-    .icon-container {
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .action-button-wrapper m3e-icon-button {
+            --m3e-icon-button-small-icon-size: 37px;
+            --m3e-icon-button-small-container-height: 37px;
+        }
 
-    .badge {
-      position: absolute;
-      top: 0;
-      left: 25px;
-      background-color: var(--md-sys-color-primary);
-      border-radius: 50px;
-      color: var(--md-sys-color-on-primary);
-      font-weight: 800;
-      padding: 2px 6px;
-      font-size: 10px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .action-label {
+            font-family: var(--md-sys-typescale-label-small-font);
+            font-size: var(--md-sys-typescale-label-small-size);
+            font-weight: var(--md-sys-typescale-label-small-weight);
+            line-height: var(--md-sys-typescale-label-small-line-height);
+            color: var(--md-sys-color-on-surface-variant);
+            user-select: none;
+        }
 
-    .burger-menu {
-      display: none;
-      cursor: pointer;
-    }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
 
-    .burger-menu svg {
-      width: 30px;
-      height: 29px;
-      fill: #001d34;
-      transition: transform 0.3s ease;
-    }
+        /* Account button badge overlay */
+        .account-button-wrapper {
+            position: relative;
+        }
 
-    .menu {
-      display: none;
-      position: absolute;
-      top: 77px;
-      right: 0;
-      width: 200px;
-      background: var(--md-sys-color-surface-container-highest);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      border-radius: 8px;
-    }
+        .account-badge {
+            position: absolute;
+            top: 0;
+            right: -4px;
+            background-color: var(--md-sys-color-primary);
+            border-radius: 50px;
+            color: var(--md-sys-color-on-primary);
+            font-weight: 800;
+            padding: 2px 6px;
+            font-size: 10px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+        }
 
-    .hidden {
-      display: none;
-    }
+        /* Nav menu positioning */
+        ge-header-nav-menu {
+            position: absolute;
+            top: calc(100% - 11px);
+            left: 0;
+            right: 0;
+        }
 
-    .menu.open {
-      display: block;
-    }
+        .maxwidth-full > ge-header-nav-menu {
+            right: var(--md-ref-spacings-4, 16px);
+        }
 
-    @media (max-width: 768px) {
-      .header {
-        padding: 0 16px;
-      }
-      .burger-menu {
-        min-width: 48px;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+        /* Account menu positioning */
+        ge-header-account-menu {
+            position: absolute;
+            top: calc(100% + 4px);
+            right: 0;
+        }
 
-      .profile-button {
-        display: none;
-      }
-    }
-  `;
+        .maxwidth-formulaire { max-width: 1107px; }
+        .maxwidth-full { max-width: 100%; }
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-    this.requestUpdate("isMenuOpen");
-  }
+        @media (prefers-reduced-motion: reduce) {
+            .scrim {
+                transition: none;
+            }
+        }
 
-  handleManageAccount() {
-    const event = new CustomEvent("ge-manage-account", {
-      detail: { userInfo: this.userInfo },
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
-  }
+        @media (max-width: 768px) {
+            .action-label {
+                display: none;
+            }
 
-  handleLogout() {
-    const event = new CustomEvent("ge-logout", {
-      detail: { userInfo: this.userInfo },
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
-  }
-
-  getAccountType(typeCompte) {
-    switch (typeCompte) {
-      case "PP":
-        return "personnel";
-      case "PM":
-        return "professionnel";
-      default:
-        return "administratif";
-    }
-  }
-
-  getBadgeType(typeCompte) {
-    switch (typeCompte) {
-      case "PM":
-        return "PRO";
-      case "PP":
-        return undefined;
-      default:
-        return "ADM";
-    }
-  }
-
-  handleBurgerClick(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this.isMenBurgerOpen = !this.isMenBurgerOpen;
-
-    const event = new CustomEvent("ge-toggle-app-menu", {
-      bubbles: true,
-      composed: true,
-    });
-
-    this.dispatchEvent(event);
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    document.addEventListener("click", this.handleOutsideClick);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    document.removeEventListener("click", this.handleOutsideClick);
-  }
-  handleOutsideClick = (event) => {
-    if (!this.shadowRoot) return;
-
-    const path = event.composedPath();
-    const clickedInside = path.includes(this.shadowRoot);
-
-    if (!clickedInside && this.isMenuOpen) {
-      this.isMenuOpen = false;
-      this.requestUpdate("isMenuOpen");
-    }
-  };
-
-  render() {
-
-    
-    const maxWidthClasses = {
-      "header": true,
-      "maxwidth-full": this.maxWidth === "true",
-      "maxwidth-formulaire": this.maxWidth === "1107px" || this.maxWidth === "false"
-    };
-
-
-    return html`
-      <header>
-        <div class=${classMap(maxWidthClasses)} >
-          <a href="https://www.ge.ch/" class="logo-section" target="gech">
-            <img
-              src="https://static.app.ge.ch/theme/icons/common/header/header-armoiries-light.svg"
-              alt="République et canton de Genève"
-              width="27"
-              height="45"
-            />
-            <span class="title">ge.ch</span>
-          </a>
-          <div class="account-item">
-            <div class="icon-container" @click="${this.toggleMenu}">
-              ${this.isMenuOpen
-        ? html`
-            <ul class="user-menu" role="menu" aria-label="Menu utilisateur">
-              <li role="menu">
-                <span class="user-information">Informations de connexion</span>
-                <span class="user-name"
-                  >${this.userInfo.nom} ${this.userInfo.prenom}</span
-                >
-                <span class="user-email">${this.userInfo.email}</span>
-              </li>
-              <li role="menuitem">
-                <span class="account-type">
-                  Compte
-                  ${html`${this.getAccountType(this.userInfo?.typeCompte)}`}
-                </span>
-              </li>
-              <li role="menuitem">
-                <a
-                  class="manage-account"
-                  href="https://ge.ch/ginapartners/profile/"
-                  @click="${this.handleManageAccount}"
-                >
-                  Gérer mon compte
-                </a>
-              </li>
-
-              <li role="menuitem">
-                <md-filled-button @click=${this.handleLogout} data-test-id="logout-button">
-                  Se déconnecter
-                </md-filled-button>
-              </li>
-            </ul>
-          `
-        : ""}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="50px"
-                viewBox="0 -960 960 960"
-                width="50px"
-                fill="var(--md-sys-color-on-surface-variant)"
-              >
-                <path
-                  d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
-                />
-              </svg>
-              <span class="badge"
-                >${this.getBadgeType(this.userInfo?.typeCompte)}</span
-              >
-            </div>
-
-            <button class="profile-button" @click="${this.toggleMenu}">
-              Mon compte
-            </button>
-          </div>
-        </div>  
-      </header>
+            .header-actions {
+                gap: var(--md-ref-spacings-2, 8px);
+            }
+        }
     `;
-  }
+
+    connectedCallback() {
+        super.connectedCallback();
+        this._handleOutsideClick = this._handleOutsideClick.bind(this);
+        this._handleKeydown = this._handleKeydown.bind(this);
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this._removeGlobalListeners();
+    }
+
+    _addGlobalListeners() {
+        document.addEventListener("click", this._handleOutsideClick);
+        document.addEventListener("keydown", this._handleKeydown);
+    }
+
+    _removeGlobalListeners() {
+        document.removeEventListener("click", this._handleOutsideClick);
+        document.removeEventListener("keydown", this._handleKeydown);
+    }
+
+    _handleOutsideClick(event) {
+        if (!this.shadowRoot) return;
+        const path = event.composedPath();
+
+        // Check if click is inside nav menu or its toggle
+        if (this._menuOpen) {
+            const menuPanel = this.shadowRoot.querySelector('ge-header-nav-menu');
+            const menuToggle = this.shadowRoot.querySelector('#menu-toggle');
+            if (menuPanel && path.includes(menuPanel)) return;
+            if (menuToggle && path.includes(menuToggle)) return;
+        }
+
+        // Check if click is inside account menu or its toggle
+        if (this._accountOpen) {
+            const accountPanel = this.shadowRoot.querySelector('ge-header-account-menu');
+            const accountToggle = this.shadowRoot.querySelector('#account-toggle');
+            if (accountPanel && path.includes(accountPanel)) return;
+            if (accountToggle && path.includes(accountToggle)) return;
+        }
+
+        this._closeAll();
+    }
+
+    _handleKeydown(event) {
+        if (event.key === "Escape") {
+            this._closeAll();
+        }
+    }
+
+    _handleMenuKeydown(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this._toggleMenu();
+        }
+    }
+
+    _handleAccountKeydown(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this._toggleAccount();
+        }
+    }
+
+    _toggleMenu() {
+        const wasOpen = this._menuOpen;
+        // Close account if open (mutual exclusion)
+        if (this._accountOpen) {
+            this._accountOpen = false;
+            this.dispatchEvent(new CustomEvent("ge-account-toggle", {
+                detail: { open: false },
+                bubbles: true,
+                composed: true,
+            }));
+        }
+
+        this._menuOpen = !wasOpen;
+
+        if (this._menuOpen) {
+            this._addGlobalListeners();
+        } else if (!this._accountOpen) {
+            this._removeGlobalListeners();
+        }
+
+        this.dispatchEvent(new CustomEvent("ge-menu-toggle", {
+            detail: { open: this._menuOpen },
+            bubbles: true,
+            composed: true,
+        }));
+
+        if (this._menuOpen) {
+            this.updateComplete.then(() => {
+                const menuEl = this.shadowRoot?.querySelector('ge-header-nav-menu');
+                if (menuEl) {
+                    menuEl.updateComplete.then(() => {
+                        const focusable = menuEl.getFocusableElements();
+                        if (focusable.length > 0) {
+                            focusable[0].focus();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    _toggleAccount() {
+        const wasOpen = this._accountOpen;
+        // Close menu if open (mutual exclusion)
+        if (this._menuOpen) {
+            this._menuOpen = false;
+            this.dispatchEvent(new CustomEvent("ge-menu-toggle", {
+                detail: { open: false },
+                bubbles: true,
+                composed: true,
+            }));
+        }
+
+        this._accountOpen = !wasOpen;
+
+        if (this._accountOpen) {
+            this._addGlobalListeners();
+        } else if (!this._menuOpen) {
+            this._removeGlobalListeners();
+        }
+
+        this.dispatchEvent(new CustomEvent("ge-account-toggle", {
+            detail: { open: this._accountOpen },
+            bubbles: true,
+            composed: true,
+        }));
+
+        if (this._accountOpen) {
+            this.updateComplete.then(() => {
+                const accountEl = this.shadowRoot?.querySelector('ge-header-account-menu');
+                if (accountEl) {
+                    accountEl.updateComplete.then(() => {
+                        const focusable = accountEl.getFocusableElements();
+                        if (focusable.length > 0) {
+                            focusable[0].focus();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    _closeAll() {
+        const wasMenuOpen = this._menuOpen;
+        const wasAccountOpen = this._accountOpen;
+
+        if (!wasMenuOpen && !wasAccountOpen) return;
+
+        this._menuOpen = false;
+        this._accountOpen = false;
+        this._removeGlobalListeners();
+
+        if (wasMenuOpen) {
+            this.dispatchEvent(new CustomEvent("ge-menu-toggle", {
+                detail: { open: false },
+                bubbles: true,
+                composed: true,
+            }));
+            this.updateComplete.then(() => {
+                const menuButton = this.shadowRoot?.querySelector('#menu-toggle');
+                if (menuButton) menuButton.focus();
+            });
+        }
+
+        if (wasAccountOpen) {
+            this.dispatchEvent(new CustomEvent("ge-account-toggle", {
+                detail: { open: false },
+                bubbles: true,
+                composed: true,
+            }));
+            this.updateComplete.then(() => {
+                const accountButton = this.shadowRoot?.querySelector('#account-toggle');
+                if (accountButton) accountButton.focus();
+            });
+        }
+    }
+
+    _getBadgeLabel() {
+        switch (this.userInfo?.typeCompte) {
+            case "PM":
+                return "PRO";
+            case "PP":
+                return undefined;
+            default:
+                return "ADM";
+        }
+    }
+
+    _renderAccountButton() {
+        const badgeLabel = this._getBadgeLabel();
+        return html`
+            <div class="action-button-wrapper ${this._accountOpen ? 'action-button-wrapper--active' : ''}"
+                id="account-toggle"
+                role="button"
+                tabindex="0"
+                aria-label=${this._accountOpen ? "Fermer le menu du compte" : "Ouvrir le menu du compte"}
+                aria-expanded=${this._accountOpen}
+                aria-haspopup="true"
+                @click=${this._toggleAccount}
+                @keydown=${this._handleAccountKeydown}
+            >
+                <div class="account-button-wrapper">
+                    <m3e-icon-button tabindex="-1" aria-hidden="true">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                            <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/>
+                        </svg>
+                    </m3e-icon-button>
+                    ${badgeLabel ? html`<span class="account-badge">${badgeLabel}</span>` : nothing}
+                </div>
+                <span class="action-label">Mon compte</span>
+            </div>
+        `;
+    }
+
+    _renderMenuButton() {
+        if (!this.showMenu) return nothing;
+        return html`
+            <div class="action-button-wrapper ${this._menuOpen ? 'action-button-wrapper--active' : ''}"
+                id="menu-toggle"
+                role="button"
+                tabindex="0"
+                aria-label=${this._menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                aria-expanded=${this._menuOpen}
+                aria-haspopup="true"
+                @click=${this._toggleMenu}
+                @keydown=${this._handleMenuKeydown}
+            >
+                <m3e-icon-button tabindex="-1" aria-hidden="true">
+                    ${this._menuOpen
+                        ? html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                        </svg>`
+                        : html`<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+                            <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                        </svg>`
+                    }
+                </m3e-icon-button>
+                <span class="action-label">Menu</span>
+            </div>
+        `;
+    }
+
+    render() {
+        const maxWidthClasses = {
+            "header": true,
+            "maxwidth-full": this._isFullWidth,
+            "maxwidth-formulaire": !this._isFullWidth,
+        };
+
+        const scrimClasses = {
+            'scrim': true,
+            'scrim--visible': this._menuOpen,
+        };
+
+        return html`
+            <header role="banner">
+                <div class=${classMap(maxWidthClasses)}>
+                    <a href="https://www.ge.ch/" class="logo-section" target="gech">
+                        <img
+                            src="https://static.app.ge.ch/theme/icons/common/header/header-armoiries-light.svg"
+                            alt="République et canton de Genève"
+                            width="27"
+                            height="45"
+                        />
+                        <span class="title">ge.ch</span>
+                        <span class="visually-hidden">(s'ouvre dans une nouvelle fenêtre)</span>
+                    </a>
+                    <div class="header-actions">
+                        ${this._renderAccountButton()}
+                        ${this._renderMenuButton()}
+                    </div>
+                    ${this.showMenu ? html`
+                        <ge-header-nav-menu
+                            .menuData=${this.menuData}
+                            .open=${this._menuOpen}
+                            .constrained=${true}
+                            .rightAligned=${this._isFullWidth}
+                            @_request-close=${this._closeAll}
+                        ></ge-header-nav-menu>
+                    ` : nothing}
+                    <ge-header-account-menu
+                        .userInfo=${this.userInfo}
+                        .open=${this._accountOpen}
+                        @_request-close=${this._closeAll}
+                    ></ge-header-account-menu>
+                </div>
+            </header>
+            <div class=${classMap(scrimClasses)} @click=${this._closeAll} aria-hidden="true"></div>
+        `;
+    }
 }
