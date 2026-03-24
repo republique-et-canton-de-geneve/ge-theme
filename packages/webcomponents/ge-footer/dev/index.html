@@ -6,7 +6,9 @@
     <title>GE Footer Component - Test Page</title>
     <script type="module" src="../src/ge-footer.js"></script>
     <link rel="stylesheet" href="../../../website/static/theme/css/primitives.css">
-    <link rel="stylesheet" href="../../../website/static/theme/css/theme.css">
+    <link rel="stylesheet" id="theme-auto" href="../../../website/static/theme/css/theme.css">
+    <link rel="stylesheet" id="theme-dark" href="../../../website/static/theme/css/dark.css" disabled>
+    <link rel="stylesheet" id="theme-light" href="../../../website/static/theme/css/light.css" disabled>
     <style>
         * {
             box-sizing: border-box;
@@ -185,10 +187,18 @@
         });
         document.getElementById(`btn-${theme}`).classList.add('active');
 
+        // Toggle page-level theme stylesheets
+        const root = document.documentElement;
+        root.classList.remove('dark', 'light');
+        document.getElementById('theme-auto').disabled = theme !== 'auto';
+        document.getElementById('theme-dark').disabled = theme !== 'dark';
+        document.getElementById('theme-light').disabled = theme !== 'light';
+
         if (theme === 'auto') {
             footer.removeAttribute('theme');
             themeSource.textContent = 'system preference';
         } else {
+            root.classList.add(theme);
             footer.setAttribute('theme', theme);
             themeSource.textContent = 'attribute override';
         }
@@ -200,11 +210,8 @@
     function setFullWidth(full) {
         document.getElementById('btn-full').classList.toggle('active', full);
         document.getElementById('btn-constrained').classList.toggle('active', !full);
-        if (full) {
-            footer.setAttribute('maxwidth', '');
-        } else {
-            footer.removeAttribute('maxwidth');
-        }
+        footer.fullWidth = full;
+        footer.requestUpdate();
     }
 
     function setDocLang(lang) {
@@ -223,9 +230,11 @@
         }
     }
 
-    // Listen for image click events
+    // Listen for image click events — toggle theme on logo click
     document.addEventListener('ge-footer-image-click', (e) => {
         console.log('Footer image clicked:', e.detail);
+        const currentTheme = footer.theme;
+        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
 
     // Initial display update after component initializes
