@@ -10,7 +10,13 @@ export @customElement("ge-header-public")
 class GeHeaderPublic extends LitElement {
 
     @property({ type: String }) maxWidth = "true";
-    @property({ type: Boolean, reflect: true }) fullWidth = true;
+    @property({
+        reflect: true,
+        converter: {
+            fromAttribute: (value) => value !== 'false',
+            toAttribute: (value) => value ? '' : 'false',
+        },
+    }) fullWidth = true;
     @property({ type: Boolean }) showMenu = false;
     @property({ type: Boolean }) showLogin = false;
     @property({ type: String }) loginUrl = "https://www.ge.ch/connexion";
