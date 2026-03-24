@@ -138,13 +138,7 @@ class GeFooter extends LitElement {
     @property({ type: String, attribute: 'maxwidth' }) maxWidth = "true";
 
     /** When true, footer spans full width. When false, constrained to 1107px. */
-    @property({
-        reflect: true,
-        converter: {
-            fromAttribute: (value) => value !== 'false',
-            toAttribute: (value) => value ? '' : 'false',
-        },
-    }) fullWidth = true;
+    @property({ type: String, attribute: 'fullWidth' }) fullWidth = "true";
 
     /**
      * Effective full-width state. The new `fullWidth` boolean takes precedence,
@@ -152,7 +146,7 @@ class GeFooter extends LitElement {
      */
     get _isFullWidth() {
         if (this.maxWidth === "false") return false;
-        return this.fullWidth;
+        return this.fullWidth === "true";
     }
 
     /** URL for the Contact link */
