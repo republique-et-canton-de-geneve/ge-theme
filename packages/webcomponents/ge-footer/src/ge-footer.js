@@ -138,7 +138,7 @@ class GeFooter extends LitElement {
     @property({ type: String, attribute: 'maxwidth' }) maxWidth = "true";
 
     /** When true, footer spans full width. When false, constrained to 1107px. */
-    @property({ type: String, attribute: 'fullWidth' }) fullWidth = "true";
+    @property({ type: String }) fullWidth = "true";
 
     /**
      * Effective full-width state. The new `fullWidth` boolean takes precedence,
