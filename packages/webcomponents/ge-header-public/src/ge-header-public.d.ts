@@ -23,6 +23,7 @@ export interface MenuData {
 
 export declare class GeHeaderPublic extends LitElement {
   maxWidth: string;
+  fullWidth: string;
   showMenu: boolean;
   showLogin: boolean;
   loginUrl: string;

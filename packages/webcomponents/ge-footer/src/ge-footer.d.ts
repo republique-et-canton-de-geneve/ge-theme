@@ -6,8 +6,9 @@ export interface FooterLink {
 }
 
 export declare class GeFooter extends LitElement {
-    /** When true, footer spans full width. When false, constrained to 1107px. */
-    maxWidth: boolean;
+    /** When true, footer spans full width. When false, constrained to 1107px. New attribute is fullWidth */
+    maxWidth: string;
+    fullWidth: string;
 
     /** URL for the Contact link */
     contactLink: string;
