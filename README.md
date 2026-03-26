@@ -94,9 +94,9 @@ Pour les applications avec contenus pleine largeur (ex : Mon espace e-démarches
 
 Pour les applications avec marges sur le contenu (ex : Formulaires e-démarches) :
 ```html
-<ge-header-public maxWidth="false"></ge-header-public>
+<ge-header-public fullWidth="false"></ge-header-public>
 <main>...</main>
-<ge-footer maxwidth="false"></ge-footer>
+<ge-footer fullWidth="false"></ge-footer>
 ```
 
 Pour la documentation complète des composants (props, événements, méthodes), voir le [README des Web Components](./packages/webcomponents/README.md).
